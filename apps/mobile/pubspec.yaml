@@ -1,0 +1,28 @@
+name: madrasha_mobile_app
+description: "Cross-platform Parent & Teacher Mobile Application for Madrasha Management Platform"
+publish_to: "none"
+version: 1.0.0+1
+
+environment:
+  sdk: ">=3.0.0 <4.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_riverpod: ^2.5.1
+  go_router: ^14.2.7
+  dio: ^5.7.0
+  hive: ^2.2.3
+  hive_flutter: ^1.1.0
+  firebase_core: ^3.6.0
+  firebase_messaging: ^15.1.3
+  intl: ^0.19.0
+  google_fonts: ^6.2.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0
+
+flutter:
+  uses-material-design: true

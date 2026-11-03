@@ -1,0 +1,971 @@
+// ==============================================================================
+// জাতীয় মাদ্রাসা ম্যানেজমেন্ট প্ল্যাটফর্ম — PostgreSQL Prisma Schema
+// Architecture: Schema-per-tenant Multi-Tenancy (Control DB + Tenant DB)
+// ==============================================================================
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["multiSchema"]
+}
+
+// ==============================================================================
+// ১. CONTROL DATABASE MODELS (public schema)
+// ==============================================================================
+
+enum MadrasaType {
+  QAWMI
+  ALIA
+  HAFIZIYA
+  NURANI
+  MIXED
+}
+
+enum MadrasaStatus {
+  PENDING
+  ACTIVE
+  SUSPENDED
+  CANCELLED
+}
+
+enum AgencyRole {
+  OWNER
+  SUPPORT
+  BILLING
+  SALES
+  DEVELOPER
+}
+
+enum InvoiceStatus {
+  DRAFT
+  UNPAID
+  PAID
+  OVERDUE
+  WAIVED
+}
+
+enum TicketPriority {
+  LOW
+  MEDIUM
+  HIGH
+  CRITICAL
+}
+
+enum TicketStatus {
+  OPEN
+  IN_PROGRESS
+  RESOLVED
+  CLOSED
+}
+
+model MadrasaRegistry {
+  id                 String        @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  schemaName         String        @unique @map("schema_name") @db.VarChar(20)
+  code               String        @unique @db.VarChar(10)
+  nameBn             String        @map("name_bn") @db.VarChar(200)
+  nameEn             String?       @map("name_en") @db.VarChar(200)
+  type               MadrasaType
+  subType            String?       @map("sub_type") @db.VarChar(50)
+  division           String        @db.VarChar(50)
+  district           String        @db.VarChar(50)
+  thana              String        @db.VarChar(50)
+  address            String?       @db.Text
+  gpsLat             Decimal?      @map("gps_lat") @db.Decimal(10, 7)
+  gpsLng             Decimal?      @map("gps_lng") @db.Decimal(10, 7)
+  muhtamimName       String        @map("muhtamim_name") @db.VarChar(100)
+  muhtamimPhone      String        @map("muhtamim_phone") @db.VarChar(20)
+  muhtamimEmail      String?       @map("muhtamim_email") @db.VarChar(150)
+  status             MadrasaStatus @default(PENDING)
+  suspensionReason   String?       @map("suspension_reason") @db.Text
+  suspendedAt        DateTime?     @map("suspended_at") @db.Timestamptz
+  planId             String?       @map("plan_id") @db.Uuid
+  planExpiresAt      DateTime?     @map("plan_expires_at") @db.Timestamptz
+  trialEndsAt        DateTime?     @map("trial_ends_at") @db.Timestamptz
+  studentCount       Int           @default(0) @map("student_count")
+  staffCount         Int           @default(0) @map("staff_count")
+  smsBalance         Int           @default(0) @map("sms_balance")
+  storageUsedMb      Int           @default(0) @map("storage_used_mb")
+  dbUser             String?       @unique @map("db_user") @db.VarChar(50)
+  dbPasswordEnc      String?       @map("db_password_enc") @db.Text
+  encKeyRef          String?       @map("enc_key_ref") @db.VarChar(100)
+  setupToken         String?       @unique @map("setup_token") @db.Uuid
+  setupTokenExp      DateTime?     @map("setup_token_exp") @db.Timestamptz
+  approvedBy         String?       @map("approved_by") @db.Uuid
+  approvedAt         DateTime?     @map("approved_at") @db.Timestamptz
+  createdAt          DateTime      @default(now()) @map("created_at") @db.Timestamptz
+  updatedAt          DateTime      @updatedAt @map("updated_at") @db.Timestamptz
+
+  plan               SubscriptionPlan? @relation(fields: [planId], references: [id])
+  invoices           BillingInvoice[]
+  tickets            SupportTicket[]
+
+  @@map("madrasa_registry")
+}
+
+model SubscriptionPlan {
+  id           String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  name         String   @unique @db.VarChar(50)
+  priceMonthly Decimal  @map("price_monthly") @db.Decimal(10, 2)
+  priceYearly  Decimal  @map("price_yearly") @db.Decimal(10, 2)
+  maxStudents  Int      @map("max_students")
+  maxStaff     Int      @map("max_staff")
+  smsMonthly   Int      @default(0) @map("sms_monthly")
+  features     Json
+  isActive     Boolean  @default(true) @map("is_active")
+  createdAt    DateTime @default(now()) @map("created_at") @db.Timestamptz
+  updatedAt    DateTime @updatedAt @map("updated_at") @db.Timestamptz
+
+  madrasas     MadrasaRegistry[]
+  invoices     BillingInvoice[]
+
+  @@map("subscription_plans")
+}
+
+model BillingInvoice {
+  id            String        @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  invoiceNo     String        @unique @map("invoice_no") @db.VarChar(20)
+  madrasaId     String        @map("madrasa_id") @db.Uuid
+  planId        String        @map("plan_id") @db.Uuid
+  periodStart   DateTime      @map("period_start") @db.Date
+  periodEnd     DateTime      @map("period_end") @db.Date
+  amount        Decimal       @db.Decimal(10, 2)
+  status        InvoiceStatus @default(UNPAID)
+  dueDate       DateTime      @map("due_date") @db.Date
+  paymentMethod String?       @map("payment_method") @db.VarChar(50)
+  transactionId String?       @map("transaction_id") @db.VarChar(100)
+  gatewayRef    String?       @map("gateway_ref") @db.VarChar(200)
+  paidAt        DateTime?     @map("paid_at") @db.Timestamptz
+  paidBy        String?       @map("paid_by") @db.Uuid
+  notes         String?       @db.Text
+  createdAt     DateTime      @default(now()) @map("created_at") @db.Timestamptz
+  updatedAt     DateTime      @updatedAt @map("updated_at") @db.Timestamptz
+
+  madrasa       MadrasaRegistry   @relation(fields: [madrasaId], references: [id])
+  plan          SubscriptionPlan  @relation(fields: [planId], references: [id])
+
+  @@map("billing_invoices")
+}
+
+model AgencyStaff {
+  id           String     @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  name         String     @db.VarChar(100)
+  email        String     @unique @db.VarChar(150)
+  phone        String?    @db.VarChar(20)
+  passwordHash String     @map("password_hash") @db.Text
+  role         AgencyRole
+  permissions  Json       @default("{}")
+  totpSecret   String?    @map("totp_secret") @db.Text
+  totpEnabled  Boolean    @default(false) @map("totp_enabled")
+  isActive     Boolean    @default(true) @map("is_active")
+  lastLoginAt  DateTime?  @map("last_login_at") @db.Timestamptz
+  createdAt    DateTime   @default(now()) @map("created_at") @db.Timestamptz
+  updatedAt    DateTime   @updatedAt @map("updated_at") @db.Timestamptz
+
+  assignedTickets SupportTicket[]
+
+  @@map("agency_staff")
+}
+
+model SupportTicket {
+  id          String         @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  ticketNo    String         @unique @map("ticket_no") @db.VarChar(15)
+  madrasaId   String         @map("madrasa_id") @db.Uuid
+  submittedBy String         @map("submitted_by") @db.Uuid
+  subject     String         @db.VarChar(200)
+  message     String         @db.Text
+  priority    TicketPriority @default(MEDIUM)
+  status      TicketStatus   @default(OPEN)
+  assignedTo  String?        @map("assigned_to") @db.Uuid
+  resolvedAt  DateTime?      @map("resolved_at") @db.Timestamptz
+  createdAt   DateTime       @default(now()) @map("created_at") @db.Timestamptz
+  updatedAt   DateTime       @updatedAt @map("updated_at") @db.Timestamptz
+
+  madrasa     MadrasaRegistry @relation(fields: [madrasaId], references: [id])
+  assignee    AgencyStaff?    @relation(fields: [assignedTo], references: [id])
+  messages    TicketMessage[]
+
+  @@map("support_tickets")
+}
+
+model TicketMessage {
+  id         String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  ticketId   String   @map("ticket_id") @db.Uuid
+  senderType String   @map("sender_type") @db.VarChar(20) // MADRASA, AGENCY
+  senderId   String   @map("sender_id") @db.Uuid
+  message    String   @db.Text
+  createdAt  DateTime @default(now()) @map("created_at") @db.Timestamptz
+
+  ticket     SupportTicket @relation(fields: [ticketId], references: [id], onDelete: Cascade)
+
+  @@map("ticket_messages")
+}
+
+model SystemAuditLog {
+  id         BigInt   @id @default(autoincrement())
+  eventType  String   @map("event_type") @db.VarChar(50)
+  actorId    String   @map("actor_id") @db.Uuid
+  actorType  String   @map("actor_type") @db.VarChar(30)
+  targetId   String?  @map("target_id") @db.Uuid
+  targetType String?  @map("target_type") @db.VarChar(50)
+  details    Json     @default("{}")
+  ipAddress  String?  @map("ip_address") @db.VarChar(45)
+  userAgent  String?  @map("user_agent") @db.Text
+  createdAt  DateTime @default(now()) @map("created_at") @db.Timestamptz
+  prevHash   String?  @map("prev_hash") @db.Char(64)
+  currHash   String?  @map("curr_hash") @db.Char(64)
+
+  @@map("system_audit_log")
+}
+
+// ==============================================================================
+// ২. TENANT DATABASE MODELS (schema-per-tenant, e.g. m_001, m_002)
+// ==============================================================================
+
+enum UserRoleName {
+  MUHTAMIM
+  NAIB_MUHTAMIM
+  ACCOUNTANT
+  CASHIER
+  AUDITOR
+  TEACHER
+  EXAM_CONTROLLER
+  HOSTEL_WARDEN
+  PARENT
+  STAFF
+}
+
+enum StudentGender {
+  MALE
+  FEMALE
+}
+
+enum BoardingType {
+  DAY
+  BOARDING
+  EXTERNAL
+}
+
+enum StudentStatus {
+  ACTIVE
+  TC
+  DROPOUT
+  GRADUATED
+  DECEASED
+}
+
+enum GuardianRelation {
+  FATHER
+  MOTHER
+  GUARDIAN
+  OTHER
+}
+
+enum HifzQuality {
+  MUMTAZ
+  JAYYID_JIDDAN
+  JAYYID
+  MAQBUL
+  RASIB
+}
+
+enum AttendanceStatus {
+  PRESENT
+  ABSENT
+  LATE
+  LEAVE
+  HOLIDAY
+}
+
+enum AttendanceSource {
+  MANUAL
+  BIOMETRIC
+  QR_SCAN
+  APP
+}
+
+enum BiometricDeviceType {
+  ZKTECO_PULL
+  ADMS_PUSH
+}
+
+enum FundType {
+  GENERAL
+  ZAKAH
+  SADAQAH
+  LILLAH
+  WAQF
+  CONSTRUCTION
+  QURBANI
+  OTHER
+}
+
+enum AccountType {
+  INCOME
+  EXPENSE
+  ASSET
+  LIABILITY
+  EQUITY
+}
+
+enum FeeType {
+  ADMISSION
+  MONTHLY
+  HOSTEL
+  EXAM
+  LIBRARY
+  OTHER
+}
+
+enum StudentInvoiceStatus {
+  UNPAID
+  PARTIAL
+  PAID
+  WAIVED
+  CANCELLED
+}
+
+enum PaymentMethod {
+  CASH
+  BKASH
+  NAGAD
+  ROCKET
+  CARD
+  BANK
+}
+
+enum GatepassStatus {
+  PENDING
+  APPROVED
+  REJECTED
+  USED
+  EXPIRED
+}
+
+enum TargetAudienceType {
+  ALL
+  CLASS
+  DEPARTMENT
+  ROLE
+  INDIVIDUAL
+}
+
+enum SmsDeliveryStatus {
+  QUEUED
+  SENT
+  DELIVERED
+  FAILED
+}
+
+enum MealSession {
+  BREAKFAST
+  LUNCH
+  DINNER
+}
+
+// ------------------------------------------------------------------------------
+// ব্লক ১: ব্যবহারকারী ও নিরাপত্তা
+// ------------------------------------------------------------------------------
+
+model Role {
+  id           String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  name         String   @db.VarChar(50)
+  permissions  Json
+  isSystemRole Boolean  @default(false) @map("is_system_role")
+  createdBy    String?  @map("created_by") @db.Uuid
+  createdAt    DateTime @default(now()) @map("created_at") @db.Timestamptz
+
+  users        User[]
+
+  @@map("roles")
+}
+
+model User {
+  id           String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  name         String    @db.VarChar(100)
+  phone        String    @unique @db.VarChar(20)
+  email        String?   @unique @db.VarChar(150)
+  passwordHash String?   @map("password_hash") @db.Text
+  roleId       String    @map("role_id") @db.Uuid
+  isActive     Boolean   @default(true) @map("is_active")
+  totpSecret   String?   @map("totp_secret") @db.Text
+  totpEnabled  Boolean   @default(false) @map("totp_enabled")
+  failedLogins Int       @default(0) @map("failed_logins")
+  lockedUntil  DateTime? @map("locked_until") @db.Timestamptz
+  lastLoginAt  DateTime? @map("last_login_at") @db.Timestamptz
+  lastLoginIp  String?   @map("last_login_ip") @db.VarChar(45)
+  createdAt    DateTime  @default(now()) @map("created_at") @db.Timestamptz
+  updatedAt    DateTime  @updatedAt @map("updated_at") @db.Timestamptz
+
+  role         Role      @relation(fields: [roleId], references: [id])
+
+  @@map("users")
+}
+
+model AuditLog {
+  id        BigInt   @id @default(autoincrement())
+  eventType String   @map("event_type") @db.VarChar(50)
+  actorId   String?  @map("actor_id") @db.Uuid
+  tableName String?  @map("table_name") @db.VarChar(50)
+  recordId  String?  @map("record_id") @db.Text
+  oldValues Json?    @map("old_values")
+  newValues Json?    @map("new_values")
+  ipAddress String?  @map("ip_address") @db.VarChar(45)
+  deviceFp  String?  @map("device_fp") @db.VarChar(100)
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz
+  prevHash  String?  @map("prev_hash") @db.Char(64)
+  currHash  String?  @map("curr_hash") @db.Char(64)
+
+  @@map("audit_log")
+}
+
+// ------------------------------------------------------------------------------
+// ব্লক ২: প্রতিষ্ঠান কাঠামো
+// ------------------------------------------------------------------------------
+
+model Department {
+  id        String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  nameBn    String   @map("name_bn") @db.VarChar(100)
+  nameAr    String?  @map("name_ar") @db.VarChar(100)
+  type      String   @db.VarChar(50) // HIFZ, NAZIRAH, KITAB, GENERAL, IBTIDAYI, OTHER
+  sortOrder Int      @default(0) @map("sort_order")
+  isActive  Boolean  @default(true) @map("is_active")
+
+  classes   Class[]
+
+  @@map("departments")
+}
+
+model Class {
+  id           String     @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  departmentId String     @map("department_id") @db.Uuid
+  nameBn       String     @map("name_bn") @db.VarChar(100)
+  nameAr       String?    @map("name_ar") @db.VarChar(100)
+  academicYear Int        @map("academic_year")
+  hijriYear    String?    @map("hijri_year") @db.VarChar(10)
+  sortOrder    Int        @default(0) @map("sort_order")
+  isActive     Boolean    @default(true) @map("is_active")
+
+  department   Department @relation(fields: [departmentId], references: [id])
+  sections     Section[]
+  students     Student[]
+
+  @@map("classes")
+}
+
+model Section {
+  id       String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  classId  String @map("class_id") @db.Uuid
+  name     String @db.VarChar(10) // ক, খ, গ
+  capacity Int?
+
+  class    Class  @relation(fields: [classId], references: [id])
+
+  @@map("sections")
+}
+
+// ------------------------------------------------------------------------------
+// ব্লক ৩: ছাত্র ও ভর্তি
+// ------------------------------------------------------------------------------
+
+model AdmissionApplication {
+  id            String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  applicationNo String    @unique @map("application_no") @db.VarChar(20)
+  applicantName String    @map("applicant_name") @db.VarChar(100)
+  dob           DateTime? @db.Date
+  classApplied  String    @map("class_applied") @db.Uuid
+  guardianName  String    @map("guardian_name") @db.VarChar(100)
+  guardianPhone String    @map("guardian_phone") @db.VarChar(20)
+  status        String    @default("PENDING") @db.VarChar(20) // PENDING, APPROVED, REJECTED, WAITLISTED
+  rejectionNote String?   @map("rejection_note") @db.Text
+  reviewedBy    String?   @map("reviewed_by") @db.Uuid
+  reviewedAt    DateTime? @map("reviewed_at") @db.Timestamptz
+  studentId     String?   @map("student_id") @db.Uuid
+  createdAt     DateTime  @default(now()) @map("created_at") @db.Timestamptz
+
+  @@map("admission_applications")
+}
+
+model Student {
+  id            String        @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  studentCode   String        @unique @map("student_code") @db.VarChar(20)
+  nameBn        String        @map("name_bn") @db.VarChar(100)
+  nameEn        String?       @map("name_en") @db.VarChar(100)
+  nameAr        String?       @map("name_ar") @db.VarChar(100)
+  dob           DateTime      @db.Date
+  gender        StudentGender @default(MALE)
+  birthCertNo   String?       @map("birth_cert_no") @db.Text // encrypted
+  nidNo         String?       @map("nid_no") @db.Text // encrypted
+  bloodGroup    String?       @map("blood_group") @db.VarChar(5)
+  photoKey      String?       @map("photo_key") @db.VarChar(200)
+  healthNotes   String?       @map("health_notes") @db.Text
+
+  classId       String        @map("class_id") @db.Uuid
+  sectionId     String?       @map("section_id") @db.Uuid
+  rollNo        Int?          @map("roll_no")
+
+  boardingType  BoardingType  @default(DAY) @map("boarding_type")
+  eatsAtHostel  Boolean       @default(false) @map("eats_at_hostel")
+
+  admissionDate DateTime      @map("admission_date") @db.Date
+  status        StudentStatus @default(ACTIVE)
+  tcDate        DateTime?     @map("tc_date") @db.Date
+  tcReason      String?       @map("tc_reason") @db.Text
+
+  createdBy     String?       @map("created_by") @db.Uuid
+  createdAt     DateTime      @default(now()) @map("created_at") @db.Timestamptz
+  updatedAt     DateTime      @updatedAt @map("updated_at") @db.Timestamptz
+
+  class         Class         @relation(fields: [classId], references: [id])
+  guardians     Guardian[]
+
+  @@map("students")
+}
+
+model Guardian {
+  id            String           @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  studentId     String           @map("student_id") @db.Uuid
+  name          String           @db.VarChar(100)
+  relation      GuardianRelation
+  phone         String           @db.Text // encrypted
+  whatsappPhone String?          @map("whatsapp_phone") @db.Text // encrypted
+  address       String?          @db.Text
+  nidNo         String?          @map("nid_no") @db.Text // encrypted
+  profession    String?          @db.VarChar(100)
+  isPrimary     Boolean          @default(false) @map("is_primary")
+  appUserId     String?          @map("app_user_id") @db.Uuid
+
+  student       Student          @relation(fields: [studentId], references: [id], onDelete: Cascade)
+
+  @@map("guardians")
+}
+
+// ------------------------------------------------------------------------------
+// ব্লক ৪: হিফজ ও শিক্ষা
+// ------------------------------------------------------------------------------
+
+model QuranPage {
+  pageNo     Int     @id @map("page_no") @db.SmallInt // 1 - 604
+  paraNo     Int     @map("para_no") @db.SmallInt // 1 - 30
+  surahStart Int?    @map("surah_start") @db.SmallInt
+  ayahStart  Int?    @map("ayah_start") @db.SmallInt
+  juzName    String? @map("juz_name") @db.VarChar(100)
+
+  @@map("quran_pages")
+}
+
+model HifzProgress {
+  id         String      @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  studentId  String      @map("student_id") @db.Uuid
+  teacherId  String      @map("teacher_id") @db.Uuid
+  date       DateTime    @db.Date
+  sabaqFrom  Int?        @map("sabaq_from") @db.SmallInt
+  sabaqTo    Int?        @map("sabaq_to") @db.SmallInt
+  sabqiFrom  Int?        @map("sabqi_from") @db.SmallInt
+  sabqiTo    Int?        @map("sabqi_to") @db.SmallInt
+  manzilFrom Int?        @map("manzil_from") @db.SmallInt
+  manzilTo   Int?        @map("manzil_to") @db.SmallInt
+  quality    HifzQuality @default(MUMTAZ)
+  notes      String?     @db.Text
+
+  @@unique([studentId, date])
+  @@map("hifz_progress")
+}
+
+model Subject {
+  id        String  @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  classId   String  @map("class_id") @db.Uuid
+  nameBn    String  @map("name_bn") @db.VarChar(100)
+  nameAr    String? @map("name_ar") @db.VarChar(100)
+  nameEn    String? @map("name_en") @db.VarChar(100)
+  fullMarks Int     @default(100) @map("full_marks")
+  passMarks Int     @default(33) @map("pass_marks")
+  sortOrder Int     @default(0) @map("sort_order")
+
+  @@map("subjects")
+}
+
+model Timetable {
+  id        String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  classId   String   @map("class_id") @db.Uuid
+  sectionId String?  @map("section_id") @db.Uuid
+  subjectId String   @map("subject_id") @db.Uuid
+  teacherId String   @map("teacher_id") @db.Uuid
+  dayOfWeek Int      @map("day_of_week") @db.SmallInt // 0=Sat ... 4=Wed
+  periodNo  Int      @map("period_no") @db.SmallInt
+  startTime String   @map("start_time") @db.VarChar(10)
+  endTime   String   @map("end_time") @db.VarChar(10)
+  roomNo    String?  @map("room_no") @db.VarChar(20)
+
+  @@map("timetable")
+}
+
+// ------------------------------------------------------------------------------
+// ব্লক ৫: হাজিরা ও বায়োমেট্রিক
+// ------------------------------------------------------------------------------
+
+model StudentAttendance {
+  id        String           @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  studentId String           @map("student_id") @db.Uuid
+  classId   String           @map("class_id") @db.Uuid
+  date      DateTime         @db.Date
+  periodNo  Int?             @map("period_no") @db.SmallInt
+  status    AttendanceStatus
+  markedBy  String?          @map("marked_by") @db.Uuid
+  markedAt  DateTime         @default(now()) @map("marked_at") @db.Timestamptz
+  source    AttendanceSource @default(MANUAL)
+  notes     String?          @db.Text
+
+  @@unique([studentId, date, periodNo])
+  @@map("student_attendance")
+}
+
+model StaffAttendance {
+  id       String            @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  userId   String            @map("user_id") @db.Uuid
+  date     DateTime          @db.Date
+  checkIn  DateTime?         @map("check_in") @db.Timestamptz
+  checkOut DateTime?         @map("check_out") @db.Timestamptz
+  status   AttendanceStatus?
+  source   String?           @db.VarChar(30)
+  gpsLat   Decimal?          @map("gps_lat") @db.Decimal(10, 7)
+  gpsLng   Decimal?          @map("gps_lng") @db.Decimal(10, 7)
+
+  @@unique([userId, date])
+  @@map("staff_attendance")
+}
+
+model BiometricDevice {
+  id           String              @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  deviceSerial String              @unique @map("device_serial") @db.VarChar(50)
+  deviceType   BiometricDeviceType @map("device_type")
+  apiKeyHash   String              @map("api_key_hash") @db.Text
+  location     String?             @db.VarChar(100)
+  isActive     Boolean             @default(true) @map("is_active")
+  lastSeenAt   DateTime?           @map("last_seen_at") @db.Timestamptz
+
+  @@map("biometric_devices")
+}
+
+// ------------------------------------------------------------------------------
+// ব্লক ৬: পরীক্ষা ও ফলাফল
+// ------------------------------------------------------------------------------
+
+model GradingScale {
+  id          String      @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  madrasaType MadrasaType @map("madrasa_type")
+  minMarks    Decimal     @map("min_marks") @db.Decimal(5, 2)
+  maxMarks    Decimal     @map("max_marks") @db.Decimal(5, 2)
+  gradeBn     String      @map("grade_bn") @db.VarChar(30) // মুমতাজ / A+
+  gradeEn     String      @map("grade_en") @db.VarChar(10) // Mumtaz / A+
+  gpaPoint    Decimal?    @map("gpa_point") @db.Decimal(3, 2)
+  sortOrder   Int         @default(0) @map("sort_order")
+
+  @@map("grading_scales")
+}
+
+model Exam {
+  id             String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  name           String    @db.VarChar(200)
+  classId        String    @map("class_id") @db.Uuid
+  examType       String    @map("exam_type") @db.VarChar(50) // WEEKLY, MONTHLY, TERM, ANNUAL
+  startDate      DateTime  @map("start_date") @db.Date
+  endDate        DateTime  @map("end_date") @db.Date
+  resultLockedAt DateTime? @map("result_locked_at") @db.Timestamptz
+  isPublished    Boolean   @default(false) @map("is_published")
+  publishedAt    DateTime? @map("published_at") @db.Timestamptz
+  publishedBy    String?   @map("published_by") @db.Uuid
+  createdBy      String?   @map("created_by") @db.Uuid
+
+  @@map("exams")
+}
+
+model ExamResult {
+  id            String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  examId        String   @map("exam_id") @db.Uuid
+  studentId     String   @map("student_id") @db.Uuid
+  subjectId     String   @map("subject_id") @db.Uuid
+  teacherId     String?  @map("teacher_id") @db.Uuid
+  marksObtained Decimal? @map("marks_obtained") @db.Decimal(5, 2)
+  isAbsent      Boolean  @default(false) @map("is_absent")
+  submittedAt   DateTime @default(now()) @map("submitted_at") @db.Timestamptz
+  isLocked      Boolean  @default(false) @map("is_locked")
+
+  @@unique([examId, studentId, subjectId])
+  @@map("exam_results")
+}
+
+// ------------------------------------------------------------------------------
+// ব্লক ৭: হিসাব ও অর্থ (Shariah Compliant Funds & Double-Entry)
+// ------------------------------------------------------------------------------
+
+model Fund {
+  id             String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  name           String   @db.VarChar(100)
+  type           FundType
+  currentBalance Decimal  @default(0) @map("current_balance") @db.Decimal(15, 2)
+  bankAccount    String?  @map("bank_account") @db.Text // encrypted
+  isActive       Boolean  @default(true) @map("is_active")
+
+  @@map("funds")
+}
+
+model ChartOfAccount {
+  id          String      @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  code        String      @unique @db.VarChar(20)
+  nameBn      String      @map("name_bn") @db.VarChar(100)
+  accountType AccountType @map("account_type")
+  fundId      String?     @map("fund_id") @db.Uuid
+  parentId    String?     @map("parent_id") @db.Uuid
+  isActive    Boolean     @default(true) @map("is_active")
+  sortOrder   Int         @default(0) @map("sort_order")
+
+  @@map("chart_of_accounts")
+}
+
+model FeeStructure {
+  id            String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  classId       String   @map("class_id") @db.Uuid
+  academicYear  Int      @map("academic_year")
+  feeType       FeeType  @map("fee_type")
+  name          String   @db.VarChar(100)
+  amount        Decimal  @db.Decimal(10, 2)
+  fundId        String   @map("fund_id") @db.Uuid
+  accountId     String   @map("account_id") @db.Uuid
+  effectiveFrom DateTime @map("effective_from") @db.Date
+  effectiveTo   DateTime? @map("effective_to") @db.Date
+
+  @@map("fee_structures")
+}
+
+model StudentInvoice {
+  id             String               @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  invoiceNo      String               @unique @map("invoice_no") @db.VarChar(20)
+  studentId      String               @map("student_id") @db.Uuid
+  feeStructureId String               @map("fee_structure_id") @db.Uuid
+  monthYear      String               @map("month_year") @db.Char(7) // "2026-01"
+  amountDue      Decimal              @map("amount_due") @db.Decimal(10, 2)
+  fineAmount     Decimal              @default(0) @map("fine_amount") @db.Decimal(10, 2)
+  discountAmount Decimal              @default(0) @map("discount_amount") @db.Decimal(10, 2)
+  discountBy     String?              @map("discount_by") @db.Uuid // approver (maker-checker)
+  discountReason String?              @map("discount_reason") @db.Text
+  status         StudentInvoiceStatus @default(UNPAID)
+  dueDate        DateTime             @map("due_date") @db.Date
+  createdAt      DateTime             @default(now()) @map("created_at") @db.Timestamptz
+
+  receipts       FeeReceipt[]
+
+  @@map("student_invoices")
+}
+
+model FeeReceipt {
+  id             String        @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  receiptNo      String        @unique @map("receipt_no") @db.VarChar(20) // REC-2026-00001
+  invoiceId      String        @map("invoice_id") @db.Uuid
+  studentId      String        @map("student_id") @db.Uuid
+  amountReceived Decimal       @map("amount_received") @db.Decimal(10, 2)
+  paymentMethod  PaymentMethod @map("payment_method")
+  transactionId  String?       @map("transaction_id") @db.VarChar(100)
+  gatewayRef     String?       @map("gateway_ref") @db.VarChar(200)
+  fundId         String        @map("fund_id") @db.Uuid
+  accountId      String        @map("account_id") @db.Uuid
+  cashierId      String        @map("cashier_id") @db.Uuid
+  receivedAt     DateTime      @default(now()) @map("received_at") @db.Timestamptz
+  isReversed     Boolean       @default(false) @map("is_reversed")
+  reversedBy     String?       @map("reversed_by") @db.Uuid
+  reversalNote   String?       @map("reversal_note") @db.Text
+  reversalAt     DateTime?     @map("reversal_at") @db.Timestamptz
+
+  invoice        StudentInvoice @relation(fields: [invoiceId], references: [id])
+
+  @@map("fee_receipts")
+}
+
+model JournalEntry {
+  id          String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  entryNo     String    @unique @map("entry_no") @db.VarChar(20)
+  entryDate   DateTime  @map("entry_date") @db.Date
+  description String    @db.Text
+  sourceType  String    @map("source_type") @db.VarChar(50)
+  sourceId    String?   @map("source_id") @db.Uuid
+  preparedBy  String    @map("prepared_by") @db.Uuid
+  approvedBy  String?   @map("approved_by") @db.Uuid // maker-checker
+  approvedAt  DateTime? @map("approved_at") @db.Timestamptz
+  isReversed  Boolean   @default(false) @map("is_reversed")
+  reversalOf  String?   @map("reversal_of") @db.Uuid
+  createdAt   DateTime  @default(now()) @map("created_at") @db.Timestamptz
+
+  lines       JournalLine[]
+
+  @@map("journal_entries")
+}
+
+model JournalLine {
+  id           String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  entryId      String   @map("entry_id") @db.Uuid
+  accountId    String   @map("account_id") @db.Uuid
+  fundId       String   @map("fund_id") @db.Uuid
+  debitAmount  Decimal  @default(0) @map("debit_amount") @db.Decimal(15, 2)
+  creditAmount Decimal  @default(0) @map("credit_amount") @db.Decimal(15, 2)
+
+  entry        JournalEntry @relation(fields: [entryId], references: [id], onDelete: Cascade)
+
+  @@map("journal_lines")
+}
+
+model PayrollPayment {
+  id            String        @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  payrollNo     String        @unique @map("payroll_no") @db.VarChar(20)
+  userId        String        @map("user_id") @db.Uuid
+  monthYear     String        @map("month_year") @db.Char(7) // "2026-01"
+  basicSalary   Decimal       @map("basic_salary") @db.Decimal(10, 2)
+  allowances    Json          @default("{}")
+  deductions    Json          @default("{}")
+  netSalary     Decimal       @map("net_salary") @db.Decimal(10, 2)
+  paymentMethod PaymentMethod @map("payment_method")
+  fundId        String        @map("fund_id") @db.Uuid
+  preparedBy    String        @map("prepared_by") @db.Uuid
+  approvedBy    String?       @map("approved_by") @db.Uuid // maker-checker
+  approvedAt    DateTime?     @map("approved_at") @db.Timestamptz
+  paidAt        DateTime?     @map("paid_at") @db.Timestamptz
+  slipSentAt    DateTime?     @map("slip_sent_at") @db.Timestamptz
+
+  @@map("payroll_payments")
+}
+
+// ------------------------------------------------------------------------------
+// ব্লক ৮: ছাত্রাবাস, মিল ও গেটপাস (Hostel, Meals & Gatepass)
+// ------------------------------------------------------------------------------
+
+model HostelRoom {
+  id       String  @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  roomNo   String  @unique @map("room_no") @db.VarChar(20)
+  floor    Int     @default(1)
+  capacity Int
+  isActive Boolean @default(true) @map("is_active")
+
+  assignments StudentRoomAssignment[]
+
+  @@map("hostel_rooms")
+}
+
+model StudentRoomAssignment {
+  id           String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  studentId    String    @map("student_id") @db.Uuid
+  roomId       String    @map("room_id") @db.Uuid
+  bedNo        Int?      @map("bed_no")
+  assignedFrom DateTime  @map("assigned_from") @db.Date
+  assignedTo   DateTime? @map("assigned_to") @db.Date
+  assignedBy   String?   @map("assigned_by") @db.Uuid
+
+  room         HostelRoom @relation(fields: [roomId], references: [id])
+
+  @@map("student_room_assignments")
+}
+
+model HostelMeal {
+  id        String      @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  studentId String      @map("student_id") @db.Uuid
+  date      DateTime    @db.Date
+  session   MealSession
+  isTaken   Boolean     @default(true) @map("is_taken")
+  fundType  FundType    @default(LILLAH) @map("fund_type") // LILLAH or GENERAL
+  recordedBy String?    @map("recorded_by") @db.Uuid
+  recordedAt DateTime   @default(now()) @map("recorded_at") @db.Timestamptz
+
+  @@unique([studentId, date, session])
+  @@map("hostel_meals")
+}
+
+model Gatepass {
+  id              String         @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  passNo          String         @unique @map("pass_no") @db.VarChar(20)
+  studentId       String         @map("student_id") @db.Uuid
+  requestedBy     String         @map("requested_by") @db.Uuid // guardian app user
+  reason          String         @db.Text
+  fromDate        DateTime       @map("from_date") @db.Timestamptz
+  toDate          DateTime       @map("to_date") @db.Timestamptz
+  status          GatepassStatus @default(PENDING)
+  approvedBy      String?        @map("approved_by") @db.Uuid
+  approvedAt      DateTime?      @map("approved_at") @db.Timestamptz
+  qrToken         String?        @unique @map("qr_token") @db.VarChar(255)
+  exitScannedAt   DateTime?      @map("exit_scanned_at") @db.Timestamptz
+  returnScannedAt DateTime?      @map("return_scanned_at") @db.Timestamptz
+  createdAt       DateTime       @default(now()) @map("created_at") @db.Timestamptz
+
+  @@map("gatepasses")
+}
+
+// ------------------------------------------------------------------------------
+// ব্লক ৯: লাইব্রেরি ও যোগাযোগ (Library, Notices & SMS Log)
+// ------------------------------------------------------------------------------
+
+model LibraryBook {
+  id             String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  accessionNo    String   @unique @map("accession_no") @db.VarChar(30)
+  titleBn        String   @map("title_bn") @db.VarChar(200)
+  titleAr        String?  @map("title_ar") @db.VarChar(200)
+  titleUrdu      String?  @map("title_urdu") @db.VarChar(200)
+  author         String   @db.VarChar(150)
+  publisher      String?  @db.VarChar(150)
+  category       String   @db.VarChar(50) // Tafsir, Hadith, Fiqh, Nahw, Adab, General
+  totalCopies    Int      @default(1) @map("total_copies")
+  availableCopies Int     @default(1) @map("available_copies")
+  shelfNo        String?  @map("shelf_no") @db.VarChar(30)
+  isActive       Boolean  @default(true) @map("is_active")
+  createdAt      DateTime @default(now()) @map("created_at") @db.Timestamptz
+
+  issues         BookIssue[]
+
+  @@map("library_books")
+}
+
+model BookIssue {
+  id         String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  bookId     String    @map("book_id") @db.Uuid
+  studentId  String?   @map("student_id") @db.Uuid
+  userId     String?   @map("user_id") @db.Uuid // for teachers
+  issueDate  DateTime  @map("issue_date") @db.Date
+  dueDate    DateTime  @map("due_date") @db.Date
+  returnDate DateTime? @map("return_date") @db.Date
+  fineAmount Decimal   @default(0) @map("fine_amount") @db.Decimal(10, 2)
+  isReturned Boolean   @default(false) @map("is_returned")
+  issuedBy   String    @map("issued_by") @db.Uuid
+  returnedBy String?   @map("returned_by") @db.Uuid
+
+  book       LibraryBook @relation(fields: [bookId], references: [id])
+
+  @@map("book_issues")
+}
+
+model Notice {
+  id          String             @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  title       String             @db.VarChar(200)
+  content     String             @db.Text
+  targetType  TargetAudienceType @default(ALL) @map("target_type")
+  targetIds   String[]           @default([]) @map("target_ids")
+  isPublished Boolean            @default(false) @map("is_published")
+  publishedAt DateTime?          @map("published_at") @db.Timestamptz
+  publishedBy String?            @map("published_by") @db.Uuid
+  createdAt   DateTime           @default(now()) @map("created_at") @db.Timestamptz
+
+  @@map("notices")
+}
+
+model SmsLog {
+  id              String            @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  recipientPhone  String            @map("recipient_phone") @db.VarChar(20)
+  message         String            @db.Text
+  gateway         String            @db.VarChar(50)
+  gatewayMsgId    String?           @map("gateway_msg_id") @db.VarChar(100)
+  status          SmsDeliveryStatus @default(QUEUED)
+  gatewayResponse Json?             @map("gateway_response")
+  costUnit        Decimal           @default(1.0) @map("cost_unit") @db.Decimal(5, 2)
+  sentAt          DateTime?         @map("sent_at") @db.Timestamptz
+  createdAt       DateTime          @default(now()) @map("created_at") @db.Timestamptz
+
+  @@map("sms_log")
+}

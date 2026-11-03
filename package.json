@@ -1,0 +1,44 @@
+{
+  "name": "madrasha-platform-monorepo",
+  "version": "1.0.0",
+  "description": "Enterprise Multi-Tenant SaaS ERP Platform for Qawmi & Alia Madrasas in Bangladesh",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev:api": "npm run dev --workspace=apps/api",
+    "dev:web": "npm run dev --workspace=apps/web",
+    "build:api": "npm run build --workspace=apps/api",
+    "build:web": "npm run build --workspace=apps/web",
+    "build:packages": "npm run build --workspace=packages/shared-types && npm run build --workspace=packages/utils",
+    "build": "npm run build:packages && npm run build:api && npm run build:web",
+    "lint": "eslint . --ext .ts,.tsx",
+    "format": "prettier --write \"**/*.{ts,tsx,json,md}\"",
+    "test": "vitest run",
+    "docker:up": "docker compose up -d",
+    "docker:down": "docker compose down",
+    "prisma:generate": "npm run prisma:generate --workspace=apps/api",
+    "prisma:migrate": "npm run prisma:migrate --workspace=apps/api"
+  },
+  "keywords": [
+    "madrasha",
+    "erp",
+    "saas",
+    "multi-tenant",
+    "qawmi",
+    "alia",
+    "bangladesh",
+    "school-management"
+  ],
+  "author": "Sharif",
+  "license": "PROPRIETARY",
+  "devDependencies": {
+    "@types/node": "^20.17.0",
+    "eslint": "^8.57.0",
+    "prettier": "^3.3.3",
+    "typescript": "^5.6.3",
+    "vitest": "^2.1.3"
+  }
+}

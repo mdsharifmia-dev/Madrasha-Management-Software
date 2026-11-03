@@ -1,0 +1,56 @@
+version: '3.8'
+
+services:
+  # Primary PostgreSQL 16 Database Server (Multi-Tenant Schema-per-Tenant)
+  postgres:
+    image: postgres:16-alpine
+    container_name: madrasha_postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${DB_USER:-madrasha_admin}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-madrasha_secure_pass_2026}
+      POSTGRES_DB: ${DB_NAME:-madrasha_control}
+      TZ: Asia/Dhaka
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./infra/docker/init-db.sql:/docker-entrypoint-initdb.d/init-db.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER:-madrasha_admin} -d ${DB_NAME:-madrasha_control}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Redis 7 for Sessions, Cache & BullMQ Queue Processing
+  redis:
+    image: redis:7-alpine
+    container_name: madrasha_redis
+    restart: unless-stopped
+    command: ["redis-server", "--requirepass", "${REDIS_PASSWORD:-redis_secure_pass_2026}"]
+    ports:
+      - "6379:6379"
+    volumes:
+      - redisdata:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "-a", "${REDIS_PASSWORD:-redis_secure_pass_2026}", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Web-based Database Management Tool (Adminer)
+  adminer:
+    image: adminer:latest
+    container_name: madrasha_adminer
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+volumes:
+  pgdata:
+    driver: local
+  redisdata:
+    driver: local

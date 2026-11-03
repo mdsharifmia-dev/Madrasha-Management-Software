@@ -1,0 +1,14 @@
+{
+  "name": "@madrasha/shared-types",
+  "version": "1.0.0",
+  "description": "Shared TypeScript types and interfaces for Madrasha Management Platform",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch"
+  },
+  "devDependencies": {
+    "typescript": "^5.6.3"
+  }
+}

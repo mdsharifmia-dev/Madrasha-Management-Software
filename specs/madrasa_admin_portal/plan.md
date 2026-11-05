@@ -1,4 +1,4 @@
-# 📐 Technical Architecture & Implementation Plan: Madrasa Admin Portal
+# Technical Architecture & Implementation Plan: Madrasa Admin Portal
 **ফিচার:** মুহতামিম অ্যাডমিন ড্যাশবোর্ড ও ডিপার্টমেন্টাল আইকন গ্রিড
 **তারিখ:** ১৯ অক্টোবর ২০২৬ | **অবস্থা:** Approved for Implementation
 

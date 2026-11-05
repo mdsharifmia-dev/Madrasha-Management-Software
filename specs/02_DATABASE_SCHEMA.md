@@ -1,4 +1,4 @@
-# 🗄️ Database Schema Specification
+# ️ Database Schema Specification
 ## জাতীয় মাদ্রাসা ম্যানেজমেন্ট প্ল্যাটফর্ম
 
 **সংস্করণ:** 1.0.0 | **Engine:** PostgreSQL 16 | **ORM:** Prisma

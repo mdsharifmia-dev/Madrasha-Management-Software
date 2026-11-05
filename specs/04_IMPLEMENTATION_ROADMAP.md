@@ -1,7 +1,7 @@
-# 🗺️ Implementation Roadmap
+# ️ Implementation Roadmap
 ## জাতীয় মাদ্রাসা ম্যানেজমেন্ট প্ল্যাটফর্ম
 
-**সংস্করণ:** 1.0.0 | **অবস্থা:** অনুমোদিত ✅
+**সংস্করণ:** 1.0.0 | **অবস্থা:** অনুমোদিত 
 **শুরুর তারিখ:** TBD | **আনুমানিক সময়:** ৭-৮ মাস
 
 ---
@@ -235,7 +235,7 @@
 ---
 
 ## ধাপ ৪ — Fees & Finance (হিসাব মডিউল)
-**আনুমানিক সময়:** ৪ সপ্তাহ | ⚠️ সর্বোচ্চ সতর্কতা
+**আনুমানিক সময়:** ৪ সপ্তাহ | ️ সর্বোচ্চ সতর্কতা
 **দায়িত্বশীল:** Senior Backend Dev (সব code peer-reviewed)
 
 > [!CAUTION]
@@ -492,14 +492,14 @@
 
 **Pre-Launch Checklist:**
 - [ ] Load test (k6 বা Artillery): 1000 concurrent users
-- [ ] All API endpoints: auth required ✓
-- [ ] No hardcoded secrets in codebase ✓
-- [ ] Error messages: user-friendly বাংলায়, no stack traces in prod ✓
-- [ ] Bangla font: all PDFs render correctly ✓
-- [ ] Timezone: all dates in Asia/Dhaka ✓
-- [ ] SMS: real delivery tested with actual number ✓
-- [ ] Payment: sandbox + live test ✓
-- [ ] Backup: restore tested ✓
+- [ ] All API endpoints: auth required 
+- [ ] No hardcoded secrets in codebase 
+- [ ] Error messages: user-friendly বাংলায়, no stack traces in prod 
+- [ ] Bangla font: all PDFs render correctly 
+- [ ] Timezone: all dates in Asia/Dhaka 
+- [ ] SMS: real delivery tested with actual number 
+- [ ] Payment: sandbox + live test 
+- [ ] Backup: restore tested 
 
 **পাইলট লঞ্চ:**
 - [ ] ১টি Qawmi মাদ্রাসা (কওমি টাইপ পরীক্ষা)

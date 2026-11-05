@@ -1,6 +1,6 @@
-# 📋 Implementation Tasks: Accounts & Finance Module 2.0
-**মডিউল:** হিসাব ও অর্থ বিভাগ (টাকা গ্রহণ ও ব্যয় পোর্টাল আর্কিটেকচার)  
-**ভার্সন:** 2.0.0 | **তারিখ:** ২০ অক্টোবর ২০২৬  
+# Implementation Tasks: Accounts & Finance Module 2.0
+**মডিউল:** হিসাব ও অর্থ বিভাগ (টাকা গ্রহণ ও ব্যয় পোর্টাল আর্কিটেকচার) 
+**ভার্সন:** 2.0.0 | **তারিখ:** ২০ অক্টোবর ২০২৬ 
 
 ---
 
@@ -50,7 +50,7 @@
 
 ---
 
-## 🚀 Version 2.1 Refinements (UI Decluttering, Fund Ledger & Dynamic Reports)
+## Version 2.1 Refinements (UI Decluttering, Fund Ledger & Dynamic Reports)
 
 - [x] **Task 7: টপ ৩টি মোড কার্ড তৈরি (টাকা গ্রহণ, টাকা ব্যয়, ক্যাশ ক্লোজিং)**
   - ৩টি বড় কার্ড বাটন: "টাকা গ্রহণ" (আজকের আদায় ৳...), "টাকা ব্যয় বা খরচ" (আজকের ব্যয় ৳...), এবং "ক্যাশ ক্লোজিং ও রিপোর্ট"।

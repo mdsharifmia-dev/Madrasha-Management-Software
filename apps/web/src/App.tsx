@@ -1882,7 +1882,7 @@ export const App: React.FC = () => {
     setNoticePriority('NORMAL');
     setNoticeTargetDepts(['ALL']);
     setShowNoticeComposerModal(false);
-    alert(`📢 নোটিশটি সফলভাবে "${targetNames}"-এ জারি ও নোটিফিকেশন পাঠানো হয়েছে!`);
+    alert(`নোটিশটি সফলভাবে "${targetNames}"-এ জারি ও নোটিফিকেশন পাঠানো হয়েছে!`);
   };
 
   // Approval Center Handlers
@@ -1892,7 +1892,7 @@ export const App: React.FC = () => {
     setPendingApprovals((prev) =>
       prev.map((a) => (a.id === id ? { ...a, status: 'APPROVED' } : a))
     );
-    setApprovalFeedbackMsg(`✅ "${target.title}" সফলভাবে অনুমোদন করা হয়েছে। সংশ্লিষ্ট বিভাগে অনুমতি কার্যকর হয়েছে।`);
+    setApprovalFeedbackMsg(`"${target.title}" সফলভাবে অনুমোদন করা হয়েছে। সংশ্লিষ্ট বিভাগে অনুমতি কার্যকর হয়েছে।`);
     setTimeout(() => setApprovalFeedbackMsg(null), 5000);
   };
 
@@ -1904,7 +1904,7 @@ export const App: React.FC = () => {
     setPendingApprovals((prev) =>
       prev.map((a) => (a.id === id ? { ...a, status: 'REJECTED' } : a))
     );
-    setApprovalFeedbackMsg(`⚠️ "${target.title}" রিকোয়েস্ট বাতিল করা হয়েছে।`);
+    setApprovalFeedbackMsg(`"${target.title}" রিকোয়েস্ট বাতিল করা হয়েছে।`);
     setTimeout(() => setApprovalFeedbackMsg(null), 5000);
   };
 
@@ -1928,7 +1928,7 @@ export const App: React.FC = () => {
     setNewRuleTitle('');
     setNewRuleDesc('');
     setShowAddRuleModal(false);
-    alert(`📜 নতুন নীতিমালা রুল "${newRule.title}" সফলভাবে সিস্টেমে কার্যকর করা হয়েছে!`);
+    alert(`নতুন নীতিমালা রুল "${newRule.title}" সফলভাবে সিস্টেমে কার্যকর করা হয়েছে!`);
   };
 
   const handleGrantStaffPermission = (e: React.FormEvent) => {
@@ -1952,7 +1952,7 @@ export const App: React.FC = () => {
     setGrantStaffName('');
     setGrantStaffRole('');
     setShowGrantPermissionModal(false);
-    alert(`🔑 "${grantStaffName}" কে "${targetDept?.nameBn || 'বিভাগ'}" এর জন্য "${grantPermLevel}" পারমিশন প্রদান করা হয়েছে!`);
+    alert(`"${grantStaffName}" কে "${targetDept?.nameBn || 'বিভাগ'}" এর জন্য "${grantPermLevel}" পারমিশন প্রদান করা হয়েছে!`);
   };
 
   // =========================================================================
@@ -1976,9 +1976,9 @@ export const App: React.FC = () => {
       setPosGuardianPhone(student.guardianPhone);
       setPosAmount(student.dueAmount);
       setPosFeeType(student.feeHead);
-      alert(`✅ শিক্ষার্থী পাওয়া গেছে: "${student.nameBn}" (${student.registrationNo})\nপিতা: ${student.fatherNameBn} | শ্রেণি: ${student.classGradeBn}\nসকল তথ্য অটোমেটিক ফিলাপ হয়েছে!`);
+      alert(`শিক্ষার্থী পাওয়া গেছে: "${student.nameBn}" (${student.registrationNo})\nপিতা: ${student.fatherNameBn} | শ্রেণি: ${student.classGradeBn}\nসকল তথ্য অটোমেটিক ফিলাপ হয়েছে!`);
     } else {
-      alert(`⚠️ "${regNo}" নম্বরের কোনো নিবন্ধিত শিক্ষার্থী পাওয়া যায়নি। অনুগ্রহ করে ইউনিক রেজিস্ট্রেশন নম্বর (যেমন: REG-2026-0001) দিন অথবা ম্যানুয়ালি তথ্য লিখুন।`);
+      alert(`"${regNo}" নম্বরের কোনো নিবন্ধিত শিক্ষার্থী পাওয়া যায়নি। অনুগ্রহ করে ইউনিক রেজিস্ট্রেশন নম্বর (যেমন: REG-2026-0001) দিন অথবা ম্যানুয়ালি তথ্য লিখুন।`);
     }
   };
 
@@ -1992,7 +1992,7 @@ export const App: React.FC = () => {
     }
     setApprovalThresholdLimit(limit);
     setShowThresholdConfigModal(false);
-    alert(`⚙️ মুহতামিম সাহেবের নতুন খরচের অনুমোদন সীমা সফলভাবে "৳${limit.toLocaleString('bn-BD')}" নির্ধারণ করা হয়েছে!`);
+    alert(`মুহতামিম সাহেবের নতুন খরচের অনুমোদন সীমা সফলভাবে "৳${limit.toLocaleString('bn-BD')}" নির্ধারণ করা হয়েছে!`);
   };
 
   // 1. Collect Fee at Counter (POS with Unique Reg & Auto Fill)
@@ -2031,7 +2031,7 @@ export const App: React.FC = () => {
       prev.map((f) => (f.id === targetFund.id ? { ...f, balance: f.balance + net } : f))
     );
     setCompletedPayments([newPayment, ...completedPayments]);
-    alert(`✅ ${newPayment.receiptNo} নম্বরে ৳${net.toLocaleString('bn-BD')} ফি সফলভাবে গ্রহণ করা হয়েছে এবং "${targetFund.nameBn}"-এ জমা হয়েছে।`);
+    alert(`${newPayment.receiptNo} নম্বরে ৳${net.toLocaleString('bn-BD')} ফি সফলভাবে গ্রহণ করা হয়েছে এবং "${targetFund.nameBn}"-এ জমা হয়েছে।`);
     setActiveThermalReceipt(newPayment);
   };
 
@@ -2066,7 +2066,7 @@ export const App: React.FC = () => {
     setNewDonorPhone('');
     setDonorWhatsappInput('');
     setDonorCauseInput('');
-    alert(`🎉 আলহামদুলিল্লাহ! "${newDonation.donorName}" এর ৳${newDonorAmount.toLocaleString('bn-BD')} যাকাত সফলভাবে "${targetFund.nameBn}"-এ জমা হয়েছে।`);
+    alert(`আলহামদুলিল্লাহ! "${newDonation.donorName}" এর ৳${newDonorAmount.toLocaleString('bn-BD')} যাকাত সফলভাবে "${targetFund.nameBn}"-এ জমা হয়েছে।`);
   };
 
   const handleSaveLillahDonation = (e: React.FormEvent) => {
@@ -2099,7 +2099,7 @@ export const App: React.FC = () => {
     setNewDonorPhone('');
     setDonorWhatsappInput('');
     setDonorCauseInput('');
-    alert(`🍲 জাযাকাল্লাহু খাইরান! "${newDonation.donorName}" এর ৳${newDonorAmount.toLocaleString('bn-BD')} লিল্লাহ বোর্ডিং অনুদান গ্রহণ সম্পন্ন হয়েছে।`);
+    alert(`জাযাকাল্লাহু খাইরান! "${newDonation.donorName}" এর ৳${newDonorAmount.toLocaleString('bn-BD')} লিল্লাহ বোর্ডিং অনুদান গ্রহণ সম্পন্ন হয়েছে।`);
   };
 
   const handleSaveWaqfDonation = (e: React.FormEvent) => {
@@ -2132,7 +2132,7 @@ export const App: React.FC = () => {
     setNewDonorPhone('');
     setDonorWhatsappInput('');
     setDonorCauseInput('');
-    alert(`🏛️ সাদাকায়ে জারিয়া! "${newDonation.donorName}" এর ৳${newDonorAmount.toLocaleString('bn-BD')} ওয়াকফ অনুদান সফলভাবে সংরক্ষিত হয়েছে।`);
+    alert(`সাদাকায়ে জারিয়া! "${newDonation.donorName}" এর ৳${newDonorAmount.toLocaleString('bn-BD')} ওয়াকফ অনুদান সফলভাবে সংরক্ষিত হয়েছে।`);
   };
 
   const handleSaveBoxDonation = (e: React.FormEvent) => {
@@ -2161,7 +2161,7 @@ export const App: React.FC = () => {
     setDonations([newDonation, ...donations]);
     setNewDonorName('');
     setDonorCauseInput('');
-    alert(`📦 দান বাক্সের ৳${newDonorAmount.toLocaleString('bn-BD')} সফলভাবে "${targetFund.nameBn}"-এ জমা হয়েছে।`);
+    alert(`দান বাক্সের ৳${newDonorAmount.toLocaleString('bn-BD')} সফলভাবে "${targetFund.nameBn}"-এ জমা হয়েছে।`);
   };
 
   // 1.2 Dedicated Portal Expense Handlers with Approval Threshold Check
@@ -2197,8 +2197,8 @@ export const App: React.FC = () => {
     setNewExpenseTitle('');
     alert(
       isOverThreshold
-        ? `⚠️ ব্যয়ের পরিমাণ (৳${newExpenseAmount.toLocaleString('bn-BD')}) নির্ধারিত অনুমোদন সীমা (৳${approvalThresholdLimit.toLocaleString('bn-BD')}) এর সমান বা বেশি হওয়ায় এটি মুহতামিম সাহেবের অনুমোদন বোর্ডে দাখিল হয়েছে। মুহতামিমের পারমিশন ছাড়া ফান্ড থেকে টাকা কাটা হবে না।`
-        : `✅ মেস বাজার ভাউচার সফলভাবে পরিশোধ ও "${targetFund.nameBn}" থেকে ৳${newExpenseAmount.toLocaleString('bn-BD')} সমন্বয় হয়েছে।`
+        ? `ব্যয়ের পরিমাণ (৳${newExpenseAmount.toLocaleString('bn-BD')}) নির্ধারিত অনুমোদন সীমা (৳${approvalThresholdLimit.toLocaleString('bn-BD')}) এর সমান বা বেশি হওয়ায় এটি মুহতামিম সাহেবের অনুমোদন বোর্ডে দাখিল হয়েছে। মুহতামিমের পারমিশন ছাড়া ফান্ড থেকে টাকা কাটা হবে না।`
+        : `মেস বাজার ভাউচার সফলভাবে পরিশোধ ও "${targetFund.nameBn}" থেকে ৳${newExpenseAmount.toLocaleString('bn-BD')} সমন্বয় হয়েছে।`
     );
   };
 
@@ -2234,8 +2234,8 @@ export const App: React.FC = () => {
     setNewExpenseTitle('');
     alert(
       isOverThreshold
-        ? `⚠️ স্থায়ী খরচ ৳${newExpenseAmount.toLocaleString('bn-BD')} নির্ধারিত সীমা (৳${approvalThresholdLimit.toLocaleString('bn-BD')}) এর বেশি হওয়ায় মুহতামিম সাহেবের অনুমোদন বোর্ডে দাখিল হয়েছে।`
-        : `✅ নির্মাণ/মেরামত ভাউচার অনুমোদিত ও "${targetFund.nameBn}" থেকে ৳${newExpenseAmount.toLocaleString('bn-BD')} সমন্বয় হয়েছে।`
+        ? `স্থায়ী খরচ ৳${newExpenseAmount.toLocaleString('bn-BD')} নির্ধারিত সীমা (৳${approvalThresholdLimit.toLocaleString('bn-BD')}) এর বেশি হওয়ায় মুহতামিম সাহেবের অনুমোদন বোর্ডে দাখিল হয়েছে।`
+        : `নির্মাণ/মেরামত ভাউচার অনুমোদিত ও "${targetFund.nameBn}" থেকে ৳${newExpenseAmount.toLocaleString('bn-BD')} সমন্বয় হয়েছে।`
     );
   };
 
@@ -2270,8 +2270,8 @@ export const App: React.FC = () => {
     setExpenseVouchers([newVoucher, ...expenseVouchers]);
     alert(
       isOverThreshold
-        ? `⚠️ কল্যাণ অনুদান ৳${newExpenseAmount.toLocaleString('bn-BD')} অনুমোদন বোর্ডে দাখিল হয়েছে।`
-        : `✅ অনুদান ভাউচার অনুমোদিত ও "${targetFund.nameBn}" থেকে সফলভাবে ছাড় হয়েছে।`
+        ? `কল্যাণ অনুদান ৳${newExpenseAmount.toLocaleString('bn-BD')} অনুমোদন বোর্ডে দাখিল হয়েছে।`
+        : `অনুদান ভাউচার অনুমোদিত ও "${targetFund.nameBn}" থেকে সফলভাবে ছাড় হয়েছে।`
     );
   };
 
@@ -2307,8 +2307,8 @@ export const App: React.FC = () => {
     setNewExpenseTitle('');
     alert(
       isOverThreshold
-        ? `⚠️ ইউটিলিটি বিল ৳${newExpenseAmount.toLocaleString('bn-BD')} অনুমোদন বোর্ডে দাখিল হয়েছে।`
-        : `✅ ইউটিলিটি বিল সফলভাবে পরিশোধ ও "${targetFund.nameBn}" থেকে ছাড় হয়েছে।`
+        ? `ইউটিলিটি বিল ৳${newExpenseAmount.toLocaleString('bn-BD')} অনুমোদন বোর্ডে দাখিল হয়েছে।`
+        : `ইউটিলিটি বিল সফলভাবে পরিশোধ ও "${targetFund.nameBn}" থেকে ছাড় হয়েছে।`
     );
   };
 
@@ -2343,8 +2343,8 @@ export const App: React.FC = () => {
     setExpenseVouchers([newVoucher, ...expenseVouchers]);
     alert(
       isOverThreshold
-        ? `⚠️ ইভেন্ট ব্যয়ের পরিমাণ (৳${eventAmount.toLocaleString('bn-BD')}) নির্ধারিত অনুমোদন সীমা (৳${approvalThresholdLimit.toLocaleString('bn-BD')}) এর সমান বা বেশি হওয়ায় এটি মুহতামিম সাহেবের অনুমোদন বোর্ডে দাখিল হয়েছে। মুহতামিমের পারমিশন ছাড়া ফান্ড থেকে টাকা কাটা হবে না।`
-        : `✅ ইভেন্ট ব্যয় সফলভাবে পরিশোধ ও "${targetFund.nameBn}" থেকে ৳${eventAmount.toLocaleString('bn-BD')} সমন্বয় হয়েছে।`
+        ? `ইভেন্ট ব্যয়ের পরিমাণ (৳${eventAmount.toLocaleString('bn-BD')}) নির্ধারিত অনুমোদন সীমা (৳${approvalThresholdLimit.toLocaleString('bn-BD')}) এর সমান বা বেশি হওয়ায় এটি মুহতামিম সাহেবের অনুমোদন বোর্ডে দাখিল হয়েছে। মুহতামিমের পারমিশন ছাড়া ফান্ড থেকে টাকা কাটা হবে না।`
+        : `ইভেন্ট ব্যয় সফলভাবে পরিশোধ ও "${targetFund.nameBn}" থেকে ৳${eventAmount.toLocaleString('bn-BD')} সমন্বয় হয়েছে।`
     );
   };
 
@@ -2367,7 +2367,7 @@ export const App: React.FC = () => {
       prev.map((f) => (f.id === item.fundId ? { ...f, balance: f.balance + item.netPaid } : f))
     );
 
-    alert(`✅ অনলাইন পেমেন্ট (${item.transactionRef}) সফলভাবে অনুমোদিত ও রসিদ জেনারেট হয়েছে!`);
+    alert(`অনলাইন পেমেন্ট (${item.transactionRef}) সফলভাবে অনুমোদিত ও রসিদ জেনারেট হয়েছে!`);
     if (printFormat === 'thermal') {
       setActiveThermalReceipt(confirmedItem);
     } else if (printFormat === 'official') {
@@ -2388,7 +2388,7 @@ export const App: React.FC = () => {
     setShariahFunds((prev) =>
       prev.map((f) => (f.id === target.fundId ? { ...f, balance: Math.max(0, f.balance - target.netPaid) } : f))
     );
-    alert(`⚠️ রসিদ ${target.receiptNo} রিভার্স করা হয়েছে এবং ফান্ড থেকে ৳${target.netPaid.toLocaleString('bn-BD')} সমন্বয় করা হয়েছে।`);
+    alert(`রসিদ ${target.receiptNo} রিভার্স করা হয়েছে এবং ফান্ড থেকে ৳${target.netPaid.toLocaleString('bn-BD')} সমন্বয় করা হয়েছে।`);
   };
 
   // 4. Add Generic Expense / Bazar Requisition Voucher
@@ -2432,8 +2432,8 @@ export const App: React.FC = () => {
     setShowAddExpenseModal(false);
     alert(
       isLargeExpense
-        ? `⚠️ ব্যয়ের পরিমাণ নির্ধারিত সীমা (৳${approvalThresholdLimit.toLocaleString('bn-BD')}) এর বেশি হওয়ায় "${newVoucher.voucherNo}" ভাউচারটি মুহতামিম সাহেবের অনুমোদন বোর্ডে জমা হয়েছে।`
-        : `✅ ব্যয় ভাউচার "${newVoucher.voucherNo}" সফলভাবে পরিশোধ ও ${targetFund.nameBn} থেকে সমন্বয় হয়েছে।`
+        ? `ব্যয়ের পরিমাণ নির্ধারিত সীমা (৳${approvalThresholdLimit.toLocaleString('bn-BD')}) এর বেশি হওয়ায় "${newVoucher.voucherNo}" ভাউচারটি মুহতামিম সাহেবের অনুমোদন বোর্ডে জমা হয়েছে।`
+        : `ব্যয় ভাউচার "${newVoucher.voucherNo}" সফলভাবে পরিশোধ ও ${targetFund.nameBn} থেকে সমন্বয় হয়েছে।`
     );
   };
 
@@ -2447,7 +2447,7 @@ export const App: React.FC = () => {
     setShariahFunds((prev) =>
       prev.map((f) => (f.id === target.fundId ? { ...f, balance: Math.max(0, f.balance - target.amount) } : f))
     );
-    alert(`✅ ভাউচার "${target.voucherNo}" অনুমোদিত ও ফান্ড থেকে অর্থ ছাড় করা হয়েছে।`);
+    alert(`ভাউচার "${target.voucherNo}" অনুমোদিত ও ফান্ড থেকে অর্থ ছাড় করা হয়েছে।`);
   };
 
   // 6. Approve Teacher Payroll
@@ -2461,7 +2461,7 @@ export const App: React.FC = () => {
       setShariahFunds((prev) =>
         prev.map((f) => (f.id === 'fnd-salary' ? { ...f, balance: Math.max(0, f.balance - target.netPayable) } : f))
       );
-      alert(`✅ ${target.teacherNameBn}-এর অক্টোবর ২০২৬ মাসের বেতন (৳${target.netPayable.toLocaleString('bn-BD')}) সফলভাবে বিতরণ সম্পন্ন হয়েছে।`);
+      alert(`${target.teacherNameBn}-এর অক্টোবর ২০২৬ মাসের বেতন (৳${target.netPayable.toLocaleString('bn-BD')}) সফলভাবে বিতরণ সম্পন্ন হয়েছে।`);
     } else {
       const pendingTotal = payrollItems
         .filter((p) => p.status !== 'DISBURSED')
@@ -2472,7 +2472,7 @@ export const App: React.FC = () => {
       setShariahFunds((prev) =>
         prev.map((f) => (f.id === 'fnd-salary' ? { ...f, balance: Math.max(0, f.balance - pendingTotal) } : f))
       );
-      alert(`✅ সকল উস্তাদ ও কর্মচারীদের অক্টোবর ২০২৬ মাসের বেতন (৳${pendingTotal.toLocaleString('bn-BD')}) সম্পূর্ণ বিতরণ সম্পন্ন হয়েছে।`);
+      alert(`সকল উস্তাদ ও কর্মচারীদের অক্টোবর ২০২৬ মাসের বেতন (৳${pendingTotal.toLocaleString('bn-BD')}) সম্পূর্ণ বিতরণ সম্পন্ন হয়েছে।`);
     }
   };
 
@@ -2506,7 +2506,7 @@ export const App: React.FC = () => {
     setNewDonorPhone('');
     setNewDonorNotes('');
     setShowAddDonationModal(false);
-    alert(`🎉 জাযাকাল্লাহু খাইরান! "${newDonation.donorName}" এর ৳${newDonorAmount.toLocaleString('bn-BD')} দান "${targetFund.nameBn}"-এ জমা হয়েছে।`);
+    alert(`জাযাকাল্লাহু খাইরান! "${newDonation.donorName}" এর ৳${newDonorAmount.toLocaleString('bn-BD')} দান "${targetFund.nameBn}"-এ জমা হয়েছে।`);
   };
 
   // 8. Submit Daily Cashier Closing to Muhtamim
@@ -2536,7 +2536,7 @@ export const App: React.FC = () => {
     };
 
     setDailyClosings([newClosing, ...dailyClosings]);
-    setClosingFeedbackMsg(`📨 আজকের দিনশেষের ক্যাশ ক্লোজিং রিপোর্ট (নগদ: ৳${todayCash.toLocaleString('bn-BD')}, অনলাইন: ৳${todayOnline.toLocaleString('bn-BD')}) সফলভাবে মুহতামিম সাহেবের ড্যাশবোর্ডে প্রেরণ করা হয়েছে!`);
+    setClosingFeedbackMsg(`আজকের দিনশেষের ক্যাশ ক্লোজিং রিপোর্ট (নগদ: ৳${todayCash.toLocaleString('bn-BD')}, অনলাইন: ৳${todayOnline.toLocaleString('bn-BD')}) সফলভাবে মুহতামিম সাহেবের ড্যাশবোর্ডে প্রেরণ করা হয়েছে!`);
     setTimeout(() => setClosingFeedbackMsg(null), 6000);
   };
 
@@ -2866,7 +2866,7 @@ export const App: React.FC = () => {
                     : 'text-[var(--muted-foreground)] hover:bg-[var(--background)] hover:text-[var(--foreground)]'
                 }`}
               >
-                <span>✅</span>
+                <CheckCircle2 className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
                 <span>{t('directory')}</span>
               </button>
               <button
@@ -2878,7 +2878,7 @@ export const App: React.FC = () => {
                 }`}
               >
                 <span className="flex items-center gap-3">
-                  <span>⏳</span>
+                  <Clock className="w-4 h-4 text-amber-600 dark:text-amber-400" />
                   <span>{t('pending')}</span>
                 </span>
                 <span className="bg-[var(--accent)] text-[var(--accent-foreground)] text-xs px-2 py-0.5 rounded-full font-bold">
@@ -2911,7 +2911,7 @@ export const App: React.FC = () => {
                     : 'text-[var(--muted-foreground)] hover:bg-[var(--background)] hover:text-[var(--foreground)]'
                 }`}
               >
-                <span>🖥️</span>
+                <Database className="w-4 h-4 text-blue-600 dark:text-blue-400" />
                 <span>{t('monitor')}</span>
               </button>
               <button
@@ -2923,7 +2923,7 @@ export const App: React.FC = () => {
                 }`}
               >
                 <span className="flex items-center gap-3">
-                  <span>💳</span>
+                  <CreditCard className="w-4 h-4 text-purple-600 dark:text-purple-400" />
                   <span>{t('billing')}</span>
                 </span>
                 <span className="bg-red-500/15 text-red-500 border border-red-500/30 text-xs px-2 py-0.5 rounded-md font-bold">
@@ -3164,7 +3164,7 @@ export const App: React.FC = () => {
 
           {/* Right Actions: Top-Right Language Switcher, Theme Toggle, Alerts, Avatar */}
           <div className="flex items-center gap-3">
-            {/* 🌐 TOP-RIGHT MULTI-LANGUAGE SELECTOR DROPDOWN (BN, EN, AR + DOWNLOAD) */}
+            {/* TOP-RIGHT MULTI-LANGUAGE SELECTOR DROPDOWN (BN, EN, AR + DOWNLOAD) */}
             <div className="relative">
               <button
                 onClick={(e) => {
@@ -3176,7 +3176,7 @@ export const App: React.FC = () => {
               >
                 <Globe className="w-3.5 h-3.5 text-[var(--primary)]" />
                 <span>
-                  {currentLang === 'bn' ? '🇧🇩 বাংলা' : currentLang === 'en' ? '🇬🇧 English' : currentLang === 'ar' ? '🇸🇦 العربية' : currentLang === 'ur' ? '🇵🇰 اردو' : currentLang === 'ms' ? '🇲🇾 Melayu' : '🇹🇷 Türkçe'}
+                  {currentLang === 'bn' ? 'বাংলা (BN)' : currentLang === 'en' ? 'English (EN)' : currentLang === 'ar' ? 'العربية (AR)' : currentLang === 'ur' ? 'اردু (UR)' : currentLang === 'ms' ? 'Melayu (MS)' : 'Türkçe (TR)'}
                 </span>
                 <span className="text-xs font-semibold text-[var(--muted-foreground)]">▾</span>
               </button>
@@ -3201,7 +3201,7 @@ export const App: React.FC = () => {
                       currentLang === 'bn' ? 'bg-[var(--primary)] text-[var(--primary-foreground)] font-bold' : 'hover:bg-[var(--background)] text-[var(--foreground)]'
                     }`}
                   >
-                    <span className="flex items-center gap-2">🇧🇩 বাংলা (Bengali)</span>
+                    <span className="flex items-center gap-2 font-medium">বাংলা (Bengali - BN)</span>
                     {currentLang === 'bn' && <Check className="w-3.5 h-3.5" />}
                   </button>
 
@@ -3214,7 +3214,7 @@ export const App: React.FC = () => {
                       currentLang === 'en' ? 'bg-[var(--primary)] text-[var(--primary-foreground)] font-bold' : 'hover:bg-[var(--background)] text-[var(--foreground)]'
                     }`}
                   >
-                    <span className="flex items-center gap-2">🇬🇧 English</span>
+                    <span className="flex items-center gap-2 font-medium">English (EN)</span>
                     {currentLang === 'en' && <Check className="w-3.5 h-3.5" />}
                   </button>
 
@@ -3227,7 +3227,7 @@ export const App: React.FC = () => {
                       currentLang === 'ar' ? 'bg-[var(--primary)] text-[var(--primary-foreground)] font-bold' : 'hover:bg-[var(--background)] text-[var(--foreground)]'
                     }`}
                   >
-                    <span className="flex items-center gap-2">🇸🇦 العربية (Arabic)</span>
+                    <span className="flex items-center gap-2 font-medium">العربية (Arabic - AR)</span>
                     {currentLang === 'ar' && <Check className="w-3.5 h-3.5" />}
                   </button>
 
@@ -3242,7 +3242,7 @@ export const App: React.FC = () => {
                         currentLang === 'ur' ? 'bg-[var(--primary)] text-[var(--primary-foreground)] font-bold' : 'hover:bg-[var(--background)] text-[var(--foreground)]'
                       }`}
                     >
-                      <span className="flex items-center gap-2">🇵🇰 اردو (Urdu)</span>
+                      <span className="flex items-center gap-2 font-medium">اردو (Urdu - UR)</span>
                       {currentLang === 'ur' && <Check className="w-3.5 h-3.5" />}
                     </button>
                   )}
@@ -3256,7 +3256,7 @@ export const App: React.FC = () => {
                         currentLang === 'ms' ? 'bg-[var(--primary)] text-[var(--primary-foreground)] font-bold' : 'hover:bg-[var(--background)] text-[var(--foreground)]'
                       }`}
                     >
-                      <span className="flex items-center gap-2">🇲🇾 Bahasa Melayu</span>
+                      <span className="flex items-center gap-2 font-medium">Bahasa Melayu (MS)</span>
                       {currentLang === 'ms' && <Check className="w-3.5 h-3.5" />}
                     </button>
                   )}
@@ -3650,7 +3650,7 @@ export const App: React.FC = () => {
                   <div className="bg-[var(--card)] border border-[var(--border)] rounded-xl p-5 shadow-sm flex flex-col">
                     <div className="flex justify-between items-center mb-4">
                       <h3 className="text-sm font-bold flex items-center gap-2 text-[var(--foreground)]">
-                        <span>🤖</span> সিস্টেম অটোমেশন ও ব্যাকআপ লগ
+                        <Database className="w-4 h-4 text-emerald-600 dark:text-emerald-400 inline mr-1" /> সিস্টেম অটোমেশন ও ব্যাকআপ লগ
                       </h3>
                       <button className="text-xs font-medium text-[var(--muted-foreground)] hover:text-[var(--foreground)] underline">
                         ক্লিয়ার
@@ -3669,7 +3669,7 @@ export const App: React.FC = () => {
                       </div>
 
                       <div className="flex items-start gap-3 p-3 bg-red-500/10 rounded-xl border border-red-500/20">
-                        <span className="text-red-500 text-lg leading-none mt-0.5">⚠️</span>
+                        <AlertTriangle className="w-4 h-4 text-red-500 mt-0.5 shrink-0" />
                         <div>
                           <p className="font-bold text-red-500">SSL সার্টিফিকেট রিনিউয়াল প্রয়োজন</p>
                           <p className="text-xs font-medium text-[var(--muted-foreground)] mt-0.5">
@@ -4055,7 +4055,7 @@ export const App: React.FC = () => {
                       {/* 1. Urdu Pack */}
                       <div className="p-4 rounded-xl bg-[var(--background)] border border-[var(--border)] space-y-3">
                         <div className="flex items-center justify-between">
-                          <span className="font-bold text-sm text-[var(--foreground)]">🇵🇰 اردو (Urdu)</span>
+                          <span className="font-bold text-sm text-[var(--foreground)]">اردو (Urdu - UR)</span>
                           {installedLanguages.includes('ur') ? (
                             <span className="px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 font-bold font-bold text-xs font-semibold">সক্রিয়</span>
                           ) : (
@@ -4077,7 +4077,7 @@ export const App: React.FC = () => {
                       {/* 2. Bahasa Melayu Pack */}
                       <div className="p-4 rounded-xl bg-[var(--background)] border border-[var(--border)] space-y-3">
                         <div className="flex items-center justify-between">
-                          <span className="font-bold text-sm text-[var(--foreground)]">🇲🇾 Bahasa Melayu</span>
+                          <span className="font-bold text-sm text-[var(--foreground)]">Bahasa Melayu (MS)</span>
                           {installedLanguages.includes('ms') ? (
                             <span className="px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 font-bold font-bold text-xs font-semibold">সক্রিয়</span>
                           ) : (
@@ -4099,7 +4099,7 @@ export const App: React.FC = () => {
                       {/* 3. Turkish Pack */}
                       <div className="p-4 rounded-xl bg-[var(--background)] border border-[var(--border)] space-y-3">
                         <div className="flex items-center justify-between">
-                          <span className="font-bold text-sm text-[var(--foreground)]">🇹🇷 Türkçe</span>
+                          <span className="font-bold text-sm text-[var(--foreground)]">Türkçe (TR)</span>
                           {installedLanguages.includes('tr') ? (
                             <span className="px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 font-bold font-bold text-xs font-semibold">সক্রিয়</span>
                           ) : (
@@ -4282,8 +4282,8 @@ export const App: React.FC = () => {
           {/* ========================================================================= */}
           {activeNav === 'trial' && (
             <div className="p-8 rounded-xl bg-[var(--card)] border border-[var(--border)] text-center space-y-4 max-w-xl mx-auto my-12">
-              <div className="w-16 h-16 rounded-full bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 font-bold flex items-center justify-center mx-auto text-2xl font-bold">
-                🎁
+              <div className="w-16 h-16 rounded-full bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 font-bold flex items-center justify-center mx-auto">
+                <Package className="w-8 h-8" />
               </div>
               <h3 className="text-lg font-bold text-[var(--foreground)]">১৪ দিনের ফ্রি ডেমো ও ট্রায়াল ম্যানেজমেন্ট</h3>
               <p className="text-xs text-[var(--muted-foreground)] leading-relaxed">
@@ -4420,16 +4420,16 @@ export const App: React.FC = () => {
                   </p>
                   <div className="flex flex-wrap items-center gap-2 pt-1 text-xs font-medium opacity-95">
                     <span className="px-2.5 py-0.5 rounded-full bg-black/20 font-bold">
-                      📅 শিক্ষাবর্ষ: ২০২৬-২০২৭
+                      শিক্ষাবর্ষ: ২০২৬-২০২৭
                     </span>
                     <span className="px-2.5 py-0.5 rounded-full bg-black/20 font-bold">
-                      🌙 ১ জমাদিউল আউয়াল ১৪৪৮ হিজরি
+                      ১ জমাদিউল আউয়াল ১৪৪৮ হিজরি
                     </span>
                     <span className="px-2.5 py-0.5 rounded-full bg-black/20 font-bold">
-                      📍 {currentAdminMadrasa?.district || 'ঢাকা'} বিভাগ
+                      {currentAdminMadrasa?.district || 'ঢাকা'} বিভাগ
                     </span>
                     <span className="px-2.5 py-0.5 rounded-full bg-black/20 font-bold">
-                      🏷️ প্যাকেজ: {currentAdminMadrasa?.plan || 'Enterprise'}
+                      প্যাকেজ: {currentAdminMadrasa?.plan || 'Enterprise'}
                     </span>
                   </div>
                 </div>
@@ -4724,7 +4724,7 @@ export const App: React.FC = () => {
                                 : 'bg-blue-500/10 text-blue-500 border border-blue-500/20'
                             }`}
                           >
-                            {item.urgency === 'HIGH' ? '🚨 অতি জরুরি' : 'সাধারণ অনুমোদন'}
+                            {item.urgency === 'HIGH' ? 'অতি জরুরি' : 'সাধারণ অনুমোদন'}
                           </span>
                           <span className="text-[var(--muted-foreground)] flex items-center gap-1">
                             <Clock className="w-3 h-3" />
@@ -5520,7 +5520,7 @@ export const App: React.FC = () => {
                     }`}
                   >
                     <CreditCard className="w-3.5 h-3.5" />
-                    <span>🎓 ছাত্র ফি আদায়</span>
+                    <span>ছাত্র ফি আদায়</span>
                     {onlinePaymentQueue.length > 0 && (
                       <span className="px-1.5 py-0.2 rounded-full text-xs font-semibold font-mono bg-rose-500 text-white">
                         {onlinePaymentQueue.length}
@@ -5585,7 +5585,7 @@ export const App: React.FC = () => {
                     }`}
                   >
                     <Receipt className="w-3.5 h-3.5" />
-                    <span>📑 আদায়কৃত রসিদ খাতা</span>
+                    <span>আদায়কৃত রসিদ খাতা</span>
                   </button>
                 </div>
               )}
@@ -6190,7 +6190,7 @@ export const App: React.FC = () => {
                         {/* Quick Preset Buttons */}
                         <div className="p-3 rounded-xl bg-[var(--background)] border border-[var(--border)] space-y-2">
                           <span className="text-xs font-medium font-bold text-[var(--foreground)] block">
-                            🍽️ এক ক্লিকে খানা প্যাকেজ বাছাই করুন:
+                            এক ক্লিকে খানা প্যাকেজ বাছাই করুন:
                           </span>
                           <div className="grid grid-cols-3 gap-2">
                             <button
@@ -6828,7 +6828,7 @@ export const App: React.FC = () => {
                             <div className="p-3 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-800 dark:text-amber-400 font-bold text-xs font-medium font-semibold flex items-start gap-2">
                               <AlertTriangle className="w-4 h-4 shrink-0 mt-0.5" />
                               <span>
-                                ⚠️ ব্যয়ের পরিমাণ (৳{newExpenseAmount.toLocaleString('bn-BD')}) নির্ধারিত অনুমোদন লিমিট (৳{approvalThresholdLimit.toLocaleString('bn-BD')}) এর সমান বা বেশি হওয়ায় এটি স্বয়ংক্রিয়ভাবে মুহতামিম সাহেবের অনুমোদন বোর্ডে জমা হবে এবং অনুমোদন ছাড়া ফান্ড থেকে টাকা কাটা হবে না।
+                                ব্যয়ের পরিমাণ (৳{newExpenseAmount.toLocaleString('bn-BD')}) নির্ধারিত অনুমোদন লিমিট (৳{approvalThresholdLimit.toLocaleString('bn-BD')}) এর সমান বা বেশি হওয়ায় এটি স্বয়ংক্রিয়ভাবে মুহতামিম সাহেবের অনুমোদন বোর্ডে জমা হবে এবং অনুমোদন ছাড়া ফান্ড থেকে টাকা কাটা হবে না।
                               </span>
                             </div>
                           )}
@@ -6985,7 +6985,7 @@ export const App: React.FC = () => {
                             <div className="p-3 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-800 dark:text-amber-400 font-bold text-xs font-medium font-semibold flex items-start gap-2">
                               <AlertTriangle className="w-4 h-4 shrink-0 mt-0.5" />
                               <span>
-                                ⚠️ ব্যয়ের পরিমাণ (৳{newExpenseAmount.toLocaleString('bn-BD')}) নির্ধারিত অনুমোদন লিমিট (৳{approvalThresholdLimit.toLocaleString('bn-BD')}) এর সমান বা বেশি হওয়ায় এটি স্বয়ংক্রিয়ভাবে মুহতামিম সাহেবের অনুমোদন বোর্ডে জমা হবে।
+                                ব্যয়ের পরিমাণ (৳{newExpenseAmount.toLocaleString('bn-BD')}) নির্ধারিত অনুমোদন লিমিট (৳{approvalThresholdLimit.toLocaleString('bn-BD')}) এর সমান বা বেশি হওয়ায় এটি স্বয়ংক্রিয়ভাবে মুহতামিম সাহেবের অনুমোদন বোর্ডে জমা হবে।
                               </span>
                             </div>
                           )}
@@ -7219,7 +7219,7 @@ export const App: React.FC = () => {
                             <div className="p-3 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-800 dark:text-amber-400 font-bold text-xs font-medium font-semibold flex items-start gap-2">
                               <AlertTriangle className="w-4 h-4 shrink-0 mt-0.5" />
                               <span>
-                                ⚠️ সহায়তার পরিমাণ (৳{newExpenseAmount.toLocaleString('bn-BD')}) নির্ধারিত অনুমোদন লিমিট (৳{approvalThresholdLimit.toLocaleString('bn-BD')}) এর বেশি হওয়ায় মুহতামিমের অনুমোদন বোর্ডে দাখিল হবে।
+                                সহায়তার পরিমাণ (৳{newExpenseAmount.toLocaleString('bn-BD')}) নির্ধারিত অনুমোদন লিমিট (৳{approvalThresholdLimit.toLocaleString('bn-BD')}) এর বেশি হওয়ায় মুহতামিমের অনুমোদন বোর্ডে দাখিল হবে।
                               </span>
                             </div>
                           )}
@@ -7376,7 +7376,7 @@ export const App: React.FC = () => {
                             <div className="p-3 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-800 dark:text-amber-400 font-bold text-xs font-medium font-semibold flex items-start gap-2">
                               <AlertTriangle className="w-4 h-4 shrink-0 mt-0.5" />
                               <span>
-                                ⚠️ ইউটিলিটি বিল (৳{newExpenseAmount.toLocaleString('bn-BD')}) নির্ধারিত অনুমোদন লিমিট (৳{approvalThresholdLimit.toLocaleString('bn-BD')}) এর সমান বা বেশি হওয়ায় এটি স্বয়ংক্রিয়ভাবে মুহতামিম সাহেবের অনুমোদন বোর্ডে জমা হবে।
+                                ইউটিলিটি বিল (৳{newExpenseAmount.toLocaleString('bn-BD')}) নির্ধারিত অনুমোদন লিমিট (৳{approvalThresholdLimit.toLocaleString('bn-BD')}) এর সমান বা বেশি হওয়ায় এটি স্বয়ংক্রিয়ভাবে মুহতামিম সাহেবের অনুমোদন বোর্ডে জমা হবে।
                               </span>
                             </div>
                           )}
@@ -7551,7 +7551,7 @@ export const App: React.FC = () => {
                             <div className="p-3 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-800 dark:text-amber-400 font-bold text-xs font-medium font-semibold flex items-start gap-2">
                               <AlertTriangle className="w-4 h-4 shrink-0 mt-0.5" />
                               <span>
-                                ⚠️ ইভেন্ট ব্যয়ের পরিমাণ (৳{eventAmount.toLocaleString('bn-BD')}) নির্ধারিত অনুমোদন লিমিট (৳{approvalThresholdLimit.toLocaleString('bn-BD')}) এর সমান বা বেশি হওয়ায় এটি সরাসরি মুহতামিম সাহেবের অনুমোদন বোর্ডে জমা হবে এবং মুহতামিমের পারমিশন ছাড়া তহবিল থেকে টাকা ছাড় হবে না।
+                                ইভেন্ট ব্যয়ের পরিমাণ (৳{eventAmount.toLocaleString('bn-BD')}) নির্ধারিত অনুমোদন লিমিট (৳{approvalThresholdLimit.toLocaleString('bn-BD')}) এর সমান বা বেশি হওয়ায় এটি সরাসরি মুহতামিম সাহেবের অনুমোদন বোর্ডে জমা হবে এবং মুহতামিমের পারমিশন ছাড়া তহবিল থেকে টাকা ছাড় হবে না।
                               </span>
                             </div>
                           )}
@@ -8079,7 +8079,7 @@ export const App: React.FC = () => {
                           <div className="flex items-center gap-2">
                             <button
                               type="button"
-                              onClick={() => alert(`📄 নির্বাচিত সময়সীমার (${reportFilterType}) পূর্ণাঙ্গ অডিট রিপোর্ট PDF সফলভাবে প্রস্তুত হয়েছে!`)}
+                              onClick={() => alert(`নির্বাচিত সময়সীমার (${reportFilterType}) পূর্ণাঙ্গ অডিট রিপোর্ট PDF সফলভাবে প্রস্তুত হয়েছে!`)}
                               className="px-3.5 py-1.5 rounded-xl border border-[var(--border)] hover:bg-[var(--background)] text-xs font-semibold text-[var(--foreground)] flex items-center gap-1.5 transition shadow-xs cursor-pointer"
                             >
                               <FileText className="w-3.5 h-3.5 text-rose-700 dark:text-rose-400 font-bold" />
@@ -8087,7 +8087,7 @@ export const App: React.FC = () => {
                             </button>
                             <button
                               type="button"
-                              onClick={() => alert(`📊 নির্বাচিত সময়সীমার (${reportFilterType}) সকল খাতের ডাটা সহ Excel স্প্রেডশীট (.xlsx) ডাউনলোড শুরু হয়েছে!`)}
+                              onClick={() => alert(`নির্বাচিত সময়সীমার (${reportFilterType}) সকল খাতের ডাটা সহ Excel স্প্রেডশীট (.xlsx) ডাউনলোড শুরু হয়েছে!`)}
                               className="px-3.5 py-1.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold flex items-center gap-1.5 transition shadow-xs cursor-pointer"
                             >
                               <Download className="w-3.5 h-3.5" />
@@ -9036,7 +9036,7 @@ export const App: React.FC = () => {
                           : 'border-[var(--border)] text-[var(--muted-foreground)] hover:bg-[var(--background)]'
                       }`}
                     >
-                      🚨 জরুরি / রেড এলার্ট
+                      জরুরি / রেড এলার্ট
                     </button>
                   </div>
                 </div>
@@ -10491,7 +10491,7 @@ export const App: React.FC = () => {
                 <div>
                   <span className="text-xs font-semibold text-[var(--muted-foreground)] block">শরীয়াহ স্ট্যাটাস:</span>
                   <span className="text-xs font-bold text-[var(--foreground)]">
-                    {activeLedgerFund.isRestricted ? '🔒 নির্দিষ্ট খাতে সীমাবদ্ধ' : '🔓 উন্মুক্ত পরিচালনা'}
+                    {activeLedgerFund.isRestricted ? 'নির্দিষ্ট খাতে সীমাবদ্ধ' : 'উন্মুক্ত পরিচালনা'}
                   </span>
                 </div>
               </div>
@@ -10499,7 +10499,7 @@ export const App: React.FC = () => {
               <div className="flex items-center gap-2">
                 <button
                   type="button"
-                  onClick={() => alert(`📄 "${activeLedgerFund.nameBn}" এর ব্যাংক ও খতিয়ান স্টেটমেন্ট PDF রফতানি সম্পন্ন হয়েছে!`)}
+                  onClick={() => alert(`"${activeLedgerFund.nameBn}" এর ব্যাংক ও খতিয়ান স্টেটমেন্ট PDF রফতানি সম্পন্ন হয়েছে!`)}
                   className="px-3.5 py-1.5 rounded-xl border border-[var(--border)] hover:bg-[var(--card)] text-xs font-semibold text-[var(--foreground)] flex items-center gap-1.5 transition shadow-xs cursor-pointer"
                 >
                   <FileText className="w-3.5 h-3.5 text-rose-700 dark:text-rose-400 font-bold" />
@@ -10507,7 +10507,7 @@ export const App: React.FC = () => {
                 </button>
                 <button
                   type="button"
-                  onClick={() => alert(`📊 "${activeLedgerFund.nameBn}" এর এক্সেল শিট ডাউনলোড শুরু হয়েছে!`)}
+                  onClick={() => alert(`"${activeLedgerFund.nameBn}" এর এক্সেল শিট ডাউনলোড শুরু হয়েছে!`)}
                   className="px-3.5 py-1.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold flex items-center gap-1.5 transition shadow-xs cursor-pointer"
                 >
                   <Download className="w-3.5 h-3.5" />

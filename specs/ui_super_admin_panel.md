@@ -12,20 +12,20 @@
 ### A. Left Sidebar (Navigation & Filtering)
 *Displays quick links and filtered lists of clients.*
 - ⏳ **Pending Approvals:** List of madrasas that registered but are waiting for permission.
-- 🎁 **Demo / Trial Madrasas:** Madrasas using temporary access without paid subscription.
-- ✅ **Active / Subscribed:** List of fully approved, paying madrasas.
-- 🚫 **Suspended / Blacklisted:** Madrasas blocked due to non-payment or policy violations.
-- 💰 **Billing & Revenue:** Super Admin's income tracking, pending dues, and expense tracking.
-- 📦 **Subscription Plans:** Manage software packages and usage limits.
-- 🖥️ **Server & Code Management:** Developer tools, GitHub sync status, and server health.
-- 📢 **Global Announcements:** Send notices to all active Madrasa Admins.
-- 🎫 **Support Tickets:** View help requests/bugs reported by Madrasa Admins.
-- 👥 **Agency / Staff Management:** Create sub-accounts for agency employees (e.g., Accounts Team, Developers) and assign them specific module permissions.
+- **Demo / Trial Madrasas:** Madrasas using temporary access without paid subscription.
+- **Active / Subscribed:** List of fully approved, paying madrasas.
+- **Suspended / Blacklisted:** Madrasas blocked due to non-payment or policy violations.
+- **Billing & Revenue:** Super Admin's income tracking, pending dues, and expense tracking.
+- **Subscription Plans:** Manage software packages and usage limits.
+- ️ **Server & Code Management:** Developer tools, GitHub sync status, and server health.
+- **Global Announcements:** Send notices to all active Madrasa Admins.
+- **Support Tickets:** View help requests/bugs reported by Madrasa Admins.
+- **Agency / Staff Management:** Create sub-accounts for agency employees (e.g., Accounts Team, Developers) and assign them specific module permissions.
 
 ### B. Top Bar
 - **Search Bar:** Quickly search for any Madrasa by name or ID.
 - **Profile Icon:** Super Admin profile details.
-- **Settings (⚙️):** 2FA configuration, theme settings, and global software parameters.
+- **Settings (️):** 2FA configuration, theme settings, and global software parameters.
 
 ### C. Main Content Area (Center)
 1. **Welcome Banner:** A beautifully designed, compact banner showing quick global stats (e.g., "Total Active Madrasas: 150 | Total Students: 45,000 | Monthly Revenue: X").

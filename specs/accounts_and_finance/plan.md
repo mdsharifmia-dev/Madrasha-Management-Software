@@ -1,7 +1,7 @@
-# 🏗️ Technical Architecture & Implementation Plan: Accounts & Finance Module
+# ️ Technical Architecture & Implementation Plan: Accounts & Finance Module
 
-**মডিউল:** হিসাব ও অর্থ বিভাগ  
-**ভার্সন:** 2.0.0 | **তারিখ:** ২০ অক্টোবর ২০২৬  
+**মডিউল:** হিসাব ও অর্থ বিভাগ 
+**ভার্সন:** 2.0.0 | **তারিখ:** ২০ অক্টোবর ২০২৬ 
 
 ---
 

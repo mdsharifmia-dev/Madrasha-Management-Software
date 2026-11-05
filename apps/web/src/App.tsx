@@ -454,7 +454,7 @@ export const App: React.FC = () => {
       status: 'ACTIVE',
       statsSummary: 'আজকের আদায়: ৳৮৪,৫০০ | মাসিক: ৳৮.৪ লাখ',
       badgeColor: 'text-emerald-400 bg-emerald-500/10 border-emerald-500/20',
-      iconBgColor: 'bg-emerald-500/10 text-emerald-500',
+      iconBgColor: 'bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 font-bold',
       routeKey: 'finance',
       iconType: 'finance',
       assignedStaff: [
@@ -518,7 +518,7 @@ export const App: React.FC = () => {
       status: 'ACTIVE',
       statsSummary: '১,৯২০টি মিল প্রস্তুত | ৫ জন বর্তমানে গেটের বাইরে',
       badgeColor: 'text-amber-400 bg-amber-500/10 border-amber-500/20',
-      iconBgColor: 'bg-amber-500/10 text-amber-500',
+      iconBgColor: 'bg-amber-500/10 text-amber-800 dark:text-amber-400 font-bold',
       routeKey: 'hostel',
       iconType: 'hostel',
       assignedStaff: [
@@ -1774,7 +1774,7 @@ export const App: React.FC = () => {
             ...d,
             status: 'UNASSIGNED',
             assignedStaff: [],
-            badgeColor: 'text-zinc-400 bg-zinc-500/10 border-zinc-500/20',
+            badgeColor: 'text-[var(--subtle-foreground)] bg-zinc-500/10 border-zinc-500/20',
           };
         }
         return d;
@@ -2695,12 +2695,12 @@ export const App: React.FC = () => {
               <h1 className="text-base font-bold leading-tight flex items-center gap-1.5">
                 {t('appName')}
               </h1>
-              <p className="text-[10px] text-[var(--muted-foreground)]">
+              <p className="text-xs font-semibold text-[var(--muted-foreground)]">
                 {currentAdminMadrasa ? t('muhtamimPanel') : `${t('superAdmin')} & ERP`}
               </p>
             </div>
           </div>
-          <span className="text-[10px] px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-500 font-bold border border-emerald-500/20">
+          <span className="text-xs font-semibold px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 font-bold font-bold border border-emerald-500/20">
             PRO
           </span>
         </div>
@@ -2712,10 +2712,10 @@ export const App: React.FC = () => {
             <div className="space-y-1">
               <div className="p-3 mb-3 rounded-xl bg-[var(--primary)] text-[var(--primary-foreground)] shadow-sm space-y-1">
                 <div className="flex items-center justify-between">
-                  <span className="text-[10px] uppercase font-bold tracking-wider opacity-85">
+                  <span className="text-xs font-semibold uppercase font-bold tracking-wider opacity-85">
                     {t('muhtamimPanel')}
                   </span>
-                  <span className="text-[10px] font-mono px-1.5 py-0.2 rounded bg-black/20 font-bold">
+                  <span className="text-xs font-semibold font-mono px-1.5 py-0.2 rounded bg-black/20 font-bold">
                     {currentAdminMadrasa.plan}
                   </span>
                 </div>
@@ -2725,7 +2725,7 @@ export const App: React.FC = () => {
                     setCurrentAdminMadrasa(null);
                     setActiveNav('monitor');
                   }}
-                  className="w-full mt-2 py-1 px-2 rounded-lg bg-black/20 hover:bg-black/30 text-[11px] font-medium flex items-center justify-center gap-1 transition"
+                  className="w-full mt-2 py-1 px-2 rounded-lg bg-black/20 hover:bg-black/30 text-xs font-medium font-medium flex items-center justify-center gap-1 transition"
                 >
                   <ArrowLeft className="w-3 h-3" />
                   সুপার অ্যাডমিনে ফিরুন
@@ -2733,10 +2733,10 @@ export const App: React.FC = () => {
               </div>
 
               <div className="flex items-center justify-between px-3 mb-2">
-                <p className="text-[11px] font-bold text-[var(--muted-foreground)] uppercase tracking-wider">
+                <p className="text-xs font-medium font-bold text-[var(--muted-foreground)] uppercase tracking-wider">
                   মাদ্রাসা কার্যক্রম ও বিভাগসমূহ
                 </p>
-                <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-[var(--primary)]/10 text-[var(--primary)] font-bold">
+                <span className="text-xs font-semibold font-mono px-1.5 py-0.5 rounded bg-[var(--primary)]/10 text-[var(--primary)] font-bold">
                   {departments.length}
                 </span>
               </div>
@@ -2751,10 +2751,10 @@ export const App: React.FC = () => {
                 }`}
               >
                 <div className="flex items-center gap-2.5 truncate">
-                  <span className="text-sm">📊</span>
+                  <FileSpreadsheet className="w-4 h-4 inline mr-1 text-teal-600 dark:text-teal-400" />
                   <span className="truncate font-semibold">ড্যাশবোর্ড ও সকল বিভাগ</span>
                 </div>
-                <span className="text-[10px] px-1.5 py-0.2 rounded bg-black/10 dark:bg-white/10 font-mono font-bold">
+                <span className="text-xs font-semibold px-1.5 py-0.2 rounded bg-black/10 dark:bg-white/10 font-mono font-bold">
                   মূল
                 </span>
               </button>
@@ -2814,12 +2814,12 @@ export const App: React.FC = () => {
                       {deptDropdownId === d.id && (
                         <div
                           onClick={(e) => e.stopPropagation()}
-                          className="absolute left-full top-0 ml-2 w-56 p-2 rounded-2xl bg-[var(--card)] border border-[var(--border)] shadow-2xl z-50 text-xs space-y-1 animate-in fade-in zoom-in-95"
+                          className="absolute left-full top-0 ml-2 w-56 p-2 rounded-xl bg-[var(--card)] border border-[var(--border)] shadow-2xl z-50 text-xs space-y-1 animate-in fade-in zoom-in-95"
                         >
-                          <div className="px-2.5 py-1 text-[10px] font-bold text-[var(--muted-foreground)] border-b border-[var(--border)] uppercase">
+                          <div className="px-2.5 py-1 text-xs font-semibold font-bold text-[var(--muted-foreground)] border-b border-[var(--border)] uppercase">
                             {d.nameBn} • অ্যাক্সেস কন্ট্রোল
                           </div>
-                          <div className="px-2.5 py-1 text-[11px] text-[var(--foreground)]">
+                          <div className="px-2.5 py-1 text-xs font-medium text-[var(--foreground)]">
                             <span className="text-[var(--muted-foreground)]">দায়িত্বপ্রাপ্ত: </span>
                             <strong>{d.assignedStaff[0]?.name || 'কেউ নিযুক্ত নেই'}</strong>
                           </div>
@@ -2832,14 +2832,14 @@ export const App: React.FC = () => {
                           </button>
                           <button
                             onClick={() => handleToggleDeptHold(d.id)}
-                            className="w-full flex items-center gap-2 px-2.5 py-1.5 rounded-lg text-left hover:bg-[var(--background)] text-amber-500 transition font-medium"
+                            className="w-full flex items-center gap-2 px-2.5 py-1.5 rounded-lg text-left hover:bg-[var(--background)] text-amber-800 dark:text-amber-400 font-bold transition font-medium"
                           >
                             <Ban className="w-3.5 h-3.5" />
                             <span>{d.status === 'HOLD' ? 'অ্যাক্সেস পুনরায় সক্রিয় করুন' : 'অ্যাক্সেস সাময়িক স্থগিত (HOLD)'}</span>
                           </button>
                           <button
                             onClick={() => handleRevokeDeptAccess(d.id)}
-                            className="w-full flex items-center gap-2 px-2.5 py-1.5 rounded-lg text-left hover:bg-rose-500/10 text-rose-500 transition font-medium"
+                            className="w-full flex items-center gap-2 px-2.5 py-1.5 rounded-lg text-left hover:bg-rose-500/10 text-rose-700 dark:text-rose-400 font-bold transition font-medium"
                           >
                             <UserX className="w-3.5 h-3.5" />
                             <span>স্টাফ অ্যাক্সেস সম্পূর্ণ বাতিল</span>
@@ -2855,7 +2855,7 @@ export const App: React.FC = () => {
             /* Super Admin View */
             <>
               {/* Section: Madrasas General */}
-              <p className="px-3 text-[11px] font-bold text-[var(--muted-foreground)] uppercase tracking-wider mb-2 mt-1">
+              <p className="px-3 text-xs font-medium font-bold text-[var(--muted-foreground)] uppercase tracking-wider mb-2 mt-1">
                 {t('madrasasCategory')}
               </p>
               <button
@@ -2893,14 +2893,14 @@ export const App: React.FC = () => {
                     : 'text-[var(--muted-foreground)] hover:bg-[var(--background)] hover:text-[var(--foreground)]'
                 }`}
               >
-                <span>🎁</span>
+                <Package className="w-4 h-4 inline mr-1 text-teal-600 dark:text-teal-400" />
                 <span>{t('trial')}</span>
               </button>
 
               <div className="my-3 border-t border-[var(--border)] mx-2"></div>
 
               {/* Section: Management */}
-              <p className="px-3 text-[11px] font-bold text-[var(--muted-foreground)] uppercase tracking-wider mb-2">
+              <p className="px-3 text-xs font-medium font-bold text-[var(--muted-foreground)] uppercase tracking-wider mb-2">
                 {t('managementCategory')}
               </p>
               <button
@@ -2938,7 +2938,7 @@ export const App: React.FC = () => {
                     : 'text-[var(--muted-foreground)] hover:bg-[var(--background)] hover:text-[var(--foreground)]'
                 }`}
               >
-                <span>📦</span>
+                <Package className="w-4 h-4 inline mr-1 text-teal-600 dark:text-teal-400" />
                 <span>{t('plans')}</span>
               </button>
 
@@ -2946,12 +2946,12 @@ export const App: React.FC = () => {
 
               {/* Section: Dynamic Madrasa List with 3-Dot Menus */}
               <div className="flex items-center justify-between px-3 mb-2">
-                <p className="text-[11px] font-bold text-[var(--muted-foreground)] uppercase tracking-wider">
+                <p className="text-xs font-medium font-bold text-[var(--muted-foreground)] uppercase tracking-wider">
                   {t('madrasaList')}
                 </p>
                 <button
                   onClick={() => setShowAddMadrasaModal(true)}
-                  className="text-[10px] text-[var(--primary)] hover:underline flex items-center gap-0.5 font-bold"
+                  className="text-xs font-semibold text-[var(--primary)] hover:underline flex items-center gap-0.5 font-bold"
                   title="নতুন মাদ্রাসা যুক্ত করুন"
                 >
                   <Plus className="w-3 h-3" /> {t('newMadrasa')}
@@ -3004,13 +3004,13 @@ export const App: React.FC = () => {
                             onClick={(e) => e.stopPropagation()}
                             className="absolute right-0 top-6 w-56 p-1.5 rounded-xl bg-[var(--card)] border border-[var(--border)] shadow-2xl z-50 text-xs space-y-1 animate-in fade-in zoom-in-95"
                           >
-                            <div className="px-2.5 py-1 text-[10px] text-[var(--muted-foreground)] border-b border-[var(--border)] font-bold truncate">
+                            <div className="px-2.5 py-1 text-xs font-semibold text-[var(--muted-foreground)] border-b border-[var(--border)] font-bold truncate">
                               {m.nameBn}
                             </div>
 
                             <button
                               onClick={() => handleLoginAsAdmin(m)}
-                              className="w-full flex items-center gap-2 px-2.5 py-1.5 rounded-lg text-left text-emerald-500 hover:bg-emerald-500/10 font-medium transition"
+                              className="w-full flex items-center gap-2 px-2.5 py-1.5 rounded-lg text-left text-emerald-700 dark:text-emerald-400 font-bold hover:bg-emerald-500/10 font-medium transition"
                             >
                               <LogIn className="w-3.5 h-3.5" />
                               <span>অ্যাডমিন পোর্টালে লগইন</span>
@@ -3020,7 +3020,7 @@ export const App: React.FC = () => {
                               onClick={() => handleToggleBlock(m.id)}
                               className={`w-full flex items-center gap-2 px-2.5 py-1.5 rounded-lg text-left font-medium transition ${
                                 m.status === 'ACTIVE'
-                                  ? 'text-amber-500 hover:bg-amber-500/10'
+                                  ? 'text-amber-800 dark:text-amber-400 font-bold hover:bg-amber-500/10'
                                   : 'text-green-500 hover:bg-green-500/10'
                               }`}
                             >
@@ -3064,7 +3064,7 @@ export const App: React.FC = () => {
               <div className="my-3 border-t border-[var(--border)] mx-2"></div>
 
               {/* Section: Software Settings (Replaces direct mobile view) */}
-              <p className="px-3 text-[11px] font-bold text-[var(--muted-foreground)] uppercase tracking-wider mb-2">
+              <p className="px-3 text-xs font-medium font-bold text-[var(--muted-foreground)] uppercase tracking-wider mb-2">
                 সফটওয়্যার সেটিংস
               </p>
               <button
@@ -3075,14 +3075,14 @@ export const App: React.FC = () => {
                     : 'text-[var(--muted-foreground)] hover:bg-[var(--background)] hover:text-[var(--foreground)]'
                 }`}
               >
-                <Settings className="w-4 h-4 text-emerald-500" />
+                <Settings className="w-4 h-4 text-emerald-700 dark:text-emerald-400 font-bold" />
                 <span>সিস্টেম সেটিংস ও ভিউ</span>
               </button>
 
               <div className="my-3 border-t border-[var(--border)] mx-2"></div>
 
               {/* Section: Support */}
-              <p className="px-3 text-[11px] font-bold text-[var(--muted-foreground)] uppercase tracking-wider mb-2">
+              <p className="px-3 text-xs font-medium font-bold text-[var(--muted-foreground)] uppercase tracking-wider mb-2">
                 {t('supportCategory')}
               </p>
               <button
@@ -3094,7 +3094,7 @@ export const App: React.FC = () => {
                 }`}
               >
                 <span className="flex items-center gap-3">
-                  <span>💬</span>
+                  <MessageCircle className="w-4 h-4 inline mr-1 text-teal-600 dark:text-teal-400" />
                   <span>{t('messages')}</span>
                 </span>
                 <span className="bg-blue-500/15 text-blue-500 border border-blue-500/30 text-xs px-2 py-0.5 rounded-full font-bold">
@@ -3114,7 +3114,7 @@ export const App: React.FC = () => {
             <p className="text-xs font-bold truncate text-[var(--foreground)]">
               {currentAdminMadrasa ? currentAdminMadrasa.nameBn : 'মাওলানা সুপার অ্যাডমিন'}
             </p>
-            <p className="text-[10px] text-[var(--muted-foreground)] truncate">
+            <p className="text-xs font-semibold text-[var(--muted-foreground)] truncate">
               {currentAdminMadrasa ? t('muhtamimPanel') : t('systemController')}
             </p>
           </div>
@@ -3140,7 +3140,7 @@ export const App: React.FC = () => {
                 setCurrentAdminMadrasa(null);
                 setActiveNav('monitor');
               }}
-              className="px-3 py-1 bg-black/20 hover:bg-black/40 rounded-lg text-[11px] font-bold flex items-center gap-1 transition"
+              className="px-3 py-1 bg-black/20 hover:bg-black/40 rounded-lg text-xs font-medium font-bold flex items-center gap-1 transition"
             >
               <ArrowLeft className="w-3 h-3" />
               সুপার অ্যাডমিনে ফিরে যান
@@ -3178,16 +3178,16 @@ export const App: React.FC = () => {
                 <span>
                   {currentLang === 'bn' ? '🇧🇩 বাংলা' : currentLang === 'en' ? '🇬🇧 English' : currentLang === 'ar' ? '🇸🇦 العربية' : currentLang === 'ur' ? '🇵🇰 اردو' : currentLang === 'ms' ? '🇲🇾 Melayu' : '🇹🇷 Türkçe'}
                 </span>
-                <span className="text-[10px] text-[var(--muted-foreground)]">▾</span>
+                <span className="text-xs font-semibold text-[var(--muted-foreground)]">▾</span>
               </button>
 
               {/* Language Selection Modal Dropdown */}
               {langDropdownOpen && (
                 <div
                   onClick={(e) => e.stopPropagation()}
-                  className="absolute right-0 mt-2 w-56 p-2 rounded-2xl bg-[var(--card)] border border-[var(--border)] shadow-2xl z-50 text-xs space-y-1 animate-in fade-in zoom-in-95"
+                  className="absolute right-0 mt-2 w-56 p-2 rounded-xl bg-[var(--card)] border border-[var(--border)] shadow-2xl z-50 text-xs space-y-1 animate-in fade-in zoom-in-95"
                 >
-                  <div className="px-2.5 py-1 text-[10px] font-bold text-[var(--muted-foreground)] border-b border-[var(--border)] uppercase tracking-wider">
+                  <div className="px-2.5 py-1 text-xs font-semibold font-bold text-[var(--muted-foreground)] border-b border-[var(--border)] uppercase tracking-wider">
                     ভাষা নির্বাচন করুন (Select Language)
                   </div>
 
@@ -3312,10 +3312,10 @@ export const App: React.FC = () => {
 
               {/* Notification Dropdown Modal */}
               {systemAlertOpen && (
-                <div className="absolute right-0 mt-3 w-80 p-4 rounded-2xl bg-[var(--card)] border border-[var(--border)] shadow-2xl space-y-3 z-50 text-xs animate-in fade-in zoom-in-95">
+                <div className="absolute right-0 mt-3 w-80 p-4 rounded-xl bg-[var(--card)] border border-[var(--border)] shadow-2xl space-y-3 z-50 text-xs animate-in fade-in zoom-in-95">
                   <div className="flex items-center justify-between border-b border-[var(--border)] pb-2">
                     <span className="font-bold flex items-center gap-1.5 text-[var(--foreground)]">
-                      <AlertTriangle className="w-4 h-4 text-amber-500" /> সিস্টেম জরুরি নোটিশ
+                      <AlertTriangle className="w-4 h-4 text-amber-800 dark:text-amber-400 font-bold" /> সিস্টেম জরুরি নোটিশ
                     </span>
                     <button
                       onClick={() => setSystemAlertOpen(false)}
@@ -3326,11 +3326,11 @@ export const App: React.FC = () => {
                   </div>
                   <div className="p-2.5 rounded-lg bg-red-500/10 border border-red-500/20 text-red-400 space-y-1">
                     <div className="font-bold">SSL সার্টিফিকেট মেয়াদোত্তীর্ণ সতর্কতা</div>
-                    <div className="text-[11px] text-[var(--muted-foreground)]">domain 'jamia-islamia.edu.bd' ৩ দিনের মধ্যে রিনিউয়াল সম্পন্ন করতে হবে।</div>
+                    <div className="text-xs font-medium text-[var(--muted-foreground)]">domain 'jamia-islamia.edu.bd' ৩ দিনের মধ্যে রিনিউয়াল সম্পন্ন করতে হবে।</div>
                   </div>
                   <div className="p-2.5 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 space-y-1">
                     <div className="font-bold">দৈনিক ডাটাবেস ব্যাকআপ সম্পন্ন</div>
-                    <div className="text-[11px] text-[var(--muted-foreground)]">১৪৫ GB এনক্রিপ্টেড ব্যাকআপ ক্লাউড স্টোরেজে সফলভাবে সংরক্ষিত।</div>
+                    <div className="text-xs font-medium text-[var(--muted-foreground)]">১৪৫ GB এনক্রিপ্টেড ব্যাকআপ ক্লাউড স্টোরেজে সফলভাবে সংরক্ষিত।</div>
                   </div>
                 </div>
               )}
@@ -3364,7 +3364,7 @@ export const App: React.FC = () => {
             <div className="space-y-6">
               {/* Banner (Customizable view toggleable) */}
               {dashboardWidgets.showWelcomeBanner && (
-                <div className="bg-[var(--primary)] text-[var(--primary-foreground)] rounded-2xl p-6 flex flex-col md:flex-row justify-between items-center shadow-lg relative overflow-hidden">
+                <div className="bg-[var(--primary)] text-[var(--primary-foreground)] rounded-xl p-6 flex flex-col md:flex-row justify-between items-center shadow-lg relative overflow-hidden">
                   <div className="absolute right-0 top-0 opacity-10 pointer-events-none">
                     <svg className="w-64 h-64 -mt-16 -mr-16" fill="currentColor" viewBox="0 0 24 24">
                       <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
@@ -3379,11 +3379,11 @@ export const App: React.FC = () => {
                   <div className="flex gap-8 mt-4 md:mt-0 z-10">
                     <div className="text-center">
                       <p className="text-3xl font-extrabold tracking-tight">৯৯.৯%</p>
-                      <p className="text-[10px] opacity-80 uppercase tracking-widest mt-1">{t('uptime')}</p>
+                      <p className="text-xs font-semibold opacity-80 uppercase tracking-widest mt-1">{t('uptime')}</p>
                     </div>
                     <div className="text-center">
                       <p className="text-3xl font-extrabold tracking-tight">{madrasas.length}</p>
-                      <p className="text-[10px] opacity-80 uppercase tracking-widest mt-1">{t('activeMadrasas')}</p>
+                      <p className="text-xs font-semibold opacity-80 uppercase tracking-widest mt-1">{t('activeMadrasas')}</p>
                     </div>
                   </div>
                 </div>
@@ -3411,13 +3411,13 @@ export const App: React.FC = () => {
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
                     {/* Web Server Node */}
                     {dashboardWidgets.showWebServerNode && (
-                      <div className="bg-[var(--card)] border border-[var(--border)] p-5 rounded-2xl shadow-sm hover:border-[var(--primary)] transition">
+                      <div className="bg-[var(--card)] border border-[var(--border)] p-5 rounded-xl shadow-sm hover:border-[var(--primary)] transition">
                         <div className="flex justify-between items-start mb-4">
                           <div>
                             <h4 className="font-bold text-sm text-[var(--foreground)]">মেইন ওয়েব সার্ভার (Node.js API)</h4>
-                            <p className="text-[11px] text-[var(--muted-foreground)]">Port: 4000 (Express Production)</p>
+                            <p className="text-xs font-medium text-[var(--muted-foreground)]">Port: 4000 (Express Production)</p>
                           </div>
-                          <span className="bg-green-500/10 text-green-500 border border-green-500/20 text-[10px] px-2 py-0.5 rounded-md font-bold">
+                          <span className="bg-green-500/10 text-green-500 border border-green-500/20 text-xs font-semibold px-2 py-0.5 rounded-md font-bold">
                             {t('healthy')}
                           </span>
                         </div>
@@ -3435,7 +3435,7 @@ export const App: React.FC = () => {
                         <div>
                           <div className="flex justify-between text-xs mb-1.5">
                             <span className="text-[var(--muted-foreground)]">{t('ramUsage')}</span>
-                            <span className="font-bold text-amber-500">১২.৪ GB / ১৬ GB</span>
+                            <span className="font-bold text-amber-800 dark:text-amber-400 font-bold">১২.৪ GB / ১৬ GB</span>
                           </div>
                           <div className="w-full bg-[var(--background)] border border-[var(--border)] rounded-full h-2 overflow-hidden">
                             <div className="bg-amber-500 h-full rounded-full" style={{ width: '78%' }}></div>
@@ -3446,13 +3446,13 @@ export const App: React.FC = () => {
 
                     {/* Database Server Node */}
                     {dashboardWidgets.showDbClusterNode && (
-                      <div className="bg-[var(--card)] border border-[var(--border)] p-5 rounded-2xl shadow-sm hover:border-[var(--primary)] transition">
+                      <div className="bg-[var(--card)] border border-[var(--border)] p-5 rounded-xl shadow-sm hover:border-[var(--primary)] transition">
                         <div className="flex justify-between items-start mb-4">
                           <div>
                             <h4 className="font-bold text-sm text-[var(--foreground)]">{t('dbCluster')}</h4>
-                            <p className="text-[11px] text-[var(--muted-foreground)]">Multi-Tenant Isolated Schemas</p>
+                            <p className="text-xs font-medium text-[var(--muted-foreground)]">Multi-Tenant Isolated Schemas</p>
                           </div>
-                          <span className="bg-green-500/10 text-green-500 border border-green-500/20 text-[10px] px-2 py-0.5 rounded-md font-bold">
+                          <span className="bg-green-500/10 text-green-500 border border-green-500/20 text-xs font-semibold px-2 py-0.5 rounded-md font-bold">
                             {t('healthy')}
                           </span>
                         </div>
@@ -3476,14 +3476,14 @@ export const App: React.FC = () => {
 
                     {/* Mobile App Gateway Node */}
                     {dashboardWidgets.showMobileGatewayNode && (
-                      <div className="bg-[var(--card)] border border-amber-500/40 p-5 rounded-2xl shadow-sm relative overflow-hidden">
+                      <div className="bg-[var(--card)] border border-amber-500/40 p-5 rounded-xl shadow-sm relative overflow-hidden">
                         <div className="absolute right-0 top-0 w-16 h-16 bg-amber-500/10 rounded-full blur-xl transform translate-x-1/2 -translate-y-1/2"></div>
                         <div className="flex justify-between items-start mb-4">
                           <div>
                             <h4 className="font-bold text-sm text-[var(--foreground)]">{t('mobileGateway')}</h4>
-                            <p className="text-[11px] text-[var(--muted-foreground)]">ভেরিফাইড ওটিপি ও পুশ নোটিফিকেশন</p>
+                            <p className="text-xs font-medium text-[var(--muted-foreground)]">ভেরিফাইড ওটিপি ও পুশ নোটিফিকেশন</p>
                           </div>
-                          <span className="bg-amber-500/15 text-amber-500 border border-amber-500/30 text-[10px] px-2 py-0.5 rounded-md font-bold animate-pulse">
+                          <span className="bg-amber-500/15 text-amber-800 dark:text-amber-400 font-bold border border-amber-500/30 text-xs font-semibold px-2 py-0.5 rounded-md font-bold animate-pulse">
                             হাই লেটেন্সি
                           </span>
                         </div>
@@ -3491,7 +3491,7 @@ export const App: React.FC = () => {
                         <div className="mb-4">
                           <div className="flex justify-between text-xs mb-1.5">
                             <span className="text-[var(--muted-foreground)]">{t('latency')}</span>
-                            <span className="font-bold text-amber-500">৮৫০ms</span>
+                            <span className="font-bold text-amber-800 dark:text-amber-400 font-bold">৮৫০ms</span>
                           </div>
                           <div className="w-full bg-[var(--background)] border border-[var(--border)] rounded-full h-2 overflow-hidden">
                             <div className="bg-amber-500 h-full rounded-full" style={{ width: '85%' }}></div>
@@ -3515,7 +3515,7 @@ export const App: React.FC = () => {
 
               {/* Madrasas Directory Section */}
               {dashboardWidgets.showMadrasaDirectory && (
-                <div className="bg-[var(--card)] border border-[var(--border)] rounded-2xl p-6 shadow-sm space-y-4">
+                <div className="bg-[var(--card)] border border-[var(--border)] rounded-xl p-6 shadow-sm space-y-4">
                   <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 pb-3 border-b border-[var(--border)]">
                     <div>
                       <h2 className="text-base font-bold text-[var(--foreground)]">মাদ্রাসা ডিরেক্টরি ও ফিল্টার</h2>
@@ -3600,7 +3600,7 @@ export const App: React.FC = () => {
                               {m.thana}, {m.district}
                             </td>
                             <td className="p-3">
-                              <span className="px-2 py-0.5 rounded bg-[var(--background)] text-[var(--muted-foreground)] border border-[var(--border)] font-mono text-[10px]">
+                              <span className="px-2 py-0.5 rounded bg-[var(--background)] text-[var(--muted-foreground)] border border-[var(--border)] font-mono text-xs font-semibold">
                                 {m.type}
                               </span>
                             </td>
@@ -3608,11 +3608,11 @@ export const App: React.FC = () => {
                             <td className="p-3 text-[var(--muted-foreground)]">{m.plan}</td>
                             <td className="p-3">
                               {m.status === 'ACTIVE' ? (
-                                <span className="px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-500 text-[10px] font-medium border border-emerald-500/20">
+                                <span className="px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 font-bold text-xs font-semibold font-medium border border-emerald-500/20">
                                   {t('active')}
                                 </span>
                               ) : (
-                                <span className="px-2 py-0.5 rounded-full bg-red-500/10 text-red-500 text-[10px] font-medium border border-red-500/20">
+                                <span className="px-2 py-0.5 rounded-full bg-red-500/10 text-red-500 text-xs font-semibold font-medium border border-red-500/20">
                                   {t('blocked')}
                                 </span>
                               )}
@@ -3621,14 +3621,14 @@ export const App: React.FC = () => {
                               <div className="flex items-center gap-2">
                                 <button
                                   onClick={() => handleLoginAsAdmin(m)}
-                                  className="px-2.5 py-1 rounded-lg bg-[var(--primary)] text-[var(--primary-foreground)] text-[11px] font-medium hover:opacity-90 transition flex items-center gap-1"
+                                  className="px-2.5 py-1 rounded-lg bg-[var(--primary)] text-[var(--primary-foreground)] text-xs font-medium font-medium hover:opacity-90 transition flex items-center gap-1"
                                 >
                                   <LogIn className="w-3 h-3" /> {t('login')}
                                 </button>
                                 <button
                                   onClick={() => handleToggleBlock(m.id)}
-                                  className={`p-1 rounded border border-[var(--border)] hover:bg-[var(--background)] text-[10px] font-medium ${
-                                    m.status === 'ACTIVE' ? 'text-amber-500' : 'text-green-500'
+                                  className={`p-1 rounded border border-[var(--border)] hover:bg-[var(--background)] text-xs font-semibold font-medium ${
+                                    m.status === 'ACTIVE' ? 'text-amber-800 dark:text-amber-400 font-bold' : 'text-green-500'
                                   }`}
                                   title={m.status === 'ACTIVE' ? 'ব্লক করুন' : 'আনব্লক করুন'}
                                 >
@@ -3647,12 +3647,12 @@ export const App: React.FC = () => {
               {/* Bottom Layout: Logs & Support */}
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 pb-6">
                 {dashboardWidgets.showAutoBackupLogs && (
-                  <div className="bg-[var(--card)] border border-[var(--border)] rounded-2xl p-5 shadow-sm flex flex-col">
+                  <div className="bg-[var(--card)] border border-[var(--border)] rounded-xl p-5 shadow-sm flex flex-col">
                     <div className="flex justify-between items-center mb-4">
                       <h3 className="text-sm font-bold flex items-center gap-2 text-[var(--foreground)]">
                         <span>🤖</span> সিস্টেম অটোমেশন ও ব্যাকআপ লগ
                       </h3>
-                      <button className="text-[11px] text-[var(--muted-foreground)] hover:text-[var(--foreground)] underline">
+                      <button className="text-xs font-medium text-[var(--muted-foreground)] hover:text-[var(--foreground)] underline">
                         ক্লিয়ার
                       </button>
                     </div>
@@ -3661,24 +3661,24 @@ export const App: React.FC = () => {
                         <span className="text-green-500 text-lg leading-none mt-0.5">✓</span>
                         <div>
                           <p className="font-bold text-[var(--foreground)]">দৈনিক ডাটাবেস অটো ব্যাকআপ</p>
-                          <p className="text-[11px] text-[var(--muted-foreground)] mt-0.5">
+                          <p className="text-xs font-medium text-[var(--muted-foreground)] mt-0.5">
                             ১৪৫ GB ডাটা এনক্রিপ্ট করে ক্লাউডে ব্যাকআপ রাখা হয়েছে।
                           </p>
                         </div>
-                        <span className="text-[10px] text-[var(--muted-foreground)] ml-auto shrink-0">২ ঘণ্টা আগে</span>
+                        <span className="text-xs font-semibold text-[var(--muted-foreground)] ml-auto shrink-0">২ ঘণ্টা আগে</span>
                       </div>
 
                       <div className="flex items-start gap-3 p-3 bg-red-500/10 rounded-xl border border-red-500/20">
                         <span className="text-red-500 text-lg leading-none mt-0.5">⚠️</span>
                         <div>
                           <p className="font-bold text-red-500">SSL সার্টিফিকেট রিনিউয়াল প্রয়োজন</p>
-                          <p className="text-[11px] text-[var(--muted-foreground)] mt-0.5">
+                          <p className="text-xs font-medium text-[var(--muted-foreground)] mt-0.5">
                             ডোমেন 'jamia-islamia.com' SSL ৩ দিনের মধ্যে মেয়াদ উত্তীর্ণ হবে।
                           </p>
                         </div>
                         <button
                           onClick={() => alert('অটো-রিনিউয়াল রিকোয়েস্ট সফল!')}
-                          className="text-[10px] bg-red-500 hover:bg-red-600 text-white px-2 py-1 rounded-md font-bold ml-auto shrink-0 transition"
+                          className="text-xs font-semibold bg-red-500 hover:bg-red-600 text-white px-2 py-1 rounded-md font-bold ml-auto shrink-0 transition"
                         >
                           অটো-রিনিউ
                         </button>
@@ -3688,10 +3688,10 @@ export const App: React.FC = () => {
                 )}
 
                 {dashboardWidgets.showSupportMessagesWidget && (
-                  <div className="bg-[var(--card)] border border-[var(--border)] rounded-2xl p-5 shadow-sm flex flex-col">
+                  <div className="bg-[var(--card)] border border-[var(--border)] rounded-xl p-5 shadow-sm flex flex-col">
                     <div className="flex justify-between items-center mb-4">
                       <h3 className="text-sm font-bold flex items-center gap-2 text-[var(--foreground)]">
-                        <span>💬</span> মাদ্রাসার সাপোর্ট মেসেজ
+                        <MessageCircle className="w-4 h-4 inline mr-1 text-teal-600 dark:text-teal-400" /> মাদ্রাসার সাপোর্ট মেসেজ
                       </h3>
                       <button
                         onClick={() => setActiveNav('messages')}
@@ -3708,9 +3708,9 @@ export const App: React.FC = () => {
                         >
                           <div className="flex justify-between items-start mb-1">
                             <span className="font-bold text-[var(--foreground)]">{tkt.madrasa}</span>
-                            <span className="text-[10px] text-[var(--muted-foreground)]">{tkt.time}</span>
+                            <span className="text-xs font-semibold text-[var(--muted-foreground)]">{tkt.time}</span>
                           </div>
-                          <p className="text-[11px] text-[var(--muted-foreground)] line-clamp-1">{tkt.subject}</p>
+                          <p className="text-xs font-medium text-[var(--muted-foreground)] line-clamp-1">{tkt.subject}</p>
                         </div>
                       ))}
                     </div>
@@ -3728,7 +3728,7 @@ export const App: React.FC = () => {
               <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 pb-3 border-b border-[var(--border)]">
                 <div>
                   <h2 className="text-xl font-bold text-[var(--foreground)] flex items-center gap-2">
-                    <Settings className="w-5 h-5 text-emerald-500" />
+                    <Settings className="w-5 h-5 text-emerald-700 dark:text-emerald-400 font-bold" />
                     সফটওয়্যার সেটিংস ও ড্যাশবোর্ড কাস্টমাইজেশন
                   </h2>
                   <p className="text-xs text-[var(--muted-foreground)]">
@@ -3777,9 +3777,9 @@ export const App: React.FC = () => {
               {/* TAB 1: DASHBOARD VIEW CUSTOMIZATION */}
               {settingsTab === 'dashboard' && (
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div className="p-6 rounded-2xl bg-[var(--card)] border border-[var(--border)] shadow-sm space-y-4">
+                  <div className="p-6 rounded-xl bg-[var(--card)] border border-[var(--border)] shadow-sm space-y-4">
                     <h3 className="text-sm font-bold text-[var(--foreground)] flex items-center gap-2">
-                      <Sliders className="w-4 h-4 text-emerald-500" />
+                      <Sliders className="w-4 h-4 text-emerald-700 dark:text-emerald-400 font-bold" />
                       সুপার অ্যাডমিন ড্যাশবোর্ড উইজেট কন্ট্রোল
                     </h3>
                     <p className="text-xs text-[var(--muted-foreground)]">
@@ -3790,7 +3790,7 @@ export const App: React.FC = () => {
                       <label className="flex items-center justify-between p-3 rounded-xl bg-[var(--background)] border border-[var(--border)] cursor-pointer hover:border-[var(--primary)] transition">
                         <div>
                           <div className="font-semibold text-[var(--foreground)]">ওয়েলকাম ব্যানার ও গ্লোবাল আপটাইম</div>
-                          <div className="text-[10px] text-[var(--muted-foreground)]">৯৯.৯% আপটাইম ও সক্রিয় মাদ্রাসা কাউন্টার</div>
+                          <div className="text-xs font-semibold text-[var(--muted-foreground)]">৯৯.৯% আপটাইম ও সক্রিয় মাদ্রাসা কাউন্টার</div>
                         </div>
                         <input
                           type="checkbox"
@@ -3803,7 +3803,7 @@ export const App: React.FC = () => {
                       <label className="flex items-center justify-between p-3 rounded-xl bg-[var(--background)] border border-[var(--border)] cursor-pointer hover:border-[var(--primary)] transition">
                         <div>
                           <div className="font-semibold text-[var(--foreground)]">মেইন ওয়েব সার্ভার নোড (Node.js API)</div>
-                          <div className="text-[10px] text-[var(--muted-foreground)]">সিপিইউ ও র‍্যাম মেমোরি মিটার</div>
+                          <div className="text-xs font-semibold text-[var(--muted-foreground)]">সিপিইউ ও র‍্যাম মেমোরি মিটার</div>
                         </div>
                         <input
                           type="checkbox"
@@ -3816,7 +3816,7 @@ export const App: React.FC = () => {
                       <label className="flex items-center justify-between p-3 rounded-xl bg-[var(--background)] border border-[var(--border)] cursor-pointer hover:border-[var(--primary)] transition">
                         <div>
                           <div className="font-semibold text-[var(--foreground)]">ডাটাবেস ক্লাস্টার নোড (PostgreSQL)</div>
-                          <div className="text-[10px] text-[var(--muted-foreground)]">স্টোরেজ ব্যবহার ও কানেকশন পুল</div>
+                          <div className="text-xs font-semibold text-[var(--muted-foreground)]">স্টোরেজ ব্যবহার ও কানেকশন পুল</div>
                         </div>
                         <input
                           type="checkbox"
@@ -3829,7 +3829,7 @@ export const App: React.FC = () => {
                       <label className="flex items-center justify-between p-3 rounded-xl bg-[var(--background)] border border-[var(--border)] cursor-pointer hover:border-[var(--primary)] transition">
                         <div>
                           <div className="font-semibold text-[var(--foreground)]">মোবাইল অ্যাপ গেটওয়ে নোড (API Gateway)</div>
-                          <div className="text-[10px] text-[var(--muted-foreground)]">রিকোয়েস্ট লেটেন্সি ও স্কেল-আপ বোতাম</div>
+                          <div className="text-xs font-semibold text-[var(--muted-foreground)]">রিকোয়েস্ট লেটেন্সি ও স্কেল-আপ বোতাম</div>
                         </div>
                         <input
                           type="checkbox"
@@ -3842,7 +3842,7 @@ export const App: React.FC = () => {
                       <label className="flex items-center justify-between p-3 rounded-xl bg-[var(--background)] border border-[var(--border)] cursor-pointer hover:border-[var(--primary)] transition">
                         <div>
                           <div className="font-semibold text-[var(--foreground)]">মাদ্রাসা ডিরেক্টরি ও ফিল্টার টেবিল</div>
-                          <div className="text-[10px] text-[var(--muted-foreground)]">জেলা ও ছাত্র সংখ্যা ভিত্তিক দ্রুত অনুসন্ধান</div>
+                          <div className="text-xs font-semibold text-[var(--muted-foreground)]">জেলা ও ছাত্র সংখ্যা ভিত্তিক দ্রুত অনুসন্ধান</div>
                         </div>
                         <input
                           type="checkbox"
@@ -3853,12 +3853,12 @@ export const App: React.FC = () => {
                       </label>
                     </div>
 
-                    <div className="p-3 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-500 text-[11px]">
+                    <div className="p-3 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-700 dark:text-emerald-400 font-bold text-xs font-medium">
                       ✓ এখানে টিক পরিবর্তন করলে তা তাৎক্ষণিকভাবে 'সিস্টেম লাইভ মনিটর' ড্যাশবোর্ডে কার্যকর হবে।
                     </div>
                   </div>
 
-                  <div className="p-6 rounded-2xl bg-[var(--card)] border border-[var(--border)] shadow-sm space-y-4">
+                  <div className="p-6 rounded-xl bg-[var(--card)] border border-[var(--border)] shadow-sm space-y-4">
                     <h3 className="text-sm font-bold text-[var(--foreground)] flex items-center gap-2">
                       <Eye className="w-4 h-4 text-blue-500" />
                       লাইভ প্রিভিউ প্রিফারেন্স
@@ -3871,7 +3871,7 @@ export const App: React.FC = () => {
                       <label className="flex items-center justify-between p-3 rounded-xl bg-[var(--background)] border border-[var(--border)] cursor-pointer hover:border-[var(--primary)] transition">
                         <div>
                           <div className="font-semibold text-[var(--foreground)]">দৈনিক ব্যাকআপ ও SSL সতর্কতা লগ</div>
-                          <div className="text-[10px] text-[var(--muted-foreground)]">স্বয়ংক্রিয় ব্যাকআপ সফলতার হিস্ট্রি</div>
+                          <div className="text-xs font-semibold text-[var(--muted-foreground)]">স্বয়ংক্রিয় ব্যাকআপ সফলতার হিস্ট্রি</div>
                         </div>
                         <input
                           type="checkbox"
@@ -3884,7 +3884,7 @@ export const App: React.FC = () => {
                       <label className="flex items-center justify-between p-3 rounded-xl bg-[var(--background)] border border-[var(--border)] cursor-pointer hover:border-[var(--primary)] transition">
                         <div>
                           <div className="font-semibold text-[var(--foreground)]">ক্লায়েন্ট সাপোর্ট টিকিট উইজেট</div>
-                          <div className="text-[10px] text-[var(--muted-foreground)]">অমীমাংসিত জরুরি প্রশ্নসমূহ</div>
+                          <div className="text-xs font-semibold text-[var(--muted-foreground)]">অমীমাংসিত জরুরি প্রশ্নসমূহ</div>
                         </div>
                         <input
                           type="checkbox"
@@ -3909,14 +3909,14 @@ export const App: React.FC = () => {
               {settingsTab === 'mobile' && (
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
                   {/* Mobile Handset Simulator Frame */}
-                  <div className="max-w-xs mx-auto w-full p-5 rounded-3xl bg-[var(--card)] border-4 border-slate-700 shadow-2xl space-y-4">
+                  <div className="max-w-xs mx-auto w-full p-5 rounded-xl bg-[var(--card)] border-4 border-slate-700 shadow-2xl space-y-4">
                     <div className="w-20 h-1 bg-slate-600 rounded-full mx-auto mb-1"></div>
                     <div className="flex items-center justify-between pb-2 border-b border-[var(--border)]">
                       <div className="flex items-center gap-1.5">
-                        <Smartphone className="w-4 h-4 text-emerald-500" />
+                        <Smartphone className="w-4 h-4 text-emerald-700 dark:text-emerald-400 font-bold" />
                         <span className="font-bold text-[var(--foreground)] text-xs">অভিভাবক অ্যাপ প্রিভিউ</span>
                       </div>
-                      <span className="text-[9px] px-1.5 py-0.5 rounded-full bg-emerald-500/10 text-emerald-500 font-mono">
+                      <span className="text-[9px] px-1.5 py-0.5 rounded-full bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 font-bold font-mono">
                         OTP ভেরিফাইড
                       </span>
                     </div>
@@ -3926,24 +3926,24 @@ export const App: React.FC = () => {
                       <div className="flex items-center justify-between">
                         <div>
                           <h4 className="font-bold text-[var(--foreground)] text-xs">মুহাম্মদ আব্দুল্লাহ</h4>
-                          <p className="text-[10px] text-[var(--muted-foreground)]">রোল: ০১ | হিফজ ৩য় বর্ষ</p>
+                          <p className="text-xs font-semibold text-[var(--muted-foreground)]">রোল: ০১ | হিফজ ৩য় বর্ষ</p>
                         </div>
-                        <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-[var(--card)] text-emerald-500 border border-[var(--border)]">
+                        <span className="text-xs font-semibold font-mono px-1.5 py-0.5 rounded bg-[var(--card)] text-emerald-700 dark:text-emerald-400 font-bold border border-[var(--border)]">
                           DHK-0001
                         </span>
                       </div>
 
-                      <div className="flex items-center justify-between p-2 rounded-lg bg-[var(--card)] text-[10px] border border-[var(--border)]">
+                      <div className="flex items-center justify-between p-2 rounded-lg bg-[var(--card)] text-xs font-semibold border border-[var(--border)]">
                         <span className="text-[var(--muted-foreground)]">আজকের হাজিরা:</span>
-                        <span className="text-emerald-500 font-bold flex items-center gap-1">
+                        <span className="text-emerald-700 dark:text-emerald-400 font-bold font-bold flex items-center gap-1">
                           <CheckCircle2 className="w-3 h-3" /> উপস্থিত ({attendancePushTime})
                         </span>
                       </div>
 
                       <div className="space-y-1">
-                        <div className="flex justify-between text-[10px]">
+                        <div className="flex justify-between text-xs font-semibold">
                           <span className="text-[var(--muted-foreground)]">হিফজ (৬০ / ৬০৪ পৃষ্ঠা)</span>
-                          <span className="text-emerald-500 font-bold">১০% সম্পন্ন</span>
+                          <span className="text-emerald-700 dark:text-emerald-400 font-bold font-bold">১০% সম্পন্ন</span>
                         </div>
                         <div className="w-full h-1.5 rounded-full bg-[var(--card)] border border-[var(--border)] overflow-hidden">
                           <div className="h-full bg-emerald-500 rounded-full w-[10%]"></div>
@@ -3952,10 +3952,10 @@ export const App: React.FC = () => {
                     </div>
 
                     {/* Gatepass Status */}
-                    <div className="p-3 rounded-xl bg-[var(--background)] border border-[var(--border)] space-y-1 text-[10px]">
+                    <div className="p-3 rounded-xl bg-[var(--background)] border border-[var(--border)] space-y-1 text-xs font-semibold">
                       <div className="flex items-center justify-between">
                         <span className="text-[var(--foreground)] font-semibold flex items-center gap-1">
-                          <QrCode className="w-3.5 h-3.5 text-emerald-500" /> ডিজিটাল গেটপাস
+                          <QrCode className="w-3.5 h-3.5 text-emerald-700 dark:text-emerald-400 font-bold" /> ডিজিটাল গেটপাস
                         </span>
                         <span className="text-[9px] px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-600 font-medium">
                           অনুমোদিত
@@ -3967,13 +3967,13 @@ export const App: React.FC = () => {
                     {/* bKash Payment Simulation */}
                     {mobileBkashActive && (
                       <div className="p-3 rounded-xl bg-[var(--background)] border border-[var(--border)] space-y-2">
-                        <div className="flex items-center justify-between text-[11px]">
+                        <div className="flex items-center justify-between text-xs font-medium">
                           <span className="text-[var(--foreground)] font-semibold">বকেয়া মাসিক ফি</span>
-                          <span className="text-amber-500 font-bold">৳১,৫০০</span>
+                          <span className="text-amber-800 dark:text-amber-400 font-bold font-bold">৳১,৫০০</span>
                         </div>
                         <button
                           onClick={() => alert('বিকাশ পেমেন্ট সিমুলেশন সফল!')}
-                          className="w-full py-2 rounded-lg bg-pink-600 hover:bg-pink-500 text-white font-bold text-[10px] shadow flex items-center justify-center gap-1 transition"
+                          className="w-full py-2 rounded-lg bg-pink-600 hover:bg-pink-500 text-white font-bold text-xs font-semibold shadow flex items-center justify-center gap-1 transition"
                         >
                           বিকাশ (bKash) দিয়ে পরিশোধ
                         </button>
@@ -3982,9 +3982,9 @@ export const App: React.FC = () => {
                   </div>
 
                   {/* Mobile Gateway Configurations */}
-                  <div className="p-6 rounded-2xl bg-[var(--card)] border border-[var(--border)] shadow-sm space-y-4 text-xs">
+                  <div className="p-6 rounded-xl bg-[var(--card)] border border-[var(--border)] shadow-sm space-y-4 text-xs">
                     <h3 className="text-sm font-bold text-[var(--foreground)] flex items-center gap-2">
-                      <Smartphone className="w-4 h-4 text-emerald-500" />
+                      <Smartphone className="w-4 h-4 text-emerald-700 dark:text-emerald-400 font-bold" />
                       অভিভাবক মোবাইল অ্যাপ সিস্টেম কনফিগারেশন
                     </h3>
                     <p className="text-[var(--muted-foreground)]">
@@ -4018,7 +4018,7 @@ export const App: React.FC = () => {
                       <div className="flex items-center justify-between p-3 rounded-xl bg-[var(--background)] border border-[var(--border)]">
                         <div>
                           <div className="font-semibold text-[var(--foreground)]">বিকাশ (bKash) পেমেন্ট গেটওয়ে সক্রিয় রাখুন</div>
-                          <div className="text-[10px] text-[var(--muted-foreground)]">অভিভাবকরা অ্যাপ থেকেই এক ক্লিকে ফি দিতে পারবেন</div>
+                          <div className="text-xs font-semibold text-[var(--muted-foreground)]">অভিভাবকরা অ্যাপ থেকেই এক ক্লিকে ফি দিতে পারবেন</div>
                         </div>
                         <input
                           type="checkbox"
@@ -4042,7 +4042,7 @@ export const App: React.FC = () => {
               {/* TAB 3: LANGUAGE PACKS DOWNLOAD & MANAGER */}
               {settingsTab === 'languages' && (
                 <div className="space-y-6">
-                  <div className="p-6 rounded-2xl bg-[var(--card)] border border-[var(--border)] shadow-sm space-y-4">
+                  <div className="p-6 rounded-xl bg-[var(--card)] border border-[var(--border)] shadow-sm space-y-4">
                     <h3 className="text-sm font-bold text-[var(--foreground)] flex items-center gap-2">
                       <Globe className="w-4 h-4 text-blue-500" />
                       ভাষা ও আন্তর্জাতিকীকরণ প্যাকেজ ম্যানেজার
@@ -4057,12 +4057,12 @@ export const App: React.FC = () => {
                         <div className="flex items-center justify-between">
                           <span className="font-bold text-sm text-[var(--foreground)]">🇵🇰 اردو (Urdu)</span>
                           {installedLanguages.includes('ur') ? (
-                            <span className="px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-500 font-bold text-[10px]">সক্রিয়</span>
+                            <span className="px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 font-bold font-bold text-xs font-semibold">সক্রিয়</span>
                           ) : (
-                            <span className="text-[10px] text-[var(--muted-foreground)]">প্যাকেজ সাইজ: ২.৪ MB</span>
+                            <span className="text-xs font-semibold text-[var(--muted-foreground)]">প্যাকেজ সাইজ: ২.৪ MB</span>
                           )}
                         </div>
-                        <p className="text-[11px] text-[var(--muted-foreground)]">
+                        <p className="text-xs font-medium text-[var(--muted-foreground)]">
                           দারুল উলুম দেওবন্দ ও উপমহাদেশীয় কওমি মাদ্রাসার জন্য নির্ধারিত পূর্ণাঙ্গ উর্দু অনুবাদ।
                         </p>
                         <button
@@ -4079,12 +4079,12 @@ export const App: React.FC = () => {
                         <div className="flex items-center justify-between">
                           <span className="font-bold text-sm text-[var(--foreground)]">🇲🇾 Bahasa Melayu</span>
                           {installedLanguages.includes('ms') ? (
-                            <span className="px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-500 font-bold text-[10px]">সক্রিয়</span>
+                            <span className="px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 font-bold font-bold text-xs font-semibold">সক্রিয়</span>
                           ) : (
-                            <span className="text-[10px] text-[var(--muted-foreground)]">প্যাকেজ সাইজ: ১.৮ MB</span>
+                            <span className="text-xs font-semibold text-[var(--muted-foreground)]">প্যাকেজ সাইজ: ১.৮ MB</span>
                           )}
                         </div>
-                        <p className="text-[11px] text-[var(--muted-foreground)]">
+                        <p className="text-xs font-medium text-[var(--muted-foreground)]">
                           মালয়েশিয়া ও ইন্দোনেশিয়া ভিত্তিক ইসলামিক তাহফিজ ও পন্ডোক মাদ্রাসার জন্য অনুবাদ।
                         </p>
                         <button
@@ -4101,12 +4101,12 @@ export const App: React.FC = () => {
                         <div className="flex items-center justify-between">
                           <span className="font-bold text-sm text-[var(--foreground)]">🇹🇷 Türkçe</span>
                           {installedLanguages.includes('tr') ? (
-                            <span className="px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-500 font-bold text-[10px]">সক্রিয়</span>
+                            <span className="px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 font-bold font-bold text-xs font-semibold">সক্রিয়</span>
                           ) : (
-                            <span className="text-[10px] text-[var(--muted-foreground)]">প্যাকেজ সাইজ: ২.১ MB</span>
+                            <span className="text-xs font-semibold text-[var(--muted-foreground)]">প্যাকেজ সাইজ: ২.১ MB</span>
                           )}
                         </div>
-                        <p className="text-[11px] text-[var(--muted-foreground)]">
+                        <p className="text-xs font-medium text-[var(--muted-foreground)]">
                           তুরস্ক ও অটোমান কারিকুলাম অনুসরণকারী ধর্মীয় শিক্ষা প্রতিষ্ঠানের জন্য তুর্কি অনুবাদ।
                         </p>
                         <button
@@ -4142,7 +4142,7 @@ export const App: React.FC = () => {
                 </button>
               </div>
 
-              <div className="bg-[var(--card)] border border-[var(--border)] rounded-2xl p-6 shadow-sm">
+              <div className="bg-[var(--card)] border border-[var(--border)] rounded-xl p-6 shadow-sm">
                 <div className="overflow-x-auto rounded-xl border border-[var(--border)]">
                   <table className="w-full text-left text-xs">
                     <thead className="bg-[var(--background)] text-[var(--muted-foreground)] uppercase">
@@ -4164,7 +4164,7 @@ export const App: React.FC = () => {
                           <td className="p-3 font-semibold text-[var(--foreground)]">{m.nameBn}</td>
                           <td className="p-3 text-[var(--muted-foreground)]">{m.thana}, {m.district}</td>
                           <td className="p-3">
-                            <span className="px-2 py-0.5 rounded bg-[var(--background)] text-[var(--muted-foreground)] border border-[var(--border)] font-mono text-[10px]">
+                            <span className="px-2 py-0.5 rounded bg-[var(--background)] text-[var(--muted-foreground)] border border-[var(--border)] font-mono text-xs font-semibold">
                               {m.type}
                             </span>
                           </td>
@@ -4172,11 +4172,11 @@ export const App: React.FC = () => {
                           <td className="p-3 text-[var(--muted-foreground)]">{m.plan}</td>
                           <td className="p-3">
                             {m.renewalDue ? (
-                              <span className="px-2 py-0.5 rounded-full bg-red-500/10 text-red-500 text-[10px] font-bold border border-red-500/20">
+                              <span className="px-2 py-0.5 rounded-full bg-red-500/10 text-red-500 text-xs font-semibold font-bold border border-red-500/20">
                                 বকেয়া বিদ্যমান
                               </span>
                             ) : (
-                              <span className="px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-500 text-[10px] font-medium border border-emerald-500/20">
+                              <span className="px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 font-bold text-xs font-semibold font-medium border border-emerald-500/20">
                                 নিয়মিত
                               </span>
                             )}
@@ -4185,7 +4185,7 @@ export const App: React.FC = () => {
                             <div className="flex items-center gap-1.5">
                               <button
                                 onClick={() => handleLoginAsAdmin(m)}
-                                className="px-2.5 py-1 rounded bg-[var(--primary)] text-[var(--primary-foreground)] text-[11px] font-medium hover:opacity-90 transition flex items-center gap-1"
+                                className="px-2.5 py-1 rounded bg-[var(--primary)] text-[var(--primary-foreground)] text-xs font-medium font-medium hover:opacity-90 transition flex items-center gap-1"
                               >
                                 <LogIn className="w-3 h-3" /> লগইন
                               </button>
@@ -4217,16 +4217,16 @@ export const App: React.FC = () => {
                   <h2 className="text-xl font-bold text-[var(--foreground)]">নতুন মাদ্রাসা অনবোর্ডিং অনুমোদন (Pending Approvals)</h2>
                   <p className="text-xs text-[var(--muted-foreground)]">অনুমোদন দিলে স্বয়ংক্রিয়ভাবে ক্লাউড ডাটাবেস ও টেন্যান্ট স্কিমা তৈরি হবে</p>
                 </div>
-                <span className="text-xs px-2.5 py-1 rounded-full bg-amber-500/15 text-amber-500 border border-amber-500/30 font-bold">
+                <span className="text-xs px-2.5 py-1 rounded-full bg-amber-500/15 text-amber-800 dark:text-amber-400 font-bold border border-amber-500/30 font-bold">
                   মোট {pendingMadrasas.length} টি আবেদন
                 </span>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
                 {pendingMadrasas.map((p) => (
-                  <div key={p.id} className="p-5 rounded-2xl bg-[var(--card)] border border-[var(--border)] shadow-sm space-y-3">
+                  <div key={p.id} className="p-5 rounded-xl bg-[var(--card)] border border-[var(--border)] shadow-sm space-y-3">
                     <div className="flex justify-between items-start">
-                      <span className="text-[10px] px-2 py-0.5 rounded bg-[var(--background)] text-[var(--muted-foreground)] border border-[var(--border)]">
+                      <span className="text-xs font-semibold px-2 py-0.5 rounded bg-[var(--background)] text-[var(--muted-foreground)] border border-[var(--border)]">
                         {p.date}
                       </span>
                       <span className="text-xs font-bold text-[var(--primary)]">{p.requestedPlan}</span>
@@ -4281,8 +4281,8 @@ export const App: React.FC = () => {
           {/* VIEW: DEMO / TRIAL                                                        */}
           {/* ========================================================================= */}
           {activeNav === 'trial' && (
-            <div className="p-8 rounded-2xl bg-[var(--card)] border border-[var(--border)] text-center space-y-4 max-w-xl mx-auto my-12">
-              <div className="w-16 h-16 rounded-full bg-emerald-500/10 text-emerald-500 flex items-center justify-center mx-auto text-2xl font-bold">
+            <div className="p-8 rounded-xl bg-[var(--card)] border border-[var(--border)] text-center space-y-4 max-w-xl mx-auto my-12">
+              <div className="w-16 h-16 rounded-full bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 font-bold flex items-center justify-center mx-auto text-2xl font-bold">
                 🎁
               </div>
               <h3 className="text-lg font-bold text-[var(--foreground)]">১৪ দিনের ফ্রি ডেমো ও ট্রায়াল ম্যানেজমেন্ট</h3>
@@ -4310,11 +4310,11 @@ export const App: React.FC = () => {
                 </div>
                 <div className="text-right">
                   <span className="text-xs text-[var(--muted-foreground)]">মোট মাসিক রিকারিং আয়:</span>
-                  <div className="text-lg font-bold text-emerald-500">৳১,৮৫,০০০/মাস</div>
+                  <div className="text-lg font-bold text-emerald-700 dark:text-emerald-400 font-bold">৳১,৮৫,০০০/মাস</div>
                 </div>
               </div>
 
-              <div className="bg-[var(--card)] border border-[var(--border)] rounded-2xl p-6 shadow-sm space-y-4">
+              <div className="bg-[var(--card)] border border-[var(--border)] rounded-xl p-6 shadow-sm space-y-4">
                 <h3 className="font-bold text-sm text-[var(--foreground)] flex items-center gap-2">
                   <AlertTriangle className="w-4 h-4 text-red-500" />
                   বকেয়া মাদ্রাসা তালিকা (৩টি প্রতিষ্ঠান)
@@ -4323,7 +4323,7 @@ export const App: React.FC = () => {
                   <div className="p-4 rounded-xl bg-[var(--background)] border border-red-500/30 flex items-center justify-between">
                     <div>
                       <div className="font-bold text-[var(--foreground)]">দারুল উলুম মঈনুল ইসলাম হাটহাজারী</div>
-                      <div className="text-[11px] text-[var(--muted-foreground)]">এন্টারপ্রাইজ প্ল্যান (অক্টোবর ২০২৬) — বকেয়া: ৳১৫,০০০</div>
+                      <div className="text-xs font-medium text-[var(--muted-foreground)]">এন্টারপ্রাইজ প্ল্যান (অক্টোবর ২০২৬) — বকেয়া: ৳১৫,০০০</div>
                     </div>
                     <button
                       onClick={() => alert('পেমেন্ট রিমাইন্ডার এসএমএস পাঠানো হয়েছে!')}
@@ -4335,7 +4335,7 @@ export const App: React.FC = () => {
                   <div className="p-4 rounded-xl bg-[var(--background)] border border-red-500/30 flex items-center justify-between">
                     <div>
                       <div className="font-bold text-[var(--foreground)]">নূরানী হাফিজিয়া মাদ্রাসা ও এতিমখানা বগুড়া</div>
-                      <div className="text-[11px] text-[var(--muted-foreground)]">বেসিক প্ল্যান (অক্টোবর ২০২৬) — বকেয়া: ৳২,৫০০</div>
+                      <div className="text-xs font-medium text-[var(--muted-foreground)]">বেসিক প্ল্যান (অক্টোবর ২০২৬) — বকেয়া: ৳২,৫০০</div>
                     </div>
                     <button
                       onClick={() => alert('পেমেন্ট রিমাইন্ডার এসএমএস পাঠানো হয়েছে!')}
@@ -4360,8 +4360,8 @@ export const App: React.FC = () => {
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div className="p-6 rounded-2xl bg-[var(--card)] border border-[var(--border)] shadow-sm space-y-4">
-                  <span className="text-xs font-bold text-slate-400">মৌলিক (Basic)</span>
+                <div className="p-6 rounded-xl bg-[var(--card)] border border-[var(--border)] shadow-sm space-y-4">
+                  <span className="text-xs font-bold text-[var(--muted-foreground)]">মৌলিক (Basic)</span>
                   <div className="text-2xl font-extrabold text-[var(--foreground)]">৳২,৫০০ <span className="text-xs font-normal text-[var(--muted-foreground)]">/মাস</span></div>
                   <p className="text-xs text-[var(--muted-foreground)]">অনাবাসিক ও ছোট মাদ্রাসার জন্য প্রযোজ্য (সর্বোচ্চ ৪০০ ছাত্র)</p>
                   <ul className="text-xs space-y-2 text-[var(--muted-foreground)] border-t border-[var(--border)] pt-4">
@@ -4371,8 +4371,8 @@ export const App: React.FC = () => {
                   </ul>
                 </div>
 
-                <div className="p-6 rounded-2xl bg-[var(--card)] border-2 border-[var(--primary)] shadow-md space-y-4 relative">
-                  <span className="absolute -top-3 right-6 bg-[var(--primary)] text-[var(--primary-foreground)] text-[10px] px-2.5 py-0.5 rounded-full font-bold">
+                <div className="p-6 rounded-xl bg-[var(--card)] border-2 border-[var(--primary)] shadow-md space-y-4 relative">
+                  <span className="absolute -top-3 right-6 bg-[var(--primary)] text-[var(--primary-foreground)] text-xs font-semibold px-2.5 py-0.5 rounded-full font-bold">
                     জনপ্রিয় (Standard)
                   </span>
                   <span className="text-xs font-bold text-[var(--primary)]">স্ট্যান্ডার্ড (Standard)</span>
@@ -4386,7 +4386,7 @@ export const App: React.FC = () => {
                   </ul>
                 </div>
 
-                <div className="p-6 rounded-2xl bg-[var(--card)] border border-[var(--border)] shadow-sm space-y-4">
+                <div className="p-6 rounded-xl bg-[var(--card)] border border-[var(--border)] shadow-sm space-y-4">
                   <span className="text-xs font-bold text-purple-400">এন্টারপ্রাইজ (Enterprise)</span>
                   <div className="text-2xl font-extrabold text-[var(--foreground)]">৳১৫,০০০ <span className="text-xs font-normal text-[var(--muted-foreground)]">/মাস</span></div>
                   <p className="text-xs text-[var(--muted-foreground)]">বৃহৎ জামিয়া ও বিশ্ববিদ্যালয়ের জন্য প্রযোজ্য (আনলিমিটেড ছাত্র)</p>
@@ -4407,10 +4407,10 @@ export const App: React.FC = () => {
           {activeNav === 'madrasa_dashboard' && (
             <div className="space-y-6 animate-in fade-in duration-200">
               {/* Muhtamim Greeting & Institution Header Banner */}
-              <div className="p-6 rounded-3xl bg-[var(--primary)] text-[var(--primary-foreground)] shadow-lg relative overflow-hidden flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+              <div className="p-6 rounded-xl bg-[var(--primary)] text-[var(--primary-foreground)] shadow-lg relative overflow-hidden flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
                 <div className="space-y-1.5 z-10">
                   <div className="flex items-center gap-2">
-                    <span className="text-xl">🕌</span>
+                    <Building className="w-6 h-6 text-teal-600 dark:text-teal-400" />
                     <h2 className="text-2xl font-bold tracking-tight">
                       আসসালামু আলাইকুম, মুহতামিম সাহেব
                     </h2>
@@ -4418,7 +4418,7 @@ export const App: React.FC = () => {
                   <p className="text-xs opacity-90 font-medium">
                     {currentAdminMadrasa ? currentAdminMadrasa.nameBn : 'জামিয়া ইসলামিয়া দারুল উলুম ঢাকা'} • কেন্দ্রীয় বিভাগীয় নিয়ন্ত্রণ প্যানেল
                   </p>
-                  <div className="flex flex-wrap items-center gap-2 pt-1 text-[11px] opacity-95">
+                  <div className="flex flex-wrap items-center gap-2 pt-1 text-xs font-medium opacity-95">
                     <span className="px-2.5 py-0.5 rounded-full bg-black/20 font-bold">
                       📅 শিক্ষাবর্ষ: ২০২৬-২০২৭
                     </span>
@@ -4435,30 +4435,30 @@ export const App: React.FC = () => {
                 </div>
 
                 <div className="flex items-center gap-3 z-10">
-                  <div className="p-3 rounded-2xl bg-black/20 text-center min-w-[90px]">
+                  <div className="p-3 rounded-xl bg-black/20 text-center min-w-[90px]">
                     <div className="text-xl font-extrabold">১,৪৫০</div>
-                    <div className="text-[10px] opacity-85 uppercase font-medium">মোট ছাত্র</div>
+                    <div className="text-xs font-semibold opacity-85 uppercase font-medium">মোট ছাত্র</div>
                   </div>
-                  <div className="p-3 rounded-2xl bg-black/20 text-center min-w-[90px]">
+                  <div className="p-3 rounded-xl bg-black/20 text-center min-w-[90px]">
                     <div className="text-xl font-extrabold text-green-300">২৮ জন</div>
-                    <div className="text-[10px] opacity-85 uppercase font-medium">কর্মরত শিক্ষক</div>
+                    <div className="text-xs font-semibold opacity-85 uppercase font-medium">কর্মরত শিক্ষক</div>
                   </div>
-                  <div className="p-3 rounded-2xl bg-black/20 text-center min-w-[90px]">
+                  <div className="p-3 rounded-xl bg-black/20 text-center min-w-[90px]">
                     <div className="text-xl font-extrabold text-amber-300">১২টি</div>
-                    <div className="text-[10px] opacity-85 uppercase font-medium">সক্রিয় বিভাগ</div>
+                    <div className="text-xs font-semibold opacity-85 uppercase font-medium">সক্রিয় বিভাগ</div>
                   </div>
                 </div>
               </div>
 
               {/* Muhtamim Central Quick Actions Toolbar */}
-              <div className="flex flex-wrap items-center justify-between gap-3 p-3.5 rounded-2xl bg-[var(--card)] border border-[var(--border)] shadow-xs">
+              <div className="flex flex-wrap items-center justify-between gap-3 p-3.5 rounded-xl bg-[var(--card)] border border-[var(--border)] shadow-xs">
                 <div className="flex flex-wrap items-center gap-2.5">
                   <button
                     onClick={() => setShowNoticeComposerModal(true)}
                     className="px-4 py-2 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-white text-xs font-bold shadow-sm transition flex items-center gap-2 active:scale-95"
                   >
                     <Megaphone className="w-4 h-4" />
-                    <span>📢 নোটিশ জারি করুন</span>
+                    <span className="flex items-center gap-1.5"><Megaphone className="w-4 h-4" /> নোটিশ জারি করুন</span>
                   </button>
 
                   <button
@@ -4473,7 +4473,7 @@ export const App: React.FC = () => {
                     onClick={() => setShowGrantPermissionModal(true)}
                     className="px-3.5 py-2 rounded-xl border border-[var(--border)] hover:bg-[var(--background)] text-xs font-semibold text-[var(--foreground)] transition flex items-center gap-1.5 shadow-xs"
                   >
-                    <Key className="w-3.5 h-3.5 text-emerald-500" />
+                    <Key className="w-3.5 h-3.5 text-emerald-700 dark:text-emerald-400 font-bold" />
                     <span>+ নতুন পারমিশন দিন</span>
                   </button>
                 </div>
@@ -4485,7 +4485,7 @@ export const App: React.FC = () => {
                       <button
                         key={notice.id}
                         onClick={() => setActiveNoticeDetail(notice)}
-                        className="px-2.5 py-1 rounded-lg bg-[var(--background)] hover:bg-[var(--primary)]/10 border border-[var(--border)] text-[11px] font-medium text-[var(--foreground)] flex items-center gap-1.5 transition max-w-[210px] truncate"
+                        className="px-2.5 py-1 rounded-lg bg-[var(--background)] hover:bg-[var(--primary)]/10 border border-[var(--border)] text-xs font-medium font-medium text-[var(--foreground)] flex items-center gap-1.5 transition max-w-[210px] truncate"
                         title="ক্লিক করে সম্পূর্ণ নোটিশ পড়ুন"
                       >
                         <span className={`w-2 h-2 rounded-full shrink-0 ${notice.priority === 'URGENT' ? 'bg-rose-500 animate-pulse' : 'bg-blue-500'}`} />
@@ -4542,7 +4542,7 @@ export const App: React.FC = () => {
                           key={d.id}
                           onDoubleClick={() => setActiveNav(d.routeKey)}
                           title={`${d.nameBn} - ডাবল ক্লিক করে প্রবেশ করুন`}
-                          className="p-3.5 rounded-2xl bg-[var(--card)] border border-[var(--border)] shadow-xs hover:shadow-lg hover:border-[var(--primary)] transition-all flex flex-col justify-between group relative cursor-pointer active:scale-[0.98] select-none min-h-[96px]"
+                          className="p-3.5 rounded-xl bg-[var(--card)] border border-[var(--border)] shadow-xs hover:shadow-lg hover:border-[var(--primary)] transition-all flex flex-col justify-between group relative cursor-pointer active:scale-[0.98] select-none min-h-[96px]"
                         >
                           {/* Top Row: Icon, Department Title, Code & 3-Dot RBAC */}
                           <div className="flex items-start justify-between gap-2">
@@ -4556,7 +4556,7 @@ export const App: React.FC = () => {
                                 <h4 className="font-bold text-xs sm:text-[13px] text-[var(--foreground)] truncate leading-tight group-hover:text-[var(--primary)] transition-colors">
                                   {d.nameBn}
                                 </h4>
-                                <p className="text-[10px] font-mono text-[var(--muted-foreground)] truncate">
+                                <p className="text-xs font-semibold font-mono text-[var(--muted-foreground)] truncate">
                                   {d.code} • {d.nameEn}
                                 </p>
                               </div>
@@ -4579,12 +4579,12 @@ export const App: React.FC = () => {
                               {deptDropdownId === d.id && (
                                 <div
                                   onClick={(e) => e.stopPropagation()}
-                                  className="absolute right-0 top-7 w-56 p-2 rounded-2xl bg-[var(--card)] border border-[var(--border)] shadow-2xl z-50 text-xs space-y-1 animate-in fade-in zoom-in-95 text-left"
+                                  className="absolute right-0 top-7 w-56 p-2 rounded-xl bg-[var(--card)] border border-[var(--border)] shadow-2xl z-50 text-xs space-y-1 animate-in fade-in zoom-in-95 text-left"
                                 >
-                                  <div className="px-2.5 py-1 text-[10px] font-bold text-[var(--muted-foreground)] border-b border-[var(--border)] uppercase">
+                                  <div className="px-2.5 py-1 text-xs font-semibold font-bold text-[var(--muted-foreground)] border-b border-[var(--border)] uppercase">
                                     {d.nameBn} • অ্যাক্সেস কন্ট্রোল
                                   </div>
-                                  <div className="px-2.5 py-1 text-[11px] text-[var(--foreground)]">
+                                  <div className="px-2.5 py-1 text-xs font-medium text-[var(--foreground)]">
                                     <span className="text-[var(--muted-foreground)]">দায়িত্বপ্রাপ্ত: </span>
                                     <strong>{d.assignedStaff[0]?.name || 'কেউ নিযুক্ত নেই'}</strong>
                                   </div>
@@ -4597,7 +4597,7 @@ export const App: React.FC = () => {
                                   </button>
                                   <button
                                     onClick={() => handleToggleDeptHold(d.id)}
-                                    className="w-full flex items-center gap-2 px-2.5 py-1.5 rounded-lg text-left hover:bg-[var(--background)] text-amber-500 transition font-medium"
+                                    className="w-full flex items-center gap-2 px-2.5 py-1.5 rounded-lg text-left hover:bg-[var(--background)] text-amber-800 dark:text-amber-400 font-bold transition font-medium"
                                   >
                                     <Ban className="w-3.5 h-3.5" />
                                     <span>
@@ -4608,7 +4608,7 @@ export const App: React.FC = () => {
                                   </button>
                                   <button
                                     onClick={() => handleRevokeDeptAccess(d.id)}
-                                    className="w-full flex items-center gap-2 px-2.5 py-1.5 rounded-lg text-left hover:bg-rose-500/10 text-rose-500 transition font-medium"
+                                    className="w-full flex items-center gap-2 px-2.5 py-1.5 rounded-lg text-left hover:bg-rose-500/10 text-rose-700 dark:text-rose-400 font-bold transition font-medium"
                                   >
                                     <UserX className="w-3.5 h-3.5" />
                                     <span>স্টাফ অ্যাক্সেস বাতিল</span>
@@ -4619,7 +4619,7 @@ export const App: React.FC = () => {
                           </div>
 
                           {/* Bottom Row: Staff info + Double-Click / Enter Affordance */}
-                          <div className="mt-2.5 pt-2 border-t border-[var(--border)]/70 flex items-center justify-between text-[11px] gap-1">
+                          <div className="mt-2.5 pt-2 border-t border-[var(--border)]/70 flex items-center justify-between text-xs font-medium gap-1">
                             <div className="truncate flex items-center gap-1.5 text-[var(--muted-foreground)] min-w-0">
                               <span
                                 className={`w-1.5 h-1.5 rounded-full shrink-0 ${
@@ -4630,7 +4630,7 @@ export const App: React.FC = () => {
                                     : 'bg-zinc-400'
                                 }`}
                               />
-                              <span className="truncate text-[10px] text-[var(--foreground)]">
+                              <span className="truncate text-xs font-semibold text-[var(--foreground)]">
                                 {d.assignedStaff[0]?.name || 'স্টাফ নিযুক্ত নেই'}
                               </span>
                             </div>
@@ -4640,7 +4640,7 @@ export const App: React.FC = () => {
                                 e.stopPropagation();
                                 setActiveNav(d.routeKey);
                               }}
-                              className="text-[10px] font-semibold text-[var(--primary)] group-hover:underline flex items-center gap-0.5 shrink-0 bg-[var(--primary)]/10 hover:bg-[var(--primary)]/20 px-2 py-0.5 rounded-md transition"
+                              className="text-xs font-semibold font-semibold text-[var(--primary)] group-hover:underline flex items-center gap-0.5 shrink-0 bg-[var(--primary)]/10 hover:bg-[var(--primary)]/20 px-2 py-0.5 rounded-md transition"
                               title="ক্লিক বা ডাবল ক্লিক করে প্রবেশ করুন"
                             >
                               <span>এন্টার ↵</span>
@@ -4671,11 +4671,11 @@ export const App: React.FC = () => {
               })()}
 
               {/* Muhtamim Central Approvals & Pending Permissions Board (Replaces static responsibility table) */}
-              <div className="p-6 rounded-3xl bg-[var(--card)] border border-[var(--border)] shadow-sm space-y-4">
+              <div className="p-6 rounded-xl bg-[var(--card)] border border-[var(--border)] shadow-sm space-y-4">
                 <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 pb-3 border-b border-[var(--border)]">
                   <div>
                     <h3 className="font-bold text-base text-[var(--foreground)] flex items-center gap-2">
-                      <span className="p-1 rounded-lg bg-emerald-500/10 text-emerald-500">
+                      <span className="p-1 rounded-lg bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 font-bold">
                         <CheckCircle2 className="w-4 h-4" />
                       </span>
                       মাদ্রাসার চলতি কার্যক্রমের অনুমোদন ও পারমিশন বোর্ড (Pending Approvals Center)
@@ -4686,10 +4686,10 @@ export const App: React.FC = () => {
                   </div>
 
                   <div className="flex items-center gap-2">
-                    <span className="text-xs px-2.5 py-1 rounded-full bg-amber-500/10 text-amber-500 border border-amber-500/20 font-bold">
+                    <span className="text-xs px-2.5 py-1 rounded-full bg-amber-500/10 text-amber-800 dark:text-amber-400 font-bold border border-amber-500/20 font-bold">
                       অপেক্ষমাণ: {pendingApprovals.filter((a) => a.status === 'PENDING').length}টি
                     </span>
-                    <span className="text-xs px-2.5 py-1 rounded-full bg-emerald-500/10 text-emerald-500 border border-emerald-500/20 font-bold">
+                    <span className="text-xs px-2.5 py-1 rounded-full bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 font-bold border border-emerald-500/20 font-bold">
                       অনুমোদিত: {pendingApprovals.filter((a) => a.status === 'APPROVED').length}টি
                     </span>
                   </div>
@@ -4699,7 +4699,7 @@ export const App: React.FC = () => {
                 {approvalFeedbackMsg && (
                   <div className="p-3 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-xs text-emerald-600 dark:text-emerald-300 flex items-center justify-between animate-in fade-in">
                     <span className="font-medium">{approvalFeedbackMsg}</span>
-                    <button onClick={() => setApprovalFeedbackMsg(null)} className="text-emerald-500 hover:text-emerald-700">
+                    <button onClick={() => setApprovalFeedbackMsg(null)} className="text-emerald-700 dark:text-emerald-400 font-bold hover:text-emerald-700">
                       <X className="w-3.5 h-3.5" />
                     </button>
                   </div>
@@ -4710,17 +4710,17 @@ export const App: React.FC = () => {
                   {(isApprovalsExpanded ? pendingApprovals : pendingApprovals.slice(0, 3)).map((item) => (
                     <div
                       key={item.id}
-                      className="p-4 rounded-2xl bg-[var(--background)] border border-[var(--border)] hover:border-[var(--primary)] transition flex flex-col md:flex-row items-start md:items-center justify-between gap-4 shadow-xs"
+                      className="p-4 rounded-xl bg-[var(--background)] border border-[var(--border)] hover:border-[var(--primary)] transition flex flex-col md:flex-row items-start md:items-center justify-between gap-4 shadow-xs"
                     >
                       <div className="space-y-1.5 flex-1 min-w-0">
-                        <div className="flex flex-wrap items-center gap-2 text-[10px]">
+                        <div className="flex flex-wrap items-center gap-2 text-xs font-semibold">
                           <span className="px-2 py-0.5 rounded-md font-mono font-bold bg-[var(--card)] border border-[var(--border)] text-[var(--foreground)]">
                             {item.deptCode} • {item.departmentName}
                           </span>
                           <span
                             className={`px-2 py-0.5 rounded-full font-bold ${
                               item.urgency === 'HIGH'
-                                ? 'bg-rose-500/10 text-rose-500 border border-rose-500/20'
+                                ? 'bg-rose-500/10 text-rose-700 dark:text-rose-400 font-bold border border-rose-500/20'
                                 : 'bg-blue-500/10 text-blue-500 border border-blue-500/20'
                             }`}
                           >
@@ -4738,7 +4738,7 @@ export const App: React.FC = () => {
                         <p className="text-xs text-[var(--muted-foreground)]">
                           {item.description}
                         </p>
-                        <div className="text-[11px] text-[var(--foreground)] opacity-90">
+                        <div className="text-xs font-medium text-[var(--foreground)] opacity-90">
                           <span className="text-[var(--muted-foreground)]">উত্থাপক: </span>
                           <strong>{item.requesterName}</strong>
                         </div>
@@ -4748,8 +4748,8 @@ export const App: React.FC = () => {
                       <div className="flex items-center gap-3 shrink-0 self-end md:self-center">
                         {item.amount && item.amount !== '—' && (
                           <div className="text-right">
-                            <div className="text-[10px] text-[var(--muted-foreground)]">বরাদ্দ / ব্যয়</div>
-                            <div className="text-base font-extrabold text-emerald-500 bg-emerald-500/10 border border-emerald-500/20 px-3 py-1 rounded-xl">
+                            <div className="text-xs font-semibold text-[var(--muted-foreground)]">বরাদ্দ / ব্যয়</div>
+                            <div className="text-base font-extrabold text-emerald-700 dark:text-emerald-400 font-bold bg-emerald-500/10 border border-emerald-500/20 px-3 py-1 rounded-xl">
                               {item.amount}
                             </div>
                           </div>
@@ -4767,7 +4767,7 @@ export const App: React.FC = () => {
                               </button>
                               <button
                                 onClick={() => handleRejectRequest(item.id)}
-                                className="px-3.5 py-1.5 rounded-xl bg-rose-500/10 hover:bg-rose-500/20 text-rose-500 border border-rose-500/20 text-xs font-medium transition flex items-center gap-1.5 active:scale-95"
+                                className="px-3.5 py-1.5 rounded-xl bg-rose-500/10 hover:bg-rose-500/20 text-rose-700 dark:text-rose-400 font-bold border border-rose-500/20 text-xs font-medium transition flex items-center gap-1.5 active:scale-95"
                               >
                                 <X className="w-3.5 h-3.5" />
                                 <span>বাতিল</span>
@@ -4776,14 +4776,14 @@ export const App: React.FC = () => {
                           )}
 
                           {item.status === 'APPROVED' && (
-                            <span className="px-3 py-1.5 rounded-xl bg-emerald-500/15 border border-emerald-500/30 text-emerald-500 text-xs font-bold flex items-center gap-1">
+                            <span className="px-3 py-1.5 rounded-xl bg-emerald-500/15 border border-emerald-500/30 text-emerald-700 dark:text-emerald-400 font-bold text-xs font-bold flex items-center gap-1">
                               <CheckCheck className="w-3.5 h-3.5" />
                               অনুমোদিত
                             </span>
                           )}
 
                           {item.status === 'REJECTED' && (
-                            <span className="px-3 py-1.5 rounded-xl bg-rose-500/15 border border-rose-500/30 text-rose-500 text-xs font-bold flex items-center gap-1">
+                            <span className="px-3 py-1.5 rounded-xl bg-rose-500/15 border border-rose-500/30 text-rose-700 dark:text-rose-400 font-bold text-xs font-bold flex items-center gap-1">
                               <Ban className="w-3.5 h-3.5" />
                               বাতিলকৃত
                             </span>
@@ -4846,8 +4846,8 @@ export const App: React.FC = () => {
 
               {/* 3 Segregated Shariah Funds Cards */}
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div className="p-5 rounded-2xl bg-[var(--card)] border border-[var(--border)] shadow-sm space-y-2">
-                  <span className="text-[11px] font-bold text-blue-400 uppercase tracking-wider">
+                <div className="p-5 rounded-xl bg-[var(--card)] border border-[var(--border)] shadow-sm space-y-2">
+                  <span className="text-xs font-medium font-bold text-blue-400 uppercase tracking-wider">
                     ১. সাধারণ ফান্ড (General Fund)
                   </span>
                   <div className="text-2xl font-extrabold text-[var(--foreground)]">৳৪,৫০,০০০</div>
@@ -4856,18 +4856,18 @@ export const App: React.FC = () => {
                   </p>
                 </div>
 
-                <div className="p-5 rounded-2xl bg-[var(--card)] border border-[var(--border)] shadow-sm space-y-2">
-                  <span className="text-[11px] font-bold text-emerald-400 uppercase tracking-wider">
+                <div className="p-5 rounded-xl bg-[var(--card)] border border-[var(--border)] shadow-sm space-y-2">
+                  <span className="text-xs font-medium font-bold text-emerald-400 uppercase tracking-wider">
                     ২. লিল্লাহ ও যাকাত ফান্ড (Zakat/Lillah)
                   </span>
-                  <div className="text-2xl font-extrabold text-emerald-500">৳২,৮০,০০০</div>
+                  <div className="text-2xl font-extrabold text-emerald-700 dark:text-emerald-400 font-bold">৳২,৮০,০০০</div>
                   <p className="text-xs text-[var(--muted-foreground)]">
                     শুধুমাত্র এতিম, অসহায় ও দরিদ্র ছাত্রদের খাবার ও কাপড়ে ব্যয়যোগ্য।
                   </p>
                 </div>
 
-                <div className="p-5 rounded-2xl bg-[var(--card)] border border-[var(--border)] shadow-sm space-y-2">
-                  <span className="text-[11px] font-bold text-purple-400 uppercase tracking-wider">
+                <div className="p-5 rounded-xl bg-[var(--card)] border border-[var(--border)] shadow-sm space-y-2">
+                  <span className="text-xs font-medium font-bold text-purple-400 uppercase tracking-wider">
                     ৩. শিক্ষক বেতন ফান্ড (Salary Reserve)
                   </span>
                   <div className="text-2xl font-extrabold text-purple-400">৳৩,৪৫,০০০</div>
@@ -4878,7 +4878,7 @@ export const App: React.FC = () => {
               </div>
 
               {/* Shariah Policy & Audit Trail Statement */}
-              <div className="p-6 rounded-3xl bg-[var(--card)] border border-[var(--border)] shadow-sm space-y-3">
+              <div className="p-6 rounded-xl bg-[var(--card)] border border-[var(--border)] shadow-sm space-y-3">
                 <h3 className="font-bold text-sm text-[var(--foreground)] flex items-center gap-2">
                   <FileSpreadsheet className="w-4 h-4 text-teal-400" />
                   শরীয়াহ নীতিমালা ও অপরিবর্তনীয় অডিট লগ
@@ -4886,7 +4886,7 @@ export const App: React.FC = () => {
                 <p className="text-xs text-[var(--muted-foreground)] leading-relaxed">
                   মাদ্রাসার প্রতিটি আর্থিক ট্রানজেকশনে কোনো ডিলিট বা মুছে ফেলার সুযোগ রাখা হয়নি। ভুল এন্ট্রির ক্ষেত্রে শুধুমাত্র শরীয়াহ সম্মত রিভার্সাল এন্ট্রি করা যায়। যাকাত ও লিল্লাহ তহবিলের টাকা কখনোই মাদ্রাসার সাধারণ উন্নয়ন বা নির্মাণকাজে ব্যয় করা হয় না।
                 </p>
-                <div className="pt-2 flex items-center gap-4 text-xs font-medium text-emerald-500">
+                <div className="pt-2 flex items-center gap-4 text-xs font-medium text-emerald-700 dark:text-emerald-400 font-bold">
                   <span>✓ দ্বিমুখী ডাবল-এন্ট্রি বুককিপিং</span>
                   <span>✓ রসিদ সিকোয়েন্স নম্বর অটোমেটেড</span>
                   <span>✓ মেকার-চেকার অনুমোদন কার্যকর</span>
@@ -4926,20 +4926,20 @@ export const App: React.FC = () => {
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div className="p-5 rounded-2xl bg-[var(--card)] border border-[var(--border)]">
+                <div className="p-5 rounded-xl bg-[var(--card)] border border-[var(--border)]">
                   <div className="text-xs text-[var(--muted-foreground)]">আজকের শিক্ষক উপস্থিতি</div>
-                  <div className="text-2xl font-bold text-emerald-500 mt-1">১০০% (২৮/২৮)</div>
-                  <div className="text-[11px] text-[var(--muted-foreground)] mt-1">সবাই নির্ধারিত সময়ে ক্লাসে উপস্থিত</div>
+                  <div className="text-2xl font-bold text-emerald-700 dark:text-emerald-400 font-bold mt-1">১০০% (২৮/২৮)</div>
+                  <div className="text-xs font-medium text-[var(--muted-foreground)] mt-1">সবাই নির্ধারিত সময়ে ক্লাসে উপস্থিত</div>
                 </div>
-                <div className="p-5 rounded-2xl bg-[var(--card)] border border-[var(--border)]">
+                <div className="p-5 rounded-xl bg-[var(--card)] border border-[var(--border)]">
                   <div className="text-xs text-[var(--muted-foreground)]">দৈনিক মোট পিরিয়ড</div>
                   <div className="text-2xl font-bold text-[var(--foreground)] mt-1">৭২টি ক্লাস</div>
-                  <div className="text-[11px] text-[var(--muted-foreground)] mt-1">হিফজ ও কিতাব বিভাগ মিলিয়ে</div>
+                  <div className="text-xs font-medium text-[var(--muted-foreground)] mt-1">হিফজ ও কিতাব বিভাগ মিলিয়ে</div>
                 </div>
-                <div className="p-5 rounded-2xl bg-[var(--card)] border border-[var(--border)]">
+                <div className="p-5 rounded-xl bg-[var(--card)] border border-[var(--border)]">
                   <div className="text-xs text-[var(--muted-foreground)]">চলতি মাসের বেতন বিল</div>
                   <div className="text-2xl font-bold text-purple-400 mt-1">৳৩,৪৫,০০০</div>
-                  <div className="text-[11px] text-emerald-500 mt-1">অনুমোদিত ও বিতরণের জন্য প্রস্তুত</div>
+                  <div className="text-xs font-medium text-emerald-700 dark:text-emerald-400 font-bold mt-1">অনুমোদিত ও বিতরণের জন্য প্রস্তুত</div>
                 </div>
               </div>
             </div>
@@ -4976,20 +4976,20 @@ export const App: React.FC = () => {
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div className="p-5 rounded-2xl bg-[var(--card)] border border-[var(--border)]">
+                <div className="p-5 rounded-xl bg-[var(--card)] border border-[var(--border)]">
                   <div className="text-xs text-[var(--muted-foreground)]">আবাসিক ছাত্র</div>
                   <div className="text-2xl font-bold text-[var(--foreground)] mt-1">৯২০ জন</div>
-                  <div className="text-[11px] text-[var(--muted-foreground)] mt-1">হোস্টেলে অবস্থানরত</div>
+                  <div className="text-xs font-medium text-[var(--muted-foreground)] mt-1">হোস্টেলে অবস্থানরত</div>
                 </div>
-                <div className="p-5 rounded-2xl bg-[var(--card)] border border-[var(--border)]">
+                <div className="p-5 rounded-xl bg-[var(--card)] border border-[var(--border)]">
                   <div className="text-xs text-[var(--muted-foreground)]">অনাবাসিক ছাত্র</div>
                   <div className="text-2xl font-bold text-[var(--foreground)] mt-1">৫৩০ জন</div>
-                  <div className="text-[11px] text-[var(--muted-foreground)] mt-1">প্রতিদিন যাতায়াতকারী</div>
+                  <div className="text-xs font-medium text-[var(--muted-foreground)] mt-1">প্রতিদিন যাতায়াতকারী</div>
                 </div>
-                <div className="p-5 rounded-2xl bg-[var(--card)] border border-[var(--border)]">
+                <div className="p-5 rounded-xl bg-[var(--card)] border border-[var(--border)]">
                   <div className="text-xs text-[var(--muted-foreground)]">নতুন ভর্তি আবেদন</div>
                   <div className="text-2xl font-bold text-cyan-400 mt-1">৪৫ জন</div>
-                  <div className="text-[11px] text-emerald-500 mt-1">যাচাই-বাছাই প্রক্রিয়াধীন</div>
+                  <div className="text-xs font-medium text-emerald-700 dark:text-emerald-400 font-bold mt-1">যাচাই-বাছাই প্রক্রিয়াধীন</div>
                 </div>
               </div>
             </div>
@@ -5026,20 +5026,20 @@ export const App: React.FC = () => {
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div className="p-5 rounded-2xl bg-[var(--card)] border border-[var(--border)]">
+                <div className="p-5 rounded-xl bg-[var(--card)] border border-[var(--border)]">
                   <div className="text-xs text-[var(--muted-foreground)]">মুমতাজ (স্টার মার্ক)</div>
-                  <div className="text-2xl font-bold text-emerald-500 mt-1">১৮২ জন</div>
-                  <div className="text-[11px] text-[var(--muted-foreground)] mt-1">সর্বোচ্চ গ্রেড প্রাপ্ত</div>
+                  <div className="text-2xl font-bold text-emerald-700 dark:text-emerald-400 font-bold mt-1">১৮২ জন</div>
+                  <div className="text-xs font-medium text-[var(--muted-foreground)] mt-1">সর্বোচ্চ গ্রেড প্রাপ্ত</div>
                 </div>
-                <div className="p-5 rounded-2xl bg-[var(--card)] border border-[var(--border)]">
+                <div className="p-5 rounded-xl bg-[var(--card)] border border-[var(--border)]">
                   <div className="text-xs text-[var(--muted-foreground)]">জায়্যিদ জিদ্দান (১ম বিভাগ)</div>
                   <div className="text-2xl font-bold text-blue-500 mt-1">৩৪০ জন</div>
-                  <div className="text-[11px] text-[var(--muted-foreground)] mt-1">প্রথম বিভাগে উত্তীর্ণ</div>
+                  <div className="text-xs font-medium text-[var(--muted-foreground)] mt-1">প্রথম বিভাগে উত্তীর্ণ</div>
                 </div>
-                <div className="p-5 rounded-2xl bg-[var(--card)] border border-[var(--border)]">
+                <div className="p-5 rounded-xl bg-[var(--card)] border border-[var(--border)]">
                   <div className="text-xs text-[var(--muted-foreground)]">জায়্যিদ (২য় বিভাগ)</div>
-                  <div className="text-2xl font-bold text-amber-500 mt-1">১২০ জন</div>
-                  <div className="text-[11px] text-[var(--muted-foreground)] mt-1">দ্বিতীয় বিভাগে উত্তীর্ণ</div>
+                  <div className="text-2xl font-bold text-amber-800 dark:text-amber-400 font-bold mt-1">১২০ জন</div>
+                  <div className="text-xs font-medium text-[var(--muted-foreground)] mt-1">দ্বিতীয় বিভাগে উত্তীর্ণ</div>
                 </div>
               </div>
             </div>
@@ -5076,20 +5076,20 @@ export const App: React.FC = () => {
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div className="p-5 rounded-2xl bg-[var(--card)] border border-[var(--border)]">
+                <div className="p-5 rounded-xl bg-[var(--card)] border border-[var(--border)]">
                   <div className="text-xs text-[var(--muted-foreground)]">অন-কল ডাক্তার</div>
                   <div className="text-base font-bold text-[var(--foreground)] mt-1">ডা. হাবিবুর রহমান (এমবিবিএস)</div>
-                  <div className="text-[11px] text-[var(--muted-foreground)] mt-1">মোবাইল: 01712-334411</div>
+                  <div className="text-xs font-medium text-[var(--muted-foreground)] mt-1">মোবাইল: 01712-334411</div>
                 </div>
-                <div className="p-5 rounded-2xl bg-[var(--card)] border border-[var(--border)]">
+                <div className="p-5 rounded-xl bg-[var(--card)] border border-[var(--border)]">
                   <div className="text-xs text-[var(--muted-foreground)]">জরুরি প্রাথমিক কিট</div>
-                  <div className="text-base font-bold text-emerald-500 mt-1">১০০% স্টক প্রস্তুত</div>
-                  <div className="text-[11px] text-[var(--muted-foreground)] mt-1">ফার্স্ট এইড বক্স হালনাগাদ</div>
+                  <div className="text-base font-bold text-emerald-700 dark:text-emerald-400 font-bold mt-1">১০০% স্টক প্রস্তুত</div>
+                  <div className="text-xs font-medium text-[var(--muted-foreground)] mt-1">ফার্স্ট এইড বক্স হালনাগাদ</div>
                 </div>
-                <div className="p-5 rounded-2xl bg-[var(--card)] border border-[var(--border)]">
+                <div className="p-5 rounded-xl bg-[var(--card)] border border-[var(--border)]">
                   <div className="text-xs text-[var(--muted-foreground)]">জরুরি অভিভাবক যোগাযোগ</div>
                   <div className="text-base font-bold text-blue-500 mt-1">অটোমেটেড এসএমএস</div>
-                  <div className="text-[11px] text-[var(--muted-foreground)] mt-1">অসুস্থতায় তাৎক্ষণিক অবহিতকরণ</div>
+                  <div className="text-xs font-medium text-[var(--muted-foreground)] mt-1">অসুস্থতায় তাৎক্ষণিক অবহিতকরণ</div>
                 </div>
               </div>
             </div>
@@ -5126,20 +5126,20 @@ export const App: React.FC = () => {
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div className="p-5 rounded-2xl bg-[var(--card)] border border-[var(--border)]">
+                <div className="p-5 rounded-xl bg-[var(--card)] border border-[var(--border)]">
                   <div className="text-xs text-[var(--muted-foreground)]">প্রধান নিরাপত্তা কর্মকর্তা</div>
                   <div className="text-base font-bold text-[var(--foreground)] mt-1">সুবেদার (অব.) মোতালেব মিয়া</div>
-                  <div className="text-[11px] text-[var(--muted-foreground)] mt-1">মোবাইল: 01888-223311</div>
+                  <div className="text-xs font-medium text-[var(--muted-foreground)] mt-1">মোবাইল: 01888-223311</div>
                 </div>
-                <div className="p-5 rounded-2xl bg-[var(--card)] border border-[var(--border)]">
+                <div className="p-5 rounded-xl bg-[var(--card)] border border-[var(--border)]">
                   <div className="text-xs text-[var(--muted-foreground)]">ক্যাম্পাসের বাইরে অবস্থানরত</div>
-                  <div className="text-2xl font-bold text-amber-500 mt-1">৫ জন ছাত্র</div>
-                  <div className="text-[11px] text-[var(--muted-foreground)] mt-1">গেটপাস অনুমোদন প্রাপ্ত</div>
+                  <div className="text-2xl font-bold text-amber-800 dark:text-amber-400 font-bold mt-1">৫ জন ছাত্র</div>
+                  <div className="text-xs font-medium text-[var(--muted-foreground)] mt-1">গেটপাস অনুমোদন প্রাপ্ত</div>
                 </div>
-                <div className="p-5 rounded-2xl bg-[var(--card)] border border-[var(--border)]">
+                <div className="p-5 rounded-xl bg-[var(--card)] border border-[var(--border)]">
                   <div className="text-xs text-[var(--muted-foreground)]">রাত্রিকালীন লকডাউন সময়</div>
-                  <div className="text-2xl font-bold text-rose-500 mt-1">রাত ৯:৩০ মিনিট</div>
-                  <div className="text-[11px] text-[var(--muted-foreground)] mt-1">পরবর্তী সকাল ৬টা পর্যন্ত বন্ধ</div>
+                  <div className="text-2xl font-bold text-rose-700 dark:text-rose-400 font-bold mt-1">রাত ৯:৩০ মিনিট</div>
+                  <div className="text-xs font-medium text-[var(--muted-foreground)] mt-1">পরবর্তী সকাল ৬টা পর্যন্ত বন্ধ</div>
                 </div>
               </div>
             </div>
@@ -5182,14 +5182,14 @@ export const App: React.FC = () => {
                     onClick={() => setShowGrantPermissionModal(true)}
                     className="px-3.5 py-2 rounded-xl bg-[var(--card)] hover:bg-[var(--background)] border border-[var(--border)] text-[var(--foreground)] text-xs font-bold transition flex items-center gap-1.5 shadow-xs active:scale-95"
                   >
-                    <Key className="w-3.5 h-3.5 text-emerald-500" />
+                    <Key className="w-3.5 h-3.5 text-emerald-700 dark:text-emerald-400 font-bold" />
                     <span>+ নতুন পারমিশন দিন</span>
                   </button>
                 </div>
               </div>
 
               {/* Policy Rules Register Section */}
-              <div className="p-6 rounded-3xl bg-[var(--card)] border border-[var(--border)] shadow-sm space-y-4">
+              <div className="p-6 rounded-xl bg-[var(--card)] border border-[var(--border)] shadow-sm space-y-4">
                 <div className="flex items-center justify-between">
                   <div>
                     <h3 className="font-bold text-sm text-[var(--foreground)] flex items-center gap-2">
@@ -5207,27 +5207,27 @@ export const App: React.FC = () => {
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-3.5">
                   {policyRules.map((r) => (
-                    <div key={r.id} className="p-4 rounded-2xl bg-[var(--background)] border border-[var(--border)] space-y-2">
+                    <div key={r.id} className="p-4 rounded-xl bg-[var(--background)] border border-[var(--border)] space-y-2">
                       <div className="flex items-center justify-between text-xs">
                         <span className="font-mono font-bold text-violet-400 bg-violet-500/10 px-2 py-0.5 rounded-md">
                           {r.code} • {r.module}
                         </span>
-                        <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-500/10 text-emerald-500 border border-emerald-500/20">
+                        <span className="px-2 py-0.5 rounded-full text-xs font-semibold font-bold bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 font-bold border border-emerald-500/20">
                           {r.status === 'ACTIVE' ? 'সক্রিয় নীতি' : 'নিষ্ক্রিয়'}
                         </span>
                       </div>
                       <h4 className="font-bold text-xs text-[var(--foreground)]">{r.title}</h4>
-                      <p className="text-[11px] text-[var(--muted-foreground)] leading-relaxed">{r.description}</p>
+                      <p className="text-xs font-medium text-[var(--muted-foreground)] leading-relaxed">{r.description}</p>
                     </div>
                   ))}
                 </div>
               </div>
 
               {/* Department Staff Permission Matrix Section */}
-              <div className="p-6 rounded-3xl bg-[var(--card)] border border-[var(--border)] shadow-sm space-y-4">
+              <div className="p-6 rounded-xl bg-[var(--card)] border border-[var(--border)] shadow-sm space-y-4">
                 <div className="flex items-center justify-between">
                   <h3 className="font-bold text-sm text-[var(--foreground)] flex items-center gap-2">
-                    <Key className="w-4 h-4 text-emerald-500" />
+                    <Key className="w-4 h-4 text-emerald-700 dark:text-emerald-400 font-bold" />
                     বিভাগভিত্তিক স্টাফ পারমিশন ও এক্সেস কন্ট্রোল ম্যাট্রিক্স
                   </h3>
                   <button
@@ -5237,7 +5237,7 @@ export const App: React.FC = () => {
                     <span>+ কাউকে নতুন পারমিশন দিন</span>
                   </button>
                 </div>
-                <div className="overflow-x-auto rounded-2xl border border-[var(--border)]">
+                <div className="overflow-x-auto rounded-xl border border-[var(--border)]">
                   <table className="w-full text-left text-xs">
                     <thead className="bg-[var(--background)] text-[var(--muted-foreground)] uppercase font-semibold border-b border-[var(--border)]">
                       <tr>
@@ -5262,10 +5262,10 @@ export const App: React.FC = () => {
                           </td>
                           <td className="p-3">
                             <span
-                              className={`px-2 py-0.5 rounded-full text-[10px] font-bold ${
+                              className={`px-2 py-0.5 rounded-full text-xs font-semibold font-bold ${
                                 d.status === 'ACTIVE'
-                                  ? 'bg-emerald-500/10 text-emerald-500'
-                                  : 'bg-amber-500/10 text-amber-500'
+                                  ? 'bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 font-bold'
+                                  : 'bg-amber-500/10 text-amber-800 dark:text-amber-400 font-bold'
                               }`}
                             >
                               {d.status === 'ACTIVE' ? 'সক্রিয়' : 'স্থগিত'}
@@ -5274,13 +5274,13 @@ export const App: React.FC = () => {
                           <td className="p-3 text-right space-x-2">
                             <button
                               onClick={() => handleToggleDeptHold(d.id)}
-                              className="px-2.5 py-1 rounded-lg border border-[var(--border)] hover:bg-[var(--card)] text-[11px] font-medium"
+                              className="px-2.5 py-1 rounded-lg border border-[var(--border)] hover:bg-[var(--card)] text-xs font-medium font-medium"
                             >
                               {d.status === 'HOLD' ? 'সক্রিয় করুন' : 'স্থগিত (Hold)'}
                             </button>
                             <button
                               onClick={() => handleOpenAssignModal(d)}
-                              className="px-2.5 py-1 rounded-lg bg-[var(--primary)] text-[var(--primary-foreground)] text-[11px] font-semibold"
+                              className="px-2.5 py-1 rounded-lg bg-[var(--primary)] text-[var(--primary-foreground)] text-xs font-medium font-semibold"
                             >
                               পরিবর্তন
                             </button>
@@ -5304,14 +5304,14 @@ export const App: React.FC = () => {
                 <div className="flex items-center gap-3">
                   <button
                     onClick={() => setActiveNav('madrasa_dashboard')}
-                    className="p-2.5 px-3.5 rounded-2xl border border-[var(--border)] hover:bg-[var(--card)] transition text-xs font-semibold flex items-center gap-2 text-[var(--foreground)] shadow-xs shrink-0"
+                    className="p-2.5 px-3.5 rounded-xl border border-[var(--border)] hover:bg-[var(--card)] transition text-xs font-semibold flex items-center gap-2 text-[var(--foreground)] shadow-xs shrink-0"
                   >
-                    <ArrowLeft className="w-4 h-4 text-emerald-500" />
+                    <ArrowLeft className="w-4 h-4 text-emerald-700 dark:text-emerald-400 font-bold" />
                     <span>সকল বিভাগে ফিরুন</span>
                   </button>
                   <div>
                     <h2 className="text-xl font-bold text-[var(--foreground)] flex items-center gap-2">
-                      <CreditCard className="w-5 h-5 text-emerald-500" />
+                      <CreditCard className="w-5 h-5 text-emerald-700 dark:text-emerald-400 font-bold" />
                       হিসাব ও অর্থ বিভাগ (Central Accounts & Shariah Finance)
                     </h2>
                     <p className="text-xs text-[var(--muted-foreground)]">
@@ -5326,27 +5326,27 @@ export const App: React.FC = () => {
                       setTempThresholdInput(String(approvalThresholdLimit));
                       setShowThresholdConfigModal(true);
                     }}
-                    className="px-3 py-1.5 rounded-2xl bg-amber-500/10 hover:bg-amber-500/20 border border-amber-500/30 text-left transition flex items-center gap-2 cursor-pointer"
+                    className="px-3 py-1.5 rounded-xl bg-amber-500/10 hover:bg-amber-500/20 border border-amber-500/30 text-left transition flex items-center gap-2 cursor-pointer"
                     title="মুহতামিমের ব্যয়ের অনুমোদন সীমা পরিবর্তন করুন"
                   >
-                    <Settings className="w-3.5 h-3.5 text-amber-500" />
+                    <Settings className="w-3.5 h-3.5 text-amber-800 dark:text-amber-400 font-bold" />
                     <div>
                       <span className="text-[9px] font-bold text-[var(--muted-foreground)] uppercase block">অনুমোদন লিমিট</span>
-                      <span className="text-xs font-extrabold text-amber-500 font-mono">
+                      <span className="text-xs font-extrabold text-amber-800 dark:text-amber-400 font-bold font-mono">
                         ৳{approvalThresholdLimit.toLocaleString('bn-BD')}
                       </span>
                     </div>
                   </button>
 
-                  <div className="px-3.5 py-1.5 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 text-right">
-                    <span className="text-[10px] font-bold text-[var(--muted-foreground)] uppercase block">মোট সংরক্ষিত তহবিল</span>
-                    <span className="text-base font-extrabold text-emerald-500 font-mono">
+                  <div className="px-3.5 py-1.5 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-right">
+                    <span className="text-xs font-semibold font-bold text-[var(--muted-foreground)] uppercase block">মোট সংরক্ষিত তহবিল</span>
+                    <span className="text-base font-extrabold text-emerald-700 dark:text-emerald-400 font-bold font-mono">
                       ৳{shariahFunds.reduce((sum, f) => sum + f.balance, 0).toLocaleString('bn-BD')}
                     </span>
                   </div>
 
-                  <div className="px-3.5 py-1.5 rounded-2xl bg-blue-500/10 border border-blue-500/20 text-right">
-                    <span className="text-[10px] font-bold text-[var(--muted-foreground)] uppercase block">অনলাইন কিউ পেন্ডিং</span>
+                  <div className="px-3.5 py-1.5 rounded-xl bg-blue-500/10 border border-blue-500/20 text-right">
+                    <span className="text-xs font-semibold font-bold text-[var(--muted-foreground)] uppercase block">অনলাইন কিউ পেন্ডিং</span>
                     <span className="text-base font-extrabold text-blue-500 font-mono">
                       {onlinePaymentQueue.length} টি আবেদন
                     </span>
@@ -5360,7 +5360,7 @@ export const App: React.FC = () => {
                 <button
                   type="button"
                   onClick={() => setFinanceOpMode('RECEIVE')}
-                  className={`p-4 rounded-2xl border text-left transition cursor-pointer flex flex-col justify-between ${
+                  className={`p-4 rounded-xl border text-left transition cursor-pointer flex flex-col justify-between ${
                     financeOpMode === 'RECEIVE'
                       ? 'bg-emerald-500/10 border-emerald-500 shadow-md ring-2 ring-emerald-500/30'
                       : 'bg-[var(--card)] border-[var(--border)] hover:border-emerald-500/40 hover:bg-emerald-500/5'
@@ -5368,24 +5368,24 @@ export const App: React.FC = () => {
                 >
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2.5">
-                      <div className={`p-2 rounded-xl ${financeOpMode === 'RECEIVE' ? 'bg-emerald-600 text-white' : 'bg-emerald-500/10 text-emerald-500'}`}>
+                      <div className={`p-2 rounded-xl ${financeOpMode === 'RECEIVE' ? 'bg-emerald-600 text-white' : 'bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 font-bold'}`}>
                         <ArrowDownLeft className="w-5 h-5" />
                       </div>
                       <div>
                         <h3 className="font-extrabold text-sm text-[var(--foreground)]">
                           টাকা গ্রহণ (রিসিভ মানি)
                         </h3>
-                        <span className="text-[10px] text-[var(--muted-foreground)]">ছাত্র ফি, অনুদান, যাকাত, লিল্লাহ ও দান বক্স</span>
+                        <span className="text-xs font-semibold text-[var(--muted-foreground)]">ছাত্র ফি, অনুদান, যাকাত, লিল্লাহ ও দান বক্স</span>
                       </div>
                     </div>
-                    <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-600">
+                    <span className="text-xs font-semibold font-bold px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-600">
                       ৬টি পোর্টাল
                     </span>
                   </div>
 
                   <div className="mt-3 pt-2.5 border-t border-[var(--border)] flex items-end justify-between">
                     <div>
-                      <span className="text-[10px] text-[var(--muted-foreground)] block">আজকের মোট আদায়:</span>
+                      <span className="text-xs font-semibold text-[var(--muted-foreground)] block">আজকের মোট আদায়:</span>
                       <span className="text-lg font-black text-emerald-600 font-mono">
                         ৳{todayReceivedTotal.toLocaleString('bn-BD')}
                       </span>
@@ -5400,7 +5400,7 @@ export const App: React.FC = () => {
                 <button
                   type="button"
                   onClick={() => setFinanceOpMode('EXPENSE')}
-                  className={`p-4 rounded-2xl border text-left transition cursor-pointer flex flex-col justify-between ${
+                  className={`p-4 rounded-xl border text-left transition cursor-pointer flex flex-col justify-between ${
                     financeOpMode === 'EXPENSE'
                       ? 'bg-rose-500/10 border-rose-500 shadow-md ring-2 ring-rose-500/30'
                       : 'bg-[var(--card)] border-[var(--border)] hover:border-rose-500/40 hover:bg-rose-500/5'
@@ -5408,24 +5408,24 @@ export const App: React.FC = () => {
                 >
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2.5">
-                      <div className={`p-2 rounded-xl ${financeOpMode === 'EXPENSE' ? 'bg-rose-600 text-white' : 'bg-rose-500/10 text-rose-500'}`}>
+                      <div className={`p-2 rounded-xl ${financeOpMode === 'EXPENSE' ? 'bg-rose-600 text-white' : 'bg-rose-500/10 text-rose-700 dark:text-rose-400 font-bold'}`}>
                         <ArrowUpRight className="w-5 h-5" />
                       </div>
                       <div>
                         <h3 className="font-extrabold text-sm text-[var(--foreground)]">
                           টাকা ব্যয় বা খরচ
                         </h3>
-                        <span className="text-[10px] text-[var(--muted-foreground)]">মেস বাজার, মেরামত, বেতন, ইউটিলিটি ও ইভেন্ট</span>
+                        <span className="text-xs font-semibold text-[var(--muted-foreground)]">মেস বাজার, মেরামত, বেতন, ইউটিলিটি ও ইভেন্ট</span>
                       </div>
                     </div>
-                    <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-rose-500/20 text-rose-600">
+                    <span className="text-xs font-semibold font-bold px-2 py-0.5 rounded-full bg-rose-500/20 text-rose-600">
                       ৭টি পোর্টাল
                     </span>
                   </div>
 
                   <div className="mt-3 pt-2.5 border-t border-[var(--border)] flex items-end justify-between">
                     <div>
-                      <span className="text-[10px] text-[var(--muted-foreground)] block">আজকের মোট ব্যয়:</span>
+                      <span className="text-xs font-semibold text-[var(--muted-foreground)] block">আজকের মোট ব্যয়:</span>
                       <span className="text-lg font-black text-rose-600 font-mono">
                         ৳{todayExpenseTotal.toLocaleString('bn-BD')}
                       </span>
@@ -5444,7 +5444,7 @@ export const App: React.FC = () => {
                     setShowDailyClosingDetails(true);
                     setShowReportDetails(true);
                   }}
-                  className={`p-4 rounded-2xl border text-left transition cursor-pointer flex flex-col justify-between ${
+                  className={`p-4 rounded-xl border text-left transition cursor-pointer flex flex-col justify-between ${
                     financeOpMode === 'REPORTS'
                       ? 'bg-blue-500/10 border-blue-500 shadow-md ring-2 ring-blue-500/30'
                       : 'bg-[var(--card)] border-[var(--border)] hover:border-blue-500/40 hover:bg-blue-500/5'
@@ -5459,17 +5459,17 @@ export const App: React.FC = () => {
                         <h3 className="font-extrabold text-sm text-[var(--foreground)]">
                           ক্যাশ ক্লোজিং ও রিপোর্ট
                         </h3>
-                        <span className="text-[10px] text-[var(--muted-foreground)]">দৈনিক ক্লোজিং ও বহুমুখী অডিট বিশ্লেষণ</span>
+                        <span className="text-xs font-semibold text-[var(--muted-foreground)]">দৈনিক ক্লোজিং ও বহুমুখী অডিট বিশ্লেষণ</span>
                       </div>
                     </div>
-                    <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-blue-500/20 text-blue-600">
+                    <span className="text-xs font-semibold font-bold px-2 py-0.5 rounded-full bg-blue-500/20 text-blue-600">
                       মুহতামিম অডিট
                     </span>
                   </div>
 
                   <div className="mt-3 pt-2.5 border-t border-[var(--border)] flex items-end justify-between">
                     <div>
-                      <span className="text-[10px] text-[var(--muted-foreground)] block">আজকের নিট স্থিতি:</span>
+                      <span className="text-xs font-semibold text-[var(--muted-foreground)] block">আজকের নিট স্থিতি:</span>
                       <span className="text-lg font-black text-blue-600 font-mono">
                         ৳{todayNetSurplus.toLocaleString('bn-BD')}
                       </span>
@@ -5482,9 +5482,9 @@ export const App: React.FC = () => {
               </div>
 
               {/* Shariah Funds Compact Button Strip (ছোট ও পরিচ্ছন্ন বাটন - ক্লিক করলে খতিয়ান) */}
-              <div className="flex items-center gap-2 p-1.5 rounded-2xl bg-[var(--card)]/60 border border-[var(--border)] overflow-x-auto shadow-xs">
-                <span className="text-[11px] font-bold text-[var(--muted-foreground)] shrink-0 px-2 flex items-center gap-1.5">
-                  <Wallet className="w-3.5 h-3.5 text-emerald-500" />
+              <div className="flex items-center gap-2 p-1.5 rounded-xl bg-[var(--card)]/60 border border-[var(--border)] overflow-x-auto shadow-xs">
+                <span className="text-xs font-medium font-bold text-[var(--muted-foreground)] shrink-0 px-2 flex items-center gap-1.5">
+                  <Wallet className="w-3.5 h-3.5 text-emerald-700 dark:text-emerald-400 font-bold" />
                   শরীয়াহ তহবিলসমূহ:
                 </span>
                 {shariahFunds.map((fund) => (
@@ -5496,21 +5496,21 @@ export const App: React.FC = () => {
                     title={`ক্লিক করে "${fund.nameBn}" এর সম্পূর্ণ খতিয়ান ও লেনদেন দেখুন`}
                   >
                     <div>
-                      <span className="text-[11px] font-bold text-[var(--foreground)] block truncate max-w-[150px]">
+                      <span className="text-xs font-medium font-bold text-[var(--foreground)] block truncate max-w-[150px]">
                         {fund.nameBn}
                       </span>
                       <span className="text-xs font-black text-emerald-600 font-mono block">
                         ৳{fund.balance.toLocaleString('bn-BD')}
                       </span>
                     </div>
-                    <span className="text-[10px] text-emerald-600 font-bold">↗</span>
+                    <span className="text-xs font-semibold text-emerald-600 font-bold">↗</span>
                   </button>
                 ))}
               </div>
 
               {/* Sub-Portals Bar for Active Mode (Receive or Expense) */}
               {financeOpMode === 'RECEIVE' && (
-                <div className="flex items-center gap-1.5 p-1 rounded-2xl bg-[var(--card)] border border-[var(--border)] overflow-x-auto shadow-xs text-xs">
+                <div className="flex items-center gap-1.5 p-1 rounded-xl bg-[var(--card)] border border-[var(--border)] overflow-x-auto shadow-xs text-xs">
                   <button
                     onClick={() => setReceivePortal('STUDENT_FEES')}
                     className={`flex items-center gap-2 px-3.5 py-2 rounded-xl font-bold transition shrink-0 cursor-pointer ${
@@ -5522,7 +5522,7 @@ export const App: React.FC = () => {
                     <CreditCard className="w-3.5 h-3.5" />
                     <span>🎓 ছাত্র ফি আদায়</span>
                     {onlinePaymentQueue.length > 0 && (
-                      <span className="px-1.5 py-0.2 rounded-full text-[10px] font-mono bg-rose-500 text-white">
+                      <span className="px-1.5 py-0.2 rounded-full text-xs font-semibold font-mono bg-rose-500 text-white">
                         {onlinePaymentQueue.length}
                       </span>
                     )}
@@ -5537,7 +5537,7 @@ export const App: React.FC = () => {
                     }`}
                   >
                     <Coins className="w-3.5 h-3.5" />
-                    <span>🕌 যাকাত ফান্ড</span>
+                    <span className="flex items-center gap-1.5"><Building className="w-4 h-4 text-emerald-600 dark:text-emerald-400" /> যাকাত ফান্ড</span>
                   </button>
 
                   <button
@@ -5549,7 +5549,7 @@ export const App: React.FC = () => {
                     }`}
                   >
                     <Utensils className="w-3.5 h-3.5" />
-                    <span>🍲 লিল্লাহ বোর্ডিং ও খানা</span>
+                    <span className="flex items-center gap-1.5"><Utensils className="w-4 h-4 text-amber-600 dark:text-amber-400" /> লিল্লাহ বোর্ডিং ও খানা</span>
                   </button>
 
                   <button
@@ -5561,7 +5561,7 @@ export const App: React.FC = () => {
                     }`}
                   >
                     <Building className="w-3.5 h-3.5" />
-                    <span>🏛️ ওয়াকফ ও স্থায়ী নির্মাণ</span>
+                    <span className="flex items-center gap-1.5"><Building className="w-4 h-4 text-blue-600 dark:text-blue-400" /> ওয়াকফ ও স্থায়ী নির্মাণ</span>
                   </button>
 
                   <button
@@ -5573,7 +5573,7 @@ export const App: React.FC = () => {
                     }`}
                   >
                     <Package className="w-3.5 h-3.5" />
-                    <span>📦 মসজিদ ও দান বাক্স</span>
+                    <span className="flex items-center gap-1.5"><Package className="w-4 h-4 text-purple-600 dark:text-purple-400" /> মসজিদ ও দান বাক্স</span>
                   </button>
 
                   <button
@@ -5591,15 +5591,15 @@ export const App: React.FC = () => {
               )}
 
               {financeOpMode === 'EXPENSE' && (
-                <div className="flex items-center gap-1.5 p-1 rounded-2xl bg-[var(--card)] border border-[var(--border)] overflow-x-auto shadow-xs text-xs">
+                <div className="flex items-center gap-1.5 p-1 rounded-xl bg-[var(--card)] border border-[var(--border)] overflow-x-auto shadow-xs text-xs">
                   {[
-                    { key: 'MESS_BAZAR', label: 'মেস বাজার খরচ', icon: ShoppingBag, color: 'text-amber-500' },
+                    { key: 'MESS_BAZAR', label: 'মেস বাজার খরচ', icon: ShoppingBag, color: 'text-amber-800 dark:text-amber-400 font-bold' },
                     { key: 'CAPITAL_REPAIR', label: 'মেরামত ও স্থায়ী খরচ', icon: Wrench, color: 'text-orange-500' },
                     { key: 'TEACHER_SALARY', label: 'ওস্তাদ ও স্টাফদের বেতন', icon: Users, color: 'text-purple-500' },
-                    { key: 'WELFARE_AID', label: 'ছাত্র কল্যাণ ও চিকিৎসা অনুদান', icon: HeartHandshake, color: 'text-rose-500' },
+                    { key: 'WELFARE_AID', label: 'ছাত্র কল্যাণ ও চিকিৎসা অনুদান', icon: HeartHandshake, color: 'text-rose-700 dark:text-rose-400 font-bold' },
                     { key: 'UTILITY_ADMIN', label: 'বিদ্যুৎ ও প্রশাসনিক ইউটিলিটি', icon: Zap, color: 'text-blue-500' },
                     { key: 'EVENT_CONFERENCE', label: 'ইভেন্ট ও মাহফিল খরচ', icon: Megaphone, color: 'text-teal-500' },
-                    { key: 'EXPENSE_LIST', label: 'সকল ব্যয়ের তালিকা', icon: Receipt, color: 'text-emerald-500' },
+                    { key: 'EXPENSE_LIST', label: 'সকল ব্যয়ের তালিকা', icon: Receipt, color: 'text-emerald-700 dark:text-emerald-400 font-bold' },
                   ].map((p) => {
                     const IconComp = p.icon;
                     const isActive = expensePortal === p.key;
@@ -5631,30 +5631,30 @@ export const App: React.FC = () => {
                   {receivePortal === 'STUDENT_FEES' && (
                     <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
                       {/* Left Column: Direct Counter POS Fee Form (7 cols) */}
-                      <div className="lg:col-span-7 p-6 rounded-3xl bg-[var(--card)] border border-[var(--border)] shadow-sm space-y-4">
+                      <div className="lg:col-span-7 p-6 rounded-xl bg-[var(--card)] border border-[var(--border)] shadow-sm space-y-4">
                         <div className="flex items-center justify-between pb-3 border-b border-[var(--border)]">
                           <div className="flex items-center gap-2">
-                            <div className="p-2 rounded-xl bg-emerald-500/10 text-emerald-500">
+                            <div className="p-2 rounded-xl bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 font-bold">
                               <CreditCard className="w-4 h-4" />
                             </div>
                             <div>
                               <h3 className="font-bold text-sm text-[var(--foreground)]">সরাসরি কাউন্টার থেকে ছাত্র ফি গ্রহণ</h3>
-                              <p className="text-[11px] text-[var(--muted-foreground)]">ইউনিক রেজিস্ট্রেশন নম্বর লুকআপ ও লীন ডাবল-এন্ট্রি পিওএস</p>
+                              <p className="text-xs font-medium text-[var(--muted-foreground)]">ইউনিক রেজিস্ট্রেশন নম্বর লুকআপ ও লীন ডাবল-এন্ট্রি পিওএস</p>
                             </div>
                           </div>
-                          <span className="text-[11px] font-bold text-emerald-500 bg-emerald-500/10 px-2.5 py-1 rounded-full border border-emerald-500/20">
+                          <span className="text-xs font-medium font-bold text-emerald-700 dark:text-emerald-400 font-bold bg-emerald-500/10 px-2.5 py-1 rounded-full border border-emerald-500/20">
                             লাইভ পিওএস সচল
                           </span>
                         </div>
 
                         {/* Interactive Unique Registration Search & QR Code Scanner Panel */}
-                        <div className="p-3.5 rounded-2xl bg-[var(--background)] border border-emerald-500/30 space-y-2.5">
+                        <div className="p-3.5 rounded-xl bg-[var(--background)] border border-emerald-500/30 space-y-2.5">
                           <div className="flex items-center justify-between">
-                            <span className="text-xs font-bold text-emerald-500 flex items-center gap-1.5">
+                            <span className="text-xs font-bold text-emerald-700 dark:text-emerald-400 font-bold flex items-center gap-1.5">
                               <QrCode className="w-3.5 h-3.5" />
                               ইউনিক রেজিস্ট্রেশন নম্বর দিয়ে সন্ধান করুন অথবা QR স্ক্যান করুন:
                             </span>
-                            <span className="text-[10px] text-[var(--muted-foreground)]">Enter চাপলেই সমস্ত তথ্য অটো-ফিলাপ হবে</span>
+                            <span className="text-xs font-semibold text-[var(--muted-foreground)]">Enter চাপলেই সমস্ত তথ্য অটো-ফিলাপ হবে</span>
                           </div>
 
                           <div className="flex gap-2">
@@ -5685,7 +5685,7 @@ export const App: React.FC = () => {
                                 setStudentRegSearch('REG-2026-0002');
                                 handleLookupStudent('REG-2026-0002');
                               }}
-                              className="px-3.5 py-2 rounded-xl border border-emerald-500/40 hover:bg-emerald-500/10 text-emerald-500 text-xs font-semibold transition flex items-center gap-1.5 cursor-pointer"
+                              className="px-3.5 py-2 rounded-xl border border-emerald-500/40 hover:bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 font-bold text-xs font-semibold transition flex items-center gap-1.5 cursor-pointer"
                               title="আইডি কার্ডের QR কোড স্ক্যান করার সিমুলেশন"
                             >
                               <QrCode className="w-3.5 h-3.5" />
@@ -5695,7 +5695,7 @@ export const App: React.FC = () => {
 
                           {/* Quick Selection Demo Chips */}
                           <div className="flex items-center gap-1.5 flex-wrap pt-0.5">
-                            <span className="text-[10px] text-[var(--muted-foreground)]">দ্রুত বাছাই:</span>
+                            <span className="text-xs font-semibold text-[var(--muted-foreground)]">দ্রুত বাছাই:</span>
                             {registeredStudents.map((st) => (
                               <button
                                 key={st.registrationNo}
@@ -5704,7 +5704,7 @@ export const App: React.FC = () => {
                                   setStudentRegSearch(st.registrationNo);
                                   handleLookupStudent(st.registrationNo);
                                 }}
-                                className="text-[10px] px-2 py-0.5 rounded-lg bg-[var(--card)] border border-[var(--border)] hover:border-emerald-500 text-[var(--foreground)] transition font-mono cursor-pointer"
+                                className="text-xs font-semibold px-2 py-0.5 rounded-lg bg-[var(--card)] border border-[var(--border)] hover:border-emerald-500 text-[var(--foreground)] transition font-mono cursor-pointer"
                               >
                                 {st.registrationNo}: {st.nameBn} ({st.roll})
                               </button>
@@ -5723,7 +5723,7 @@ export const App: React.FC = () => {
                                 type="text"
                                 readOnly
                                 value={posStudentRegNo}
-                                className="w-full bg-[var(--background)]/70 border border-emerald-500/30 rounded-xl px-3 py-2 text-xs font-mono font-bold text-emerald-500 cursor-not-allowed"
+                                className="w-full bg-[var(--background)]/70 border border-emerald-500/30 rounded-xl px-3 py-2 text-xs font-mono font-bold text-emerald-700 dark:text-emerald-400 font-bold cursor-not-allowed"
                               />
                             </div>
                             <div>
@@ -5882,7 +5882,7 @@ export const App: React.FC = () => {
                               <label className="block text-[var(--muted-foreground)] font-semibold mb-1">
                                 নীট আদায়যোগ্য (৳):
                               </label>
-                              <div className="w-full bg-[var(--background)]/50 border border-[var(--border)] rounded-xl px-3 py-2 text-xs font-mono font-black text-emerald-500">
+                              <div className="w-full bg-[var(--background)]/50 border border-[var(--border)] rounded-xl px-3 py-2 text-xs font-mono font-black text-emerald-700 dark:text-emerald-400 font-bold">
                                 ৳{Math.max(0, posAmount - posDiscount).toLocaleString('bn-BD')}
                               </div>
                             </div>
@@ -5918,7 +5918,7 @@ export const App: React.FC = () => {
                       </div>
 
                       {/* Right Column: Online Payment Queue (5 cols) */}
-                      <div className="lg:col-span-5 p-6 rounded-3xl bg-[var(--card)] border border-[var(--border)] shadow-sm space-y-4">
+                      <div className="lg:col-span-5 p-6 rounded-xl bg-[var(--card)] border border-[var(--border)] shadow-sm space-y-4">
                         <div className="flex items-center justify-between pb-3 border-b border-[var(--border)]">
                           <div className="flex items-center gap-2">
                             <div className="p-2 rounded-xl bg-blue-500/10 text-blue-500">
@@ -5926,7 +5926,7 @@ export const App: React.FC = () => {
                             </div>
                             <div>
                               <h3 className="font-bold text-sm text-[var(--foreground)]">অনলাইন বিকাশ/নগদ কিউ</h3>
-                              <p className="text-[11px] text-[var(--muted-foreground)]">১-ক্লিক ভেরিফিকেশন ও পেপার-সেভার মোড</p>
+                              <p className="text-xs font-medium text-[var(--muted-foreground)]">১-ক্লিক ভেরিফিকেশন ও পেপার-সেভার মোড</p>
                             </div>
                           </div>
                           <span className="text-xs font-mono font-bold px-2 py-0.5 rounded-full bg-blue-500/10 text-blue-500 border border-blue-500/20">
@@ -5937,34 +5937,34 @@ export const App: React.FC = () => {
                         <div className="space-y-3">
                           {onlinePaymentQueue.length === 0 ? (
                             <div className="text-center py-10 text-[var(--muted-foreground)]">
-                              <CheckCircle2 className="w-8 h-8 mx-auto text-emerald-500 mb-2 opacity-50" />
+                              <CheckCircle2 className="w-8 h-8 mx-auto text-emerald-700 dark:text-emerald-400 font-bold mb-2 opacity-50" />
                               <p className="text-xs font-semibold">কোনো অনলাইন আবেদন পেন্ডিং নেই</p>
-                              <p className="text-[10px]">সকল বিকাশ ও নগদ পেমেন্ট অনুমোদিত</p>
+                              <p className="text-xs font-semibold">সকল বিকাশ ও নগদ পেমেন্ট অনুমোদিত</p>
                             </div>
                           ) : (
                             onlinePaymentQueue.map((item) => (
                               <div
                                 key={item.id}
-                                className="p-3.5 rounded-2xl bg-[var(--background)] border border-[var(--border)] space-y-2 text-xs hover:border-[var(--primary)] transition shadow-xs"
+                                className="p-3.5 rounded-xl bg-[var(--background)] border border-[var(--border)] space-y-2 text-xs hover:border-[var(--primary)] transition shadow-xs"
                               >
                                 <div className="flex items-start justify-between">
                                   <div>
                                     <div className="font-bold text-[var(--foreground)] flex items-center gap-2">
                                       <span>{item.studentNameBn}</span>
-                                      <span className="text-[10px] font-mono px-1.5 py-0.2 rounded bg-[var(--card)] border border-[var(--border)]">
+                                      <span className="text-xs font-semibold font-mono px-1.5 py-0.2 rounded bg-[var(--card)] border border-[var(--border)]">
                                         রোল: {item.studentRoll}
                                       </span>
                                     </div>
-                                    <div className="text-[11px] text-[var(--muted-foreground)] mt-0.5">
+                                    <div className="text-xs font-medium text-[var(--muted-foreground)] mt-0.5">
                                       {item.classNameBn} • {item.feeTypeBn}
                                     </div>
                                   </div>
-                                  <span className="text-sm font-extrabold text-emerald-500 font-mono">
+                                  <span className="text-sm font-extrabold text-emerald-700 dark:text-emerald-400 font-bold font-mono">
                                     ৳{item.netPaid.toLocaleString('bn-BD')}
                                   </span>
                                 </div>
 
-                                <div className="flex items-center justify-between text-[10px] text-[var(--muted-foreground)] pt-1 border-t border-[var(--border)]/60">
+                                <div className="flex items-center justify-between text-xs font-semibold text-[var(--muted-foreground)] pt-1 border-t border-[var(--border)]/60">
                                   <span className="font-mono flex items-center gap-1 font-semibold text-blue-500">
                                     {item.paymentMethod === 'BKASH' ? 'বিকাশ' : 'নগদ'}: {item.transactionRef}
                                   </span>
@@ -5974,14 +5974,14 @@ export const App: React.FC = () => {
                                 <div className="flex items-center justify-end gap-1.5 pt-1.5">
                                   <button
                                     onClick={() => handleConfirmOnlinePayment(item.id)}
-                                    className="px-2.5 py-1 rounded-lg bg-[var(--card)] hover:bg-[var(--border)]/40 border border-[var(--border)] text-[10.5px] font-semibold text-[var(--foreground)] transition shadow-xs cursor-pointer"
+                                    className="px-2.5 py-1 rounded-lg bg-[var(--card)] hover:bg-[var(--border)]/40 border border-[var(--border)] text-xs font-semibold font-semibold text-[var(--foreground)] transition shadow-xs cursor-pointer"
                                     title="শুধু লেজারে যুক্ত হবে"
                                   >
                                     ✓ শুধু কনফার্ম
                                   </button>
                                   <button
                                     onClick={() => handleConfirmOnlinePayment(item.id, 'thermal')}
-                                    className="px-2.5 py-1 rounded-lg bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-600 dark:text-emerald-300 border border-emerald-500/20 text-[10.5px] font-semibold flex items-center gap-1 transition shadow-xs cursor-pointer"
+                                    className="px-2.5 py-1 rounded-lg bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-600 dark:text-emerald-300 border border-emerald-500/20 text-xs font-semibold font-semibold flex items-center gap-1 transition shadow-xs cursor-pointer"
                                   >
                                     <Printer className="w-3 h-3" />
                                     <span>থার্মাল (80mm)</span>
@@ -5998,7 +5998,7 @@ export const App: React.FC = () => {
                   {/* PORTAL 2: ZAKAT FUND PORTAL (100% SHARIAH RESTRICTED) */}
                   {receivePortal === 'ZAKAT' && (
                     <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
-                      <div className="lg:col-span-7 p-6 rounded-3xl bg-[var(--card)] border border-[var(--border)] shadow-sm space-y-4">
+                      <div className="lg:col-span-7 p-6 rounded-xl bg-[var(--card)] border border-[var(--border)] shadow-sm space-y-4">
                         <div className="flex items-center justify-between pb-3 border-b border-[var(--border)]">
                           <div className="flex items-center gap-2">
                             <div className="p-2 rounded-xl bg-teal-500/10 text-teal-500">
@@ -6006,21 +6006,21 @@ export const App: React.FC = () => {
                             </div>
                             <div>
                               <h3 className="font-bold text-sm text-[var(--foreground)]">যাকাত তহবিল সরাসরি গ্রহণ পোর্টাল</h3>
-                              <p className="text-[11px] text-[var(--muted-foreground)]">১০০% শরীয়াহ রেস্ট্রিক্টেড — কাস্টমাইজেবল ডোনার প্রোফাইল ও হোয়াটসঅ্যাপ</p>
+                              <p className="text-xs font-medium text-[var(--muted-foreground)]">১০০% শরীয়াহ রেস্ট্রিক্টেড — কাস্টমাইজেবল ডোনার প্রোফাইল ও হোয়াটসঅ্যাপ</p>
                             </div>
                           </div>
-                          <span className="text-[10px] font-bold text-teal-500 bg-teal-500/10 px-2.5 py-1 rounded-full border border-teal-500/20">
+                          <span className="text-xs font-semibold font-bold text-teal-500 bg-teal-500/10 px-2.5 py-1 rounded-full border border-teal-500/20">
                             শরীয়াহ নির্ধারিত ৮ খাত
                           </span>
                         </div>
 
                         {/* Shariah Notice */}
-                        <div className="p-3.5 rounded-2xl bg-teal-500/10 border border-teal-500/20 text-xs text-[var(--foreground)] space-y-1">
+                        <div className="p-3.5 rounded-xl bg-teal-500/10 border border-teal-500/20 text-xs text-[var(--foreground)] space-y-1">
                           <div className="font-bold text-teal-500 flex items-center gap-1.5">
                             <Scale className="w-3.5 h-3.5" />
                             <span>শরীয়াহ মূলনীতি ও সতর্কতা:</span>
                           </div>
-                          <p className="text-[11px] text-[var(--muted-foreground)] leading-relaxed">
+                          <p className="text-xs font-medium text-[var(--muted-foreground)] leading-relaxed">
                             যাকাতের অর্থ কেবল শরীয়াহ নির্ধারিত ৮টি খাতের হকদার (লিল্লাহ বোর্ডিং ও দরিদ্র শিক্ষার্থীদের খানা-পোশাক) ব্যতীত সাধারণ ভবন নির্মাণ বা আসাতায়ে কেরামের বেতন খাতে ব্যয় করা সম্পূর্ণ নিষিদ্ধ।
                           </p>
                         </div>
@@ -6058,7 +6058,7 @@ export const App: React.FC = () => {
                           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                             <div>
                               <label className="block text-[var(--muted-foreground)] font-semibold mb-1 flex items-center gap-1">
-                                <MessageCircle className="w-3 h-3 text-emerald-500" />
+                                <MessageCircle className="w-3 h-3 text-emerald-700 dark:text-emerald-400 font-bold" />
                                 <span>হোয়াটসঅ্যাপ নম্বর (WhatsApp):</span>
                               </label>
                               <input
@@ -6138,28 +6138,28 @@ export const App: React.FC = () => {
                       </div>
 
                       {/* Right Column: Recent Zakat Records */}
-                      <div className="lg:col-span-5 p-6 rounded-3xl bg-[var(--card)] border border-[var(--border)] shadow-sm space-y-4">
+                      <div className="lg:col-span-5 p-6 rounded-xl bg-[var(--card)] border border-[var(--border)] shadow-sm space-y-4">
                         <div className="flex items-center justify-between pb-3 border-b border-[var(--border)]">
                           <h4 className="font-bold text-xs text-[var(--foreground)] flex items-center gap-1.5">
                             <Coins className="w-3.5 h-3.5 text-teal-500" />
                             <span>সাম্প্রতিক যাকাত অনুদান লগ</span>
                           </h4>
-                          <span className="text-[10px] font-mono text-teal-500 bg-teal-500/10 px-2 py-0.5 rounded">
+                          <span className="text-xs font-semibold font-mono text-teal-500 bg-teal-500/10 px-2 py-0.5 rounded">
                             তহবিল: ৳{shariahFunds.find(f => f.id === 'fnd-lillah')?.balance.toLocaleString('bn-BD')}
                           </span>
                         </div>
 
                         <div className="space-y-2.5">
                           {donations.filter(d => d.fundId === 'fnd-lillah').slice(0, 4).map((d) => (
-                            <div key={d.id} className="p-3 rounded-2xl bg-[var(--background)] border border-[var(--border)] text-xs space-y-1">
+                            <div key={d.id} className="p-3 rounded-xl bg-[var(--background)] border border-[var(--border)] text-xs space-y-1">
                               <div className="flex items-center justify-between">
                                 <span className="font-bold text-[var(--foreground)]">{d.donorName}</span>
                                 <span className="font-mono font-bold text-teal-500">৳{d.amount.toLocaleString('bn-BD')}</span>
                               </div>
-                              <p className="text-[11px] text-[var(--muted-foreground)] line-clamp-1">{d.notes || d.causeHead || 'যাকাত তহবিল'}</p>
-                              <div className="flex items-center justify-between text-[10px] text-[var(--muted-foreground)] pt-1 border-t border-[var(--border)]/50">
+                              <p className="text-xs font-medium text-[var(--muted-foreground)] line-clamp-1">{d.notes || d.causeHead || 'যাকাত তহবিল'}</p>
+                              <div className="flex items-center justify-between text-xs font-semibold text-[var(--muted-foreground)] pt-1 border-t border-[var(--border)]/50">
                                 <span>{d.date} • {d.paymentMethod}</span>
-                                <span className="font-mono text-emerald-500">{d.receiptNo}</span>
+                                <span className="font-mono text-emerald-700 dark:text-emerald-400 font-bold">{d.receiptNo}</span>
                               </div>
                             </div>
                           ))}
@@ -6171,25 +6171,25 @@ export const App: React.FC = () => {
                   {/* PORTAL 3: LILLAH BOARDING FUND PORTAL */}
                   {receivePortal === 'LILLAH' && (
                     <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
-                      <div className="lg:col-span-7 p-6 rounded-3xl bg-[var(--card)] border border-[var(--border)] shadow-sm space-y-4">
+                      <div className="lg:col-span-7 p-6 rounded-xl bg-[var(--card)] border border-[var(--border)] shadow-sm space-y-4">
                         <div className="flex items-center justify-between pb-3 border-b border-[var(--border)]">
                           <div className="flex items-center gap-2">
-                            <div className="p-2 rounded-xl bg-amber-500/10 text-amber-500">
+                            <div className="p-2 rounded-xl bg-amber-500/10 text-amber-800 dark:text-amber-400 font-bold">
                               <Utensils className="w-4 h-4" />
                             </div>
                             <div>
                               <h3 className="font-bold text-sm text-[var(--foreground)]">লিল্লাহ বোর্ডিং ও এতিম খানা স্পনসরশিপ</h3>
-                              <p className="text-[11px] text-[var(--muted-foreground)]">দৈনিক খাদ্য, পোশাক ও চিকিৎসা সহায়তা অনুদান পোর্টাল</p>
+                              <p className="text-xs font-medium text-[var(--muted-foreground)]">দৈনিক খাদ্য, পোশাক ও চিকিৎসা সহায়তা অনুদান পোর্টাল</p>
                             </div>
                           </div>
-                          <span className="text-[10px] font-bold text-amber-500 bg-amber-500/10 px-2.5 py-1 rounded-full border border-amber-500/20">
+                          <span className="text-xs font-semibold font-bold text-amber-800 dark:text-amber-400 font-bold bg-amber-500/10 px-2.5 py-1 rounded-full border border-amber-500/20">
                             মেস স্পনসরশিপ
                           </span>
                         </div>
 
                         {/* Quick Preset Buttons */}
-                        <div className="p-3 rounded-2xl bg-[var(--background)] border border-[var(--border)] space-y-2">
-                          <span className="text-[11px] font-bold text-[var(--foreground)] block">
+                        <div className="p-3 rounded-xl bg-[var(--background)] border border-[var(--border)] space-y-2">
+                          <span className="text-xs font-medium font-bold text-[var(--foreground)] block">
                             🍽️ এক ক্লিকে খানা প্যাকেজ বাছাই করুন:
                           </span>
                           <div className="grid grid-cols-3 gap-2">
@@ -6201,8 +6201,8 @@ export const App: React.FC = () => {
                               }}
                               className="p-2 rounded-xl border border-[var(--border)] hover:border-amber-500 bg-[var(--card)] text-left transition cursor-pointer"
                             >
-                              <span className="text-[10px] text-[var(--muted-foreground)] block">সকালের নাস্তা</span>
-                              <span className="text-xs font-bold text-amber-500 font-mono">৳৩,০০০</span>
+                              <span className="text-xs font-semibold text-[var(--muted-foreground)] block">সকালের নাস্তা</span>
+                              <span className="text-xs font-bold text-amber-800 dark:text-amber-400 font-bold font-mono">৳৩,০০০</span>
                             </button>
                             <button
                               type="button"
@@ -6212,8 +6212,8 @@ export const App: React.FC = () => {
                               }}
                               className="p-2 rounded-xl border border-[var(--border)] hover:border-amber-500 bg-[var(--card)] text-left transition cursor-pointer"
                             >
-                              <span className="text-[10px] text-[var(--muted-foreground)] block">১ দিনের পূর্ণ খানা</span>
-                              <span className="text-xs font-bold text-amber-500 font-mono">৳১০,০০০</span>
+                              <span className="text-xs font-semibold text-[var(--muted-foreground)] block">১ দিনের পূর্ণ খানা</span>
+                              <span className="text-xs font-bold text-amber-800 dark:text-amber-400 font-bold font-mono">৳১০,০০০</span>
                             </button>
                             <button
                               type="button"
@@ -6223,8 +6223,8 @@ export const App: React.FC = () => {
                               }}
                               className="p-2 rounded-xl border border-[var(--border)] hover:border-amber-500 bg-[var(--card)] text-left transition cursor-pointer"
                             >
-                              <span className="text-[10px] text-[var(--muted-foreground)] block">মাসিক এতিম স্পনসর</span>
-                              <span className="text-xs font-bold text-amber-500 font-mono">৳৩০,০০০</span>
+                              <span className="text-xs font-semibold text-[var(--muted-foreground)] block">মাসিক এতিম স্পনসর</span>
+                              <span className="text-xs font-bold text-amber-800 dark:text-amber-400 font-bold font-mono">৳৩০,০০০</span>
                             </button>
                           </div>
                         </div>
@@ -6261,7 +6261,7 @@ export const App: React.FC = () => {
                           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                             <div>
                               <label className="block text-[var(--muted-foreground)] font-semibold mb-1 flex items-center gap-1">
-                                <MessageCircle className="w-3 h-3 text-emerald-500" />
+                                <MessageCircle className="w-3 h-3 text-emerald-700 dark:text-emerald-400 font-bold" />
                                 <span>হোয়াটসঅ্যাপ নম্বর (WhatsApp):</span>
                               </label>
                               <input
@@ -6327,17 +6327,17 @@ export const App: React.FC = () => {
                         </form>
                       </div>
 
-                      <div className="lg:col-span-5 p-6 rounded-3xl bg-[var(--card)] border border-[var(--border)] shadow-sm space-y-4">
+                      <div className="lg:col-span-5 p-6 rounded-xl bg-[var(--card)] border border-[var(--border)] shadow-sm space-y-4">
                         <div className="flex items-center justify-between pb-3 border-b border-[var(--border)]">
                           <h4 className="font-bold text-xs text-[var(--foreground)] flex items-center gap-1.5">
-                            <Utensils className="w-3.5 h-3.5 text-amber-500" />
+                            <Utensils className="w-3.5 h-3.5 text-amber-800 dark:text-amber-400 font-bold" />
                             <span>মেস বোর্ডিং বর্তমান লাইভ পরিসংখ্যান</span>
                           </h4>
-                          <span className="text-[10px] font-mono text-amber-500 bg-amber-500/10 px-2 py-0.5 rounded">
+                          <span className="text-xs font-semibold font-mono text-amber-800 dark:text-amber-400 font-bold bg-amber-500/10 px-2 py-0.5 rounded">
                             ১৪০ জন লিল্লাহ ছাত্র
                           </span>
                         </div>
-                        <div className="p-3 rounded-2xl bg-[var(--background)] border border-[var(--border)] space-y-2 text-xs">
+                        <div className="p-3 rounded-xl bg-[var(--background)] border border-[var(--border)] space-y-2 text-xs">
                           <div className="flex justify-between">
                             <span className="text-[var(--muted-foreground)]">আজকের সকালের নাস্তা:</span>
                             <span className="font-bold">১৪০ জন ছাত্র (সম্পন্ন)</span>
@@ -6348,7 +6348,7 @@ export const App: React.FC = () => {
                           </div>
                           <div className="flex justify-between">
                             <span className="text-[var(--muted-foreground)]">রাতের খাবার বরাদ্দ:</span>
-                            <span className="font-bold text-amber-500">১৪০ জন ছাত্র</span>
+                            <span className="font-bold text-amber-800 dark:text-amber-400 font-bold">১৪০ জন ছাত্র</span>
                           </div>
                         </div>
                       </div>
@@ -6358,7 +6358,7 @@ export const App: React.FC = () => {
                   {/* PORTAL 4: WAQF & INFRASTRUCTURE CONSTRUCTION PORTAL */}
                   {receivePortal === 'WAQF' && (
                     <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
-                      <div className="lg:col-span-7 p-6 rounded-3xl bg-[var(--card)] border border-[var(--border)] shadow-sm space-y-4">
+                      <div className="lg:col-span-7 p-6 rounded-xl bg-[var(--card)] border border-[var(--border)] shadow-sm space-y-4">
                         <div className="flex items-center justify-between pb-3 border-b border-[var(--border)]">
                           <div className="flex items-center gap-2">
                             <div className="p-2 rounded-xl bg-purple-500/10 text-purple-500">
@@ -6366,10 +6366,10 @@ export const App: React.FC = () => {
                             </div>
                             <div>
                               <h3 className="font-bold text-sm text-[var(--foreground)]">ওয়াকফ ও স্থায়ী নির্মাণ ফান্ড পোর্টাল</h3>
-                              <p className="text-[11px] text-[var(--muted-foreground)]">মসজিদ কমপ্লেক্স, নতুন বহুতল শিক্ষা ভবন ও সাদাকায়ে জারিয়া</p>
+                              <p className="text-xs font-medium text-[var(--muted-foreground)]">মসজিদ কমপ্লেক্স, নতুন বহুতল শিক্ষা ভবন ও সাদাকায়ে জারিয়া</p>
                             </div>
                           </div>
-                          <span className="text-[10px] font-bold text-purple-500 bg-purple-500/10 px-2.5 py-1 rounded-full border border-purple-500/20">
+                          <span className="text-xs font-semibold font-bold text-purple-500 bg-purple-500/10 px-2.5 py-1 rounded-full border border-purple-500/20">
                             স্থায়ী ওয়াকফ
                           </span>
                         </div>
@@ -6406,7 +6406,7 @@ export const App: React.FC = () => {
                           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                             <div>
                               <label className="block text-[var(--muted-foreground)] font-semibold mb-1 flex items-center gap-1">
-                                <MessageCircle className="w-3 h-3 text-emerald-500" />
+                                <MessageCircle className="w-3 h-3 text-emerald-700 dark:text-emerald-400 font-bold" />
                                 <span>হোয়াটসঅ্যাপ নম্বর (WhatsApp):</span>
                               </label>
                               <input
@@ -6472,22 +6472,22 @@ export const App: React.FC = () => {
                         </form>
                       </div>
 
-                      <div className="lg:col-span-5 p-6 rounded-3xl bg-[var(--card)] border border-[var(--border)] shadow-sm space-y-4">
+                      <div className="lg:col-span-5 p-6 rounded-xl bg-[var(--card)] border border-[var(--border)] shadow-sm space-y-4">
                         <div className="flex items-center justify-between pb-3 border-b border-[var(--border)]">
                           <h4 className="font-bold text-xs text-[var(--foreground)] flex items-center gap-1.5">
                             <Building className="w-3.5 h-3.5 text-purple-500" />
                             <span>চলমান নির্মাণ ও ওয়াকফ অগ্রগতি</span>
                           </h4>
-                          <span className="text-[10px] font-mono text-purple-500 bg-purple-500/10 px-2 py-0.5 rounded">
+                          <span className="text-xs font-semibold font-mono text-purple-500 bg-purple-500/10 px-2 py-0.5 rounded">
                             তহবিল: ৳{shariahFunds.find(f => f.id === 'fnd-waqf')?.balance.toLocaleString('bn-BD')}
                           </span>
                         </div>
-                        <div className="p-3 rounded-2xl bg-[var(--background)] border border-[var(--border)] space-y-2 text-xs">
+                        <div className="p-3 rounded-xl bg-[var(--background)] border border-[var(--border)] space-y-2 text-xs">
                           <div className="font-semibold text-[var(--foreground)]">নতুন ৪-তলা হিফজ ভবন নির্মাণ</div>
                           <div className="w-full bg-[var(--card)] rounded-full h-2 border border-[var(--border)] overflow-hidden">
                             <div className="bg-purple-500 h-full rounded-full" style={{ width: '68%' }} />
                           </div>
-                          <div className="flex justify-between text-[10px] text-[var(--muted-foreground)]">
+                          <div className="flex justify-between text-xs font-semibold text-[var(--muted-foreground)]">
                             <span>অগ্রগতি: ৬৮% সম্পন্ন</span>
                             <span>লক্ষ্যমাত্রা: ৳১৫,০০,০০০</span>
                           </div>
@@ -6499,7 +6499,7 @@ export const App: React.FC = () => {
                   {/* PORTAL 5: DONATION BOX PORTAL */}
                   {receivePortal === 'BOX' && (
                     <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
-                      <div className="lg:col-span-7 p-6 rounded-3xl bg-[var(--card)] border border-[var(--border)] shadow-sm space-y-4">
+                      <div className="lg:col-span-7 p-6 rounded-xl bg-[var(--card)] border border-[var(--border)] shadow-sm space-y-4">
                         <div className="flex items-center justify-between pb-3 border-b border-[var(--border)]">
                           <div className="flex items-center gap-2">
                             <div className="p-2 rounded-xl bg-blue-500/10 text-blue-500">
@@ -6507,10 +6507,10 @@ export const App: React.FC = () => {
                             </div>
                             <div>
                               <h3 className="font-bold text-sm text-[var(--foreground)]">মসজিদ ও মাদ্রাসা দান বাক্স কালেকশন</h3>
-                              <p className="text-[11px] text-[var(--muted-foreground)]">জুমু'আ ও সাপ্তাহিক দান বাক্সের সিলগালা গণনা ও স্বাক্ষী রেজিস্ট্রি</p>
+                              <p className="text-xs font-medium text-[var(--muted-foreground)]">জুমু'আ ও সাপ্তাহিক দান বাক্সের সিলগালা গণনা ও স্বাক্ষী রেজিস্ট্রি</p>
                             </div>
                           </div>
-                          <span className="text-[10px] font-bold text-blue-500 bg-blue-500/10 px-2.5 py-1 rounded-full border border-blue-500/20">
+                          <span className="text-xs font-semibold font-bold text-blue-500 bg-blue-500/10 px-2.5 py-1 rounded-full border border-blue-500/20">
                             স্বাক্ষীভিত্তিক এন্ট্রি
                           </span>
                         </div>
@@ -6597,27 +6597,27 @@ export const App: React.FC = () => {
                         </form>
                       </div>
 
-                      <div className="lg:col-span-5 p-6 rounded-3xl bg-[var(--card)] border border-[var(--border)] shadow-sm space-y-4">
+                      <div className="lg:col-span-5 p-6 rounded-xl bg-[var(--card)] border border-[var(--border)] shadow-sm space-y-4">
                         <div className="flex items-center justify-between pb-3 border-b border-[var(--border)]">
                           <h4 className="font-bold text-xs text-[var(--foreground)] flex items-center gap-1.5">
                             <Package className="w-3.5 h-3.5 text-blue-500" />
                             <span>দান বাক্স নিরাপত্তা ও অডিট প্রটোকল</span>
                           </h4>
-                          <span className="text-[10px] font-mono text-emerald-500 bg-emerald-500/10 px-2 py-0.5 rounded">
+                          <span className="text-xs font-semibold font-mono text-emerald-700 dark:text-emerald-400 font-bold bg-emerald-500/10 px-2 py-0.5 rounded">
                             দ্বৈত চাবি সংরক্ষণ
                           </span>
                         </div>
-                        <ul className="space-y-2 text-[11px] text-[var(--muted-foreground)]">
+                        <ul className="space-y-2 text-xs font-medium text-[var(--muted-foreground)]">
                           <li className="flex items-start gap-2">
-                            <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500 shrink-0 mt-0.5" />
+                            <CheckCircle2 className="w-3.5 h-3.5 text-emerald-700 dark:text-emerald-400 font-bold shrink-0 mt-0.5" />
                             <span>বাক্স খোলার সময় কমপক্ষে দুজন দায়িত্বশীল ও একজন কমিটির সদস্য উপস্থিত থাকা বাধ্যতামূলক।</span>
                           </li>
                           <li className="flex items-start gap-2">
-                            <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500 shrink-0 mt-0.5" />
+                            <CheckCircle2 className="w-3.5 h-3.5 text-emerald-700 dark:text-emerald-400 font-bold shrink-0 mt-0.5" />
                             <span>গণনার সাথে সাথে ক্যাশ টাকা মাদ্রাসার ক্যাশিয়ারের মূল ক্যাশ বক্সে জমা হবে।</span>
                           </li>
                           <li className="flex items-start gap-2">
-                            <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500 shrink-0 mt-0.5" />
+                            <CheckCircle2 className="w-3.5 h-3.5 text-emerald-700 dark:text-emerald-400 font-bold shrink-0 mt-0.5" />
                             <span>মুহতামিম প্যানেলে দিনশেষে অটোমেটিক ক্লোজিং স্টেটমেন্ট পাঠানো হবে।</span>
                           </li>
                         </ul>
@@ -6627,18 +6627,18 @@ export const App: React.FC = () => {
 
                   {/* PORTAL 6: RECEIPTS ARCHIVE / LEDGER */}
                   {receivePortal === 'RECEIPTS_LIST' && (
-                    <div className="p-6 rounded-3xl bg-[var(--card)] border border-[var(--border)] shadow-sm space-y-4">
+                    <div className="p-6 rounded-xl bg-[var(--card)] border border-[var(--border)] shadow-sm space-y-4">
                       <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-3 border-b border-[var(--border)] gap-2">
                         <div>
                           <h3 className="font-bold text-sm text-[var(--foreground)] flex items-center gap-2">
-                            <Receipt className="w-4 h-4 text-emerald-500" />
+                            <Receipt className="w-4 h-4 text-emerald-700 dark:text-emerald-400 font-bold" />
                             ফি আদায় ও মানি রসিদ খাতা (Receipts Ledger Archive)
                           </h3>
                           <p className="text-xs text-[var(--muted-foreground)]">
                             অপরিবর্তনীয় আর্থিক খাতা — থার্মাল ও প্রাতিষ্ঠানিক প্যাড ফরম্যাটে প্রিন্ট সুবিধা
                           </p>
                         </div>
-                        <span className="text-xs font-mono font-bold px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-500 border border-emerald-500/20">
+                        <span className="text-xs font-mono font-bold px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 font-bold border border-emerald-500/20">
                           মোট গৃহীত রসিদ: {completedPayments.length} টি
                         </span>
                       </div>
@@ -6662,32 +6662,32 @@ export const App: React.FC = () => {
                             {completedPayments.map((p) => (
                               <tr key={p.id} className="hover:bg-[var(--background)]/50 transition">
                                 <td className="p-2.5 font-mono font-bold text-[var(--primary)]">{p.receiptNo}</td>
-                                <td className="p-2.5 text-[var(--muted-foreground)] text-[11px]">{p.date}</td>
+                                <td className="p-2.5 text-[var(--muted-foreground)] text-xs font-medium">{p.date}</td>
                                 <td className="p-2.5 font-bold text-[var(--foreground)]">
                                   {p.studentNameBn}
-                                  <span className="block text-[10px] font-mono text-[var(--muted-foreground)]">
+                                  <span className="block text-xs font-semibold font-mono text-[var(--muted-foreground)]">
                                     {p.registrationNo || 'REG-2026-XXXX'} (রোল: {p.studentRoll})
                                   </span>
                                 </td>
                                 <td className="p-2.5">
                                   <span className="font-medium text-[var(--foreground)]">{p.feeTypeBn}</span>
-                                  <span className="block text-[10px] text-[var(--muted-foreground)]">{p.classNameBn}</span>
+                                  <span className="block text-xs font-semibold text-[var(--muted-foreground)]">{p.classNameBn}</span>
                                 </td>
-                                <td className="p-2.5 text-[11px] font-medium text-emerald-500">{p.fundNameBn}</td>
+                                <td className="p-2.5 text-xs font-medium font-medium text-emerald-700 dark:text-emerald-400 font-bold">{p.fundNameBn}</td>
                                 <td className="p-2.5">
-                                  <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-[var(--background)] border border-[var(--border)]">
+                                  <span className="text-xs font-semibold font-mono font-bold px-2 py-0.5 rounded bg-[var(--background)] border border-[var(--border)]">
                                     {p.paymentMethod}
                                   </span>
                                 </td>
-                                <td className="p-2.5 text-right font-black text-emerald-500 font-mono text-xs">
+                                <td className="p-2.5 text-right font-black text-emerald-700 dark:text-emerald-400 font-bold font-mono text-xs">
                                   ৳{p.netPaid.toLocaleString('bn-BD')}
                                 </td>
                                 <td className="p-2.5 text-center">
                                   <span
-                                    className={`px-2 py-0.5 rounded-full text-[10px] font-bold ${
+                                    className={`px-2 py-0.5 rounded-full text-xs font-semibold font-bold ${
                                       p.status === 'COMPLETED'
-                                        ? 'bg-emerald-500/10 text-emerald-500 border border-emerald-500/20'
-                                        : 'bg-rose-500/10 text-rose-500 border border-rose-500/20'
+                                        ? 'bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 font-bold border border-emerald-500/20'
+                                        : 'bg-rose-500/10 text-rose-700 dark:text-rose-400 font-bold border border-rose-500/20'
                                     }`}
                                   >
                                     {p.status === 'COMPLETED' ? 'পরিশোধিত' : 'রিভার্সড'}
@@ -6700,7 +6700,7 @@ export const App: React.FC = () => {
                                       className="p-1.5 rounded-lg border border-[var(--border)] hover:bg-[var(--card)] text-[var(--foreground)] transition shadow-xs cursor-pointer"
                                       title="থার্মাল রসিদ (80mm/58mm)"
                                     >
-                                      <Printer className="w-3.5 h-3.5 text-emerald-500" />
+                                      <Printer className="w-3.5 h-3.5 text-emerald-700 dark:text-emerald-400 font-bold" />
                                     </button>
                                     <button
                                       onClick={() => setActiveOfficialReceipt(p)}
@@ -6738,10 +6738,10 @@ export const App: React.FC = () => {
                   {/* PORTAL 1: MESS BAZAR (মেস বাজার খরচ) */}
                   {expensePortal === 'MESS_BAZAR' && (
                     <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                      <div className="p-6 rounded-3xl bg-[var(--card)] border border-[var(--border)] shadow-sm space-y-4">
+                      <div className="p-6 rounded-xl bg-[var(--card)] border border-[var(--border)] shadow-sm space-y-4">
                         <div className="pb-3 border-b border-[var(--border)]">
                           <h3 className="font-bold text-sm text-[var(--foreground)] flex items-center gap-2">
-                            <ShoppingBag className="w-4 h-4 text-amber-500" />
+                            <ShoppingBag className="w-4 h-4 text-amber-800 dark:text-amber-400 font-bold" />
                             মেস বাজার খরচ
                           </h3>
                           <p className="text-xs text-[var(--muted-foreground)]">
@@ -6825,7 +6825,7 @@ export const App: React.FC = () => {
 
                           {/* Approval Threshold Notification Pill */}
                           {newExpenseAmount >= approvalThresholdLimit && (
-                            <div className="p-3 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-500 text-[11px] font-semibold flex items-start gap-2">
+                            <div className="p-3 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-800 dark:text-amber-400 font-bold text-xs font-medium font-semibold flex items-start gap-2">
                               <AlertTriangle className="w-4 h-4 shrink-0 mt-0.5" />
                               <span>
                                 ⚠️ ব্যয়ের পরিমাণ (৳{newExpenseAmount.toLocaleString('bn-BD')}) নির্ধারিত অনুমোদন লিমিট (৳{approvalThresholdLimit.toLocaleString('bn-BD')}) এর সমান বা বেশি হওয়ায় এটি স্বয়ংক্রিয়ভাবে মুহতামিম সাহেবের অনুমোদন বোর্ডে জমা হবে এবং অনুমোদন ছাড়া ফান্ড থেকে টাকা কাটা হবে না।
@@ -6844,13 +6844,13 @@ export const App: React.FC = () => {
                       </div>
 
                       {/* Recent Bazar Expenses Feed */}
-                      <div className="lg:col-span-2 p-6 rounded-3xl bg-[var(--card)] border border-[var(--border)] shadow-sm space-y-4">
+                      <div className="lg:col-span-2 p-6 rounded-xl bg-[var(--card)] border border-[var(--border)] shadow-sm space-y-4">
                         <div className="flex items-center justify-between pb-3 border-b border-[var(--border)]">
                           <div>
                             <h3 className="font-bold text-sm text-[var(--foreground)]">সাম্প্রতিক মেস বাজার ভাউচারসমূহ</h3>
                             <p className="text-xs text-[var(--muted-foreground)]">খাদ্যদ্রব্য খরিদ ও ভাউচার রেজিস্ট্রি</p>
                           </div>
-                          <span className="text-xs font-mono font-bold text-amber-500">
+                          <span className="text-xs font-mono font-bold text-amber-800 dark:text-amber-400 font-bold">
                             মোট: {expenseVouchers.filter(e => e.category === 'MESS_BAZAR').length} টি
                           </span>
                         </div>
@@ -6859,28 +6859,28 @@ export const App: React.FC = () => {
                           {expenseVouchers.filter(e => e.category === 'MESS_BAZAR').map((exp) => (
                             <div
                               key={exp.id}
-                              className="p-4 rounded-2xl bg-[var(--background)] border border-[var(--border)] flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs"
+                              className="p-4 rounded-xl bg-[var(--background)] border border-[var(--border)] flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs"
                             >
                               <div className="space-y-1">
                                 <div className="flex items-center gap-2">
-                                  <span className="font-mono font-bold text-amber-500 text-[11px]">{exp.voucherNo}</span>
-                                  <span className="text-[10.5px] font-medium text-[var(--muted-foreground)]">{exp.date}</span>
+                                  <span className="font-mono font-bold text-amber-800 dark:text-amber-400 font-bold text-xs font-medium">{exp.voucherNo}</span>
+                                  <span className="text-xs font-semibold font-medium text-[var(--muted-foreground)]">{exp.date}</span>
                                 </div>
                                 <h4 className="font-bold text-sm text-[var(--foreground)]">{exp.title}</h4>
-                                <div className="text-[11px] text-[var(--muted-foreground)]">
+                                <div className="text-xs font-medium text-[var(--muted-foreground)]">
                                   <span>ফান্ড: <strong className="text-[var(--foreground)]">{exp.fundNameBn}</strong></span> • 
                                   <span> মেমো: {exp.memoDetails}</span>
                                 </div>
                               </div>
                               <div className="flex sm:flex-col items-center sm:items-end justify-between gap-2">
-                                <span className="text-base font-extrabold text-rose-500 font-mono">
+                                <span className="text-base font-extrabold text-rose-700 dark:text-rose-400 font-bold font-mono">
                                   ৳{exp.amount.toLocaleString('bn-BD')}
                                 </span>
                                 <span
-                                  className={`px-2.5 py-0.5 rounded-full text-[10px] font-bold ${
+                                  className={`px-2.5 py-0.5 rounded-full text-xs font-semibold font-bold ${
                                     exp.status === 'APPROVED' || exp.status === 'ADJUSTED'
-                                      ? 'bg-emerald-500/10 text-emerald-500 border border-emerald-500/20'
-                                      : 'bg-amber-500/10 text-amber-500 border border-amber-500/20'
+                                      ? 'bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 font-bold border border-emerald-500/20'
+                                      : 'bg-amber-500/10 text-amber-800 dark:text-amber-400 font-bold border border-amber-500/20'
                                   }`}
                                 >
                                   {exp.status === 'APPROVED' ? 'অনুমোদিত' : exp.status === 'ADJUSTED' ? 'সমন্বয়কৃত' : 'মুহতামিমের অনুমোদনের অপেক্ষায়'}
@@ -6896,7 +6896,7 @@ export const App: React.FC = () => {
                   {/* PORTAL 2: CAPITAL REPAIR (মেরামত ও স্থায়ী খরচ) */}
                   {expensePortal === 'CAPITAL_REPAIR' && (
                     <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                      <div className="p-6 rounded-3xl bg-[var(--card)] border border-[var(--border)] shadow-sm space-y-4">
+                      <div className="p-6 rounded-xl bg-[var(--card)] border border-[var(--border)] shadow-sm space-y-4">
                         <div className="pb-3 border-b border-[var(--border)]">
                           <h3 className="font-bold text-sm text-[var(--foreground)] flex items-center gap-2">
                             <Wrench className="w-4 h-4 text-orange-500" />
@@ -6982,7 +6982,7 @@ export const App: React.FC = () => {
                           </div>
 
                           {newExpenseAmount >= approvalThresholdLimit && (
-                            <div className="p-3 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-500 text-[11px] font-semibold flex items-start gap-2">
+                            <div className="p-3 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-800 dark:text-amber-400 font-bold text-xs font-medium font-semibold flex items-start gap-2">
                               <AlertTriangle className="w-4 h-4 shrink-0 mt-0.5" />
                               <span>
                                 ⚠️ ব্যয়ের পরিমাণ (৳{newExpenseAmount.toLocaleString('bn-BD')}) নির্ধারিত অনুমোদন লিমিট (৳{approvalThresholdLimit.toLocaleString('bn-BD')}) এর সমান বা বেশি হওয়ায় এটি স্বয়ংক্রিয়ভাবে মুহতামিম সাহেবের অনুমোদন বোর্ডে জমা হবে।
@@ -7001,7 +7001,7 @@ export const App: React.FC = () => {
                       </div>
 
                       {/* Recent Repair Expenses Feed */}
-                      <div className="lg:col-span-2 p-6 rounded-3xl bg-[var(--card)] border border-[var(--border)] shadow-sm space-y-4">
+                      <div className="lg:col-span-2 p-6 rounded-xl bg-[var(--card)] border border-[var(--border)] shadow-sm space-y-4">
                         <div className="flex items-center justify-between pb-3 border-b border-[var(--border)]">
                           <div>
                             <h3 className="font-bold text-sm text-[var(--foreground)]">সাম্প্রতিক সংস্কার ও মেরামত ভাউচার</h3>
@@ -7016,28 +7016,28 @@ export const App: React.FC = () => {
                           {expenseVouchers.filter(e => e.category === 'CAPITAL_REPAIR' || e.category === 'REPAIR').map((exp) => (
                             <div
                               key={exp.id}
-                              className="p-4 rounded-2xl bg-[var(--background)] border border-[var(--border)] flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs"
+                              className="p-4 rounded-xl bg-[var(--background)] border border-[var(--border)] flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs"
                             >
                               <div className="space-y-1">
                                 <div className="flex items-center gap-2">
-                                  <span className="font-mono font-bold text-orange-500 text-[11px]">{exp.voucherNo}</span>
-                                  <span className="text-[10.5px] font-medium text-[var(--muted-foreground)]">{exp.date}</span>
+                                  <span className="font-mono font-bold text-orange-500 text-xs font-medium">{exp.voucherNo}</span>
+                                  <span className="text-xs font-semibold font-medium text-[var(--muted-foreground)]">{exp.date}</span>
                                 </div>
                                 <h4 className="font-bold text-sm text-[var(--foreground)]">{exp.title}</h4>
-                                <div className="text-[11px] text-[var(--muted-foreground)]">
+                                <div className="text-xs font-medium text-[var(--muted-foreground)]">
                                   <span>ফান্ড: <strong className="text-[var(--foreground)]">{exp.fundNameBn}</strong></span> • 
                                   <span> মেমো: {exp.memoDetails}</span>
                                 </div>
                               </div>
                               <div className="flex sm:flex-col items-center sm:items-end justify-between gap-2">
-                                <span className="text-base font-extrabold text-rose-500 font-mono">
+                                <span className="text-base font-extrabold text-rose-700 dark:text-rose-400 font-bold font-mono">
                                   ৳{exp.amount.toLocaleString('bn-BD')}
                                 </span>
                                 <span
-                                  className={`px-2.5 py-0.5 rounded-full text-[10px] font-bold ${
+                                  className={`px-2.5 py-0.5 rounded-full text-xs font-semibold font-bold ${
                                     exp.status === 'APPROVED' || exp.status === 'ADJUSTED'
-                                      ? 'bg-emerald-500/10 text-emerald-500 border border-emerald-500/20'
-                                      : 'bg-amber-500/10 text-amber-500 border border-amber-500/20'
+                                      ? 'bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 font-bold border border-emerald-500/20'
+                                      : 'bg-amber-500/10 text-amber-800 dark:text-amber-400 font-bold border border-amber-500/20'
                                   }`}
                                 >
                                   {exp.status === 'APPROVED' ? 'অনুমোদিত' : exp.status === 'ADJUSTED' ? 'সমন্বয়কৃত' : 'মুহতামিমের স্বাক্ষরের অপেক্ষায়'}
@@ -7052,7 +7052,7 @@ export const App: React.FC = () => {
 
                   {/* PORTAL 3: TEACHERS & STAFF PAYROLL (ওস্তাদ ও স্টাফদের বেতন) */}
                   {expensePortal === 'TEACHER_SALARY' && (
-                    <div className="p-6 rounded-3xl bg-[var(--card)] border border-[var(--border)] shadow-sm space-y-4">
+                    <div className="p-6 rounded-xl bg-[var(--card)] border border-[var(--border)] shadow-sm space-y-4">
                       <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-3 border-b border-[var(--border)] gap-3">
                         <div>
                           <h3 className="font-bold text-sm text-[var(--foreground)] flex items-center gap-2">
@@ -7093,23 +7093,23 @@ export const App: React.FC = () => {
                               <tr key={p.id} className="hover:bg-[var(--background)]/50 transition">
                                 <td className="p-2.5">
                                   <span className="font-mono font-bold text-[var(--primary)]">{p.teacherId}</span>
-                                  <span className="block text-[10.5px] text-[var(--muted-foreground)]">{p.designation}</span>
+                                  <span className="block text-xs font-semibold text-[var(--muted-foreground)]">{p.designation}</span>
                                 </td>
                                 <td className="p-2.5 font-bold text-[var(--foreground)]">{p.teacherNameBn}</td>
                                 <td className="p-2.5 text-right font-mono">৳{p.baseSalary.toLocaleString('bn-BD')}</td>
-                                <td className="p-2.5 text-right font-mono text-emerald-500">+৳{p.allowances.toLocaleString('bn-BD')}</td>
-                                <td className="p-2.5 text-right font-mono text-rose-500">-৳{p.deductions.toLocaleString('bn-BD')}</td>
+                                <td className="p-2.5 text-right font-mono text-emerald-700 dark:text-emerald-400 font-bold">+৳{p.allowances.toLocaleString('bn-BD')}</td>
+                                <td className="p-2.5 text-right font-mono text-rose-700 dark:text-rose-400 font-bold">-৳{p.deductions.toLocaleString('bn-BD')}</td>
                                 <td className="p-2.5 text-right font-mono font-black text-purple-500 text-xs">
                                   ৳{p.netPayable.toLocaleString('bn-BD')}
                                 </td>
                                 <td className="p-2.5 text-center">
                                   <span
-                                    className={`px-2 py-0.5 rounded-full text-[10px] font-bold ${
+                                    className={`px-2 py-0.5 rounded-full text-xs font-semibold font-bold ${
                                       p.status === 'DISBURSED'
-                                        ? 'bg-emerald-500/10 text-emerald-500 border border-emerald-500/20'
+                                        ? 'bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 font-bold border border-emerald-500/20'
                                         : p.status === 'APPROVED'
                                         ? 'bg-blue-500/10 text-blue-500 border border-blue-500/20'
-                                        : 'bg-amber-500/10 text-amber-500 border border-amber-500/20'
+                                        : 'bg-amber-500/10 text-amber-800 dark:text-amber-400 font-bold border border-amber-500/20'
                                     }`}
                                   >
                                     {p.status === 'DISBURSED' ? 'পরিশোধিত' : p.status === 'APPROVED' ? 'অনুমোদিত' : 'অপেক্ষমাণ'}
@@ -7119,7 +7119,7 @@ export const App: React.FC = () => {
                                   <div className="flex items-center justify-end gap-1.5">
                                     <button
                                       onClick={() => setActiveSalarySlip(p)}
-                                      className="px-2.5 py-1 rounded-lg border border-[var(--border)] hover:bg-[var(--card)] text-[11px] font-semibold text-[var(--foreground)] flex items-center gap-1 transition shadow-xs"
+                                      className="px-2.5 py-1 rounded-lg border border-[var(--border)] hover:bg-[var(--card)] text-xs font-medium font-semibold text-[var(--foreground)] flex items-center gap-1 transition shadow-xs"
                                     >
                                       <FileText className="w-3 h-3 text-purple-500" />
                                       <span>স্লিপ</span>
@@ -7127,7 +7127,7 @@ export const App: React.FC = () => {
                                     {p.status !== 'DISBURSED' && (
                                       <button
                                         onClick={() => handleDisbursePayroll(p.id)}
-                                        className="px-2.5 py-1 rounded-lg bg-purple-600 hover:bg-purple-500 text-white text-[11px] font-bold transition shadow-xs"
+                                        className="px-2.5 py-1 rounded-lg bg-purple-600 hover:bg-purple-500 text-white text-xs font-medium font-bold transition shadow-xs"
                                       >
                                         বিতরণ
                                       </button>
@@ -7145,10 +7145,10 @@ export const App: React.FC = () => {
                   {/* PORTAL 4: WELFARE & MEDICAL AID (ছাত্র কল্যাণ ও চিকিৎসা অনুদান) */}
                   {expensePortal === 'WELFARE_AID' && (
                     <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                      <div className="p-6 rounded-3xl bg-[var(--card)] border border-[var(--border)] shadow-sm space-y-4">
+                      <div className="p-6 rounded-xl bg-[var(--card)] border border-[var(--border)] shadow-sm space-y-4">
                         <div className="pb-3 border-b border-[var(--border)]">
                           <h3 className="font-bold text-sm text-[var(--foreground)] flex items-center gap-2">
-                            <HeartHandshake className="w-4 h-4 text-rose-500" />
+                            <HeartHandshake className="w-4 h-4 text-rose-700 dark:text-rose-400 font-bold" />
                             ছাত্র কল্যাণ ও চিকিৎসা অনুদান
                           </h3>
                           <p className="text-xs text-[var(--muted-foreground)]">
@@ -7216,7 +7216,7 @@ export const App: React.FC = () => {
                           </div>
 
                           {newExpenseAmount >= approvalThresholdLimit && (
-                            <div className="p-3 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-500 text-[11px] font-semibold flex items-start gap-2">
+                            <div className="p-3 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-800 dark:text-amber-400 font-bold text-xs font-medium font-semibold flex items-start gap-2">
                               <AlertTriangle className="w-4 h-4 shrink-0 mt-0.5" />
                               <span>
                                 ⚠️ সহায়তার পরিমাণ (৳{newExpenseAmount.toLocaleString('bn-BD')}) নির্ধারিত অনুমোদন লিমিট (৳{approvalThresholdLimit.toLocaleString('bn-BD')}) এর বেশি হওয়ায় মুহতামিমের অনুমোদন বোর্ডে দাখিল হবে।
@@ -7235,13 +7235,13 @@ export const App: React.FC = () => {
                       </div>
 
                       {/* Recent Welfare Aid Feed */}
-                      <div className="lg:col-span-2 p-6 rounded-3xl bg-[var(--card)] border border-[var(--border)] shadow-sm space-y-4">
+                      <div className="lg:col-span-2 p-6 rounded-xl bg-[var(--card)] border border-[var(--border)] shadow-sm space-y-4">
                         <div className="flex items-center justify-between pb-3 border-b border-[var(--border)]">
                           <div>
                             <h3 className="font-bold text-sm text-[var(--foreground)]">সাম্প্রতিক কল্যাণ ও চিকিৎসা সাহায্য ভাউচার</h3>
                             <p className="text-xs text-[var(--muted-foreground)]">এতিম ও অসচ্ছল তালিবুল ইলমদের অনুদান রেকর্ড</p>
                           </div>
-                          <span className="text-xs font-mono font-bold text-rose-500">
+                          <span className="text-xs font-mono font-bold text-rose-700 dark:text-rose-400 font-bold">
                             মোট: {expenseVouchers.filter(e => e.category === 'WELFARE_AID').length} টি
                           </span>
                         </div>
@@ -7250,28 +7250,28 @@ export const App: React.FC = () => {
                           {expenseVouchers.filter(e => e.category === 'WELFARE_AID').map((exp) => (
                             <div
                               key={exp.id}
-                              className="p-4 rounded-2xl bg-[var(--background)] border border-[var(--border)] flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs"
+                              className="p-4 rounded-xl bg-[var(--background)] border border-[var(--border)] flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs"
                             >
                               <div className="space-y-1">
                                 <div className="flex items-center gap-2">
-                                  <span className="font-mono font-bold text-rose-500 text-[11px]">{exp.voucherNo}</span>
-                                  <span className="text-[10.5px] font-medium text-[var(--muted-foreground)]">{exp.date}</span>
+                                  <span className="font-mono font-bold text-rose-700 dark:text-rose-400 font-bold text-xs font-medium">{exp.voucherNo}</span>
+                                  <span className="text-xs font-semibold font-medium text-[var(--muted-foreground)]">{exp.date}</span>
                                 </div>
                                 <h4 className="font-bold text-sm text-[var(--foreground)]">{exp.title}</h4>
-                                <div className="text-[11px] text-[var(--muted-foreground)]">
+                                <div className="text-xs font-medium text-[var(--muted-foreground)]">
                                   <span>ফান্ড: <strong className="text-[var(--foreground)]">{exp.fundNameBn}</strong></span> • 
                                   <span> {exp.memoDetails}</span>
                                 </div>
                               </div>
                               <div className="flex sm:flex-col items-center sm:items-end justify-between gap-2">
-                                <span className="text-base font-extrabold text-rose-500 font-mono">
+                                <span className="text-base font-extrabold text-rose-700 dark:text-rose-400 font-bold font-mono">
                                   ৳{exp.amount.toLocaleString('bn-BD')}
                                 </span>
                                 <span
-                                  className={`px-2.5 py-0.5 rounded-full text-[10px] font-bold ${
+                                  className={`px-2.5 py-0.5 rounded-full text-xs font-semibold font-bold ${
                                     exp.status === 'APPROVED' || exp.status === 'ADJUSTED'
-                                      ? 'bg-emerald-500/10 text-emerald-500 border border-emerald-500/20'
-                                      : 'bg-amber-500/10 text-amber-500 border border-amber-500/20'
+                                      ? 'bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 font-bold border border-emerald-500/20'
+                                      : 'bg-amber-500/10 text-amber-800 dark:text-amber-400 font-bold border border-amber-500/20'
                                   }`}
                                 >
                                   {exp.status === 'APPROVED' ? 'অনুমোদিত' : 'মুহতামিমের অনুমোদনের অপেক্ষায়'}
@@ -7287,7 +7287,7 @@ export const App: React.FC = () => {
                   {/* PORTAL 5: UTILITY & ADMIN BILLS (বিদ্যুৎ ও প্রশাসনিক ইউটিলিটি) */}
                   {expensePortal === 'UTILITY_ADMIN' && (
                     <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                      <div className="p-6 rounded-3xl bg-[var(--card)] border border-[var(--border)] shadow-sm space-y-4">
+                      <div className="p-6 rounded-xl bg-[var(--card)] border border-[var(--border)] shadow-sm space-y-4">
                         <div className="pb-3 border-b border-[var(--border)]">
                           <h3 className="font-bold text-sm text-[var(--foreground)] flex items-center gap-2">
                             <Zap className="w-4 h-4 text-blue-500" />
@@ -7373,7 +7373,7 @@ export const App: React.FC = () => {
                           </div>
 
                           {newExpenseAmount >= approvalThresholdLimit && (
-                            <div className="p-3 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-500 text-[11px] font-semibold flex items-start gap-2">
+                            <div className="p-3 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-800 dark:text-amber-400 font-bold text-xs font-medium font-semibold flex items-start gap-2">
                               <AlertTriangle className="w-4 h-4 shrink-0 mt-0.5" />
                               <span>
                                 ⚠️ ইউটিলিটি বিল (৳{newExpenseAmount.toLocaleString('bn-BD')}) নির্ধারিত অনুমোদন লিমিট (৳{approvalThresholdLimit.toLocaleString('bn-BD')}) এর সমান বা বেশি হওয়ায় এটি স্বয়ংক্রিয়ভাবে মুহতামিম সাহেবের অনুমোদন বোর্ডে জমা হবে।
@@ -7392,7 +7392,7 @@ export const App: React.FC = () => {
                       </div>
 
                       {/* Recent Utility Expenses Feed */}
-                      <div className="lg:col-span-2 p-6 rounded-3xl bg-[var(--card)] border border-[var(--border)] shadow-sm space-y-4">
+                      <div className="lg:col-span-2 p-6 rounded-xl bg-[var(--card)] border border-[var(--border)] shadow-sm space-y-4">
                         <div className="flex items-center justify-between pb-3 border-b border-[var(--border)]">
                           <div>
                             <h3 className="font-bold text-sm text-[var(--foreground)]">সাম্প্রতিক ইউটিলিটি ও পরিচালনা ভাউচার</h3>
@@ -7407,28 +7407,28 @@ export const App: React.FC = () => {
                           {expenseVouchers.filter(e => e.category === 'UTILITY' || e.category === 'STATIONERY').map((exp) => (
                             <div
                               key={exp.id}
-                              className="p-4 rounded-2xl bg-[var(--background)] border border-[var(--border)] flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs"
+                              className="p-4 rounded-xl bg-[var(--background)] border border-[var(--border)] flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs"
                             >
                               <div className="space-y-1">
                                 <div className="flex items-center gap-2">
-                                  <span className="font-mono font-bold text-blue-500 text-[11px]">{exp.voucherNo}</span>
-                                  <span className="text-[10.5px] font-medium text-[var(--muted-foreground)]">{exp.date}</span>
+                                  <span className="font-mono font-bold text-blue-500 text-xs font-medium">{exp.voucherNo}</span>
+                                  <span className="text-xs font-semibold font-medium text-[var(--muted-foreground)]">{exp.date}</span>
                                 </div>
                                 <h4 className="font-bold text-sm text-[var(--foreground)]">{exp.title}</h4>
-                                <div className="text-[11px] text-[var(--muted-foreground)]">
+                                <div className="text-xs font-medium text-[var(--muted-foreground)]">
                                   <span>ফান্ড: <strong className="text-[var(--foreground)]">{exp.fundNameBn}</strong></span> • 
                                   <span> মেমো: {exp.memoDetails}</span>
                                 </div>
                               </div>
                               <div className="flex sm:flex-col items-center sm:items-end justify-between gap-2">
-                                <span className="text-base font-extrabold text-rose-500 font-mono">
+                                <span className="text-base font-extrabold text-rose-700 dark:text-rose-400 font-bold font-mono">
                                   ৳{exp.amount.toLocaleString('bn-BD')}
                                 </span>
                                 <span
-                                  className={`px-2.5 py-0.5 rounded-full text-[10px] font-bold ${
+                                  className={`px-2.5 py-0.5 rounded-full text-xs font-semibold font-bold ${
                                     exp.status === 'APPROVED' || exp.status === 'ADJUSTED'
-                                      ? 'bg-emerald-500/10 text-emerald-500 border border-emerald-500/20'
-                                      : 'bg-amber-500/10 text-amber-500 border border-amber-500/20'
+                                      ? 'bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 font-bold border border-emerald-500/20'
+                                      : 'bg-amber-500/10 text-amber-800 dark:text-amber-400 font-bold border border-amber-500/20'
                                   }`}
                                 >
                                   {exp.status === 'APPROVED' ? 'অনুমোদিত' : 'মুহতামিমের অনুমোদনের অপেক্ষায়'}
@@ -7444,7 +7444,7 @@ export const App: React.FC = () => {
                   {/* PORTAL 6: EVENT & CONFERENCE (ইভেন্ট ও মাহফিল খরচ) */}
                   {expensePortal === 'EVENT_CONFERENCE' && (
                     <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                      <div className="p-6 rounded-3xl bg-[var(--card)] border border-[var(--border)] shadow-sm space-y-4">
+                      <div className="p-6 rounded-xl bg-[var(--card)] border border-[var(--border)] shadow-sm space-y-4">
                         <div className="pb-3 border-b border-[var(--border)]">
                           <h3 className="font-bold text-sm text-[var(--foreground)] flex items-center gap-2">
                             <Megaphone className="w-4 h-4 text-teal-500" />
@@ -7548,7 +7548,7 @@ export const App: React.FC = () => {
                           </div>
 
                           {eventAmount >= approvalThresholdLimit && (
-                            <div className="p-3 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-500 text-[11px] font-semibold flex items-start gap-2">
+                            <div className="p-3 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-800 dark:text-amber-400 font-bold text-xs font-medium font-semibold flex items-start gap-2">
                               <AlertTriangle className="w-4 h-4 shrink-0 mt-0.5" />
                               <span>
                                 ⚠️ ইভেন্ট ব্যয়ের পরিমাণ (৳{eventAmount.toLocaleString('bn-BD')}) নির্ধারিত অনুমোদন লিমিট (৳{approvalThresholdLimit.toLocaleString('bn-BD')}) এর সমান বা বেশি হওয়ায় এটি সরাসরি মুহতামিম সাহেবের অনুমোদন বোর্ডে জমা হবে এবং মুহতামিমের পারমিশন ছাড়া তহবিল থেকে টাকা ছাড় হবে না।
@@ -7567,7 +7567,7 @@ export const App: React.FC = () => {
                       </div>
 
                       {/* Recent Event Expenses Feed */}
-                      <div className="lg:col-span-2 p-6 rounded-3xl bg-[var(--card)] border border-[var(--border)] shadow-sm space-y-4">
+                      <div className="lg:col-span-2 p-6 rounded-xl bg-[var(--card)] border border-[var(--border)] shadow-sm space-y-4">
                         <div className="flex items-center justify-between pb-3 border-b border-[var(--border)]">
                           <div>
                             <h3 className="font-bold text-sm text-[var(--foreground)]">বার্ষিক ইভেন্ট ও মাহফিল ব্যয়ের খতিয়ান</h3>
@@ -7584,29 +7584,29 @@ export const App: React.FC = () => {
                             .map((exp) => (
                               <div
                                 key={exp.id}
-                                className="p-4 rounded-2xl bg-[var(--background)] border border-[var(--border)] flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs"
+                                className="p-4 rounded-xl bg-[var(--background)] border border-[var(--border)] flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs"
                               >
                                 <div className="space-y-1">
                                   <div className="flex items-center gap-2">
-                                    <span className="font-mono font-bold text-teal-600 text-[11px]">{exp.voucherNo}</span>
-                                    <span className="text-[10.5px] font-medium text-[var(--muted-foreground)]">{exp.date}</span>
+                                    <span className="font-mono font-bold text-teal-600 text-xs font-medium">{exp.voucherNo}</span>
+                                    <span className="text-xs font-semibold font-medium text-[var(--muted-foreground)]">{exp.date}</span>
                                   </div>
                                   <h4 className="font-bold text-sm text-[var(--foreground)]">{exp.title}</h4>
-                                  <div className="text-[11px] text-[var(--muted-foreground)]">
+                                  <div className="text-xs font-medium text-[var(--muted-foreground)]">
                                     <span>আহ্বায়ক: <strong className="text-[var(--foreground)]">{exp.requesterStaff}</strong></span> • 
                                     <span> ফান্ড: <strong className="text-[var(--foreground)]">{exp.fundNameBn}</strong></span> • 
                                     <span> মেমো: {exp.memoDetails}</span>
                                   </div>
                                 </div>
                                 <div className="flex sm:flex-col items-center sm:items-end justify-between gap-2">
-                                  <span className="text-base font-extrabold text-rose-500 font-mono">
+                                  <span className="text-base font-extrabold text-rose-700 dark:text-rose-400 font-bold font-mono">
                                     ৳{exp.amount.toLocaleString('bn-BD')}
                                   </span>
                                   <span
-                                    className={`px-2.5 py-0.5 rounded-full text-[10px] font-bold ${
+                                    className={`px-2.5 py-0.5 rounded-full text-xs font-semibold font-bold ${
                                       exp.status === 'APPROVED' || exp.status === 'ADJUSTED'
-                                        ? 'bg-emerald-500/10 text-emerald-500 border border-emerald-500/20'
-                                        : 'bg-amber-500/10 text-amber-500 border border-amber-500/20'
+                                        ? 'bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 font-bold border border-emerald-500/20'
+                                        : 'bg-amber-500/10 text-amber-800 dark:text-amber-400 font-bold border border-amber-500/20'
                                     }`}
                                   >
                                     {exp.status === 'APPROVED' ? 'অনুমোদিত' : 'মুহতামিমের অনুমোদনের অপেক্ষায়'}
@@ -7621,11 +7621,11 @@ export const App: React.FC = () => {
 
                   {/* PORTAL 7: EXPENSE LIST (সকল ব্যয়ের তালিকা) */}
                   {expensePortal === 'EXPENSE_LIST' && (
-                    <div className="p-6 rounded-3xl bg-[var(--card)] border border-[var(--border)] shadow-sm space-y-4">
+                    <div className="p-6 rounded-xl bg-[var(--card)] border border-[var(--border)] shadow-sm space-y-4">
                       <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-3 border-b border-[var(--border)] gap-3">
                         <div>
                           <h3 className="font-bold text-sm text-[var(--foreground)] flex items-center gap-2">
-                            <Receipt className="w-4 h-4 text-emerald-500" />
+                            <Receipt className="w-4 h-4 text-emerald-700 dark:text-emerald-400 font-bold" />
                             সকল ব্যয়ের তালিকা
                           </h3>
                           <p className="text-xs text-[var(--muted-foreground)]">
@@ -7656,27 +7656,27 @@ export const App: React.FC = () => {
                           <tbody className="divide-y divide-[var(--border)]">
                             {expenseVouchers.map((exp) => (
                               <tr key={exp.id} className="hover:bg-[var(--background)]/50 transition">
-                                <td className="p-2.5 font-mono font-bold text-amber-500">{exp.voucherNo}</td>
+                                <td className="p-2.5 font-mono font-bold text-amber-800 dark:text-amber-400 font-bold">{exp.voucherNo}</td>
                                 <td className="p-2.5 font-bold text-[var(--foreground)]">
                                   {exp.title}
-                                  <span className="block text-[10px] text-[var(--muted-foreground)]">{exp.memoDetails}</span>
+                                  <span className="block text-xs font-semibold text-[var(--muted-foreground)]">{exp.memoDetails}</span>
                                 </td>
                                 <td className="p-2.5">
-                                  <span className="px-2 py-0.5 rounded-md text-[10px] font-semibold bg-[var(--background)] border border-[var(--border)]">
+                                  <span className="px-2 py-0.5 rounded-md text-xs font-semibold font-semibold bg-[var(--background)] border border-[var(--border)]">
                                     {exp.categoryBn}
                                   </span>
                                 </td>
-                                <td className="p-2.5 font-medium text-emerald-500">{exp.fundNameBn}</td>
+                                <td className="p-2.5 font-medium text-emerald-700 dark:text-emerald-400 font-bold">{exp.fundNameBn}</td>
                                 <td className="p-2.5 text-[var(--foreground)]">{exp.requesterStaff}</td>
-                                <td className="p-2.5 text-right font-black text-rose-500 font-mono text-xs">
+                                <td className="p-2.5 text-right font-black text-rose-700 dark:text-rose-400 font-bold font-mono text-xs">
                                   ৳{exp.amount.toLocaleString('bn-BD')}
                                 </td>
                                 <td className="p-2.5 text-center">
                                   <span
-                                    className={`px-2 py-0.5 rounded-full text-[10px] font-bold ${
+                                    className={`px-2 py-0.5 rounded-full text-xs font-semibold font-bold ${
                                       exp.status === 'APPROVED' || exp.status === 'ADJUSTED'
-                                        ? 'bg-emerald-500/10 text-emerald-500 border border-emerald-500/20'
-                                        : 'bg-amber-500/10 text-amber-500 border border-amber-500/20'
+                                        ? 'bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 font-bold border border-emerald-500/20'
+                                        : 'bg-amber-500/10 text-amber-800 dark:text-amber-400 font-bold border border-amber-500/20'
                                     }`}
                                   >
                                     {exp.status === 'APPROVED' ? 'অনুমোদিত' : exp.status === 'ADJUSTED' ? 'সমন্বয়কৃত' : 'মুহতামিমের স্বাক্ষরের অপেক্ষায়'}
@@ -7686,12 +7686,12 @@ export const App: React.FC = () => {
                                   {exp.status === 'SUBMITTED' ? (
                                     <button
                                       onClick={() => handleApproveExpense(exp.id)}
-                                      className="px-3 py-1 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-[11px] shadow-xs transition"
+                                      className="px-3 py-1 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs font-medium shadow-xs transition"
                                     >
                                       অনুমোদন ও অর্থ ছাড়
                                     </button>
                                   ) : (
-                                    <span className="text-[11px] text-[var(--muted-foreground)]">সম্পন্ন</span>
+                                    <span className="text-xs font-medium text-[var(--muted-foreground)]">সম্পন্ন</span>
                                   )}
                                 </td>
                               </tr>
@@ -7709,14 +7709,14 @@ export const App: React.FC = () => {
               {/* ========================================================================= */}
               <div className="space-y-4 pt-2">
                 {/* Row 1: আজকের দিনের হিসাব ও ক্যাশ কাউন্টার ক্লোজিং (Collapsible Single-Row Button) */}
-                  <div className="rounded-3xl bg-[var(--card)] border border-[var(--border)] shadow-sm overflow-hidden transition">
+                  <div className="rounded-xl bg-[var(--card)] border border-[var(--border)] shadow-sm overflow-hidden transition">
                     <button
                       type="button"
                       onClick={() => setShowDailyClosingDetails(!showDailyClosingDetails)}
                       className="w-full p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-left hover:bg-[var(--background)]/50 transition cursor-pointer"
                     >
                       <div className="flex items-center gap-3">
-                        <div className="p-2.5 rounded-2xl bg-emerald-500/10 text-emerald-500 shrink-0">
+                        <div className="p-2.5 rounded-xl bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 font-bold shrink-0">
                           <CheckCircle2 className="w-5 h-5" />
                         </div>
                         <div>
@@ -7732,7 +7732,7 @@ export const App: React.FC = () => {
                       <div className="flex items-center gap-3 ml-auto sm:ml-0">
                         <div className="hidden md:flex items-center gap-2 text-xs">
                           <span className="px-3 py-1 rounded-xl bg-[var(--background)] border border-[var(--border)] text-[var(--muted-foreground)]">
-                            আজকের নগদ: <strong className="text-emerald-500 font-mono">৳{completedPayments.filter(p => p.paymentMethod === 'CASH').reduce((s, p) => s + p.netPaid, 0).toLocaleString('bn-BD')}</strong>
+                            আজকের নগদ: <strong className="text-emerald-700 dark:text-emerald-400 font-bold font-mono">৳{completedPayments.filter(p => p.paymentMethod === 'CASH').reduce((s, p) => s + p.netPaid, 0).toLocaleString('bn-BD')}</strong>
                           </span>
                           <span className="px-3 py-1 rounded-xl bg-[var(--background)] border border-[var(--border)] text-[var(--muted-foreground)]">
                             ডিজিটাল: <strong className="text-blue-500 font-mono">৳{completedPayments.filter(p => p.paymentMethod !== 'CASH').reduce((s, p) => s + p.netPaid, 0).toLocaleString('bn-BD')}</strong>
@@ -7747,34 +7747,34 @@ export const App: React.FC = () => {
                     {showDailyClosingDetails && (
                       <div className="p-6 pt-3 border-t border-[var(--border)] space-y-4 animate-in fade-in">
                         {closingFeedbackMsg && (
-                          <div className="p-3.5 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-500 font-bold text-xs flex items-center gap-2 animate-in fade-in">
+                          <div className="p-3.5 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-700 dark:text-emerald-400 font-bold font-bold text-xs flex items-center gap-2 animate-in fade-in">
                             <CheckCircle2 className="w-4 h-4 shrink-0" />
                             <span>{closingFeedbackMsg}</span>
                           </div>
                         )}
 
                         <form onSubmit={handleSubmitDailyClosing} className="space-y-4 text-xs">
-                          <div className="grid grid-cols-1 sm:grid-cols-4 gap-3 p-4 rounded-2xl bg-[var(--background)] border border-[var(--border)]">
+                          <div className="grid grid-cols-1 sm:grid-cols-4 gap-3 p-4 rounded-xl bg-[var(--background)] border border-[var(--border)]">
                             <div>
-                              <span className="text-[10px] text-[var(--muted-foreground)] block font-semibold">আজকের নগদ আদায় (System Cash):</span>
-                              <span className="text-base font-extrabold text-emerald-500 font-mono">
+                              <span className="text-xs font-semibold text-[var(--muted-foreground)] block font-semibold">আজকের নগদ আদায় (System Cash):</span>
+                              <span className="text-base font-extrabold text-emerald-700 dark:text-emerald-400 font-bold font-mono">
                                 ৳{completedPayments.filter(p => p.paymentMethod === 'CASH').reduce((s, p) => s + p.netPaid, 0).toLocaleString('bn-BD')}
                               </span>
                             </div>
                             <div>
-                              <span className="text-[10px] text-[var(--muted-foreground)] block font-semibold">আজকের অনলাইন আদায় (bKash/Nagad):</span>
+                              <span className="text-xs font-semibold text-[var(--muted-foreground)] block font-semibold">আজকের অনলাইন আদায় (bKash/Nagad):</span>
                               <span className="text-base font-extrabold text-blue-500 font-mono">
                                 ৳{completedPayments.filter(p => p.paymentMethod !== 'CASH').reduce((s, p) => s + p.netPaid, 0).toLocaleString('bn-BD')}
                               </span>
                             </div>
                             <div>
-                              <span className="text-[10px] text-[var(--muted-foreground)] block font-semibold">মোট সর্বমোট আদায় (Grand Total):</span>
+                              <span className="text-xs font-semibold text-[var(--muted-foreground)] block font-semibold">মোট সর্বমোট আদায় (Grand Total):</span>
                               <span className="text-base font-black text-purple-500 font-mono">
                                 ৳{completedPayments.reduce((s, p) => s + p.netPaid, 0).toLocaleString('bn-BD')}
                               </span>
                             </div>
                             <div>
-                              <label className="block text-[10px] text-[var(--muted-foreground)] font-semibold mb-1">
+                              <label className="block text-xs font-semibold text-[var(--muted-foreground)] font-semibold mb-1">
                                 ক্যাশ ড্রয়ারে রক্ষিত নগদ টাকা:
                               </label>
                               <input
@@ -7800,7 +7800,7 @@ export const App: React.FC = () => {
                           </div>
 
                           <div className="flex items-center justify-between pt-1">
-                            <span className="text-[11px] text-[var(--muted-foreground)]">
+                            <span className="text-xs font-medium text-[var(--muted-foreground)]">
                               দায়িত্বপ্রাপ্ত হিসাবরক্ষক: <strong>মাওলানা কাসেম মাহমুদ</strong>
                             </span>
                             <button
@@ -7817,14 +7817,14 @@ export const App: React.FC = () => {
                   </div>
 
                   {/* Row 2: বহুমাত্রিক আর্থিক রিপোর্ট সেন্টার (Collapsible Row with Left-Buttons & Right Dynamic Inputs) */}
-                  <div className="rounded-3xl bg-[var(--card)] border border-[var(--border)] shadow-sm overflow-hidden transition">
+                  <div className="rounded-xl bg-[var(--card)] border border-[var(--border)] shadow-sm overflow-hidden transition">
                     <button
                       type="button"
                       onClick={() => setShowReportDetails(!showReportDetails)}
                       className="w-full p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-left hover:bg-[var(--background)]/50 transition cursor-pointer"
                     >
                       <div className="flex items-center gap-3">
-                        <div className="p-2.5 rounded-2xl bg-blue-500/10 text-blue-500 shrink-0">
+                        <div className="p-2.5 rounded-xl bg-blue-500/10 text-blue-500 shrink-0">
                           <FileSpreadsheet className="w-5 h-5" />
                         </div>
                         <div>
@@ -7846,10 +7846,10 @@ export const App: React.FC = () => {
                     {showReportDetails && (
                       <div className="p-6 pt-3 border-t border-[var(--border)] space-y-5 animate-in fade-in">
                         {/* 1. Side-by-Side Filter: Left Buttons & Right Dynamic Form */}
-                        <div className="grid grid-cols-1 md:grid-cols-12 gap-4 p-4 rounded-2xl bg-[var(--background)] border border-[var(--border)]">
+                        <div className="grid grid-cols-1 md:grid-cols-12 gap-4 p-4 rounded-xl bg-[var(--background)] border border-[var(--border)]">
                           {/* Left Column: Period Selection Buttons (4 cols) */}
                           <div className="md:col-span-4 flex flex-col gap-2">
-                            <span className="text-[11px] font-bold text-[var(--muted-foreground)] uppercase">
+                            <span className="text-xs font-medium font-bold text-[var(--muted-foreground)] uppercase">
                               রিপোর্টের সময়সীমা নির্বাচন করুন:
                             </span>
                             {[
@@ -7905,7 +7905,7 @@ export const App: React.FC = () => {
                                     গতকালকের তারিখ
                                   </button>
                                 </div>
-                                <p className="text-[11px] text-[var(--muted-foreground)]">
+                                <p className="text-xs font-medium text-[var(--muted-foreground)]">
                                   নির্বাচিত দিনের সকল নগদ ও ডিজিটাল লেনদেনের অডিট বিবরণী
                                 </p>
                               </div>
@@ -7937,7 +7937,7 @@ export const App: React.FC = () => {
                                 </label>
                                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                                   <div>
-                                    <span className="text-[10px] text-[var(--muted-foreground)] block mb-1">মাস ড্রপডাউন তালিকা:</span>
+                                    <span className="text-xs font-semibold text-[var(--muted-foreground)] block mb-1">মাস ড্রপডাউন তালিকা:</span>
                                     <select
                                       value={reportSelectedMonth}
                                       onChange={(e) => setReportSelectedMonth(e.target.value)}
@@ -7959,7 +7959,7 @@ export const App: React.FC = () => {
                                     </select>
                                   </div>
                                   <div>
-                                    <span className="text-[10px] text-[var(--muted-foreground)] block mb-1">অথবা সরাসরি ক্যালেন্ডার মাস:</span>
+                                    <span className="text-xs font-semibold text-[var(--muted-foreground)] block mb-1">অথবা সরাসরি ক্যালেন্ডার মাস:</span>
                                     <input
                                       type="month"
                                       value={reportSelectedMonth}
@@ -7981,7 +7981,7 @@ export const App: React.FC = () => {
                                   <option value="2026-H1">নভেম্বর ২০২৫ - এপ্রিল ২০২৬ (১ম অর্ধ-বার্ষিক)</option>
                                   <option value="2025-H2">মে ২০২৫ - অক্টোবর ২০২৫ (পূর্ববর্তী বছর)</option>
                                 </select>
-                                <p className="text-[11px] text-[var(--muted-foreground)]">
+                                <p className="text-xs font-medium text-[var(--muted-foreground)]">
                                   মাদ্রাসার ষান্মাসিক হিসাব নিরীক্ষা ও জাতীয় কওমি বোর্ড প্রতিবেদন
                                 </p>
                               </div>
@@ -8002,7 +8002,7 @@ export const App: React.FC = () => {
                                   <option value="2024">২০২৪ অর্থবছর (১৪৪৫-১৪৪৬ হিজরি শিক্ষাবর্ষ)</option>
                                   <option value="2023">২০২৩ অর্থবছর (১৪৪৪-১৪৪৫ হিজরি শিক্ষাবর্ষ)</option>
                                 </select>
-                                <p className="text-[11px] text-[var(--muted-foreground)]">
+                                <p className="text-xs font-medium text-[var(--muted-foreground)]">
                                   সম্পূর্ণ শিক্ষাবর্ষের বার্ষিক বাজেট বনাম প্রকৃত আয়-ব্যয় অডিট
                                 </p>
                               </div>
@@ -8015,7 +8015,7 @@ export const App: React.FC = () => {
                                 </label>
                                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                                   <div>
-                                    <span className="text-[10px] text-[var(--muted-foreground)] block mb-1">শুরুর তারিখ:</span>
+                                    <span className="text-xs font-semibold text-[var(--muted-foreground)] block mb-1">শুরুর তারিখ:</span>
                                     <input
                                       type="date"
                                       value={reportCustomStartDate}
@@ -8024,7 +8024,7 @@ export const App: React.FC = () => {
                                     />
                                   </div>
                                   <div>
-                                    <span className="text-[10px] text-[var(--muted-foreground)] block mb-1">শেষের তারিখ:</span>
+                                    <span className="text-xs font-semibold text-[var(--muted-foreground)] block mb-1">শেষের তারিখ:</span>
                                     <input
                                       type="date"
                                       value={reportCustomEndDate}
@@ -8033,7 +8033,7 @@ export const App: React.FC = () => {
                                     />
                                   </div>
                                 </div>
-                                <p className="text-[11px] text-blue-600 font-bold">
+                                <p className="text-xs font-medium text-blue-600 font-bold">
                                   আপনার প্রয়োজন অনুযায়ী যেকোনো সময়সীমার কাস্টমাইজড অডিট রিপোর্ট
                                 </p>
                               </div>
@@ -8043,37 +8043,37 @@ export const App: React.FC = () => {
 
                         {/* 2. সমন্বিত আর্থিক পরিসংখ্যান কার্ডস */}
                         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5">
-                          <div className="p-4 rounded-2xl bg-[var(--background)] border border-[var(--border)]">
-                            <span className="text-[10px] text-[var(--muted-foreground)] font-semibold block">নির্বাচিত সময়ে মোট আদায়:</span>
-                            <span className="text-lg font-black text-emerald-500 font-mono mt-0.5 block">
+                          <div className="p-4 rounded-xl bg-[var(--background)] border border-[var(--border)]">
+                            <span className="text-xs font-semibold text-[var(--muted-foreground)] font-semibold block">নির্বাচিত সময়ে মোট আদায়:</span>
+                            <span className="text-lg font-black text-emerald-700 dark:text-emerald-400 font-bold font-mono mt-0.5 block">
                               {reportFilterType === 'DAILY' ? '৳৫৪,৭০০' : '৳১,৮৫,৪০০'}
                             </span>
-                            <span className="text-[10.5px] text-[var(--muted-foreground)]">ছাত্র ফি ও অনুদান মিলিয়ে</span>
+                            <span className="text-xs font-semibold text-[var(--muted-foreground)]">ছাত্র ফি ও অনুদান মিলিয়ে</span>
                           </div>
-                          <div className="p-4 rounded-2xl bg-[var(--background)] border border-[var(--border)]">
-                            <span className="text-[10px] text-[var(--muted-foreground)] font-semibold block">নির্বাচিত সময়ে মোট ব্যয়:</span>
-                            <span className="text-lg font-black text-rose-500 font-mono mt-0.5 block">
+                          <div className="p-4 rounded-xl bg-[var(--background)] border border-[var(--border)]">
+                            <span className="text-xs font-semibold text-[var(--muted-foreground)] font-semibold block">নির্বাচিত সময়ে মোট ব্যয়:</span>
+                            <span className="text-lg font-black text-rose-700 dark:text-rose-400 font-bold font-mono mt-0.5 block">
                               {reportFilterType === 'DAILY' ? '৳১৮,৫০০' : '৳৪৮,৮০০'}
                             </span>
-                            <span className="text-[10.5px] text-[var(--muted-foreground)]">মেস বাজার, মেরামত ও ইউটিলিটি</span>
+                            <span className="text-xs font-semibold text-[var(--muted-foreground)]">মেস বাজার, মেরামত ও ইউটিলিটি</span>
                           </div>
-                          <div className="p-4 rounded-2xl bg-[var(--background)] border border-[var(--border)]">
-                            <span className="text-[10px] text-[var(--muted-foreground)] font-semibold block">নিট উদ্বৃত্ত / সারপ্লাস:</span>
+                          <div className="p-4 rounded-xl bg-[var(--background)] border border-[var(--border)]">
+                            <span className="text-xs font-semibold text-[var(--muted-foreground)] font-semibold block">নিট উদ্বৃত্ত / সারপ্লাস:</span>
                             <span className="text-lg font-black text-blue-500 font-mono mt-0.5 block">
                               {reportFilterType === 'DAILY' ? '৳৩৬,২০০' : '৳১,৩৬,৬০০'}
                             </span>
-                            <span className="text-[10.5px] text-emerald-500 font-semibold">তহবিলে নিট স্থিতি রক্ষিত</span>
+                            <span className="text-xs font-semibold text-emerald-700 dark:text-emerald-400 font-bold font-semibold">তহবিলে নিট স্থিতি রক্ষিত</span>
                           </div>
-                          <div className="p-4 rounded-2xl bg-[var(--background)] border border-[var(--border)]">
-                            <span className="text-[10px] text-[var(--muted-foreground)] font-semibold block">বকেয়া ছাত্র ফি রেজিস্টার:</span>
-                            <span className="text-lg font-black text-amber-500 font-mono mt-0.5 block">৳৪২,০০০</span>
-                            <span className="text-[10.5px] text-[var(--muted-foreground)]">২৮ জন শিক্ষার্থীর বকেয়া ফি</span>
+                          <div className="p-4 rounded-xl bg-[var(--background)] border border-[var(--border)]">
+                            <span className="text-xs font-semibold text-[var(--muted-foreground)] font-semibold block">বকেয়া ছাত্র ফি রেজিস্টার:</span>
+                            <span className="text-lg font-black text-amber-800 dark:text-amber-400 font-bold font-mono mt-0.5 block">৳৪২,০০০</span>
+                            <span className="text-xs font-semibold text-[var(--muted-foreground)]">২৮ জন শিক্ষার্থীর বকেয়া ফি</span>
                           </div>
                         </div>
 
                         {/* 3. এক্সপোর্ট ও প্রিন্ট অ্যাকশনসমূহ */}
                         <div className="pt-2 flex flex-col sm:flex-row items-center justify-between border-t border-[var(--border)] gap-2">
-                          <span className="text-[11px] text-[var(--muted-foreground)]">
+                          <span className="text-xs font-medium text-[var(--muted-foreground)]">
                             বাংলা ফন্টে আন্তর্জাতিক অডিট ও জাতীয় শিক্ষাবোর্ড মানের প্রাতিষ্ঠানিক আর্থিক বিবরণী
                           </span>
                           <div className="flex items-center gap-2">
@@ -8082,7 +8082,7 @@ export const App: React.FC = () => {
                               onClick={() => alert(`📄 নির্বাচিত সময়সীমার (${reportFilterType}) পূর্ণাঙ্গ অডিট রিপোর্ট PDF সফলভাবে প্রস্তুত হয়েছে!`)}
                               className="px-3.5 py-1.5 rounded-xl border border-[var(--border)] hover:bg-[var(--background)] text-xs font-semibold text-[var(--foreground)] flex items-center gap-1.5 transition shadow-xs cursor-pointer"
                             >
-                              <FileText className="w-3.5 h-3.5 text-rose-500" />
+                              <FileText className="w-3.5 h-3.5 text-rose-700 dark:text-rose-400 font-bold" />
                               <span>PDF রিপোর্ট</span>
                             </button>
                             <button
@@ -8137,7 +8137,7 @@ export const App: React.FC = () => {
               </div>
 
               {/* Hifz Daily Progress Tracker Widget */}
-              <div className="p-6 rounded-2xl bg-[var(--card)] border border-[var(--border)] shadow-sm space-y-4">
+              <div className="p-6 rounded-xl bg-[var(--card)] border border-[var(--border)] shadow-sm space-y-4">
                 <div className="flex items-center justify-between pb-3 border-b border-[var(--border)]">
                   <div className="flex items-center gap-2">
                     <BookOpen className="w-4 h-4 text-blue-500" />
@@ -8150,24 +8150,24 @@ export const App: React.FC = () => {
                   <div className="p-3.5 rounded-xl bg-[var(--background)] border border-[var(--border)]">
                     <div className="text-[var(--muted-foreground)]">নতুন সবক (Sabaq)</div>
                     <div className="text-sm font-bold text-[var(--foreground)] mt-1">পৃষ্ঠা ৫৯ - ৬০ (৩য় পারা)</div>
-                    <div className="text-[10px] text-emerald-500 mt-1">সুরূপা ও তাজভীদ সহ শুদ্ধ পাঠ</div>
+                    <div className="text-xs font-semibold text-emerald-700 dark:text-emerald-400 font-bold mt-1">সুরূপা ও তাজভীদ সহ শুদ্ধ পাঠ</div>
                   </div>
                   <div className="p-3.5 rounded-xl bg-[var(--background)] border border-[var(--border)]">
                     <div className="text-[var(--muted-foreground)]">সাত সবকী (Sabki - সাম্প্রতিক)</div>
                     <div className="text-sm font-bold text-[var(--foreground)] mt-1">পৃষ্ঠা ৪০ - ৫০</div>
-                    <div className="text-[10px] text-[var(--muted-foreground)] mt-1">গত ৫ দিনের পড়া রিভিশন</div>
+                    <div className="text-xs font-semibold text-[var(--muted-foreground)] mt-1">গত ৫ দিনের পড়া রিভিশন</div>
                   </div>
                   <div className="p-3.5 rounded-xl bg-[var(--background)] border border-[var(--border)]">
                     <div className="text-[var(--muted-foreground)]">আমুক্তা / মানজিল (Amukhta)</div>
                     <div className="text-sm font-bold text-[var(--foreground)] mt-1">১ম পারা সম্পূর্ণ রিভিশন</div>
-                    <div className="text-[10px] text-[var(--muted-foreground)] mt-1">আগের মুখস্থ পারার শুনানি</div>
+                    <div className="text-xs font-semibold text-[var(--muted-foreground)] mt-1">আগের মুখস্থ পারার শুনানি</div>
                   </div>
                   <div className="p-3.5 rounded-xl bg-emerald-500/10 border border-emerald-500/30">
-                    <div className="text-emerald-500 font-semibold">মূল্যায়ন (কওমি গ্রেড)</div>
+                    <div className="text-emerald-700 dark:text-emerald-400 font-bold font-semibold">মূল্যায়ন (কওমি গ্রেড)</div>
                     <select
                       value={hifzGrade}
                       onChange={(e) => setHifzGrade(e.target.value as any)}
-                      className="w-full mt-1.5 px-2 py-1 rounded bg-[var(--card)] border border-[var(--border)] text-xs font-bold text-emerald-500 focus:outline-none"
+                      className="w-full mt-1.5 px-2 py-1 rounded bg-[var(--card)] border border-[var(--border)] text-xs font-bold text-emerald-700 dark:text-emerald-400 font-bold focus:outline-none"
                     >
                       <option value="MUMTAZ">মুমতাজ (ممتاز) - এ+</option>
                       <option value="JAYYID_JIDDAN">জায়্যিদ জিদ্দান (جيد جداً) - এ</option>
@@ -8180,13 +8180,13 @@ export const App: React.FC = () => {
 
               {/* Offline Attendance Sync & Befaq Board Export Controls */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="p-6 rounded-2xl bg-[var(--card)] border border-[var(--border)] shadow-sm space-y-4">
+                <div className="p-6 rounded-xl bg-[var(--card)] border border-[var(--border)] shadow-sm space-y-4">
                   <div className="flex items-center justify-between pb-3 border-b border-[var(--border)]">
                     <h4 className="text-sm font-bold text-[var(--foreground)] flex items-center gap-2">
-                      <RefreshCw className="w-4 h-4 text-emerald-500" />
+                      <RefreshCw className="w-4 h-4 text-emerald-700 dark:text-emerald-400 font-bold" />
                       অফলাইন হাজিরা সিঙ্ক (IndexedDB ↔ Cloud)
                     </h4>
-                    <span className="text-[10px] px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-500 border border-emerald-500/20 font-medium">
+                    <span className="text-xs font-semibold px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 font-bold border border-emerald-500/20 font-medium">
                       কনফ্লিক্ট-ফ্রি
                     </span>
                   </div>
@@ -8198,7 +8198,7 @@ export const App: React.FC = () => {
                   <div className="p-3.5 rounded-xl bg-[var(--background)] border border-[var(--border)] flex items-center justify-between">
                     <div className="text-xs">
                       <div className="text-[var(--foreground)] font-medium">অমীমাংসিত অফলাইন রেকর্ড: {offlineSyncCount} টি</div>
-                      <div className="text-[10px] text-[var(--muted-foreground)]">ডিভাইস আইডি: TAB-DHK-01</div>
+                      <div className="text-xs font-semibold text-[var(--muted-foreground)]">ডিভাইস আইডি: TAB-DHK-01</div>
                     </div>
                     <button
                       disabled={isSyncing || offlineSyncCount === 0}
@@ -8217,13 +8217,13 @@ export const App: React.FC = () => {
                   </div>
                 </div>
 
-                <div className="p-6 rounded-2xl bg-[var(--card)] border border-[var(--border)] shadow-sm space-y-4">
+                <div className="p-6 rounded-xl bg-[var(--card)] border border-[var(--border)] shadow-sm space-y-4">
                   <div className="flex items-center justify-between pb-3 border-b border-[var(--border)]">
                     <h4 className="text-sm font-bold text-[var(--foreground)] flex items-center gap-2">
                       <FileSpreadsheet className="w-4 h-4 text-blue-500" />
                       বেফাকুল মাদারিসিল আরাবিয়া এক্সপোর্ট
                     </h4>
-                    <span className="text-[10px] px-2 py-0.5 rounded-full bg-blue-500/10 text-blue-500 border border-blue-500/20 font-medium">
+                    <span className="text-xs font-semibold px-2 py-0.5 rounded-full bg-blue-500/10 text-blue-500 border border-blue-500/20 font-medium">
                       Befaq Qawmi Board
                     </span>
                   </div>
@@ -8262,12 +8262,12 @@ export const App: React.FC = () => {
                     onClick={() => setActiveNav('madrasa_dashboard')}
                     className="p-2 px-3 rounded-xl border border-[var(--border)] hover:bg-[var(--card)] transition text-xs font-semibold flex items-center gap-1.5 text-[var(--foreground)] shadow-sm shrink-0"
                   >
-                    <ArrowLeft className="w-4 h-4 text-amber-500" />
+                    <ArrowLeft className="w-4 h-4 text-amber-800 dark:text-amber-400 font-bold" />
                     সকল বিভাগে ফিরুন
                   </button>
                   <div>
                     <h2 className="text-xl font-bold text-[var(--foreground)] flex items-center gap-2">
-                      <Bed className="w-5 h-5 text-amber-500" />
+                      <Bed className="w-5 h-5 text-amber-800 dark:text-amber-400 font-bold" />
                       ছাত্রাবাস রুম, খাবার ও ডিজিটাল কিউআর গেটপাস
                     </h2>
                     <p className="text-xs text-[var(--muted-foreground)]">
@@ -8279,13 +8279,13 @@ export const App: React.FC = () => {
 
               {/* Rooms and Daily Boarding Meals */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="p-6 rounded-2xl bg-[var(--card)] border border-[var(--border)] shadow-sm space-y-4">
+                <div className="p-6 rounded-xl bg-[var(--card)] border border-[var(--border)] shadow-sm space-y-4">
                   <div className="flex items-center justify-between pb-3 border-b border-[var(--border)]">
                     <h4 className="text-sm font-bold text-[var(--foreground)] flex items-center gap-2">
-                      <Bed className="w-4 h-4 text-emerald-500" />
+                      <Bed className="w-4 h-4 text-emerald-700 dark:text-emerald-400 font-bold" />
                       ছাত্রাবাস রুম ও সিট বরাদ্দ
                     </h4>
-                    <span className="text-[10px] px-2 py-0.5 rounded bg-[var(--background)] text-[var(--muted-foreground)] border border-[var(--border)]">
+                    <span className="text-xs font-semibold px-2 py-0.5 rounded bg-[var(--background)] text-[var(--muted-foreground)] border border-[var(--border)]">
                       মোট আবাসিক সিট: ৯৫০
                     </span>
                   </div>
@@ -8294,56 +8294,56 @@ export const App: React.FC = () => {
                     <div className="p-3.5 rounded-xl bg-[var(--background)] border border-[var(--border)]">
                       <div className="text-[var(--foreground)] font-semibold">আবু বকর (রা.) হল - রুম ১০১</div>
                       <div className="text-[var(--muted-foreground)] mt-1">ধারণক্ষমতা: ২০ সিট</div>
-                      <div className="text-emerald-500 font-bold mt-1">বরাদ্দ: ১৮ জন (২টি খালি)</div>
+                      <div className="text-emerald-700 dark:text-emerald-400 font-bold font-bold mt-1">বরাদ্দ: ১৮ জন (২টি খালি)</div>
                     </div>
                     <div className="p-3.5 rounded-xl bg-[var(--background)] border border-[var(--border)]">
                       <div className="text-[var(--foreground)] font-semibold">উমর (রা.) হল - রুম ২০২</div>
                       <div className="text-[var(--muted-foreground)] mt-1">ধারণক্ষমতা: ২৫ সিট</div>
-                      <div className="text-amber-500 font-bold mt-1">বরাদ্দ: ২৫ জন (সম্পূর্ণ পূর্ণ)</div>
+                      <div className="text-amber-800 dark:text-amber-400 font-bold font-bold mt-1">বরাদ্দ: ২৫ জন (সম্পূর্ণ পূর্ণ)</div>
                     </div>
                   </div>
                 </div>
 
-                <div className="p-6 rounded-2xl bg-[var(--card)] border border-[var(--border)] shadow-sm space-y-4">
+                <div className="p-6 rounded-xl bg-[var(--card)] border border-[var(--border)] shadow-sm space-y-4">
                   <div className="flex items-center justify-between pb-3 border-b border-[var(--border)]">
                     <h4 className="text-sm font-bold text-[var(--foreground)] flex items-center gap-2">
-                      <Utensils className="w-4 h-4 text-amber-500" />
+                      <Utensils className="w-4 h-4 text-amber-800 dark:text-amber-400 font-bold" />
                       দৈনিক খাবার গণনা (লিল্লাহ বনাম সাধারণ ফান্ড)
                     </h4>
-                    <span className="text-[10px] text-[var(--muted-foreground)]">{mealSummary.date}</span>
+                    <span className="text-xs font-semibold text-[var(--muted-foreground)]">{mealSummary.date}</span>
                   </div>
 
                   <div className="grid grid-cols-3 gap-2 text-xs">
                     <div className="p-3 rounded-xl bg-[var(--background)] border border-[var(--border)] text-center">
                       <div className="text-[var(--muted-foreground)]">সকাল (নাস্তা)</div>
                       <div className="font-bold text-[var(--foreground)] mt-1">{mealSummary.morning.general + mealSummary.morning.lillah} জন</div>
-                      <div className="text-[10px] text-purple-500 mt-0.5 font-medium">লিল্লাহ: {mealSummary.morning.lillah}</div>
+                      <div className="text-xs font-semibold text-purple-500 mt-0.5 font-medium">লিল্লাহ: {mealSummary.morning.lillah}</div>
                     </div>
                     <div className="p-3 rounded-xl bg-[var(--background)] border border-[var(--border)] text-center">
                       <div className="text-[var(--muted-foreground)]">দুপুর (মধ্যাহ্নভোজ)</div>
                       <div className="font-bold text-[var(--foreground)] mt-1">{mealSummary.noon.general + mealSummary.noon.lillah} জন</div>
-                      <div className="text-[10px] text-purple-500 mt-0.5 font-medium">লিল্লাহ: {mealSummary.noon.lillah}</div>
+                      <div className="text-xs font-semibold text-purple-500 mt-0.5 font-medium">লিল্লাহ: {mealSummary.noon.lillah}</div>
                     </div>
                     <div className="p-3 rounded-xl bg-[var(--background)] border border-[var(--border)] text-center">
                       <div className="text-[var(--muted-foreground)]">রাত (নৈশভোজ)</div>
                       <div className="font-bold text-[var(--foreground)] mt-1">{mealSummary.night.general + mealSummary.night.lillah} জন</div>
-                      <div className="text-[10px] text-purple-500 mt-0.5 font-medium">লিল্লাহ: {mealSummary.night.lillah}</div>
+                      <div className="text-xs font-semibold text-purple-500 mt-0.5 font-medium">লিল্লাহ: {mealSummary.night.lillah}</div>
                     </div>
                   </div>
-                  <div className="text-[11px] text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 p-2.5 rounded-xl border border-emerald-500/20">
+                  <div className="text-xs font-medium text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 p-2.5 rounded-xl border border-emerald-500/20">
                     শরীয়াহ অডিট সম্মত: লিল্লাহ ফান্ডের খাবারের হিসাব সম্পূর্ণ পৃথক লেজারে সংরক্ষিত হচ্ছে।
                   </div>
                 </div>
               </div>
 
               {/* Gatepass QR Generator & Verification */}
-              <div className="p-6 rounded-2xl bg-[var(--card)] border border-[var(--border)] shadow-sm space-y-4">
+              <div className="p-6 rounded-xl bg-[var(--card)] border border-[var(--border)] shadow-sm space-y-4">
                 <div className="flex items-center justify-between pb-3 border-b border-[var(--border)]">
                   <h4 className="text-sm font-bold text-[var(--foreground)] flex items-center gap-2">
-                    <QrCode className="w-4 h-4 text-emerald-500" />
+                    <QrCode className="w-4 h-4 text-emerald-700 dark:text-emerald-400 font-bold" />
                     ডিজিটাল গেটপাস ও কিউআর স্ক্যান সিস্টেম
                   </h4>
-                  <span className="text-[10px] px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-500 border border-emerald-500/20 font-medium">
+                  <span className="text-xs font-semibold px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 font-bold border border-emerald-500/20 font-medium">
                     নিরাপদ সাইনড টোকেন
                   </span>
                 </div>
@@ -8390,10 +8390,10 @@ export const App: React.FC = () => {
                         <QrCode className="w-20 h-20 text-slate-900" />
                       </div>
                       <div className="text-xs font-bold text-[var(--foreground)]">{activeGatepass.student}</div>
-                      <div className="text-[10px] text-[var(--muted-foreground)]">পাস নং: {activeGatepass.id} | মেয়াদ: {activeGatepass.expiry}</div>
+                      <div className="text-xs font-semibold text-[var(--muted-foreground)]">পাস নং: {activeGatepass.id} | মেয়াদ: {activeGatepass.expiry}</div>
                       <div className="text-xs">
                         স্ট্যাটাস:{' '}
-                        <span className="font-bold text-emerald-500">
+                        <span className="font-bold text-emerald-700 dark:text-emerald-400 font-bold">
                           {activeGatepass.status === 'ISSUED' ? 'ইস্যু করা হয়েছে (মাদ্রাসায় বিদ্যমান)' :
                            activeGatepass.status === 'CHECKED_OUT' ? 'বাহিরে আছে (প্রস্থান নিশ্চিত)' : 'ফিরে এসেছে (প্রবেশ সম্পন্ন)'}
                         </span>
@@ -8402,7 +8402,7 @@ export const App: React.FC = () => {
                         {activeGatepass.status === 'ISSUED' && (
                           <button
                             onClick={() => setActiveGatepass({ ...activeGatepass, status: 'CHECKED_OUT' })}
-                            className="px-3 py-1 rounded-lg bg-amber-600 hover:bg-amber-500 text-white text-[11px] font-medium"
+                            className="px-3 py-1 rounded-lg bg-amber-600 hover:bg-amber-500 text-white text-xs font-medium font-medium"
                           >
                             গেট সিকিউরিটি: প্রস্থান মার্ক করুন
                           </button>
@@ -8410,7 +8410,7 @@ export const App: React.FC = () => {
                         {activeGatepass.status === 'CHECKED_OUT' && (
                           <button
                             onClick={() => setActiveGatepass({ ...activeGatepass, status: 'RETURNED' })}
-                            className="px-3 py-1 rounded-lg bg-[var(--primary)] text-[var(--primary-foreground)] text-[11px] font-medium"
+                            className="px-3 py-1 rounded-lg bg-[var(--primary)] text-[var(--primary-foreground)] text-xs font-medium font-medium"
                           >
                             গেট সিকিউরিটি: প্রত্যাবর্তন মার্ক করুন
                           </button>
@@ -8428,7 +8428,7 @@ export const App: React.FC = () => {
           {/* ========================================================================= */}
           {activeNav === 'library' && (
             <div className="space-y-6">
-              <div className="p-6 rounded-2xl bg-[var(--card)] border border-[var(--border)] shadow-sm space-y-4">
+              <div className="p-6 rounded-xl bg-[var(--card)] border border-[var(--border)] shadow-sm space-y-4">
                 <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 pb-3 border-b border-[var(--border)]">
                   <div className="flex items-center gap-3">
                     <button
@@ -8507,19 +8507,19 @@ export const App: React.FC = () => {
                             <td className="p-3 font-semibold text-[var(--foreground)]">{b.title}</td>
                             <td className="p-3 text-[var(--muted-foreground)]">{b.author}</td>
                             <td className="p-3">
-                              <span className="px-2 py-0.5 rounded bg-[var(--background)] text-[var(--muted-foreground)] border border-[var(--border)] font-mono text-[10px]">
+                              <span className="px-2 py-0.5 rounded bg-[var(--background)] text-[var(--muted-foreground)] border border-[var(--border)] font-mono text-xs font-semibold">
                                 {b.language.toUpperCase()} | {b.category}
                               </span>
                             </td>
                             <td className="p-3 font-mono text-[var(--muted-foreground)]">{b.rack}</td>
                             <td className="p-3">
-                              <span className="font-bold text-emerald-500">{b.availableCopies}</span>
-                              <span className="text-[var(--muted-foreground)] text-[10px]"> / {b.totalCopies}</span>
+                              <span className="font-bold text-emerald-700 dark:text-emerald-400 font-bold">{b.availableCopies}</span>
+                              <span className="text-[var(--muted-foreground)] text-xs font-semibold"> / {b.totalCopies}</span>
                             </td>
                             <td className="p-3">
                               <button
                                 onClick={() => alert(`${b.title} কিতাবটি সফলভাবে ইস্যু করা হয়েছে!`)}
-                                className="px-2.5 py-1 rounded-lg bg-blue-600 hover:bg-blue-500 text-white text-[11px] font-medium"
+                                className="px-2.5 py-1 rounded-lg bg-blue-600 hover:bg-blue-500 text-white text-xs font-medium font-medium"
                               >
                                 ইস্যু করুন
                               </button>
@@ -8538,18 +8538,18 @@ export const App: React.FC = () => {
           {/* ========================================================================= */}
           {activeNav === 'sms' && (
             <div className="space-y-6">
-              <div className="p-6 rounded-2xl bg-[var(--card)] border border-[var(--border)] shadow-sm space-y-4">
+              <div className="p-6 rounded-xl bg-[var(--card)] border border-[var(--border)] shadow-sm space-y-4">
                 <div className="flex items-center justify-between pb-3 border-b border-[var(--border)]">
                   <div className="flex items-center gap-3">
                     <button
                       onClick={() => setActiveNav('madrasa_dashboard')}
                       className="p-2 px-3 rounded-xl border border-[var(--border)] hover:bg-[var(--background)] transition text-xs font-semibold flex items-center gap-1.5 text-[var(--foreground)] shadow-sm shrink-0"
                     >
-                      <ArrowLeft className="w-4 h-4 text-emerald-500" />
+                      <ArrowLeft className="w-4 h-4 text-emerald-700 dark:text-emerald-400 font-bold" />
                       সকল বিভাগে ফিরুন
                     </button>
                     <div className="flex items-center gap-2">
-                      <Send className="w-5 h-5 text-emerald-500" />
+                      <Send className="w-5 h-5 text-emerald-700 dark:text-emerald-400 font-bold" />
                       <h3 className="text-base font-bold text-[var(--foreground)]">বিটিআরসি অনুমোদিত বাংলা এসএমএস ও নোটিশ কম্পোজার</h3>
                     </div>
                   </div>
@@ -8574,7 +8574,7 @@ export const App: React.FC = () => {
                     <div>
                       <div className="flex justify-between items-center mb-1">
                         <label className="text-[var(--muted-foreground)]">বার্তা লিখুন (বাংলা ইউনিকোড)</label>
-                        <span className="text-[11px] font-mono text-emerald-500 font-semibold">
+                        <span className="text-xs font-medium font-mono text-emerald-700 dark:text-emerald-400 font-bold font-semibold">
                           {smsMetrics.chars} অক্ষর | {smsMetrics.parts} টি এসএমএস
                         </span>
                       </div>
@@ -8599,7 +8599,7 @@ export const App: React.FC = () => {
 
                     {smsSentNotice && (
                       <div className="p-3 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-xs text-emerald-600 dark:text-emerald-300 flex items-center gap-2">
-                        <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0" />
+                        <CheckCircle2 className="w-4 h-4 text-emerald-700 dark:text-emerald-400 font-bold shrink-0" />
                         <span>{smsSentNotice}</span>
                       </div>
                     )}
@@ -8622,9 +8622,9 @@ export const App: React.FC = () => {
                     </div>
                     <div className="pt-2 border-t border-[var(--border)] flex justify-between font-bold text-sm">
                       <span className="text-[var(--foreground)]">মোট খরচ:</span>
-                      <span className="text-emerald-500">৳{smsMetrics.cost}</span>
+                      <span className="text-emerald-700 dark:text-emerald-400 font-bold">৳{smsMetrics.cost}</span>
                     </div>
-                    <div className="text-[10px] text-[var(--muted-foreground)] bg-[var(--card)] p-2.5 rounded-lg border border-[var(--border)]">
+                    <div className="text-xs font-semibold text-[var(--muted-foreground)] bg-[var(--card)] p-2.5 rounded-lg border border-[var(--border)]">
                       বিটিআরসি নিয়ম অনুযায়ী ৭০ অক্ষর পর্যন্ত ১টি এসএমএস, অতিরিক্ত অংশের ক্ষেত্রে ৬৭ অক্ষর গণনা করা হয়।
                     </div>
                   </div>
@@ -8641,7 +8641,7 @@ export const App: React.FC = () => {
               <div className="flex items-center justify-between pb-2 border-b border-[var(--border)]">
                 <div>
                   <h2 className="text-xl font-bold text-[var(--foreground)] flex items-center gap-2">
-                    <span>💬</span> মাদ্রাসার সাপোর্ট ইনবক্স ও ক্লায়েন্ট মেসেজ
+                    <MessageCircle className="w-4 h-4 inline mr-1 text-teal-600 dark:text-teal-400" /> মাদ্রাসার সাপোর্ট ইনবক্স ও ক্লায়েন্ট মেসেজ
                   </h2>
                   <p className="text-xs text-[var(--muted-foreground)]">
                     টেন্যান্ট মাদ্রাসাগুলোর সমস্যা সমাধান, প্রযুক্তিগত সহায়তা ও ফিডব্যাক
@@ -8656,12 +8656,12 @@ export const App: React.FC = () => {
                 {tickets.map((tkt) => (
                   <div
                     key={tkt.id}
-                    className="p-5 rounded-2xl bg-[var(--card)] border border-[var(--border)] shadow-sm flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4"
+                    className="p-5 rounded-xl bg-[var(--card)] border border-[var(--border)] shadow-sm flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4"
                   >
                     <div>
                       <div className="flex items-center gap-2">
                         <span className="text-xs font-bold text-[var(--primary)]">{tkt.madrasa}</span>
-                        <span className="text-[10px] text-[var(--muted-foreground)]">• {tkt.time}</span>
+                        <span className="text-xs font-semibold text-[var(--muted-foreground)]">• {tkt.time}</span>
                       </div>
                       <div className="text-sm font-semibold text-[var(--foreground)] mt-1">{tkt.subject}</div>
                     </div>
@@ -8684,7 +8684,7 @@ export const App: React.FC = () => {
       {/* ========================================================================= */}
       {showAddMadrasaModal && (
         <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 z-50">
-          <div className="bg-[var(--card)] border border-[var(--border)] rounded-2xl p-6 max-w-md w-full shadow-2xl space-y-4 text-xs animate-in fade-in zoom-in-95">
+          <div className="bg-[var(--card)] border border-[var(--border)] rounded-xl p-6 max-w-md w-full shadow-2xl space-y-4 text-xs animate-in fade-in zoom-in-95">
             <div className="flex items-center justify-between border-b border-[var(--border)] pb-3">
               <h3 className="font-bold text-sm text-[var(--foreground)] flex items-center gap-2">
                 <Plus className="w-4 h-4 text-[var(--primary)]" />
@@ -8776,7 +8776,7 @@ export const App: React.FC = () => {
       {/* ========================================================================= */}
       {showPlanModalFor && (
         <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 z-50">
-          <div className="bg-[var(--card)] border border-[var(--border)] rounded-2xl p-6 max-w-sm w-full shadow-2xl space-y-4 text-xs animate-in fade-in zoom-in-95">
+          <div className="bg-[var(--card)] border border-[var(--border)] rounded-xl p-6 max-w-sm w-full shadow-2xl space-y-4 text-xs animate-in fade-in zoom-in-95">
             <div className="flex items-center justify-between border-b border-[var(--border)] pb-2">
               <h3 className="font-bold text-sm text-[var(--foreground)] flex items-center gap-2">
                 <Package className="w-4 h-4 text-blue-500" />
@@ -8807,7 +8807,7 @@ export const App: React.FC = () => {
                 >
                   <div>
                     <div>{p} Plan</div>
-                    <div className="text-[10px] text-[var(--muted-foreground)]">
+                    <div className="text-xs font-semibold text-[var(--muted-foreground)]">
                       {p === 'Basic' ? '৳২,৫০০/মাস' : p === 'Standard' ? '৳৫,০০০/মাস' : '৳১৫,০০০/মাস'}
                     </div>
                   </div>
@@ -8824,14 +8824,14 @@ export const App: React.FC = () => {
       {/* ========================================================================= */}
       {showDeleteModalFor && (
         <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 z-50">
-          <div className="bg-[var(--card)] border border-red-500/40 rounded-2xl p-6 max-w-sm w-full shadow-2xl space-y-4 text-xs animate-in fade-in zoom-in-95">
+          <div className="bg-[var(--card)] border border-red-500/40 rounded-xl p-6 max-w-sm w-full shadow-2xl space-y-4 text-xs animate-in fade-in zoom-in-95">
             <div className="w-12 h-12 rounded-full bg-red-500/10 text-red-500 flex items-center justify-center mx-auto text-xl">
               <Trash2 className="w-6 h-6" />
             </div>
 
             <div className="text-center space-y-1">
               <h3 className="font-bold text-sm text-[var(--foreground)]">মাদ্রাসাটি মুছে ফেলতে চান?</h3>
-              <p className="text-[var(--muted-foreground)] text-[11px] leading-relaxed">
+              <p className="text-[var(--muted-foreground)] text-xs font-medium leading-relaxed">
                 আপনি <strong>"{showDeleteModalFor.nameBn}"</strong> কে সিস্টেম থেকে অপসারণ করতে যাচ্ছেন। এর ফলে উক্ত মাদ্রাসার টেন্যান্ট ডাটাবেস ও ইউজার অ্যাক্সেস নিষ্ক্রিয় হবে।
               </p>
             </div>
@@ -8861,7 +8861,7 @@ export const App: React.FC = () => {
         <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
           <div
             onClick={(e) => e.stopPropagation()}
-            className="bg-[var(--card)] border border-[var(--border)] rounded-3xl p-6 w-full max-w-md shadow-2xl animate-in fade-in zoom-in-95 space-y-4"
+            className="bg-[var(--card)] border border-[var(--border)] rounded-xl p-6 w-full max-w-md shadow-2xl animate-in fade-in zoom-in-95 space-y-4"
           >
             <div className="flex items-center justify-between pb-3 border-b border-[var(--border)]">
               <div>
@@ -8934,7 +8934,7 @@ export const App: React.FC = () => {
                       checked={assignStaffStatus === 'ACTIVE'}
                       onChange={() => setAssignStaffStatus('ACTIVE')}
                     />
-                    <span className="text-emerald-500 font-bold">সক্রিয় (Active)</span>
+                    <span className="text-emerald-700 dark:text-emerald-400 font-bold font-bold">সক্রিয় (Active)</span>
                   </label>
                   <label className="flex items-center gap-2 cursor-pointer">
                     <input
@@ -8943,7 +8943,7 @@ export const App: React.FC = () => {
                       checked={assignStaffStatus === 'HOLD'}
                       onChange={() => setAssignStaffStatus('HOLD')}
                     />
-                    <span className="text-amber-500 font-bold">সাময়িক স্থগিত (Hold)</span>
+                    <span className="text-amber-800 dark:text-amber-400 font-bold font-bold">সাময়িক স্থগিত (Hold)</span>
                   </label>
                 </div>
               </div>
@@ -8971,10 +8971,10 @@ export const App: React.FC = () => {
       {/* 1. Notice Composer Modal */}
       {showNoticeComposerModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-in fade-in duration-200">
-          <div className="bg-[var(--card)] border border-[var(--border)] rounded-3xl p-6 max-w-2xl w-full shadow-2xl relative max-h-[90vh] overflow-y-auto">
+          <div className="bg-[var(--card)] border border-[var(--border)] rounded-xl p-6 max-w-2xl w-full shadow-2xl relative max-h-[90vh] overflow-y-auto">
             <div className="flex items-center justify-between pb-3 border-b border-[var(--border)] mb-4">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-2xl bg-amber-500/10 text-amber-500 flex items-center justify-center shadow-inner">
+                <div className="w-10 h-10 rounded-xl bg-amber-500/10 text-amber-800 dark:text-amber-400 font-bold flex items-center justify-center shadow-inner">
                   <Megaphone className="w-5 h-5" />
                 </div>
                 <div>
@@ -9060,7 +9060,7 @@ export const App: React.FC = () => {
                   <button
                     type="button"
                     onClick={() => handleToggleTargetDept('ALL')}
-                    className={`text-[11px] font-bold px-2 py-0.5 rounded-lg border transition ${
+                    className={`text-xs font-medium font-bold px-2 py-0.5 rounded-lg border transition ${
                       noticeTargetDepts.includes('ALL')
                         ? 'bg-[var(--primary)] text-[var(--primary-foreground)] border-transparent'
                         : 'border-[var(--border)] text-[var(--primary)] hover:bg-[var(--primary)]/10'
@@ -9070,14 +9070,14 @@ export const App: React.FC = () => {
                   </button>
                 </div>
 
-                <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 p-3 rounded-2xl bg-[var(--background)] border border-[var(--border)] max-h-40 overflow-y-auto">
+                <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 p-3 rounded-xl bg-[var(--background)] border border-[var(--border)] max-h-40 overflow-y-auto">
                   {departments.map((dept) => {
                     const isChecked = noticeTargetDepts.includes('ALL') || noticeTargetDepts.includes(dept.id);
                     return (
                       <label
                         key={dept.id}
                         onClick={() => handleToggleTargetDept(dept.id)}
-                        className={`flex items-center gap-2 p-1.5 rounded-xl border cursor-pointer text-[11px] transition ${
+                        className={`flex items-center gap-2 p-1.5 rounded-xl border cursor-pointer text-xs font-medium transition ${
                           isChecked
                             ? 'bg-[var(--primary)]/10 border-[var(--primary)]/40 font-bold text-[var(--foreground)]'
                             : 'border-transparent text-[var(--muted-foreground)] hover:bg-[var(--card)]'
@@ -9134,19 +9134,19 @@ export const App: React.FC = () => {
       {/* 2. Notice Detail Viewer Modal */}
       {activeNoticeDetail && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-in fade-in duration-200">
-          <div className="bg-[var(--card)] border border-[var(--border)] rounded-3xl p-6 max-w-lg w-full shadow-2xl relative">
+          <div className="bg-[var(--card)] border border-[var(--border)] rounded-xl p-6 max-w-lg w-full shadow-2xl relative">
             <div className="flex items-center justify-between pb-3 border-b border-[var(--border)] mb-4">
               <div className="flex items-center gap-2">
-                <div className="w-8 h-8 rounded-xl bg-amber-500/10 text-amber-500 flex items-center justify-center">
+                <div className="w-8 h-8 rounded-xl bg-amber-500/10 text-amber-800 dark:text-amber-400 font-bold flex items-center justify-center">
                   <Megaphone className="w-4 h-4" />
                 </div>
                 <div>
-                  <span className="text-[10px] font-bold text-[var(--muted-foreground)] uppercase tracking-wider">
+                  <span className="text-xs font-semibold font-bold text-[var(--muted-foreground)] uppercase tracking-wider">
                     অফিসিয়াল প্রাতিষ্ঠানিক নোটিশ
                   </span>
                   <div className="flex items-center gap-2 mt-0.5">
                     <span
-                      className={`px-2 py-0.5 rounded-full text-[10px] font-bold ${
+                      className={`px-2 py-0.5 rounded-full text-xs font-semibold font-bold ${
                         activeNoticeDetail.priority === 'URGENT'
                           ? 'bg-red-500/10 text-red-500 border border-red-500/20'
                           : 'bg-blue-500/10 text-blue-500 border border-blue-500/20'
@@ -9154,7 +9154,7 @@ export const App: React.FC = () => {
                     >
                       {activeNoticeDetail.priority === 'URGENT' ? 'জরুরি নোটিশ' : 'সাধারণ বিজ্ঞপ্তি'}
                     </span>
-                    <span className="text-[11px] text-[var(--muted-foreground)] flex items-center gap-1">
+                    <span className="text-xs font-medium text-[var(--muted-foreground)] flex items-center gap-1">
                       <Clock className="w-3 h-3" />
                       {activeNoticeDetail.createdAt}
                     </span>
@@ -9175,19 +9175,19 @@ export const App: React.FC = () => {
                 <h3 className="text-base font-bold text-[var(--foreground)] leading-snug">
                   {activeNoticeDetail.title}
                 </h3>
-                <div className="mt-2 p-2 rounded-xl bg-[var(--background)] border border-[var(--border)] text-[11px]">
+                <div className="mt-2 p-2 rounded-xl bg-[var(--background)] border border-[var(--border)] text-xs font-medium">
                   <span className="text-[var(--muted-foreground)] font-medium">প্রেরণকৃত আওতাভুক্ত বিভাগসমূহ: </span>
                   <span className="font-bold text-[var(--primary)]">{activeNoticeDetail.targetDeptNames}</span>
                 </div>
               </div>
 
-              <div className="p-4 rounded-2xl bg-[var(--background)]/60 border border-[var(--border)] text-xs text-[var(--foreground)] leading-relaxed whitespace-pre-line">
+              <div className="p-4 rounded-xl bg-[var(--background)]/60 border border-[var(--border)] text-xs text-[var(--foreground)] leading-relaxed whitespace-pre-line">
                 {activeNoticeDetail.content}
               </div>
 
-              <div className="pt-3 border-t border-[var(--border)] flex items-center justify-between text-[11px] text-[var(--muted-foreground)]">
+              <div className="pt-3 border-t border-[var(--border)] flex items-center justify-between text-xs font-medium text-[var(--muted-foreground)]">
                 <span className="flex items-center gap-1.5 font-medium">
-                  <ShieldCheck className="w-3.5 h-3.5 text-emerald-500" />
+                  <ShieldCheck className="w-3.5 h-3.5 text-emerald-700 dark:text-emerald-400 font-bold" />
                   ডিজিটাল সিলমোহর: {activeNoticeDetail.sender}
                 </span>
                 <button
@@ -9206,10 +9206,10 @@ export const App: React.FC = () => {
       {/* 3. Add Policy Rule Modal */}
       {showAddRuleModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-in fade-in duration-200">
-          <div className="bg-[var(--card)] border border-[var(--border)] rounded-3xl p-6 max-w-md w-full shadow-2xl relative">
+          <div className="bg-[var(--card)] border border-[var(--border)] rounded-xl p-6 max-w-md w-full shadow-2xl relative">
             <div className="flex items-center justify-between pb-3 border-b border-[var(--border)] mb-4">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-2xl bg-violet-500/10 text-violet-500 flex items-center justify-center">
+                <div className="w-10 h-10 rounded-xl bg-violet-500/10 text-violet-500 flex items-center justify-center">
                   <Scale className="w-5 h-5" />
                 </div>
                 <div>
@@ -9310,10 +9310,10 @@ export const App: React.FC = () => {
       {/* 4. Grant Staff Permission Modal */}
       {showGrantPermissionModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-in fade-in duration-200">
-          <div className="bg-[var(--card)] border border-[var(--border)] rounded-3xl p-6 max-w-md w-full shadow-2xl relative">
+          <div className="bg-[var(--card)] border border-[var(--border)] rounded-xl p-6 max-w-md w-full shadow-2xl relative">
             <div className="flex items-center justify-between pb-3 border-b border-[var(--border)] mb-4">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-2xl bg-emerald-500/10 text-emerald-500 flex items-center justify-center">
+                <div className="w-10 h-10 rounded-xl bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 font-bold flex items-center justify-center">
                   <Key className="w-5 h-5" />
                 </div>
                 <div>
@@ -9413,7 +9413,7 @@ export const App: React.FC = () => {
       {/* 5. Thermal POS Receipt Modal (80mm/58mm Layout) */}
       {activeThermalReceipt && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-in fade-in duration-200">
-          <div className="bg-white text-zinc-900 border border-zinc-300 rounded-2xl max-w-sm w-full p-5 shadow-2xl relative font-mono text-xs">
+          <div className="bg-white text-zinc-900 border border-zinc-300 rounded-xl max-w-sm w-full p-5 shadow-2xl relative font-mono text-xs">
             <div className="flex items-center justify-between pb-2 border-b border-zinc-200 mb-3">
               <div className="flex items-center gap-1.5 font-sans font-bold text-zinc-700">
                 <Receipt className="w-4 h-4 text-emerald-600" />
@@ -9422,7 +9422,7 @@ export const App: React.FC = () => {
               <button
                 type="button"
                 onClick={() => setActiveThermalReceipt(null)}
-                className="w-7 h-7 rounded-full bg-zinc-100 flex items-center justify-center text-zinc-500 hover:text-zinc-800 transition"
+                className="w-7 h-7 rounded-full bg-zinc-100 flex items-center justify-center text-[var(--muted-foreground)] hover:text-zinc-800 transition"
               >
                 <X className="w-3.5 h-3.5" />
               </button>
@@ -9430,16 +9430,16 @@ export const App: React.FC = () => {
 
             <div className="bg-zinc-50 p-4 rounded-xl border border-dashed border-zinc-300 space-y-2.5">
               <div className="text-center space-y-0.5">
-                <p className="text-[11px] font-bold tracking-widest text-zinc-600">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</p>
+                <p className="text-xs font-medium font-bold tracking-widest text-zinc-600">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</p>
                 <h3 className="font-bold text-sm tracking-tight text-zinc-900 font-sans">دار العلوم الإسلامية</h3>
                 <h4 className="font-bold text-xs font-sans">দারুল উলুম আল-ইসলামিয়া মাদরাসা</h4>
-                <p className="text-[10px] text-zinc-500">জামিয়া ক্যাম্পাস, ঢাকা-১২০৪ | ফোন: ০১৭১১-০০২২৩৩</p>
-                <div className="border-t border-dashed border-zinc-400 my-1 pt-1 font-bold text-[11px] text-emerald-800">
+                <p className="text-xs font-semibold text-[var(--muted-foreground)]">জামিয়া ক্যাম্পাস, ঢাকা-১২০৪ | ফোন: ০১৭১১-০০২২৩৩</p>
+                <div className="border-t border-dashed border-zinc-400 my-1 pt-1 font-bold text-xs font-medium text-emerald-800">
                   *** ছাত্র ফি আদায় রশিদ ***
                 </div>
               </div>
 
-              <div className="text-[11px] space-y-1 pt-1 border-t border-dashed border-zinc-300">
+              <div className="text-xs font-medium space-y-1 pt-1 border-t border-dashed border-zinc-300">
                 <div className="flex justify-between">
                   <span className="text-zinc-600">রসিদ নং:</span>
                   <span className="font-bold">{activeThermalReceipt.receiptNo}</span>
@@ -9466,7 +9466,7 @@ export const App: React.FC = () => {
                 </div>
               </div>
 
-              <div className="border-t border-b border-dashed border-zinc-400 py-1.5 my-1 text-[11px]">
+              <div className="border-t border-b border-dashed border-zinc-400 py-1.5 my-1 text-xs font-medium">
                 <div className="flex justify-between font-bold border-b border-zinc-200 pb-1 mb-1">
                   <span>বিবরণ</span>
                   <span>টাকা</span>
@@ -9483,7 +9483,7 @@ export const App: React.FC = () => {
                 )}
               </div>
 
-              <div className="text-[11px] space-y-1">
+              <div className="text-xs font-medium space-y-1">
                 <div className="flex justify-between text-xs font-bold">
                   <span>সর্বমোট পরিশোধ:</span>
                   <span className="text-emerald-700 font-bold font-mono">৳{activeThermalReceipt.netPaid.toLocaleString('bn-BD')}</span>
@@ -9517,13 +9517,13 @@ export const App: React.FC = () => {
               </div>
 
               <div className="text-center pt-2 space-y-1 border-t border-dashed border-zinc-300">
-                <div className="tracking-widest font-mono text-[9px] text-zinc-400 select-none">
+                <div className="tracking-widest font-mono text-[9px] text-[var(--subtle-foreground)] select-none">
                   ||| |||| | ||||| || |||||| | ||||| |||
                 </div>
-                <p className="text-[10px] text-zinc-600 italic font-sans">
+                <p className="text-xs font-semibold text-zinc-600 italic font-sans">
                   "ইলমে দ্বীনের সহযোগিতায় আপনাদের শুকরিয়া। জাযাকাল্লাহু খাইরান।"
                 </p>
-                <p className="text-[9px] text-zinc-400 font-sans">সফটওয়্যার প্রস্তুতকারক: মাদরাসা ম্যানেজমেন্ট সিস্টেম</p>
+                <p className="text-[9px] text-[var(--subtle-foreground)] font-sans">সফটওয়্যার প্রস্তুতকারক: মাদরাসা ম্যানেজমেন্ট সিস্টেম</p>
               </div>
             </div>
 
@@ -9551,7 +9551,7 @@ export const App: React.FC = () => {
       {/* 6. Official Madrasa Pad Receipt Modal (A4/A5 Layout) */}
       {activeOfficialReceipt && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-in fade-in duration-200">
-          <div className="bg-white text-zinc-900 border border-zinc-300 rounded-3xl max-w-2xl w-full p-6 sm:p-8 shadow-2xl relative font-sans">
+          <div className="bg-white text-zinc-900 border border-zinc-300 rounded-xl max-w-2xl w-full p-6 sm:p-8 shadow-2xl relative font-sans">
             <div className="flex items-center justify-between pb-3 border-b border-zinc-200 mb-4">
               <div className="flex items-center gap-2">
                 <div className="w-8 h-8 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center">
@@ -9559,26 +9559,26 @@ export const App: React.FC = () => {
                 </div>
                 <div>
                   <h3 className="text-sm font-bold text-zinc-800">অফিসিয়াল মাদরাসা প্যাড রসিদ ভাউচার (A4/A5)</h3>
-                  <p className="text-[11px] text-zinc-500">মাদরাসার প্রাতিষ্ঠানিক হিসাব ভাউচার কপি</p>
+                  <p className="text-xs font-medium text-[var(--muted-foreground)]">মাদরাসার প্রাতিষ্ঠানিক হিসাব ভাউচার কপি</p>
                 </div>
               </div>
               <button
                 type="button"
                 onClick={() => setActiveOfficialReceipt(null)}
-                className="w-8 h-8 rounded-full bg-zinc-100 flex items-center justify-center text-zinc-500 hover:text-zinc-800 transition"
+                className="w-8 h-8 rounded-full bg-zinc-100 flex items-center justify-center text-[var(--muted-foreground)] hover:text-zinc-800 transition"
               >
                 <X className="w-4 h-4" />
               </button>
             </div>
 
             {/* Printable Official Voucher Pad */}
-            <div className="border-2 border-emerald-800/80 rounded-2xl p-6 bg-amber-50/20 relative space-y-4">
+            <div className="border-2 border-emerald-800/80 rounded-xl p-6 bg-amber-50/20 relative space-y-4">
               {/* Header */}
               <div className="text-center space-y-1 pb-3 border-b-2 border-emerald-800/40">
                 <p className="text-xs font-bold text-emerald-900 font-serif">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</p>
                 <h2 className="text-xl font-black text-emerald-950 tracking-wide">দারুল উলুম আল-ইসলামিয়া মাদরাসা ও এতিমখানা</h2>
                 <p className="text-xs font-semibold text-zinc-700">DARUL ULOOM AL-ISLAMIA MADRASA & ORPHANAGE</p>
-                <p className="text-[11px] text-zinc-600">প্রধান কার্যালয়: জামিয়া ক্যাম্পাস রোড, মিরপুর, ঢাকা-১২১৬ | স্থাপিত: ১৯৯৮ ইং</p>
+                <p className="text-xs font-medium text-zinc-600">প্রধান কার্যালয়: জামিয়া ক্যাম্পাস রোড, মিরপুর, ঢাকা-১২১৬ | স্থাপিত: ১৯৯৮ ইং</p>
                 <div className="inline-block mt-1 px-4 py-0.5 rounded-full bg-emerald-800 text-white font-bold text-xs">
                   ফি আদায় ও জমা রসিদ ভাউচার
                 </div>
@@ -9587,15 +9587,15 @@ export const App: React.FC = () => {
               {/* Meta Row */}
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 text-xs bg-white p-3 rounded-xl border border-zinc-200">
                 <div>
-                  <span className="text-zinc-500 block text-[10px]">ভাউচার / রসিদ নং:</span>
+                  <span className="text-[var(--muted-foreground)] block text-xs font-semibold">ভাউচার / রসিদ নং:</span>
                   <span className="font-bold text-zinc-900 font-mono">{activeOfficialReceipt.receiptNo}</span>
                 </div>
                 <div>
-                  <span className="text-zinc-500 block text-[10px]">তারিখ ও সময়:</span>
+                  <span className="text-[var(--muted-foreground)] block text-xs font-semibold">তারিখ ও সময়:</span>
                   <span className="font-semibold text-zinc-800">{activeOfficialReceipt.date}</span>
                 </div>
                 <div>
-                  <span className="text-zinc-500 block text-[10px]">হিসাব তহবিল:</span>
+                  <span className="text-[var(--muted-foreground)] block text-xs font-semibold">হিসাব তহবিল:</span>
                   <span className="font-bold text-emerald-800">{activeOfficialReceipt.fundNameBn}</span>
                 </div>
               </div>
@@ -9603,23 +9603,23 @@ export const App: React.FC = () => {
               {/* Student Details Grid */}
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs bg-white p-3 rounded-xl border border-zinc-200">
                 <div className="col-span-2">
-                  <span className="text-zinc-500 block text-[10px]">শিক্ষার্থীর পূর্ণ নাম:</span>
+                  <span className="text-[var(--muted-foreground)] block text-xs font-semibold">শিক্ষার্থীর পূর্ণ নাম:</span>
                   <span className="font-bold text-zinc-900 text-sm">{activeOfficialReceipt.studentNameBn}</span>
                 </div>
                 <div>
-                  <span className="text-zinc-500 block text-[10px]">স্টুডেন্ট আইডি:</span>
+                  <span className="text-[var(--muted-foreground)] block text-xs font-semibold">স্টুডেন্ট আইডি:</span>
                   <span className="font-mono font-semibold">{activeOfficialReceipt.studentId}</span>
                 </div>
                 <div>
-                  <span className="text-zinc-500 block text-[10px]">রোল নম্বর:</span>
+                  <span className="text-[var(--muted-foreground)] block text-xs font-semibold">রোল নম্বর:</span>
                   <span className="font-bold text-zinc-800">{activeOfficialReceipt.studentRoll}</span>
                 </div>
                 <div className="col-span-2">
-                  <span className="text-zinc-500 block text-[10px]">বিভাগ ও শ্রেণি/জামাত:</span>
+                  <span className="text-[var(--muted-foreground)] block text-xs font-semibold">বিভাগ ও শ্রেণি/জামাত:</span>
                   <span className="font-semibold text-zinc-800">{activeOfficialReceipt.classNameBn}</span>
                 </div>
                 <div className="col-span-2">
-                  <span className="text-zinc-500 block text-[10px]">পরিশোধের মাধ্যম:</span>
+                  <span className="text-[var(--muted-foreground)] block text-xs font-semibold">পরিশোধের মাধ্যম:</span>
                   <span className="font-semibold text-zinc-800">
                     {activeOfficialReceipt.paymentMethod === 'CASH'
                       ? 'কাউন্টার নগদ ক্যাশ'
@@ -9647,7 +9647,7 @@ export const App: React.FC = () => {
                   </thead>
                   <tbody className="bg-white divide-y divide-zinc-200">
                     <tr>
-                      <td className="py-2.5 px-3 text-center font-bold text-zinc-500">০১</td>
+                      <td className="py-2.5 px-3 text-center font-bold text-[var(--muted-foreground)]">০১</td>
                       <td className="py-2.5 px-3 font-bold text-zinc-800">{activeOfficialReceipt.feeTypeBn}</td>
                       <td className="py-2.5 px-3 text-zinc-600">{activeOfficialReceipt.fundNameBn}</td>
                       <td className="py-2.5 px-3 text-right font-mono">৳{activeOfficialReceipt.amount.toLocaleString('bn-BD')}</td>
@@ -9682,19 +9682,19 @@ export const App: React.FC = () => {
                   <div className="border-t border-zinc-400 pt-1.5 font-bold text-zinc-800">
                     {activeOfficialReceipt.receivedBy || 'মাওলানা কাসেম (হিসাবরক্ষক)'}
                   </div>
-                  <span className="text-[10px] text-zinc-500">আদায়কারীর স্বাক্ষর ও তারিখ</span>
+                  <span className="text-xs font-semibold text-[var(--muted-foreground)]">আদায়কারীর স্বাক্ষর ও তারিখ</span>
                 </div>
                 <div>
                   <div className="border-t border-zinc-400 pt-1.5 font-bold text-zinc-800">
                     মুফতী মনসুরুল হক
                   </div>
-                  <span className="text-[10px] text-zinc-500">হিসাব নিরীক্ষকের স্বাক্ষর</span>
+                  <span className="text-xs font-semibold text-[var(--muted-foreground)]">হিসাব নিরীক্ষকের স্বাক্ষর</span>
                 </div>
                 <div>
                   <div className="border-t border-zinc-400 pt-1.5 font-bold text-emerald-900">
                     আল্লামা মুহতামিম সাহেব
                   </div>
-                  <span className="text-[10px] text-zinc-500">মুহতামিম / প্রাতিষ্ঠানিক সিল</span>
+                  <span className="text-xs font-semibold text-[var(--muted-foreground)]">মুহতামিম / প্রাতিষ্ঠানিক সিল</span>
                 </div>
               </div>
             </div>
@@ -9723,7 +9723,7 @@ export const App: React.FC = () => {
       {/* 7. Teacher & Staff Salary Slip Modal */}
       {activeSalarySlip && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-in fade-in duration-200">
-          <div className="bg-white text-zinc-900 border border-zinc-300 rounded-3xl max-w-lg w-full p-6 shadow-2xl relative font-sans">
+          <div className="bg-white text-zinc-900 border border-zinc-300 rounded-xl max-w-lg w-full p-6 shadow-2xl relative font-sans">
             <div className="flex items-center justify-between pb-3 border-b border-zinc-200 mb-4">
               <div className="flex items-center gap-2">
                 <div className="w-8 h-8 rounded-xl bg-purple-100 text-purple-700 flex items-center justify-center">
@@ -9731,19 +9731,19 @@ export const App: React.FC = () => {
                 </div>
                 <div>
                   <h3 className="text-sm font-bold text-zinc-800">আসাতায়ে কেরাম ও স্টাফ বেতন স্লিপ</h3>
-                  <p className="text-[11px] text-zinc-500">মাদরাসা শিক্ষক ও কর্মচারী মাসিক সম্মানী রশিদ</p>
+                  <p className="text-xs font-medium text-[var(--muted-foreground)]">মাদরাসা শিক্ষক ও কর্মচারী মাসিক সম্মানী রশিদ</p>
                 </div>
               </div>
               <button
                 type="button"
                 onClick={() => setActiveSalarySlip(null)}
-                className="w-8 h-8 rounded-full bg-zinc-100 flex items-center justify-center text-zinc-500 hover:text-zinc-800 transition"
+                className="w-8 h-8 rounded-full bg-zinc-100 flex items-center justify-center text-[var(--muted-foreground)] hover:text-zinc-800 transition"
               >
                 <X className="w-4 h-4" />
               </button>
             </div>
 
-            <div className="border border-purple-200 bg-purple-50/20 rounded-2xl p-5 space-y-4">
+            <div className="border border-purple-200 bg-purple-50/20 rounded-xl p-5 space-y-4">
               <div className="text-center space-y-0.5 pb-2 border-b border-purple-200">
                 <h4 className="font-bold text-base text-purple-950">দারুল উলুম আল-ইসলামিয়া মাদরাসা</h4>
                 <p className="text-xs text-zinc-600">মাসিক শিক্ষক ও কর্মচারী বেতন ভাউচার স্লিপ</p>
@@ -9754,19 +9754,19 @@ export const App: React.FC = () => {
 
               <div className="grid grid-cols-2 gap-2 text-xs bg-white p-3 rounded-xl border border-zinc-200">
                 <div>
-                  <span className="text-zinc-500 block text-[10px]">শিক্ষক / কর্মচারীর নাম:</span>
+                  <span className="text-[var(--muted-foreground)] block text-xs font-semibold">শিক্ষক / কর্মচারীর নাম:</span>
                   <span className="font-bold text-zinc-900 text-sm">{activeSalarySlip.teacherNameBn}</span>
                 </div>
                 <div>
-                  <span className="text-zinc-500 block text-[10px]">আইডি ও পদবি:</span>
+                  <span className="text-[var(--muted-foreground)] block text-xs font-semibold">আইডি ও পদবি:</span>
                   <span className="font-semibold text-zinc-800">{activeSalarySlip.designation} ({activeSalarySlip.teacherId})</span>
                 </div>
                 <div>
-                  <span className="text-zinc-500 block text-[10px]">পরিশোধ পদ্ধতি:</span>
+                  <span className="text-[var(--muted-foreground)] block text-xs font-semibold">পরিশোধ পদ্ধতি:</span>
                   <span className="font-semibold text-zinc-800">{activeSalarySlip.paymentMethod || 'নগদ ক্যাশ'}</span>
                 </div>
                 <div>
-                  <span className="text-zinc-500 block text-[10px]">বিতরণ তারিখ ও স্ট্যাটাস:</span>
+                  <span className="text-[var(--muted-foreground)] block text-xs font-semibold">বিতরণ তারিখ ও স্ট্যাটাস:</span>
                   <span className={`font-bold ${activeSalarySlip.status === 'DISBURSED' ? 'text-emerald-700' : 'text-amber-700'}`}>
                     {activeSalarySlip.status === 'DISBURSED' ? `পরিশোধিত (${activeSalarySlip.paidDate})` : 'অনুমোদিত (অপেক্ষমান)'}
                   </span>
@@ -9811,7 +9811,7 @@ export const App: React.FC = () => {
                 </table>
               </div>
 
-              <div className="pt-6 grid grid-cols-3 gap-2 text-center text-[11px]">
+              <div className="pt-6 grid grid-cols-3 gap-2 text-center text-xs font-medium">
                 <div>
                   <div className="border-t border-zinc-300 pt-1 text-zinc-700 font-medium">শিক্ষকের স্বাক্ষর</div>
                 </div>
@@ -9848,10 +9848,10 @@ export const App: React.FC = () => {
       {/* 8. Add Expense Voucher Modal */}
       {showAddExpenseModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-in fade-in duration-200">
-          <div className="bg-[var(--card)] border border-[var(--border)] rounded-3xl p-6 max-w-lg w-full shadow-2xl relative font-sans">
+          <div className="bg-[var(--card)] border border-[var(--border)] rounded-xl p-6 max-w-lg w-full shadow-2xl relative font-sans">
             <div className="flex items-center justify-between pb-3 border-b border-[var(--border)] mb-4">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-2xl bg-amber-500/10 text-amber-500 flex items-center justify-center">
+                <div className="w-10 h-10 rounded-xl bg-amber-500/10 text-amber-800 dark:text-amber-400 font-bold flex items-center justify-center">
                   <ShoppingBag className="w-5 h-5" />
                 </div>
                 <div>
@@ -9918,7 +9918,7 @@ export const App: React.FC = () => {
               </div>
 
               {newExpenseAmount >= 10000 && (
-                <div className="p-2.5 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-500 text-[11px] flex items-center gap-2">
+                <div className="p-2.5 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-800 dark:text-amber-400 font-bold text-xs font-medium flex items-center gap-2">
                   <AlertTriangle className="w-4 h-4 shrink-0" />
                   <span>
                     ১০,০০০ টাকার অধিক ব্যয় হওয়ায় এটি সরাসরি <strong>মুহতামিম সাহেবের অনুমোদন বোর্ডে</strong> দাখিল হবে।
@@ -9994,10 +9994,10 @@ export const App: React.FC = () => {
       {/* 9. Add Donation Modal */}
       {showAddDonationModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-in fade-in duration-200">
-          <div className="bg-[var(--card)] border border-[var(--border)] rounded-3xl p-6 max-w-lg w-full shadow-2xl relative font-sans">
+          <div className="bg-[var(--card)] border border-[var(--border)] rounded-xl p-6 max-w-lg w-full shadow-2xl relative font-sans">
             <div className="flex items-center justify-between pb-3 border-b border-[var(--border)] mb-4">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-2xl bg-teal-500/10 text-teal-500 flex items-center justify-center">
+                <div className="w-10 h-10 rounded-xl bg-teal-500/10 text-teal-500 flex items-center justify-center">
                   <Coins className="w-5 h-5" />
                 </div>
                 <div>
@@ -10147,10 +10147,10 @@ export const App: React.FC = () => {
       {/* 8. Approval Threshold Configuration Modal (মুহতামিম অনুমোদন সীমা কনফিগারেশন) */}
       {showThresholdConfigModal && (
         <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 animate-in fade-in">
-          <div className="bg-[var(--card)] border border-[var(--border)] rounded-3xl max-w-md w-full p-6 shadow-2xl space-y-4">
+          <div className="bg-[var(--card)] border border-[var(--border)] rounded-xl max-w-md w-full p-6 shadow-2xl space-y-4">
             <div className="flex items-center justify-between pb-3 border-b border-[var(--border)]">
               <div className="flex items-center gap-2">
-                <Settings className="w-5 h-5 text-amber-500" />
+                <Settings className="w-5 h-5 text-amber-800 dark:text-amber-400 font-bold" />
                 <h3 className="font-bold text-sm text-[var(--foreground)]">মুহতামিম অনুমোদন সীমা নির্ধারণ</h3>
               </div>
               <button
@@ -10177,14 +10177,14 @@ export const App: React.FC = () => {
                   step={500}
                   value={tempThresholdInput}
                   onChange={(e) => setTempThresholdInput(e.target.value)}
-                  className="w-full bg-[var(--background)] border border-[var(--border)] rounded-xl px-3 py-2.5 text-base font-mono font-black text-amber-500 focus:outline-none focus:border-amber-500"
+                  className="w-full bg-[var(--background)] border border-[var(--border)] rounded-xl px-3 py-2.5 text-base font-mono font-black text-amber-800 dark:text-amber-400 font-bold focus:outline-none focus:border-amber-500"
                 />
-                <span className="block text-[10.5px] text-[var(--muted-foreground)] mt-1">
+                <span className="block text-xs font-semibold text-[var(--muted-foreground)] mt-1">
                   বর্তমান সীমা: ৳{approvalThresholdLimit.toLocaleString('bn-BD')} (ডিফল্ট: ৳১০,০০০)
                 </span>
               </div>
 
-              <div className="p-3 rounded-xl bg-amber-500/10 border border-amber-500/20 text-amber-500 text-[11px] space-y-1">
+              <div className="p-3 rounded-xl bg-amber-500/10 border border-amber-500/20 text-amber-800 dark:text-amber-400 font-bold text-xs font-medium space-y-1">
                 <div className="font-bold flex items-center gap-1.5">
                   <ShieldCheck className="w-3.5 h-3.5" />
                   <span>দ্বৈত মেকার-চেকার আর্থিক নিরাপত্তা:</span>
@@ -10217,22 +10217,22 @@ export const App: React.FC = () => {
       {/* 9. Shariah Fund Ledger Drilldown Modal (তহবিল ভিত্তিক খতিয়ান ও লেনদেন) */}
       {activeLedgerFund && (
         <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 animate-in fade-in">
-          <div className="bg-[var(--card)] border border-[var(--border)] rounded-3xl max-w-3xl w-full p-6 shadow-2xl space-y-4 max-h-[90vh] flex flex-col font-sans">
+          <div className="bg-[var(--card)] border border-[var(--border)] rounded-xl max-w-3xl w-full p-6 shadow-2xl space-y-4 max-h-[90vh] flex flex-col font-sans">
             <div className="flex items-center justify-between pb-3 border-b border-[var(--border)]">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-2xl bg-emerald-500/10 text-emerald-500 flex items-center justify-center shrink-0">
+                <div className="w-10 h-10 rounded-xl bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 font-bold flex items-center justify-center shrink-0">
                   <Wallet className="w-5 h-5" />
                 </div>
                 <div>
                   <div className="flex items-center gap-2">
-                    <span className="text-[10px] font-bold font-mono px-2 py-0.5 rounded bg-[var(--background)] border border-[var(--border)] text-[var(--muted-foreground)]">
+                    <span className="text-xs font-semibold font-bold font-mono px-2 py-0.5 rounded bg-[var(--background)] border border-[var(--border)] text-[var(--muted-foreground)]">
                       {activeLedgerFund.code}
                     </span>
                     <h3 className="font-bold text-base text-[var(--foreground)]">
                       {activeLedgerFund.nameBn}
                     </h3>
                     {activeLedgerFund.isRestricted && (
-                      <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-teal-500/10 text-teal-600 border border-teal-500/30">
+                      <span className="text-xs font-semibold font-bold px-2 py-0.5 rounded-full bg-teal-500/10 text-teal-600 border border-teal-500/30">
                         ১০০% শরীয়াহ রেস্ট্রিক্টেড
                       </span>
                     )}
@@ -10303,9 +10303,9 @@ export const App: React.FC = () => {
 
               return (
                 <>
-                  <div className="flex flex-wrap items-center justify-between gap-2 p-2 rounded-2xl bg-[var(--background)] border border-[var(--border)] text-xs">
+                  <div className="flex flex-wrap items-center justify-between gap-2 p-2 rounded-xl bg-[var(--background)] border border-[var(--border)] text-xs">
                     <div className="flex items-center gap-1.5 flex-wrap">
-                      <span className="text-[11px] font-semibold text-[var(--muted-foreground)] px-1">সময়সীমা:</span>
+                      <span className="text-xs font-medium font-semibold text-[var(--muted-foreground)] px-1">সময়সীমা:</span>
                       {(['ALL', 'TODAY', 'MONTH', 'CUSTOM'] as const).map((r) => (
                         <button
                           key={r}
@@ -10327,7 +10327,7 @@ export const App: React.FC = () => {
 
                     {ledgerFilterRange === 'MONTH' && (
                       <div className="flex items-center gap-2">
-                        <span className="text-[11px] text-[var(--muted-foreground)]">মাস নির্বাচন:</span>
+                        <span className="text-xs font-medium text-[var(--muted-foreground)]">মাস নির্বাচন:</span>
                         <select
                           value={ledgerSelectedMonth}
                           onChange={(e) => setLedgerSelectedMonth(e.target.value)}
@@ -10368,21 +10368,21 @@ export const App: React.FC = () => {
                   </div>
 
                   {/* Summary Bar for Filtered Period */}
-                  <div className="grid grid-cols-3 gap-3 p-2.5 rounded-2xl bg-[var(--background)]/80 border border-[var(--border)] text-xs">
+                  <div className="grid grid-cols-3 gap-3 p-2.5 rounded-xl bg-[var(--background)]/80 border border-[var(--border)] text-xs">
                     <div>
-                      <span className="text-[10px] text-[var(--muted-foreground)] block">নির্বাচিত সময়ে জমা (+):</span>
+                      <span className="text-xs font-semibold text-[var(--muted-foreground)] block">নির্বাচিত সময়ে জমা (+):</span>
                       <span className="text-sm font-extrabold text-emerald-600 font-mono">
                         +৳{periodIn.toLocaleString('bn-BD')}
                       </span>
                     </div>
                     <div>
-                      <span className="text-[10px] text-[var(--muted-foreground)] block">নির্বাচিত সময়ে ব্যয় (-):</span>
+                      <span className="text-xs font-semibold text-[var(--muted-foreground)] block">নির্বাচিত সময়ে ব্যয় (-):</span>
                       <span className="text-sm font-extrabold text-rose-600 font-mono">
                         -৳{periodOut.toLocaleString('bn-BD')}
                       </span>
                     </div>
                     <div>
-                      <span className="text-[10px] text-[var(--muted-foreground)] block">সময়ের নিট উদ্বৃত্ত (=):</span>
+                      <span className="text-xs font-semibold text-[var(--muted-foreground)] block">সময়ের নিট উদ্বৃত্ত (=):</span>
                       <span className={`text-sm font-black font-mono ${periodNet >= 0 ? 'text-blue-600' : 'text-amber-600'}`}>
                         ৳{periodNet.toLocaleString('bn-BD')}
                       </span>
@@ -10390,7 +10390,7 @@ export const App: React.FC = () => {
                   </div>
 
                   {/* Ledger Transactions Table */}
-                  <div className="overflow-y-auto flex-1 border border-[var(--border)] rounded-2xl">
+                  <div className="overflow-y-auto flex-1 border border-[var(--border)] rounded-xl">
                     <table className="w-full text-left text-xs">
                       <thead className="sticky top-0 bg-[var(--card)] border-b border-[var(--border)] text-[var(--muted-foreground)] font-semibold shadow-xs">
                         <tr>
@@ -10415,14 +10415,14 @@ export const App: React.FC = () => {
                           <tr key={p.id} className="hover:bg-[var(--background)]/50">
                             <td className="p-3 text-[var(--muted-foreground)]">{p.date}</td>
                             <td className="p-3">
-                              <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-500/10 text-emerald-600 border border-emerald-500/20">
+                              <span className="px-2 py-0.5 rounded-full text-xs font-semibold font-bold bg-emerald-500/10 text-emerald-600 border border-emerald-500/20">
                                 আদায় (ফি)
                               </span>
                             </td>
                             <td className="p-3 font-mono font-bold text-[var(--foreground)]">{p.receiptNo}</td>
                             <td className="p-3">
                               <div className="font-semibold text-[var(--foreground)]">{p.studentNameBn} ({p.studentRoll})</div>
-                              <div className="text-[10.5px] text-[var(--muted-foreground)]">{p.feeTypeBn}</div>
+                              <div className="text-xs font-semibold text-[var(--muted-foreground)]">{p.feeTypeBn}</div>
                             </td>
                             <td className="p-3 text-right font-mono font-bold text-emerald-600">
                               +৳{p.netPaid.toLocaleString('bn-BD')}
@@ -10436,14 +10436,14 @@ export const App: React.FC = () => {
                           <tr key={d.id} className="hover:bg-[var(--background)]/50">
                             <td className="p-3 text-[var(--muted-foreground)]">{d.date}</td>
                             <td className="p-3">
-                              <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-teal-500/10 text-teal-600 border border-teal-500/20">
+                              <span className="px-2 py-0.5 rounded-full text-xs font-semibold font-bold bg-teal-500/10 text-teal-600 border border-teal-500/20">
                                 অনুদান
                               </span>
                             </td>
                             <td className="p-3 font-mono font-bold text-[var(--foreground)]">{d.receiptNo}</td>
                             <td className="p-3">
                               <div className="font-semibold text-[var(--foreground)]">{d.donorName}</div>
-                              <div className="text-[10.5px] text-[var(--muted-foreground)]">{d.notes}</div>
+                              <div className="text-xs font-semibold text-[var(--muted-foreground)]">{d.notes}</div>
                             </td>
                             <td className="p-3 text-right font-mono font-bold text-teal-600">
                               +৳{d.amount.toLocaleString('bn-BD')}
@@ -10457,14 +10457,14 @@ export const App: React.FC = () => {
                           <tr key={e.id} className="hover:bg-[var(--background)]/50">
                             <td className="p-3 text-[var(--muted-foreground)]">{e.date}</td>
                             <td className="p-3">
-                              <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-rose-500/10 text-rose-600 border border-rose-500/20">
+                              <span className="px-2 py-0.5 rounded-full text-xs font-semibold font-bold bg-rose-500/10 text-rose-600 border border-rose-500/20">
                                 ব্যয় / খরচ
                               </span>
                             </td>
                             <td className="p-3 font-mono font-bold text-[var(--foreground)]">{e.voucherNo}</td>
                             <td className="p-3">
                               <div className="font-semibold text-[var(--foreground)]">{e.title}</div>
-                              <div className="text-[10.5px] text-[var(--muted-foreground)]">{e.memoDetails}</div>
+                              <div className="text-xs font-semibold text-[var(--muted-foreground)]">{e.memoDetails}</div>
                             </td>
                             <td className="p-3 text-right text-[var(--muted-foreground)] font-mono">—</td>
                             <td className="p-3 text-right font-mono font-bold text-rose-600">
@@ -10480,16 +10480,16 @@ export const App: React.FC = () => {
             })()}
 
             {/* Fund Balance Summary Footer */}
-            <div className="p-3.5 rounded-2xl bg-[var(--background)] border border-[var(--border)] flex flex-wrap items-center justify-between gap-4">
+            <div className="p-3.5 rounded-xl bg-[var(--background)] border border-[var(--border)] flex flex-wrap items-center justify-between gap-4">
               <div className="flex items-center gap-6">
                 <div>
-                  <span className="text-[10px] text-[var(--muted-foreground)] block">তহবিলের বর্তমান স্থিতি:</span>
+                  <span className="text-xs font-semibold text-[var(--muted-foreground)] block">তহবিলের বর্তমান স্থিতি:</span>
                   <span className="text-lg font-black text-emerald-600 font-mono">
                     ৳{activeLedgerFund.balance.toLocaleString('bn-BD')}
                   </span>
                 </div>
                 <div>
-                  <span className="text-[10px] text-[var(--muted-foreground)] block">শরীয়াহ স্ট্যাটাস:</span>
+                  <span className="text-xs font-semibold text-[var(--muted-foreground)] block">শরীয়াহ স্ট্যাটাস:</span>
                   <span className="text-xs font-bold text-[var(--foreground)]">
                     {activeLedgerFund.isRestricted ? '🔒 নির্দিষ্ট খাতে সীমাবদ্ধ' : '🔓 উন্মুক্ত পরিচালনা'}
                   </span>
@@ -10502,7 +10502,7 @@ export const App: React.FC = () => {
                   onClick={() => alert(`📄 "${activeLedgerFund.nameBn}" এর ব্যাংক ও খতিয়ান স্টেটমেন্ট PDF রফতানি সম্পন্ন হয়েছে!`)}
                   className="px-3.5 py-1.5 rounded-xl border border-[var(--border)] hover:bg-[var(--card)] text-xs font-semibold text-[var(--foreground)] flex items-center gap-1.5 transition shadow-xs cursor-pointer"
                 >
-                  <FileText className="w-3.5 h-3.5 text-rose-500" />
+                  <FileText className="w-3.5 h-3.5 text-rose-700 dark:text-rose-400 font-bold" />
                   <span>স্টেটমেন্ট PDF</span>
                 </button>
                 <button

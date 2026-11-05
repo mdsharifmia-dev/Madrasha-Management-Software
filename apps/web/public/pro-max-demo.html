@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Madrasha ERP — UI/UX Pro Max Redesign Demo</title>
+  <title>Madrasha ERP — UI/UX Pro Max Razor-Sharp Redesign</title>
   <!-- Google Fonts: Hind Siliguri (Bengali) + Plus Jakarta Sans + JetBrains Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@500;600;700&family=JetBrains+Mono:wght@500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
@@ -35,35 +35,37 @@
     }
   </script>
   <style>
-    /* CSS Variables for Strict Enterprise Design System */
+    /* CSS Variables for Strict Enterprise Design System (Anti-Blur, 100% Razor Sharp) */
     :root {
-      --bg-page: #f8fafc;
+      /* LIGHT MODE: High-Contrast, Deep Inks, Zero Washed-out Text */
+      --bg-page: #f1f5f9;
       --bg-surface: #ffffff;
-      --bg-surface-hover: #f1f5f9;
-      --border-subtle: #e2e8f0;
-      --border-strong: #cbd5e1;
-      --text-main: #0f172a;
-      --text-muted: #64748b;
-      --text-subtle: #94a3b8;
-      --primary: #0f766e;
+      --bg-surface-hover: #f8fafc;
+      --border-subtle: #cbd5e1;       /* Slate-300: Crisp 1px definition */
+      --border-strong: #94a3b8;       /* Slate-400 */
+      --text-main: #020617;          /* Slate-950: Solid black-slate */
+      --text-muted: #0f172a;         /* Slate-900: Jet-ink secondary text */
+      --text-subtle: #1e293b;        /* Slate-800: Solid, crisp secondary descriptions */
+      --primary: #0f766e;            /* Deep Teal 700 */
       --primary-hover: #115e59;
       --primary-light: #f0fdfa;
-      --accent-green: #16a34a;
-      --accent-green-bg: #f0fdf4;
-      --accent-red: #dc2626;
-      --accent-red-bg: #fef2f2;
-      --accent-amber: #d97706;
-      --accent-amber-bg: #fffbeb;
+      --accent-green: #15803d;       /* Green 700: Deep readable green */
+      --accent-green-bg: #dcfce7;
+      --accent-red: #b91c1c;         /* Red 700: Deep readable red */
+      --accent-red-bg: #fee2e2;
+      --accent-amber: #b45309;       /* Amber 700: Deep readable amber */
+      --accent-amber-bg: #fef3c7;
     }
     .dark {
+      /* DARK MODE: Deep Obsidian, Vivid Accents, Zero Glare */
       --bg-page: #0b0f19;
       --bg-surface: #111827;
       --bg-surface-hover: #1f2937;
       --border-subtle: #1f2937;
       --border-strong: #374151;
       --text-main: #f8fafc;
-      --text-muted: #94a3b8;
-      --text-subtle: #64748b;
+      --text-muted: #cbd5e1;
+      --text-subtle: #94a3b8;
       --primary: #14b8a6;
       --primary-hover: #2dd4bf;
       --primary-light: #134e4a33;
@@ -77,8 +79,10 @@
     body {
       background-color: var(--bg-page);
       color: var(--text-main);
-      font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+      font-weight: 500;
       -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      text-rendering: optimizeLegibility;
     }
     .tabular-numbers {
       font-feature-settings: "tnum";
@@ -86,46 +90,46 @@
     }
   </style>
 </head>
-<body class="min-h-screen flex flex-col transition-colors duration-200">
+<body class="min-h-screen flex flex-col transition-colors duration-150">
 
   <!-- TOP BAR: Enterprise Status & Mode Switch -->
-  <header class="h-14 border-b border-[var(--border-subtle)] bg-[var(--bg-surface)] px-4 sm:px-6 flex items-center justify-between sticky top-0 z-40">
+  <header class="h-14 border-b border-[var(--border-subtle)] bg-[var(--bg-surface)] px-4 sm:px-6 flex items-center justify-between sticky top-0 z-40 shadow-xs">
     <div class="flex items-center gap-3">
-      <div class="w-8 h-8 rounded-lg bg-brand-700 text-white flex items-center justify-center font-bold text-sm tracking-tight shadow-sm">
+      <div class="w-8 h-8 rounded-lg bg-teal-800 text-white flex items-center justify-center font-bold text-sm tracking-tight shadow-sm">
         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
       </div>
       <div>
         <div class="flex items-center gap-2">
-          <span class="font-bold text-sm tracking-tight">দারুল উলুম জামিয়া ইসলামিয়া</span>
-          <span class="px-2 py-0.5 rounded text-[11px] font-semibold bg-brand-500/10 text-brand-600 dark:text-brand-500 border border-brand-500/20">মুহতামিম প্যানেল</span>
+          <span class="font-bold text-sm tracking-tight text-[var(--text-main)]">দারুল উলুম জামিয়া ইসলামিয়া</span>
+          <span class="px-2 py-0.5 rounded text-[11px] font-bold bg-teal-100 text-teal-900 dark:bg-teal-900/40 dark:text-teal-300 border border-teal-300 dark:border-teal-700">মুহতামিম প্যানেল</span>
         </div>
-        <p class="text-[11px] text-[var(--text-muted)] font-mono leading-none mt-0.5">মাদ্রাসা কোড: DUL-2026-081 • ঢাকা বিভাগ</p>
+        <p class="text-[11px] text-[var(--text-subtle)] font-mono font-medium leading-none mt-0.5">মাদ্রাসা কোড: DUL-2026-081 • ঢাকা বিভাগ</p>
       </div>
     </div>
 
     <!-- Right Controls: Anti-AI Badge + Theme Switcher -->
     <div class="flex items-center gap-3">
-      <span class="hidden md:inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-xs font-medium bg-emerald-500/10 text-emerald-500 border border-emerald-500/20">
-        <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
-        UI/UX Pro Max Architecture Active
+      <span class="hidden md:inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-xs font-bold bg-emerald-100 text-emerald-900 dark:bg-emerald-950/60 dark:text-emerald-400 border border-emerald-300 dark:border-emerald-800">
+        <span class="w-2 h-2 rounded-full bg-emerald-600 dark:bg-emerald-400 animate-pulse"></span>
+        Ultra-Crisp Contrast (WCAG AAA)
       </span>
       
       <!-- Theme Switcher Button -->
-      <button id="themeToggleBtn" onclick="toggleTheme()" class="px-3 py-1.5 rounded-lg border border-[var(--border-subtle)] hover:bg-[var(--bg-surface-hover)] text-xs font-semibold flex items-center gap-2 transition cursor-pointer">
-        <svg id="moonIcon" class="w-3.5 h-3.5 hidden dark:block text-amber-400" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
-        <svg id="sunIcon" class="w-3.5 h-3.5 block dark:hidden text-amber-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clip-rule="evenodd"></path></svg>
+      <button id="themeToggleBtn" onclick="toggleTheme()" class="px-3.5 py-1.5 rounded-lg border border-[var(--border-strong)] bg-[var(--bg-surface)] hover:bg-[var(--bg-surface-hover)] text-xs font-bold text-[var(--text-main)] flex items-center gap-2 transition cursor-pointer shadow-xs">
+        <svg id="moonIcon" class="w-4 h-4 hidden dark:block text-amber-400" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+        <svg id="sunIcon" class="w-4 h-4 block dark:hidden text-amber-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clip-rule="evenodd"></path></svg>
         <span id="themeText">ডার্ক মোড</span>
       </button>
 
       <div class="h-4 w-px bg-[var(--border-subtle)]"></div>
 
       <div class="flex items-center gap-2">
-        <div class="w-7 h-7 rounded-full bg-slate-200 dark:bg-slate-700 flex items-center justify-center font-bold text-xs text-slate-700 dark:text-slate-200">
+        <div class="w-8 h-8 rounded-full bg-slate-800 text-white dark:bg-slate-700 flex items-center justify-center font-bold text-xs">
           মা
         </div>
         <div class="hidden sm:block text-left text-xs">
-          <p class="font-bold leading-tight">মাওলানা আবদুর রহমান</p>
-          <p class="text-[10px] text-[var(--text-muted)]">হিসাবরক্ষক ও কোষাধ্যক্ষ</p>
+          <p class="font-bold text-[var(--text-main)] leading-tight">মাওলানা আবদুর রহমান</p>
+          <p class="text-[11px] text-[var(--text-subtle)] font-medium">হিসাবরক্ষক ও কোষাধ্যক্ষ</p>
         </div>
       </div>
     </div>
@@ -134,59 +138,59 @@
   <!-- WORKSPACE BODY: Sidebar + Main Content -->
   <div class="flex-1 flex overflow-hidden">
 
-    <!-- COMPACT ENTERPRISE SIDEBAR (No cartoon emojis, 100% SVG vector icons) -->
+    <!-- COMPACT ENTERPRISE SIDEBAR -->
     <aside class="w-60 border-r border-[var(--border-subtle)] bg-[var(--bg-surface)] flex flex-col justify-between shrink-0 hidden md:flex">
       <div class="p-3 space-y-1">
-        <p class="px-2.5 py-1 text-[10px] font-bold tracking-wider text-[var(--text-subtle)] uppercase">মূল কার্যবিবরণী</p>
+        <p class="px-2.5 py-1 text-[11px] font-bold tracking-wider text-[var(--text-subtle)] uppercase">মূল কার্যবিবরণী</p>
         
-        <a href="#" class="flex items-center gap-2.5 px-2.5 py-2 rounded-md text-xs font-bold text-[var(--text-muted)] hover:bg-[var(--bg-surface-hover)] hover:text-[var(--text-main)] transition">
-          <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
+        <a href="#" class="flex items-center gap-2.5 px-2.5 py-2 rounded-md text-xs font-semibold text-[var(--text-muted)] hover:bg-[var(--bg-surface-hover)] hover:text-[var(--text-main)] transition">
+          <svg class="w-4 h-4 text-slate-500 dark:text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
           <span>ওভারভিউ ড্যাশবোর্ড</span>
         </a>
 
         <!-- Active Page: Finance & Accounts -->
-        <a href="#" class="flex items-center justify-between px-2.5 py-2 rounded-md text-xs font-bold bg-brand-500/10 text-brand-600 dark:text-brand-500 border border-brand-500/20">
+        <a href="#" class="flex items-center justify-between px-2.5 py-2 rounded-md text-xs font-bold bg-teal-50 dark:bg-teal-900/40 text-teal-900 dark:text-teal-200 border border-teal-300 dark:border-teal-700 shadow-xs">
           <span class="flex items-center gap-2.5">
-            <svg class="w-4 h-4 text-brand-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+            <svg class="w-4 h-4 text-teal-700 dark:text-teal-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
             <span>আর্থিক হিসাব ও ক্যাশ</span>
           </span>
-          <span class="w-1.5 h-1.5 rounded-full bg-brand-500"></span>
+          <span class="w-2 h-2 rounded-full bg-teal-600 dark:bg-teal-400"></span>
         </a>
 
-        <a href="#" class="flex items-center gap-2.5 px-2.5 py-2 rounded-md text-xs font-medium text-[var(--text-muted)] hover:bg-[var(--bg-surface-hover)] hover:text-[var(--text-main)] transition">
-          <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+        <a href="#" class="flex items-center gap-2.5 px-2.5 py-2 rounded-md text-xs font-semibold text-[var(--text-muted)] hover:bg-[var(--bg-surface-hover)] hover:text-[var(--text-main)] transition">
+          <svg class="w-4 h-4 text-slate-500 dark:text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
           <span>হিফজ ও কিতাব বিভাগ</span>
         </a>
 
-        <a href="#" class="flex items-center gap-2.5 px-2.5 py-2 rounded-md text-xs font-medium text-[var(--text-muted)] hover:bg-[var(--bg-surface-hover)] hover:text-[var(--text-main)] transition">
-          <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+        <a href="#" class="flex items-center gap-2.5 px-2.5 py-2 rounded-md text-xs font-semibold text-[var(--text-muted)] hover:bg-[var(--bg-surface-hover)] hover:text-[var(--text-main)] transition">
+          <svg class="w-4 h-4 text-slate-500 dark:text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
           <span>তালিবুল ইলম (ছাত্র তালিকা)</span>
         </a>
 
-        <a href="#" class="flex items-center gap-2.5 px-2.5 py-2 rounded-md text-xs font-medium text-[var(--text-muted)] hover:bg-[var(--bg-surface-hover)] hover:text-[var(--text-main)] transition">
-          <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"></path></svg>
+        <a href="#" class="flex items-center gap-2.5 px-2.5 py-2 rounded-md text-xs font-semibold text-[var(--text-muted)] hover:bg-[var(--bg-surface-hover)] hover:text-[var(--text-main)] transition">
+          <svg class="w-4 h-4 text-slate-500 dark:text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"></path></svg>
           <span>হোস্টেল ও মেস ডাইনিং</span>
         </a>
 
-        <a href="#" class="flex items-center gap-2.5 px-2.5 py-2 rounded-md text-xs font-medium text-[var(--text-muted)] hover:bg-[var(--bg-surface-hover)] hover:text-[var(--text-main)] transition">
-          <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path></svg>
+        <a href="#" class="flex items-center gap-2.5 px-2.5 py-2 rounded-md text-xs font-semibold text-[var(--text-muted)] hover:bg-[var(--bg-surface-hover)] hover:text-[var(--text-main)] transition">
+          <svg class="w-4 h-4 text-slate-500 dark:text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path></svg>
           <span>অভিভাবক এসএমএস ও নোটিশ</span>
         </a>
       </div>
 
       <!-- Quick Server & DB Status (Real Dev Touch) -->
-      <div class="p-3 border-t border-[var(--border-subtle)] bg-[var(--bg-page)]/50 space-y-1.5 text-[11px] font-mono">
+      <div class="p-3 border-t border-[var(--border-subtle)] bg-[var(--bg-page)]/80 space-y-1.5 text-[11px] font-mono font-medium">
         <div class="flex items-center justify-between text-[var(--text-muted)]">
           <span>Server Engine:</span>
-          <span class="text-emerald-500 font-bold">Node.js API</span>
+          <span class="text-emerald-700 dark:text-emerald-400 font-bold">Node.js API</span>
         </div>
         <div class="flex items-center justify-between text-[var(--text-muted)]">
           <span>Database:</span>
-          <span>PostgreSQL 16</span>
+          <span class="text-[var(--text-main)] font-bold">PostgreSQL 16</span>
         </div>
         <div class="flex items-center justify-between text-[var(--text-muted)]">
           <span>System Latency:</span>
-          <span class="text-emerald-500 font-bold">18ms</span>
+          <span class="text-emerald-700 dark:text-emerald-400 font-bold">18ms</span>
         </div>
       </div>
     </aside>
@@ -197,178 +201,178 @@
       <!-- Breadcrumbs & Page Header -->
       <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
-          <div class="flex items-center gap-2 text-xs text-[var(--text-muted)] mb-1">
+          <div class="flex items-center gap-2 text-xs font-semibold text-[var(--text-subtle)] mb-1">
             <span>ম্যানেজমেন্ট</span>
-            <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
-            <span class="text-[var(--text-main)] font-semibold">আর্থিক হিসাব ও দৈনিক খতিয়ান</span>
+            <svg class="w-3 h-3 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+            <span class="text-[var(--text-main)] font-bold">আর্থিক হিসাব ও দৈনিক খতিয়ান</span>
           </div>
-          <h1 class="text-xl sm:text-2xl font-bold tracking-tight">আর্থিক প্রশাসন ও ক্যাশ ক্লোজিং সেন্টার</h1>
-          <p class="text-xs text-[var(--text-muted)] mt-0.5">সব তহবিল, মেস বাজার খরচ, ছাত্র বেতন এবং ভাউচারের অপরিবর্তনীয় লেজার</p>
+          <h1 class="text-xl sm:text-2xl font-bold tracking-tight text-[var(--text-main)]">আর্থিক প্রশাসন ও ক্যাশ ক্লোজিং সেন্টার</h1>
+          <p class="text-xs font-medium text-[var(--text-muted)] mt-0.5">সব তহবিল, মেস বাজার খরচ, ছাত্র বেতন এবং ভাউচারের শতভাগ স্পষ্ট ও অপরিবর্তনীয় লেজার</p>
         </div>
 
         <!-- Quick Primary Action Group -->
         <div class="flex items-center gap-2">
-          <button onclick="alert('টাকা গ্রহণ / নতুন রিসিট ফর্ম ওপেন')" class="px-3.5 py-2 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold shadow-sm flex items-center gap-1.5 transition cursor-pointer active:scale-[0.98]">
+          <button onclick="alert('টাকা গ্রহণ / নতুন রিসিট ফর্ম ওপেন')" class="px-4 py-2 rounded-lg bg-emerald-700 hover:bg-emerald-800 dark:bg-emerald-600 dark:hover:bg-emerald-700 text-white text-xs font-bold shadow-sm flex items-center gap-1.5 transition cursor-pointer active:scale-[0.98]">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
             <span>টাকা গ্রহণ (রিসিট)</span>
           </button>
           
-          <button onclick="alert('টাকা ব্যয় / ভাউচার এন্ট্রি ফর্ম ওপেন')" class="px-3.5 py-2 rounded-lg bg-rose-600 hover:bg-rose-700 text-white text-xs font-bold shadow-sm flex items-center gap-1.5 transition cursor-pointer active:scale-[0.98]">
+          <button onclick="alert('টাকা ব্যয় / ভাউচার এন্ট্রি ফর্ম ওপেন')" class="px-4 py-2 rounded-lg bg-rose-700 hover:bg-rose-800 dark:bg-rose-600 dark:hover:bg-rose-700 text-white text-xs font-bold shadow-sm flex items-center gap-1.5 transition cursor-pointer active:scale-[0.98]">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4"></path></svg>
             <span>টাকা ব্যয় (ভাউচার)</span>
           </button>
 
-          <button onclick="alert('দৈনিক ক্যাশ ক্লোজিং সম্পন্ন করার উইন্ডো')" class="px-3.5 py-2 rounded-lg bg-[var(--bg-surface)] hover:bg-[var(--bg-surface-hover)] border border-[var(--border-strong)] text-xs font-bold flex items-center gap-1.5 transition cursor-pointer">
-            <svg class="w-4 h-4 text-brand-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+          <button onclick="alert('দৈনিক ক্যাশ ক্লোজিং সম্পন্ন করার উইন্ডো')" class="px-4 py-2 rounded-lg bg-[var(--bg-surface)] hover:bg-[var(--bg-surface-hover)] border-2 border-[var(--border-strong)] text-[var(--text-main)] text-xs font-bold flex items-center gap-1.5 transition cursor-pointer shadow-xs">
+            <svg class="w-4 h-4 text-teal-700 dark:text-teal-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
             <span>ক্যাশ ক্লোজিং</span>
           </button>
         </div>
       </div>
 
-      <!-- KPI METRIC CARDS (Bento Box Grid: Precision, Clean Typography, Zero AI Glow) -->
+      <!-- KPI METRIC CARDS (High-Contrast, Crisp, Zero Blur) -->
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         
         <!-- Card 1: Today Income -->
-        <div class="p-4 rounded-xl bg-[var(--bg-surface)] border border-[var(--border-subtle)] shadow-xs hover:border-emerald-500/30 transition">
-          <div class="flex items-center justify-between text-xs text-[var(--text-muted)]">
-            <span class="font-medium">আজকের আদায় / গ্রহণ</span>
-            <span class="p-1.5 rounded-md bg-emerald-500/10 text-emerald-500">
+        <div class="p-4 rounded-xl bg-[var(--bg-surface)] border-2 border-[var(--border-subtle)] shadow-xs hover:border-emerald-600 transition">
+          <div class="flex items-center justify-between text-xs font-bold text-[var(--text-muted)]">
+            <span>আজকের আদায় / গ্রহণ</span>
+            <span class="p-1.5 rounded-md bg-emerald-100 text-emerald-800 dark:bg-emerald-950/60 dark:text-emerald-400 border border-emerald-300 dark:border-emerald-800">
               <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 11l5-5m0 0l5 5m-5-5v12"></path></svg>
             </span>
           </div>
           <div class="mt-2 flex items-baseline gap-2">
-            <span class="text-2xl font-bold font-mono tracking-tight text-emerald-500">৳ ৫৪,২০০</span>
-            <span class="text-[11px] font-semibold text-emerald-500/80 bg-emerald-500/10 px-1.5 py-0.5 rounded">+১২.৫%</span>
+            <span class="text-2xl font-bold font-mono tracking-tight text-emerald-700 dark:text-emerald-400">৳ ৫৪,২০০</span>
+            <span class="text-xs font-bold text-emerald-800 bg-emerald-100 dark:bg-emerald-900/50 dark:text-emerald-300 px-2 py-0.5 rounded border border-emerald-300 dark:border-emerald-700">+১২.৫%</span>
           </div>
-          <p class="text-[11px] text-[var(--text-muted)] mt-1.5 flex items-center justify-between">
+          <p class="text-xs font-semibold text-[var(--text-subtle)] mt-2 flex items-center justify-between pt-1 border-t border-[var(--border-subtle)]">
             <span>মোট রিসিট: ২৮ টি</span>
-            <span class="font-mono">ফি ও অনুদান</span>
+            <span class="text-[var(--text-muted)] font-bold">ফি ও অনুদান</span>
           </p>
         </div>
 
         <!-- Card 2: Today Expense -->
-        <div class="p-4 rounded-xl bg-[var(--bg-surface)] border border-[var(--border-subtle)] shadow-xs hover:border-rose-500/30 transition">
-          <div class="flex items-center justify-between text-xs text-[var(--text-muted)]">
-            <span class="font-medium">আজকের খরচ / ব্যয়</span>
-            <span class="p-1.5 rounded-md bg-rose-500/10 text-rose-500">
+        <div class="p-4 rounded-xl bg-[var(--bg-surface)] border-2 border-[var(--border-subtle)] shadow-xs hover:border-rose-600 transition">
+          <div class="flex items-center justify-between text-xs font-bold text-[var(--text-muted)]">
+            <span>আজকের খরচ / ব্যয়</span>
+            <span class="p-1.5 rounded-md bg-rose-100 text-rose-800 dark:bg-rose-950/60 dark:text-rose-400 border border-rose-300 dark:border-rose-800">
               <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 13l-5 5m0 0l-5-5m5 5V6"></path></svg>
             </span>
           </div>
           <div class="mt-2 flex items-baseline gap-2">
-            <span class="text-2xl font-bold font-mono tracking-tight text-rose-500">৳ ১৮,৫০০</span>
-            <span class="text-[11px] font-semibold text-rose-500/80 bg-rose-500/10 px-1.5 py-0.5 rounded">মেস ও মেরামত</span>
+            <span class="text-2xl font-bold font-mono tracking-tight text-rose-700 dark:text-rose-400">৳ ১৮,৫০০</span>
+            <span class="text-xs font-bold text-rose-800 bg-rose-100 dark:bg-rose-900/50 dark:text-rose-300 px-2 py-0.5 rounded border border-rose-300 dark:border-rose-700">মেস ও মেরামত</span>
           </div>
-          <p class="text-[11px] text-[var(--text-muted)] mt-1.5 flex items-center justify-between">
+          <p class="text-xs font-semibold text-[var(--text-subtle)] mt-2 flex items-center justify-between pt-1 border-t border-[var(--border-subtle)]">
             <span>ভাউচার: ৭ টি অনুমোদিত</span>
-            <span class="font-mono">বকেয়া বিল ০</span>
+            <span class="text-[var(--text-muted)] font-bold">বকেয়া বিল ০</span>
           </p>
         </div>
 
         <!-- Card 3: Today Net Balance -->
-        <div class="p-4 rounded-xl bg-[var(--bg-surface)] border border-[var(--border-subtle)] shadow-xs hover:border-brand-500/30 transition">
-          <div class="flex items-center justify-between text-xs text-[var(--text-muted)]">
-            <span class="font-medium">আজকের উদ্বৃত্ত (Net Cash)</span>
-            <span class="p-1.5 rounded-md bg-brand-500/10 text-brand-500">
+        <div class="p-4 rounded-xl bg-[var(--bg-surface)] border-2 border-[var(--border-subtle)] shadow-xs hover:border-teal-600 transition">
+          <div class="flex items-center justify-between text-xs font-bold text-[var(--text-muted)]">
+            <span>আজকের উদ্বৃত্ত (Net Cash)</span>
+            <span class="p-1.5 rounded-md bg-teal-100 text-teal-800 dark:bg-teal-950/60 dark:text-teal-400 border border-teal-300 dark:border-teal-800">
               <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
             </span>
           </div>
           <div class="mt-2 flex items-baseline gap-2">
-            <span class="text-2xl font-bold font-mono tracking-tight text-brand-500">৳ ৩৫,৭০০</span>
-            <span class="text-[11px] font-semibold text-brand-500/80 bg-brand-500/10 px-1.5 py-0.5 rounded">ক্যাশ ইন হ্যান্ড</span>
+            <span class="text-2xl font-bold font-mono tracking-tight text-teal-800 dark:text-teal-300">৳ ৩৫,৭০০</span>
+            <span class="text-xs font-bold text-teal-900 bg-teal-100 dark:bg-teal-900/50 dark:text-teal-300 px-2 py-0.5 rounded border border-teal-300 dark:border-teal-700">ক্যাশ ইন হ্যান্ড</span>
           </div>
-          <p class="text-[11px] text-[var(--text-muted)] mt-1.5 flex items-center justify-between">
+          <p class="text-xs font-semibold text-[var(--text-subtle)] mt-2 flex items-center justify-between pt-1 border-t border-[var(--border-subtle)]">
             <span>হাতের নগদ: ৳ ৩৫,৭০০</span>
-            <span class="font-mono text-emerald-500">ব্যালেন্স মিল আছে</span>
+            <span class="font-bold text-emerald-700 dark:text-emerald-400">ব্যালেন্স মিল আছে</span>
           </p>
         </div>
 
         <!-- Card 4: Total Treasury Reserves -->
-        <div class="p-4 rounded-xl bg-[var(--bg-surface)] border border-[var(--border-subtle)] shadow-xs">
-          <div class="flex items-center justify-between text-xs text-[var(--text-muted)]">
-            <span class="font-medium">সর্বমোট মাদ্রাসা তহবিল</span>
-            <span class="p-1.5 rounded-md bg-slate-500/10 text-slate-400">
+        <div class="p-4 rounded-xl bg-[var(--bg-surface)] border-2 border-[var(--border-subtle)] shadow-xs">
+          <div class="flex items-center justify-between text-xs font-bold text-[var(--text-muted)]">
+            <span>সর্বমোট মাদ্রাসা তহবিল</span>
+            <span class="p-1.5 rounded-md bg-slate-200 text-slate-800 dark:bg-slate-800 dark:text-slate-300 border border-slate-300 dark:border-slate-700">
               <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z"></path></svg>
             </span>
           </div>
           <div class="mt-2 flex items-baseline gap-2">
-            <span class="text-2xl font-bold font-mono tracking-tight">৳ ১২,৮৪,৩৫০</span>
+            <span class="text-2xl font-bold font-mono tracking-tight text-[var(--text-main)]">৳ ১২,৮৪,৩৫০</span>
           </div>
-          <p class="text-[11px] text-[var(--text-muted)] mt-1.5 flex items-center justify-between">
+          <p class="text-xs font-semibold text-[var(--text-subtle)] mt-2 flex items-center justify-between pt-1 border-t border-[var(--border-subtle)]">
             <span>৪টি অ্যাকাউন্টে জমা</span>
-            <span class="font-mono text-blue-400">ইসলামী ব্যাংক</span>
+            <span class="font-bold text-blue-700 dark:text-blue-400">ইসলামী ব্যাংক বাংলাদেশ</span>
           </p>
         </div>
 
       </div>
 
-      <!-- FILTER & PERIOD TOOLBAR: Precision Filtering Architecture -->
-      <div class="p-3 rounded-xl bg-[var(--bg-surface)] border border-[var(--border-subtle)] flex flex-wrap items-center justify-between gap-3 text-xs">
+      <!-- FILTER & PERIOD TOOLBAR: High Definition Controls -->
+      <div class="p-3.5 rounded-xl bg-[var(--bg-surface)] border-2 border-[var(--border-subtle)] flex flex-wrap items-center justify-between gap-3 text-xs shadow-xs">
         
         <!-- Period Buttons -->
         <div class="flex items-center gap-1.5 flex-wrap">
-          <span class="text-[11px] font-bold text-[var(--text-muted)] uppercase tracking-wider mr-1">সময় নির্বাচন:</span>
+          <span class="text-xs font-bold text-[var(--text-main)] uppercase tracking-wider mr-1">সময় নির্বাচন:</span>
           
-          <button onclick="setFilter('TODAY')" id="btn-today" class="px-3 py-1.5 rounded-md font-semibold transition bg-brand-500 text-white cursor-pointer shadow-xs">
+          <button onclick="setFilter('TODAY')" id="btn-today" class="px-3.5 py-1.5 rounded-md font-bold transition bg-teal-700 hover:bg-teal-800 text-white cursor-pointer shadow-xs">
             আজকের লেনদেন
           </button>
           
-          <button onclick="setFilter('WEEK')" id="btn-week" class="px-3 py-1.5 rounded-md font-medium text-[var(--text-muted)] hover:bg-[var(--bg-surface-hover)] hover:text-[var(--text-main)] transition cursor-pointer">
+          <button onclick="setFilter('WEEK')" id="btn-week" class="px-3.5 py-1.5 rounded-md font-semibold text-[var(--text-muted)] hover:bg-[var(--bg-surface-hover)] hover:text-[var(--text-main)] border border-[var(--border-subtle)] transition cursor-pointer">
             চলতি সপ্তাহ
           </button>
           
-          <button onclick="setFilter('MONTH')" id="btn-month" class="px-3 py-1.5 rounded-md font-medium text-[var(--text-muted)] hover:bg-[var(--bg-surface-hover)] hover:text-[var(--text-main)] transition cursor-pointer">
+          <button onclick="setFilter('MONTH')" id="btn-month" class="px-3.5 py-1.5 rounded-md font-semibold text-[var(--text-muted)] hover:bg-[var(--bg-surface-hover)] hover:text-[var(--text-main)] border border-[var(--border-subtle)] transition cursor-pointer">
             চলতি মাস (অক্টোবর)
           </button>
           
-          <button onclick="setFilter('CUSTOM')" id="btn-custom" class="px-3 py-1.5 rounded-md font-medium text-[var(--text-muted)] hover:bg-[var(--bg-surface-hover)] hover:text-[var(--text-main)] transition cursor-pointer">
+          <button onclick="setFilter('CUSTOM')" id="btn-custom" class="px-3.5 py-1.5 rounded-md font-semibold text-[var(--text-muted)] hover:bg-[var(--bg-surface-hover)] hover:text-[var(--text-main)] border border-[var(--border-subtle)] transition cursor-pointer">
             কাস্টম তারিখ...
           </button>
         </div>
 
-        <!-- Date Range Controls (Dynamic display) -->
+        <!-- Date Range Controls -->
         <div id="customDateRange" class="flex items-center gap-2">
-          <input type="date" value="2026-11-03" class="bg-[var(--bg-page)] border border-[var(--border-subtle)] rounded-md px-2.5 py-1 text-xs font-mono font-medium focus:outline-none focus:border-brand-500">
-          <span class="text-[var(--text-muted)]">থেকে</span>
-          <input type="date" value="2026-11-03" class="bg-[var(--bg-page)] border border-[var(--border-subtle)] rounded-md px-2.5 py-1 text-xs font-mono font-medium focus:outline-none focus:border-brand-500">
-          <button class="px-3 py-1 rounded-md bg-brand-600 hover:bg-brand-700 text-white font-bold transition">
+          <input type="date" value="2026-11-05" class="bg-[var(--bg-page)] border-2 border-[var(--border-subtle)] rounded-md px-2.5 py-1.5 text-xs font-mono font-bold text-[var(--text-main)] focus:outline-none focus:border-teal-600">
+          <span class="text-xs font-bold text-[var(--text-muted)]">থেকে</span>
+          <input type="date" value="2026-11-05" class="bg-[var(--bg-page)] border-2 border-[var(--border-subtle)] rounded-md px-2.5 py-1.5 text-xs font-mono font-bold text-[var(--text-main)] focus:outline-none focus:border-teal-600">
+          <button class="px-3.5 py-1.5 rounded-md bg-teal-800 hover:bg-teal-900 text-white font-bold transition shadow-xs">
             ফিল্টার করুন
           </button>
         </div>
 
         <!-- Export Actions -->
         <div class="flex items-center gap-2">
-          <button class="px-2.5 py-1.5 rounded-md border border-[var(--border-subtle)] hover:bg-[var(--bg-surface-hover)] text-xs font-medium flex items-center gap-1.5 transition">
-            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path></svg>
+          <button class="px-3 py-1.5 rounded-md border-2 border-[var(--border-subtle)] bg-[var(--bg-surface)] hover:bg-[var(--bg-surface-hover)] text-xs font-bold text-[var(--text-main)] flex items-center gap-1.5 transition">
+            <svg class="w-4 h-4 text-slate-700 dark:text-slate-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path></svg>
             <span>প্রিন্ট / রিপোর্ট</span>
           </button>
-          <button class="px-2.5 py-1.5 rounded-md border border-[var(--border-subtle)] hover:bg-[var(--bg-surface-hover)] text-xs font-medium flex items-center gap-1.5 transition">
-            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+          <button class="px-3 py-1.5 rounded-md border-2 border-[var(--border-subtle)] bg-[var(--bg-surface)] hover:bg-[var(--bg-surface-hover)] text-xs font-bold text-[var(--text-main)] flex items-center gap-1.5 transition">
+            <svg class="w-4 h-4 text-slate-700 dark:text-slate-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
             <span>এক্সেল এক্সপোর্ট</span>
           </button>
         </div>
 
       </div>
 
-      <!-- MAIN LEDGER TABLE: High-Density, Perfect Contrast, Strict Alignment -->
-      <div class="rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-surface)] overflow-hidden shadow-xs">
+      <!-- MAIN LEDGER TABLE: High-Definition, Deep Text, Razor Sharp -->
+      <div class="rounded-xl border-2 border-[var(--border-subtle)] bg-[var(--bg-surface)] overflow-hidden shadow-xs">
         
-        <div class="p-4 border-b border-[var(--border-subtle)] flex items-center justify-between">
+        <div class="p-4 border-b-2 border-[var(--border-subtle)] flex flex-wrap items-center justify-between gap-3 bg-[var(--bg-surface)]">
           <div class="flex items-center gap-2">
-            <h2 class="font-bold text-sm tracking-tight">দৈনিক লেনদেন রেজিস্টার (খতিয়ান বহি)</h2>
-            <span class="px-2 py-0.5 rounded text-[11px] font-bold bg-slate-500/10 text-[var(--text-muted)] border border-[var(--border-subtle)]">
+            <h2 class="font-bold text-sm tracking-tight text-[var(--text-main)]">দৈনিক লেনদেন রেজিস্টার (খতিয়ান বহি)</h2>
+            <span class="px-2.5 py-0.5 rounded text-xs font-bold bg-slate-200 text-slate-900 dark:bg-slate-800 dark:text-slate-200 border border-slate-300 dark:border-slate-700">
               ৩৫ টি রেকর্ড
             </span>
           </div>
 
           <div class="flex items-center gap-2">
             <div class="relative w-64">
-              <input type="text" placeholder="ভাউচার নং, নাম বা খাত খুঁজুন..." class="w-full bg-[var(--bg-page)] border border-[var(--border-subtle)] rounded-md px-3 py-1.5 pl-8 text-xs focus:outline-none focus:border-brand-500 text-[var(--text-main)]">
-              <svg class="w-3.5 h-3.5 absolute left-2.5 top-2.5 text-[var(--text-subtle)]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+              <input type="text" placeholder="ভাউচার নং, নাম বা খাত খুঁজুন..." class="w-full bg-[var(--bg-page)] border-2 border-[var(--border-subtle)] rounded-md px-3 py-1.5 pl-8 text-xs font-semibold text-[var(--text-main)] placeholder-[var(--text-subtle)] focus:outline-none focus:border-teal-600">
+              <svg class="w-4 h-4 absolute left-2.5 top-2.5 text-[var(--text-subtle)]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
             </div>
             
-            <select class="bg-[var(--bg-page)] border border-[var(--border-subtle)] rounded-md px-2.5 py-1.5 text-xs text-[var(--text-muted)] font-medium focus:outline-none focus:border-brand-500">
+            <select class="bg-[var(--bg-page)] border-2 border-[var(--border-subtle)] rounded-md px-3 py-1.5 text-xs text-[var(--text-main)] font-bold focus:outline-none focus:border-teal-600">
               <option value="ALL">সব খাত (আয় ও ব্যয়)</option>
-              <option value="INCOME">শুধু আয় / গ্রহণ</option>
+              <option value="INCOME">শুধু আদায় / গ্রহণ</option>
               <option value="EXPENSE">শুধু ব্যয় / খরচ</option>
               <option value="MESS">মেস ও বাজার খরচ</option>
             </select>
@@ -378,133 +382,133 @@
         <div class="overflow-x-auto">
           <table class="w-full text-left text-xs">
             <thead>
-              <tr class="bg-[var(--bg-page)] border-b border-[var(--border-subtle)] text-[11px] font-bold text-[var(--text-muted)] uppercase tracking-wider">
+              <tr class="bg-slate-200/90 dark:bg-slate-800 border-b-2 border-[var(--border-subtle)] text-xs font-bold text-slate-950 dark:text-slate-100 uppercase tracking-wider">
                 <th class="py-3 px-4">ভাউচার / রিসিট নং</th>
                 <th class="py-3 px-4">তারিখ ও সময়</th>
-                <th class="py-3 px-4">খাত / তহবিলের নাম</th>
+                <th class="py-3 px-4">খাত ও তহবিলের নাম</th>
                 <th class="py-3 px-4">বিবরণ / প্রদানকারী</th>
                 <th class="py-3 px-4 text-center">লেনদেনের ধরণ</th>
                 <th class="py-3 px-4 text-right">পরিমাণ (টাকা)</th>
                 <th class="py-3 px-4 text-center">অ্যাকশন</th>
               </tr>
             </thead>
-            <tbody class="divide-y divide-[var(--border-subtle)] text-xs">
+            <tbody class="divide-y-2 divide-[var(--border-subtle)] text-xs font-medium">
               
               <!-- Row 1: Student Fee -->
-              <tr class="hover:bg-[var(--bg-surface-hover)] transition-colors">
-                <td class="py-3 px-4 font-mono font-bold text-brand-600 dark:text-brand-400">#RC-2026-1048</td>
-                <td class="py-3 px-4 text-[var(--text-muted)] font-mono">০৩ নভে, ২০২৬ • ১০:১৫ AM</td>
-                <td class="py-3 px-4 font-semibold">মাসিক বেতন ও খোরাকি</td>
-                <td class="py-3 px-4">
-                  <span class="font-bold">মুহাম্মদ আবদুল্লাহ</span>
-                  <span class="text-[11px] text-[var(--text-muted)] block font-mono">হিফজ বিভাগ • রোল: ১২</span>
+              <tr class="hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors">
+                <td class="py-3.5 px-4 font-mono font-bold text-teal-800 dark:text-teal-400">#RC-2026-1048</td>
+                <td class="py-3.5 px-4 text-[var(--text-muted)] font-mono font-bold">০৩ নভে, ২০২৬ • ১০:১৫ AM</td>
+                <td class="py-3.5 px-4 font-bold text-[var(--text-main)]">মাসিক বেতন ও খোরাকি</td>
+                <td class="py-3.5 px-4">
+                  <span class="font-bold text-[var(--text-main)] text-sm">মুহাম্মদ আবদুল্লাহ</span>
+                  <span class="text-xs text-[var(--text-subtle)] block font-semibold font-mono mt-0.5">হিফজ বিভাগ • রোল: ১২</span>
                 </td>
-                <td class="py-3 px-4 text-center">
-                  <span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-500/10 text-emerald-500 border border-emerald-500/20">
+                <td class="py-3.5 px-4 text-center">
+                  <span class="px-2.5 py-1 rounded-full text-xs font-bold bg-emerald-100 text-emerald-900 dark:bg-emerald-950/80 dark:text-emerald-400 border border-emerald-300 dark:border-emerald-700">
                     আদায় / জমা
                   </span>
                 </td>
-                <td class="py-3 px-4 text-right font-mono font-bold text-emerald-500 text-sm tabular-numbers">
+                <td class="py-3.5 px-4 text-right font-mono font-bold text-emerald-700 dark:text-emerald-400 text-base tabular-numbers">
                   + ৳ ৪,৫০০
                 </td>
-                <td class="py-3 px-4 text-center">
-                  <button class="px-2 py-1 rounded border border-[var(--border-subtle)] hover:bg-[var(--bg-page)] text-[11px] font-medium transition cursor-pointer">
+                <td class="py-3.5 px-4 text-center">
+                  <button class="px-2.5 py-1 rounded-md border-2 border-[var(--border-subtle)] hover:bg-[var(--bg-surface)] text-xs font-bold text-[var(--text-main)] transition cursor-pointer shadow-xs">
                     রিসিট প্রিন্ট
                   </button>
                 </td>
               </tr>
 
               <!-- Row 2: Mess & Bazaar Expense -->
-              <tr class="hover:bg-[var(--bg-surface-hover)] transition-colors">
-                <td class="py-3 px-4 font-mono font-bold text-rose-500">#VC-2026-0419</td>
-                <td class="py-3 px-4 text-[var(--text-muted)] font-mono">০৩ নভে, ২০২৬ • ০৮:৩০ AM</td>
-                <td class="py-3 px-4 font-semibold">মেস ও বাজার খরচ</td>
-                <td class="py-3 px-4">
-                  <span class="font-bold">দৈনিক কাঁচাবাজার ও মাছ কেনা</span>
-                  <span class="text-[11px] text-[var(--text-muted)] block">মাওলানা ইসমাইল (মেস ইনচার্জ)</span>
+              <tr class="hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors">
+                <td class="py-3.5 px-4 font-mono font-bold text-rose-700 dark:text-rose-400">#VC-2026-0419</td>
+                <td class="py-3.5 px-4 text-[var(--text-muted)] font-mono font-bold">০৩ নভে, ২০২৬ • ০৮:৩০ AM</td>
+                <td class="py-3.5 px-4 font-bold text-[var(--text-main)]">মেস ও বাজার খরচ</td>
+                <td class="py-3.5 px-4">
+                  <span class="font-bold text-[var(--text-main)] text-sm">দৈনিক কাঁচাবাজার ও মাছ কেনা</span>
+                  <span class="text-xs text-[var(--text-subtle)] block font-semibold mt-0.5">মাওলানা ইসমাইল (মেস ইনচার্জ)</span>
                 </td>
-                <td class="py-3 px-4 text-center">
-                  <span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-rose-500/10 text-rose-500 border border-rose-500/20">
+                <td class="py-3.5 px-4 text-center">
+                  <span class="px-2.5 py-1 rounded-full text-xs font-bold bg-rose-100 text-rose-900 dark:bg-rose-950/80 dark:text-rose-400 border border-rose-300 dark:border-rose-700">
                     খরচ / ব্যয়
                   </span>
                 </td>
-                <td class="py-3 px-4 text-right font-mono font-bold text-rose-500 text-sm tabular-numbers">
+                <td class="py-3.5 px-4 text-right font-mono font-bold text-rose-700 dark:text-rose-400 text-base tabular-numbers">
                   - ৳ ১২,২০০
                 </td>
-                <td class="py-3 px-4 text-center">
-                  <button class="px-2 py-1 rounded border border-[var(--border-subtle)] hover:bg-[var(--bg-page)] text-[11px] font-medium transition cursor-pointer">
+                <td class="py-3.5 px-4 text-center">
+                  <button class="px-2.5 py-1 rounded-md border-2 border-[var(--border-subtle)] hover:bg-[var(--bg-surface)] text-xs font-bold text-[var(--text-main)] transition cursor-pointer shadow-xs">
                     ভাউচার স্লিপ
                   </button>
                 </td>
               </tr>
 
               <!-- Row 3: Repair & Maintenance -->
-              <tr class="hover:bg-[var(--bg-surface-hover)] transition-colors">
-                <td class="py-3 px-4 font-mono font-bold text-rose-500">#VC-2026-0418</td>
-                <td class="py-3 px-4 text-[var(--text-muted)] font-mono">০৩ নভে, ২০২৬ • ১১:০০ AM</td>
-                <td class="py-3 px-4 font-semibold">মেরামত ও রক্ষণাবেক্ষণ</td>
-                <td class="py-3 px-4">
-                  <span class="font-bold">ছাত্রাবাসের পানির পাম্প ও মোটর সার্ভিসিং</span>
-                  <span class="text-[11px] text-[var(--text-muted)] block">হোস্টেল ভবন-২</span>
+              <tr class="hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors">
+                <td class="py-3.5 px-4 font-mono font-bold text-rose-700 dark:text-rose-400">#VC-2026-0418</td>
+                <td class="py-3.5 px-4 text-[var(--text-muted)] font-mono font-bold">০৩ নভে, ২০২৬ • ১১:০০ AM</td>
+                <td class="py-3.5 px-4 font-bold text-[var(--text-main)]">মেরামত ও রক্ষণাবেক্ষণ খরচ</td>
+                <td class="py-3.5 px-4">
+                  <span class="font-bold text-[var(--text-main)] text-sm">ছাত্রাবাসের পানির পাম্প ও মোটর সার্ভিসিং</span>
+                  <span class="text-xs text-[var(--text-subtle)] block font-semibold mt-0.5">হোস্টেল ভবন-২ (স্থায়ী তহবিল)</span>
                 </td>
-                <td class="py-3 px-4 text-center">
-                  <span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-rose-500/10 text-rose-500 border border-rose-500/20">
+                <td class="py-3.5 px-4 text-center">
+                  <span class="px-2.5 py-1 rounded-full text-xs font-bold bg-rose-100 text-rose-900 dark:bg-rose-950/80 dark:text-rose-400 border border-rose-300 dark:border-rose-700">
                     খরচ / ব্যয়
                   </span>
                 </td>
-                <td class="py-3 px-4 text-right font-mono font-bold text-rose-500 text-sm tabular-numbers">
+                <td class="py-3.5 px-4 text-right font-mono font-bold text-rose-700 dark:text-rose-400 text-base tabular-numbers">
                   - ৳ ৩,৫০০
                 </td>
-                <td class="py-3 px-4 text-center">
-                  <button class="px-2 py-1 rounded border border-[var(--border-subtle)] hover:bg-[var(--bg-page)] text-[11px] font-medium transition cursor-pointer">
+                <td class="py-3.5 px-4 text-center">
+                  <button class="px-2.5 py-1 rounded-md border-2 border-[var(--border-subtle)] hover:bg-[var(--bg-surface)] text-xs font-bold text-[var(--text-main)] transition cursor-pointer shadow-xs">
                     ভাউচার স্লিপ
                   </button>
                 </td>
               </tr>
 
               <!-- Row 4: General Donation -->
-              <tr class="hover:bg-[var(--bg-surface-hover)] transition-colors">
-                <td class="py-3 px-4 font-mono font-bold text-brand-600 dark:text-brand-400">#RC-2026-1049</td>
-                <td class="py-3 px-4 text-[var(--text-muted)] font-mono">০৩ নভে, ২০২৬ • ০১:১৫ PM</td>
-                <td class="py-3 px-4 font-semibold">লিল্লাহ ও ছাত্রকল্যাণ অনুদান</td>
-                <td class="py-3 px-4">
-                  <span class="font-bold">আলহাজ্ব রফিকুল ইসলাম</span>
-                  <span class="text-[11px] text-[var(--text-muted)] block font-mono">বিকাশ পেমেন্ট: TrxID: 9X82K1L</span>
+              <tr class="hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors">
+                <td class="py-3.5 px-4 font-mono font-bold text-teal-800 dark:text-teal-400">#RC-2026-1049</td>
+                <td class="py-3.5 px-4 text-[var(--text-muted)] font-mono font-bold">০৩ নভে, ২০২৬ • ০১:১৫ PM</td>
+                <td class="py-3.5 px-4 font-bold text-[var(--text-main)]">লিল্লাহ ও ছাত্রকল্যাণ অনুদান</td>
+                <td class="py-3.5 px-4">
+                  <span class="font-bold text-[var(--text-main)] text-sm">আলহাজ্ব রফিকুল ইসলাম</span>
+                  <span class="text-xs text-[var(--text-subtle)] block font-semibold font-mono mt-0.5">বিকাশ পেমেন্ট: TrxID: 9X82K1L</span>
                 </td>
-                <td class="py-3 px-4 text-center">
-                  <span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-500/10 text-emerald-500 border border-emerald-500/20">
+                <td class="py-3.5 px-4 text-center">
+                  <span class="px-2.5 py-1 rounded-full text-xs font-bold bg-emerald-100 text-emerald-900 dark:bg-emerald-950/80 dark:text-emerald-400 border border-emerald-300 dark:border-emerald-700">
                     আদায় / জমা
                   </span>
                 </td>
-                <td class="py-3 px-4 text-right font-mono font-bold text-emerald-500 text-sm tabular-numbers">
+                <td class="py-3.5 px-4 text-right font-mono font-bold text-emerald-700 dark:text-emerald-400 text-base tabular-numbers">
                   + ৳ ২৫,০০০
                 </td>
-                <td class="py-3 px-4 text-center">
-                  <button class="px-2 py-1 rounded border border-[var(--border-subtle)] hover:bg-[var(--bg-page)] text-[11px] font-medium transition cursor-pointer">
+                <td class="py-3.5 px-4 text-center">
+                  <button class="px-2.5 py-1 rounded-md border-2 border-[var(--border-subtle)] hover:bg-[var(--bg-surface)] text-xs font-bold text-[var(--text-main)] transition cursor-pointer shadow-xs">
                     রিসিট প্রিন্ট
                   </button>
                 </td>
               </tr>
 
               <!-- Row 5: Utility Bill -->
-              <tr class="hover:bg-[var(--bg-surface-hover)] transition-colors">
-                <td class="py-3 px-4 font-mono font-bold text-rose-500">#VC-2026-0417</td>
-                <td class="py-3 px-4 text-[var(--text-muted)] font-mono">০৩ নভে, ২০২৬ • ০২:০০ PM</td>
-                <td class="py-3 px-4 font-semibold">প্রশাসনিক বিদ্যুৎ ও গ্যাস ইউটিলিটি</td>
-                <td class="py-3 px-4">
-                  <span class="font-bold">পল্লী বিদ্যুৎ বিল পরিশোধ</span>
-                  <span class="text-[11px] text-[var(--text-muted)] block">মিটার নং: ৪১২৮৭৬</span>
+              <tr class="hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors">
+                <td class="py-3.5 px-4 font-mono font-bold text-rose-700 dark:text-rose-400">#VC-2026-0417</td>
+                <td class="py-3.5 px-4 text-[var(--text-muted)] font-mono font-bold">০৩ নভে, ২০২৬ • ০২:০০ PM</td>
+                <td class="py-3.5 px-4 font-bold text-[var(--text-main)]">প্রশাসনিক বিদ্যুৎ ও গ্যাস ইউটিলিটি</td>
+                <td class="py-3.5 px-4">
+                  <span class="font-bold text-[var(--text-main)] text-sm">পল্লী বিদ্যুৎ বিল পরিশোধ</span>
+                  <span class="text-xs text-[var(--text-subtle)] block font-semibold mt-0.5">মিটার নং: ৪১২৮৭৬ (মেইন গেট)</span>
                 </td>
-                <td class="py-3 px-4 text-center">
-                  <span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-rose-500/10 text-rose-500 border border-rose-500/20">
+                <td class="py-3.5 px-4 text-center">
+                  <span class="px-2.5 py-1 rounded-full text-xs font-bold bg-rose-100 text-rose-900 dark:bg-rose-950/80 dark:text-rose-400 border border-rose-300 dark:border-rose-700">
                     খরচ / ব্যয়
                   </span>
                 </td>
-                <td class="py-3 px-4 text-right font-mono font-bold text-rose-500 text-sm tabular-numbers">
+                <td class="py-3.5 px-4 text-right font-mono font-bold text-rose-700 dark:text-rose-400 text-base tabular-numbers">
                   - ৳ ২,৮০০
                 </td>
-                <td class="py-3 px-4 text-center">
-                  <button class="px-2 py-1 rounded border border-[var(--border-subtle)] hover:bg-[var(--bg-page)] text-[11px] font-medium transition cursor-pointer">
+                <td class="py-3.5 px-4 text-center">
+                  <button class="px-2.5 py-1 rounded-md border-2 border-[var(--border-subtle)] hover:bg-[var(--bg-surface)] text-xs font-bold text-[var(--text-main)] transition cursor-pointer shadow-xs">
                     ভাউচার স্লিপ
                   </button>
                 </td>
@@ -515,64 +519,19 @@
         </div>
 
         <!-- Pagination & Summary Footer -->
-        <div class="p-3 bg-[var(--bg-page)] border-t border-[var(--border-subtle)] flex flex-col sm:flex-row items-center justify-between text-xs text-[var(--text-muted)] gap-2">
+        <div class="p-3.5 bg-slate-100 dark:bg-slate-900 border-t-2 border-[var(--border-subtle)] flex flex-col sm:flex-row items-center justify-between text-xs font-bold text-[var(--text-muted)] gap-2">
           <div>
             দেখাচ্ছে <span class="font-bold text-[var(--text-main)]">১ থেকে ৫</span> (সর্বমোট ৩৫টি লেনদেন)
           </div>
           <div class="flex items-center gap-1 font-mono">
-            <button class="px-2 py-1 rounded border border-[var(--border-subtle)] hover:bg-[var(--bg-surface)] disabled:opacity-50" disabled>&lt;</button>
-            <button class="px-2.5 py-1 rounded bg-brand-600 text-white font-bold">১</button>
-            <button class="px-2.5 py-1 rounded border border-[var(--border-subtle)] hover:bg-[var(--bg-surface)]">২</button>
-            <button class="px-2.5 py-1 rounded border border-[var(--border-subtle)] hover:bg-[var(--bg-surface)]">৩</button>
-            <button class="px-2 py-1 rounded border border-[var(--border-subtle)] hover:bg-[var(--bg-surface)]">&gt;</button>
+            <button class="px-2.5 py-1 rounded border-2 border-[var(--border-subtle)] hover:bg-[var(--bg-surface)] text-[var(--text-main)] font-bold disabled:opacity-50" disabled>&lt;</button>
+            <button class="px-3 py-1 rounded bg-teal-800 text-white font-bold">১</button>
+            <button class="px-3 py-1 rounded border-2 border-[var(--border-subtle)] bg-[var(--bg-surface)] hover:bg-[var(--bg-surface-hover)] text-[var(--text-main)] font-bold">২</button>
+            <button class="px-3 py-1 rounded border-2 border-[var(--border-subtle)] bg-[var(--bg-surface)] hover:bg-[var(--bg-surface-hover)] text-[var(--text-main)] font-bold">৩</button>
+            <button class="px-2.5 py-1 rounded border-2 border-[var(--border-subtle)] bg-[var(--bg-surface)] hover:bg-[var(--bg-surface-hover)] text-[var(--text-main)] font-bold">&gt;</button>
           </div>
         </div>
 
-      </div>
-
-      <!-- DESIGN AUDIT SHOWCASE: Side-by-Side Comparison (Why this removes AI vibe) -->
-      <div class="p-6 rounded-xl bg-slate-900 text-slate-100 border border-slate-800 shadow-md">
-        <div class="flex items-center justify-between mb-4">
-          <div class="flex items-center gap-2">
-            <span class="px-2.5 py-1 rounded bg-teal-500/20 text-teal-400 font-bold text-xs border border-teal-500/30">
-              UI/UX Pro Max Audit Report
-            </span>
-            <h3 class="font-bold text-sm">পূর্বের এআই ভাইব (AI Vibe) বনাম বর্তমান প্রফেশনাল ডিজাইন সিস্টেম</h3>
-          </div>
-          <span class="text-xs text-slate-400">স্ট্যান্ডার্ড: WCAG AA 4.5:1 • 150ms Tactile Micro-Interactions</span>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
-          <!-- Col 1: AI Vibe Problems -->
-          <div class="p-4 rounded-lg bg-red-950/30 border border-red-800/40 space-y-2">
-            <h4 class="font-bold text-red-400 flex items-center gap-1.5">
-              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"></path></svg>
-              পূর্বের এআই ভাইবের সমস্যাসমূহ (Eliminated AI Vibe):
-            </h4>
-            <ul class="space-y-1 text-slate-300 list-disc list-inside">
-              <li>মেনু ও বাটনে কার্টুন ইমোজির ছড়াছড়ি (যেমন: 💳 📦 🖥️) যা অপরিপক্ক দেখায়।</li>
-              <li>অতিরিক্ত গোল কর্নার (rounded-3xl, rounded-full) যা এআই অ্যাপের খেলনা লুক দেয়।</li>
-              <li>সবুজ রঙকে যেখানে-সেখানে নিয়ন গ্রেডিয়েন্ট হিসেবে ব্যবহার করা।</li>
-              <li>টাকার অংক বামে-ডানে এলোমেলো এবং সাধারণ ফন্টে লেখা (Tabular alignment নেই)।</li>
-              <li>একই ফাইলে ১০,৫০০+ লাইন কোড ডাম্প করা।</li>
-            </ul>
-          </div>
-
-          <!-- Col 2: Real Developer Pro Max Fixes -->
-          <div class="p-4 rounded-lg bg-emerald-950/30 border border-emerald-800/40 space-y-2">
-            <h4 class="font-bold text-emerald-400 flex items-center gap-1.5">
-              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
-              প্রফেশনাল ডেভেলপার আর্কিটেকচার (Professional Enterprise Fixes):
-            </h4>
-            <ul class="space-y-1 text-slate-300 list-disc list-inside">
-              <li>১০০% শার্প ও পরিচ্ছন্ন <strong>Lucide SVG ভেক্টর আইকন</strong> (জিরো ইমোজি)।</li>
-              <li>স্ট্রাকচার্ড কর্নার স্কেল: বাটন ও ইনপুটে <strong>rounded-md (6px)</strong>, কার্ডে <strong>rounded-xl</strong>।</li>
-              <li>অর্থনৈতিক ফাংশনাল কালার: ব্র্যান্ডিংয়ে ডিপ টিল, জমার জন্য পান্না সবুজ, খরচে রুবি লাল।</li>
-              <li>টাকার অংকের জন্য <strong>JetBrains Mono Tabular-Nums</strong> (শতভাগ সোজা এলাইনমেন্ট)।</li>
-              <li>সার্ভার হেলথ, ল্যাটেন্সি ও অডিট ট্রেইল মেট্রিক্সের লাইভ ভিজুয়ালাইজেশন।</li>
-            </ul>
-          </div>
-        </div>
       </div>
 
     </main>
@@ -599,12 +558,12 @@
       
       const allBtns = [btnToday, btnWeek, btnMonth, btnCustom];
       allBtns.forEach(b => {
-        b.className = "px-3 py-1.5 rounded-md font-medium text-[var(--text-muted)] hover:bg-[var(--bg-surface-hover)] hover:text-[var(--text-main)] transition cursor-pointer";
+        b.className = "px-3.5 py-1.5 rounded-md font-semibold text-[var(--text-muted)] hover:bg-[var(--bg-surface-hover)] hover:text-[var(--text-main)] border border-[var(--border-subtle)] transition cursor-pointer";
       });
 
       const activeBtn = document.getElementById('btn-' + type.toLowerCase());
       if (activeBtn) {
-        activeBtn.className = "px-3 py-1.5 rounded-md font-semibold transition bg-brand-500 text-white cursor-pointer shadow-xs";
+        activeBtn.className = "px-3.5 py-1.5 rounded-md font-bold transition bg-teal-700 hover:bg-teal-800 text-white cursor-pointer shadow-xs";
       }
     }
   </script>

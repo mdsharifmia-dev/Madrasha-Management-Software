@@ -3,30 +3,54 @@
 @tailwind utilities;
 
 :root {
+  /* DARK MODE (Default) - Deep Obsidian & High-Visibility Accents */
   --background: #090d16;
   --foreground: #f8fafc;
   --card: #0f172a;
   --card-hover: #1e293b;
   --border: #1e293b;
-  --primary: #059669;
+  --border-strong: #334155;
+  --primary: #0d9488;
   --primary-foreground: #ffffff;
-  --muted-foreground: #94a3b8;
-  --accent: #047857;
-  --accent-foreground: #ecfdf5;
+  --muted-foreground: #cbd5e1;
+  --subtle-foreground: #94a3b8;
+  --accent: #115e59;
+  --accent-foreground: #f0fdfa;
+  --positive: #22c55e;
+  --negative: #ef4444;
+  --warning: #f59e0b;
   font-family: 'Hind Siliguri', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  font-weight: 500;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
-body.light-mode {
-  --background: #f8fafc;
-  --foreground: #0f172a;
+body.light-mode,
+:root.light,
+.light {
+  /* LIGHT MODE - Ultra-Crisp, High-Contrast (WCAG AAA), Deep Dark Inks, Zero Washed-Out Text */
+  --background: #f1f5f9;
+  --foreground: #020617;          /* Slate-950: Jet-ink solid text, 100% sharp */
   --card: #ffffff;
-  --card-hover: #f1f5f9;
-  --border: #e2e8f0;
-  --primary: #059669;
+  --card-hover: #f8fafc;
+  --border: #cbd5e1;              /* Slate-300: Crisp 1px division, no hazy lines */
+  --border-strong: #94a3b8;       /* Slate-400 */
+  --primary: #0f766e;             /* Deep Teal 700: Professional institutional brand */
   --primary-foreground: #ffffff;
-  --muted-foreground: #64748b;
-  --accent: #d1fae5;
-  --accent-foreground: #065f46;
+  --muted-foreground: #0f172a;     /* Slate-900: Jet-ink secondary text, WCAG AAA */
+  --subtle-foreground: #1e293b;    /* Slate-800: Solid, crisp secondary descriptions */
+  --accent: #ccfbf1;
+  --accent-foreground: #115e59;
+  --positive: #15803d;            /* Green 700: Deep readable green on white */
+  --negative: #b91c1c;            /* Red 700: Deep readable red on white */
+  --warning: #b45309;             /* Amber 700: Deep readable amber on white */
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
 }
 
 /* Custom scrollbar styling matching modern SaaS */
@@ -43,4 +67,10 @@ body.light-mode {
 }
 ::-webkit-scrollbar-thumb:hover {
   background: var(--muted-foreground);
+}
+
+/* Tabular Numerics for Financial Ledgers */
+.tabular-nums {
+  font-feature-settings: "tnum";
+  font-variant-numeric: tabular-nums;
 }

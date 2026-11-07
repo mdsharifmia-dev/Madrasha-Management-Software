@@ -144,6 +144,32 @@ export interface RegisteredStudent {
   dueAmount: number;
   monthlyFee: number;
   feeHead: string;
+  residentialStatus?: 'RESIDENTIAL' | 'NON_RESIDENTIAL';
+  roomNo?: string;
+  bloodGroup?: string;
+  mealActive?: boolean;
+}
+
+export interface Teacher {
+  id: string;
+  nameBn: string;
+  designationBn: string;
+  departmentBn: string;
+  phone: string;
+  monthlySalary: number;
+  status: 'ACTIVE' | 'LEAVE';
+  assignedClasses: string[];
+}
+
+export interface ClassRoutine {
+  id: string;
+  teacherId: string;
+  teacherNameBn: string;
+  classNameBn: string;
+  subjectBookBn: string;
+  periodTimeBn: string;
+  roomNoBn: string;
+  dayBn: string;
 }
 
 export interface ShariahFund {
@@ -1276,7 +1302,7 @@ export const App: React.FC = () => {
   ]);
 
   // 2.1 Registered Students Database (Unique Registration Numbers & Auto-fill)
-  const [registeredStudents] = useState<RegisteredStudent[]>([
+  const [registeredStudents, setRegisteredStudents] = useState<RegisteredStudent[]>([
     {
       registrationNo: 'REG-2026-0001',
       roll: '০১',
@@ -1289,6 +1315,10 @@ export const App: React.FC = () => {
       dueAmount: 1500,
       monthlyFee: 1500,
       feeHead: 'হিফজ মাসিক ফি ও খানা',
+      residentialStatus: 'RESIDENTIAL',
+      roomNo: 'রুম ১০১',
+      bloodGroup: 'B+',
+      mealActive: true,
     },
     {
       registrationNo: 'REG-2026-0002',
@@ -1302,6 +1332,10 @@ export const App: React.FC = () => {
       dueAmount: 1200,
       monthlyFee: 1500,
       feeHead: 'হিফজ মাসিক ফি',
+      residentialStatus: 'RESIDENTIAL',
+      roomNo: 'রুম ১০২',
+      bloodGroup: 'A+',
+      mealActive: true,
     },
     {
       registrationNo: 'REG-2026-0003',
@@ -1315,6 +1349,10 @@ export const App: React.FC = () => {
       dueAmount: 2200,
       monthlyFee: 2200,
       feeHead: 'মাসিক টিউশন ও বোর্ডিং ফি',
+      residentialStatus: 'NON_RESIDENTIAL',
+      roomNo: 'অনাবাসিক',
+      bloodGroup: 'O+',
+      mealActive: false,
     },
     {
       registrationNo: 'REG-2026-0004',
@@ -1328,6 +1366,10 @@ export const App: React.FC = () => {
       dueAmount: 1800,
       monthlyFee: 1800,
       feeHead: 'মাসিক বোর্ডিং ও কিতাব ফি',
+      residentialStatus: 'RESIDENTIAL',
+      roomNo: 'রুম ২০২',
+      bloodGroup: 'AB+',
+      mealActive: true,
     },
     {
       registrationNo: 'REG-2026-0005',
@@ -1341,8 +1383,139 @@ export const App: React.FC = () => {
       dueAmount: 3500,
       monthlyFee: 2000,
       feeHead: 'নতুন সেশন ভর্তি ও কিতাব ফি',
+      residentialStatus: 'NON_RESIDENTIAL',
+      roomNo: 'অনাবাসিক',
+      bloodGroup: 'B+',
+      mealActive: false,
     },
   ]);
+
+  // Teachers Database State
+  const [teachers, setTeachers] = useState<Teacher[]>([
+    {
+      id: 'tch-1',
+      nameBn: 'মাওলানা মুফতী মাহমুদুল হাসান',
+      designationBn: 'প্রধান মুহাদ্দিস ও শায়খুল হাদিস',
+      departmentBn: 'কিতাব বিভাগ',
+      phone: '01711-889900',
+      monthlySalary: 28000,
+      status: 'ACTIVE',
+      assignedClasses: ['দাওরায়ে হাদিস', 'মিশকাত জামাত'],
+    },
+    {
+      id: 'tch-2',
+      nameBn: 'হাফেজ মাওলানা ক্বারী ইসমাইল',
+      designationBn: 'প্রধান ক্বারী ও নাযেমুত তালিমাত',
+      departmentBn: 'হিফজুল কুরআন বিভাগ',
+      phone: '01819-778899',
+      monthlySalary: 22000,
+      status: 'ACTIVE',
+      assignedClasses: ['হিফজুল কুরআন সমাপনী', 'তাজভীদ কোর্স'],
+    },
+    {
+      id: 'tch-3',
+      nameBn: 'মাওলানা কাসেম মাহমুদ',
+      designationBn: 'প্রধান হিসাবরক্ষক ও মুদাররিস',
+      departmentBn: 'হিসাব ও কিতাব বিভাগ',
+      phone: '01912-667788',
+      monthlySalary: 20000,
+      status: 'ACTIVE',
+      assignedClasses: ['জালালাইন জামাত', 'শরহে বেকায়া'],
+    },
+    {
+      id: 'tch-4',
+      nameBn: 'হাফেজ বেলাল আহমদ',
+      designationBn: 'মেস ও ছাত্রাবাস সুপার',
+      departmentBn: 'হোস্টেল ও মেস',
+      phone: '01611-554433',
+      monthlySalary: 16000,
+      status: 'ACTIVE',
+      assignedClasses: ['ছাত্রাবাস নিরাপত্তা ও তদারকি'],
+    },
+  ]);
+
+  // Class & Dars Routine Schedule State
+  const [classRoutines, setClassRoutines] = useState<ClassRoutine[]>([
+    {
+      id: 'rt-1',
+      teacherId: 'tch-1',
+      teacherNameBn: 'মাওলানা মুফতী মাহমুদুল হাসান',
+      classNameBn: 'দাওরায়ে হাদিস (মাস্টার্স সমমান)',
+      subjectBookBn: 'সহীহ বুখারী শরীফ (১ম খণ্ড)',
+      periodTimeBn: '১ম পিরিয়ড (সকাল ৮:০০ - ৯:০০)',
+      roomNoBn: 'দারুল হাদিস অডিটোরিয়াম',
+      dayBn: 'শনিবার - বৃহস্পতিবার',
+    },
+    {
+      id: 'rt-2',
+      teacherId: 'tch-1',
+      teacherNameBn: 'মাওলানা মুফতী মাহমুদুল হাসান',
+      classNameBn: 'মিশকাত জামাত',
+      subjectBookBn: 'মিশকাতুল মাসাবীহ (কিতাবুল ঈমান)',
+      periodTimeBn: '২য় পিরিয়ড (সকাল ৯:১০ - ১০:১০)',
+      roomNoBn: 'হল রুম ৩',
+      dayBn: 'শনিবার - বৃহস্পতিবার',
+    },
+    {
+      id: 'rt-3',
+      teacherId: 'tch-2',
+      teacherNameBn: 'হাফেজ মাওলানা ক্বারী ইসমাইল',
+      classNameBn: 'হিফজুল কুরআন বিভাগ',
+      subjectBookBn: 'কুরআনুল কারীম তেলাওয়াত ও তাজভীদ',
+      periodTimeBn: '১ম পিরিয়ড (সকাল ৭:৩০ - ৯:০০)',
+      roomNoBn: 'হিফজ খানা ১',
+      dayBn: 'প্রতিদিন',
+    },
+    {
+      id: 'rt-4',
+      teacherId: 'tch-3',
+      teacherNameBn: 'মাওলানা কাসেম মাহমুদ',
+      classNameBn: 'জালালাইন জামাত',
+      subjectBookBn: 'তাফসীরে জালালাইন (১ম খণ্ড)',
+      periodTimeBn: '৩য় পিরিয়ড (সকাল ১০:২০ - ১১:২০)',
+      roomNoBn: 'ক্লাসরুম ২০২',
+      dayBn: 'শনিবার - বুধবার',
+    },
+  ]);
+
+  // Modals and form states for Students
+  const [showAddStudentModal, setShowAddStudentModal] = useState<boolean>(false);
+  const [newStudentRegNo, setNewStudentRegNo] = useState('');
+  const [newStudentRoll, setNewStudentRoll] = useState('');
+  const [newStudentNameBn, setNewStudentNameBn] = useState('');
+  const [newStudentFatherNameBn, setNewStudentFatherNameBn] = useState('');
+  const [newStudentMotherNameBn, setNewStudentMotherNameBn] = useState('');
+  const [newStudentClassBn, setNewStudentClassBn] = useState('হিফজুল কুরআন বিভাগ (সমাপনী)');
+  const [newStudentPhone, setNewStudentPhone] = useState('');
+  const [newStudentFee, setNewStudentFee] = useState<number>(1500);
+  const [newStudentResidential, setNewStudentResidential] = useState<'RESIDENTIAL' | 'NON_RESIDENTIAL'>('RESIDENTIAL');
+  const [newStudentRoomNo, setNewStudentRoomNo] = useState('রুম ১০১');
+  const [newStudentBloodGroup, setNewStudentBloodGroup] = useState('B+');
+
+  // Modals and form states for Teachers and Routines
+  const [showAddTeacherModal, setShowAddTeacherModal] = useState<boolean>(false);
+  const [newTeacherNameBn, setNewTeacherNameBn] = useState('');
+  const [newTeacherDesignationBn, setNewTeacherDesignationBn] = useState('মুহাদ্দিস ও মুদাররিস');
+  const [newTeacherDepartmentBn, setNewTeacherDepartmentBn] = useState('কিতাব বিভাগ');
+  const [newTeacherPhone, setNewTeacherPhone] = useState('');
+  const [newTeacherSalary, setNewTeacherSalary] = useState<number>(20000);
+
+  const [showAddRoutineModal, setShowAddRoutineModal] = useState<boolean>(false);
+  const [newRoutineTeacherId, setNewRoutineTeacherId] = useState('tch-1');
+  const [newRoutineClassBn, setNewRoutineClassBn] = useState('মিশকাত জামাত');
+  const [newRoutineBookBn, setNewRoutineBookBn] = useState('সহীহ বুখারী শরীফ (১ম খণ্ড)');
+  const [newRoutinePeriodBn, setNewRoutinePeriodBn] = useState('১ম পিরিয়ড (সকাল ৮:০০ - ৯:০০)');
+  const [newRoutineRoomBn, setNewRoutineRoomBn] = useState('দারুল হাদিস হল');
+  const [newRoutineDayBn, setNewRoutineDayBn] = useState('শনিবার - বৃহস্পতিবার');
+
+  const [teacherPortalFilter, setTeacherPortalFilter] = useState<string>('ALL');
+  const [studentSearchQuery, setStudentSearchQuery] = useState('');
+  const [studentClassFilter, setStudentClassFilter] = useState('ALL');
+  const [studentResFilter, setStudentResFilter] = useState<'ALL' | 'RESIDENTIAL' | 'NON_RESIDENTIAL'>('ALL');
+  const [academicSabaqStudentReg, setAcademicSabaqStudentReg] = useState('REG-2026-0001');
+  const [academicSabaqPage, setAcademicSabaqPage] = useState('পৃষ্ঠা ৬০ (৩য় পারা)');
+  const [academicSabqiRange, setAcademicSabqiRange] = useState('পৃষ্ঠা ৪০ - ৫৯');
+  const [academicAmukhta, setAcademicAmukhta] = useState('১ম পারা সম্পূর্ণ');
 
   // Student Fee Portal Form States
   const [studentRegSearch, setStudentRegSearch] = useState('REG-2026-0001');
@@ -1649,13 +1822,7 @@ export const App: React.FC = () => {
     expiry: string;
   } | null>(null);
 
-  // Meal counts
-  const [mealSummary] = useState({
-    date: '১৫ অক্টোবর ২০২৬',
-    morning: { general: 620, lillah: 140 },
-    noon: { general: 610, lillah: 140 },
-    night: { general: 615, lillah: 140 },
-  });
+
 
   // =========================================================================
   // MODULE 4: LIBRARY STATE (Multilingual Catalog & Issue/Return)
@@ -1953,6 +2120,148 @@ export const App: React.FC = () => {
     setGrantStaffRole('');
     setShowGrantPermissionModal(false);
     alert(`"${grantStaffName}" কে "${targetDept?.nameBn || 'বিভাগ'}" এর জন্য "${grantPermLevel}" পারমিশন প্রদান করা হয়েছে!`);
+  };
+
+  // =========================================================================
+  // STUDENT AFFAIRS, ADMISSIONS & ROSTER HANDLERS
+  // =========================================================================
+
+  const handleAddStudent = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!newStudentNameBn.trim()) {
+      alert('অনুগ্রহ করে ছাত্রের নাম প্রদান করুন।');
+      return;
+    }
+    const nextNum = registeredStudents.length + 1;
+    const finalRegNo = newStudentRegNo.trim() || `REG-2026-${String(nextNum).padStart(4, '0')}`;
+    const newStudent: RegisteredStudent = {
+      registrationNo: finalRegNo,
+      roll: newStudentRoll.trim() || String(nextNum).padStart(2, '0'),
+      nameBn: newStudentNameBn.trim(),
+      fatherNameBn: newStudentFatherNameBn.trim() || 'অভিভাবক',
+      motherNameBn: newStudentMotherNameBn.trim() || 'মাতা',
+      classGradeBn: newStudentClassBn,
+      batchSessionBn: '২০২৬ সেশন',
+      guardianPhone: newStudentPhone.trim() || '01700-000000',
+      dueAmount: Number(newStudentFee) || 1500,
+      monthlyFee: Number(newStudentFee) || 1500,
+      feeHead: newStudentResidential === 'RESIDENTIAL' ? 'আবাসিক খানা ও কিতাব ফি' : 'অনাবাসিক টিউশন ফি',
+      residentialStatus: newStudentResidential,
+      roomNo: newStudentResidential === 'RESIDENTIAL' ? newStudentRoomNo : 'অনাবাসিক',
+      bloodGroup: newStudentBloodGroup,
+      mealActive: newStudentResidential === 'RESIDENTIAL',
+    };
+
+    setRegisteredStudents([newStudent, ...registeredStudents]);
+    setShowAddStudentModal(false);
+    setNewStudentNameBn('');
+    setNewStudentRoll('');
+    setNewStudentPhone('');
+    alert(`ছাত্র "${newStudent.nameBn}" (রেজিস্ট্রেশন: ${newStudent.registrationNo}) সফলভাবে ভর্তি করা হয়েছে!`);
+  };
+
+  const handleDeleteStudent = (regNo: string) => {
+    const st = registeredStudents.find((s) => s.registrationNo === regNo);
+    if (!st) return;
+    if (confirm(`আপনি কি নিশ্চিত যে "${st.nameBn}" (রেজিস্ট্রেশন: ${regNo}) এর ছাত্র রেকর্ড মুছে ফেলতে চান?`)) {
+      setRegisteredStudents(registeredStudents.filter((s) => s.registrationNo !== regNo));
+      alert(`ছাত্র "${st.nameBn}" এর রেকর্ড মুছে ফেলা হয়েছে।`);
+    }
+  };
+
+  // =========================================================================
+  // TEACHERS, FACULTY & CLASS ROUTINE HANDLERS
+  // =========================================================================
+
+  const handleAddTeacher = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!newTeacherNameBn.trim()) {
+      alert('অনুগ্রহ করে শিক্ষকের নাম প্রদান করুন।');
+      return;
+    }
+    const newId = `tch-${Date.now()}`;
+    const newTeacher: Teacher = {
+      id: newId,
+      nameBn: newTeacherNameBn.trim(),
+      designationBn: newTeacherDesignationBn.trim(),
+      departmentBn: newTeacherDepartmentBn.trim(),
+      phone: newTeacherPhone.trim() || '01700-000000',
+      monthlySalary: Number(newTeacherSalary) || 20000,
+      status: 'ACTIVE',
+      assignedClasses: [newTeacherDepartmentBn],
+    };
+
+    setTeachers([...teachers, newTeacher]);
+    setShowAddTeacherModal(false);
+    setNewTeacherNameBn('');
+    setNewTeacherPhone('');
+    alert(`শিক্ষক "${newTeacher.nameBn}" সফলভাবে যুক্ত করা হয়েছে!`);
+  };
+
+  const handleDeleteTeacher = (id: string) => {
+    const tch = teachers.find((t) => t.id === id);
+    if (!tch) return;
+    if (confirm(`আপনি কি নিশ্চিত যে শিক্ষক "${tch.nameBn}" এর প্রোফাইল মুছে ফেলতে চান?`)) {
+      setTeachers(teachers.filter((t) => t.id !== id));
+      setClassRoutines(classRoutines.filter((r) => r.teacherId !== id));
+      alert(`শিক্ষক "${tch.nameBn}" এর প্রোফাইল মুছে ফেলা হয়েছে।`);
+    }
+  };
+
+  const handleAddRoutine = (e: React.FormEvent) => {
+    e.preventDefault();
+    const tch = teachers.find((t) => t.id === newRoutineTeacherId);
+    const teacherName = tch ? tch.nameBn : 'দায়িত্বপ্রাপ্ত শিক্ষক';
+    const newRoutine: ClassRoutine = {
+      id: `rt-${Date.now()}`,
+      teacherId: newRoutineTeacherId,
+      teacherNameBn: teacherName,
+      classNameBn: newRoutineClassBn,
+      subjectBookBn: newRoutineBookBn,
+      periodTimeBn: newRoutinePeriodBn,
+      roomNoBn: newRoutineRoomBn,
+      dayBn: newRoutineDayBn,
+    };
+
+    setClassRoutines([...classRoutines, newRoutine]);
+    setShowAddRoutineModal(false);
+    alert(`ক্লাস "${newRoutine.classNameBn}" এর জন্য "${newRoutine.subjectBookBn}" রুটিন সফলভাবে সেভ হয়েছে!`);
+  };
+
+  const handleDeleteRoutine = (id: string) => {
+    const rt = classRoutines.find((r) => r.id === id);
+    if (!rt) return;
+    if (confirm(`আপনি কি "${rt.classNameBn} - ${rt.subjectBookBn}" এর রুটিন মুছে ফেলতে চান?`)) {
+      setClassRoutines(classRoutines.filter((r) => r.id !== id));
+      alert('রুটিনটি মুছে ফেলা হয়েছে।');
+    }
+  };
+
+  // =========================================================================
+  // CLEAR ALL DEMO DATA HANDLER
+  // =========================================================================
+
+  const handleClearAllDemoData = () => {
+    if (confirm('সতর্কতা: আপনি কি নিশ্চিত যে সমস্ত ডেমো ডাটা (শিক্ষার্থী, শিক্ষক, রুটিন, ভাউচার, ক্যাশ হিসাব ও অনুদান) সম্পূর্ণ মুছে ফ্রেশ ও শূন্য অবস্থায় রিসেট করতে চান?')) {
+      setRegisteredStudents([]);
+      setTeachers([]);
+      setClassRoutines([]);
+      setCompletedPayments([]);
+      setExpenseVouchers([]);
+      setDonations([]);
+      setDailyClosings([]);
+      setShariahFunds((prev) => prev.map((f) => ({ ...f, balance: 0 })));
+      setPosStudentRegNo('');
+      setPosStudentName('');
+      setPosFatherName('');
+      setPosMotherName('');
+      setPosClassName('');
+      setPosRoll('');
+      setPosGuardianPhone('');
+      setPosAmount(0);
+      setStudentRegSearch('');
+      alert('সমস্ত ডেমো ডাটা সফলভাবে মুছে দেওয়া হয়েছে! সিস্টেম এখন সম্পূর্ণ ফ্রেশ এবং শূন্য ব্যালেন্সে প্রস্তুত।');
+    }
   };
 
   // =========================================================================
@@ -3279,6 +3588,16 @@ export const App: React.FC = () => {
               )}
             </div>
 
+            {/* Clear All Demo Data Button */}
+            <button
+              onClick={handleClearAllDemoData}
+              className="px-2.5 py-1.5 text-xs rounded-full border border-red-500/30 bg-red-500/10 hover:bg-red-500/20 text-red-500 font-bold flex items-center gap-1.5 transition shadow-sm"
+              title="সকল ডেমো ডাটা মুছুন ও ফ্রেশ করুন"
+            >
+              <Trash2 className="w-3.5 h-3.5" />
+              <span className="hidden sm:inline">ডেমো রিসেট</span>
+            </button>
+
             {/* Dark/Light Theme Toggle */}
             <button
               onClick={toggleTheme}
@@ -4129,17 +4448,33 @@ export const App: React.FC = () => {
           {/* ========================================================================= */}
           {activeNav === 'directory' && (
             <div className="space-y-6">
-              <div className="flex items-center justify-between">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                 <div>
                   <h2 className="text-xl font-bold text-[var(--foreground)]">সক্রিয় ও সাবস্ক্রাইবড মাদ্রাসা তালিকা</h2>
                   <p className="text-xs text-[var(--muted-foreground)]">সকল নিবন্ধিত ও পরিচালিত প্রতিষ্ঠানের হালনাগাদ তথ্য</p>
                 </div>
-                <button
-                  onClick={() => setActiveNav('monitor')}
-                  className="px-3 py-1.5 rounded-lg border border-[var(--border)] text-xs font-medium hover:bg-[var(--card)]"
-                >
-                  ← ড্যাশবোর্ডে ফিরে যান
-                </button>
+                <div className="flex items-center gap-2 flex-wrap">
+                  <button
+                    onClick={() => setShowAddMadrasaModal(true)}
+                    className="px-3.5 py-1.5 rounded-xl bg-[var(--primary)] text-[var(--primary-foreground)] text-xs font-bold hover:opacity-90 flex items-center gap-1.5 shadow-sm transition"
+                  >
+                    <Plus className="w-3.5 h-3.5" />
+                    নতুন মাদ্রাসা যুক্ত করুন
+                  </button>
+                  <button
+                    onClick={handleClearAllDemoData}
+                    className="px-3.5 py-1.5 rounded-xl border border-red-500/30 hover:bg-red-500/10 text-red-500 text-xs font-bold flex items-center gap-1.5 transition"
+                  >
+                    <Trash2 className="w-3.5 h-3.5" />
+                    সব ডেমো মুছুন
+                  </button>
+                  <button
+                    onClick={() => setActiveNav('monitor')}
+                    className="px-3 py-1.5 rounded-lg border border-[var(--border)] text-xs font-medium hover:bg-[var(--card)] text-[var(--foreground)] transition"
+                  >
+                    ← ড্যাশবোর্ডে ফিরে যান
+                  </button>
+                </div>
               </div>
 
               <div className="bg-[var(--card)] border border-[var(--border)] rounded-xl p-6 shadow-sm">
@@ -4900,7 +5235,7 @@ export const App: React.FC = () => {
           {/* ========================================================================= */}
           {activeNav === 'teachers' && (
             <div className="space-y-6 animate-in fade-in duration-200">
-              <div className="flex items-center justify-between pb-3 border-b border-[var(--border)]">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-3 border-b border-[var(--border)] gap-4">
                 <div className="flex items-center gap-3">
                   <button
                     onClick={() => setActiveNav('madrasa_dashboard')}
@@ -4915,31 +5250,224 @@ export const App: React.FC = () => {
                       আসাতায়ে কেরাম ও শিক্ষক প্যানেল (Teachers & Faculty)
                     </h2>
                     <p className="text-xs text-[var(--muted-foreground)]">
-                      শিক্ষক হাজিরা, ক্লাস দায়িত্ব, বেতন শীট ও দরসি কার্যক্রম
+                      শিক্ষক প্রোফাইল, ক্লাস দায়িত্ব, দরসি রুটিন শিডিউল ও শিক্ষক পোর্টাল
                     </p>
                   </div>
                 </div>
 
-                <span className="text-xs px-3 py-1.5 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 font-bold">
-                  ২৮ জন শিক্ষক সক্রিয়
-                </span>
+                <div className="flex items-center gap-2 flex-wrap">
+                  <button
+                    onClick={() => setShowAddTeacherModal(true)}
+                    className="px-3.5 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-xs flex items-center gap-1.5 shadow-sm transition"
+                  >
+                    <Plus className="w-4 h-4" />
+                    নতুন শিক্ষক যুক্ত করুন
+                  </button>
+                  <button
+                    onClick={() => setShowAddRoutineModal(true)}
+                    className="px-3.5 py-2 rounded-xl bg-[var(--card)] border border-indigo-500/40 hover:bg-indigo-500/10 text-indigo-400 font-bold text-xs flex items-center gap-1.5 shadow-sm transition"
+                  >
+                    <Clock className="w-4 h-4" />
+                    নতুন ক্লাস রুটিন যোগ করুন
+                  </button>
+                </div>
               </div>
 
+              {/* Dynamic Metric Cards */}
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div className="p-5 rounded-xl bg-[var(--card)] border border-[var(--border)]">
-                  <div className="text-xs text-[var(--muted-foreground)]">আজকের শিক্ষক উপস্থিতি</div>
-                  <div className="text-2xl font-bold text-emerald-700 dark:text-emerald-400 font-bold mt-1">১০০% (২৮/২৮)</div>
-                  <div className="text-xs font-medium text-[var(--muted-foreground)] mt-1">সবাই নির্ধারিত সময়ে ক্লাসে উপস্থিত</div>
+                <div className="p-5 rounded-xl bg-[var(--card)] border border-[var(--border)] shadow-sm">
+                  <div className="text-xs text-[var(--muted-foreground)]">মোট আসাতায়ে কেরাম ও শিক্ষক</div>
+                  <div className="text-2xl font-bold text-indigo-400 font-bold mt-1">{teachers.length} জন</div>
+                  <div className="text-xs font-medium text-emerald-700 dark:text-emerald-400 mt-1">সবাই সক্রিয় ও ক্লাস দায়িত্বে নিয়োজিত</div>
                 </div>
-                <div className="p-5 rounded-xl bg-[var(--card)] border border-[var(--border)]">
-                  <div className="text-xs text-[var(--muted-foreground)]">দৈনিক মোট পিরিয়ড</div>
-                  <div className="text-2xl font-bold text-[var(--foreground)] mt-1">৭২টি ক্লাস</div>
-                  <div className="text-xs font-medium text-[var(--muted-foreground)] mt-1">হিফজ ও কিতাব বিভাগ মিলিয়ে</div>
+                <div className="p-5 rounded-xl bg-[var(--card)] border border-[var(--border)] shadow-sm">
+                  <div className="text-xs text-[var(--muted-foreground)]">নির্ধারিত দৈনিক ক্লাস ও দরস পিরিয়ড</div>
+                  <div className="text-2xl font-bold text-[var(--foreground)] mt-1">{classRoutines.length} টি ক্লাস</div>
+                  <div className="text-xs font-medium text-[var(--muted-foreground)] mt-1">হিফজ ও কিতাব বিভাগ সমন্বিত</div>
                 </div>
-                <div className="p-5 rounded-xl bg-[var(--card)] border border-[var(--border)]">
-                  <div className="text-xs text-[var(--muted-foreground)]">চলতি মাসের বেতন বিল</div>
-                  <div className="text-2xl font-bold text-purple-400 mt-1">৳৩,৪৫,০০০</div>
-                  <div className="text-xs font-medium text-emerald-700 dark:text-emerald-400 font-bold mt-1">অনুমোদিত ও বিতরণের জন্য প্রস্তুত</div>
+                <div className="p-5 rounded-xl bg-[var(--card)] border border-[var(--border)] shadow-sm">
+                  <div className="text-xs text-[var(--muted-foreground)]">চলতি মাসের শিক্ষক বেতন বিল</div>
+                  <div className="text-2xl font-bold text-purple-400 mt-1 font-mono">
+                    ৳{teachers.reduce((sum, t) => sum + t.monthlySalary, 0).toLocaleString('bn-BD')}
+                  </div>
+                  <div className="text-xs font-medium text-emerald-700 dark:text-emerald-400 mt-1">নিয়মিত বাজেট অনুমোদিত</div>
+                </div>
+              </div>
+
+              {/* Teacher Portal Filter & Quick Switch */}
+              <div className="p-4 rounded-xl bg-[var(--card)] border border-[var(--border)] flex flex-col sm:flex-row items-center justify-between gap-4">
+                <div className="flex items-center gap-2">
+                  <Clock className="w-4 h-4 text-indigo-400" />
+                  <span className="text-xs font-bold text-[var(--foreground)]">শিক্ষক পোর্টাল ভিউ (ব্যক্তিগত ক্লাস রুটিন ফিল্টার):</span>
+                </div>
+                <div className="w-full sm:w-auto flex items-center gap-2">
+                  <select
+                    value={teacherPortalFilter}
+                    onChange={(e) => setTeacherPortalFilter(e.target.value)}
+                    className="w-full sm:w-64 px-3 py-1.5 rounded-xl bg-[var(--background)] border border-[var(--border)] text-xs font-bold text-[var(--foreground)] focus:outline-none focus:border-indigo-500"
+                  >
+                    <option value="ALL">সকল শিক্ষক ও সার্বিক রুটিন ({classRoutines.length} টি)</option>
+                    {teachers.map((t) => (
+                      <option key={t.id} value={t.id}>
+                        {t.nameBn} ({t.designationBn})
+                      </option>
+                    ))}
+                  </select>
+                  {teacherPortalFilter !== 'ALL' && (
+                    <button
+                      onClick={() => setTeacherPortalFilter('ALL')}
+                      className="px-2.5 py-1.5 rounded-xl border border-[var(--border)] text-xs text-[var(--muted-foreground)] hover:text-[var(--foreground)]"
+                    >
+                      রিসেট
+                    </button>
+                  )}
+                </div>
+              </div>
+
+              {/* Section 1: Teachers List Table */}
+              <div className="bg-[var(--card)] border border-[var(--border)] rounded-xl p-5 shadow-sm space-y-4">
+                <div className="flex items-center justify-between border-b border-[var(--border)] pb-3">
+                  <h3 className="font-bold text-sm text-[var(--foreground)] flex items-center gap-2">
+                    <Users className="w-4 h-4 text-indigo-400" />
+                    আসাতায়ে কেরাম ও শিক্ষক তালিকা ({teachers.length} জন)
+                  </h3>
+                  <span className="text-xs text-[var(--muted-foreground)]">পদবী, বিভাগ ও মোবাইল রেজিস্ট্রি</span>
+                </div>
+
+                <div className="overflow-x-auto rounded-xl border border-[var(--border)]">
+                  <table className="w-full text-left text-xs">
+                    <thead className="bg-[var(--background)] text-[var(--muted-foreground)] uppercase">
+                      <tr>
+                        <th className="p-3">শিক্ষকের নাম</th>
+                        <th className="p-3">পদবী / দায়িত্ব</th>
+                        <th className="p-3">বিভাগ</th>
+                        <th className="p-3">মোবাইল নম্বর</th>
+                        <th className="p-3 text-right">মাসিক বেতন</th>
+                        <th className="p-3 text-center">স্ট্যাটাস</th>
+                        <th className="p-3 text-center">অ্যাকশন</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-[var(--border)]">
+                      {teachers.length === 0 ? (
+                        <tr>
+                          <td colSpan={7} className="p-6 text-center text-[var(--muted-foreground)]">
+                            কোনো শিক্ষক ডাটা পাওয়া যায়নি। "নতুন শিক্ষক যুক্ত করুন" বাটনে ক্লিক করে শিক্ষক যোগ করুন।
+                          </td>
+                        </tr>
+                      ) : (
+                        teachers.map((t) => (
+                          <tr key={t.id} className="hover:bg-[var(--background)]/40 transition">
+                            <td className="p-3 font-bold text-[var(--foreground)]">{t.nameBn}</td>
+                            <td className="p-3 font-semibold text-indigo-400">{t.designationBn}</td>
+                            <td className="p-3 text-[var(--muted-foreground)]">{t.departmentBn}</td>
+                            <td className="p-3 font-mono text-[var(--foreground)]">{t.phone}</td>
+                            <td className="p-3 text-right font-mono font-bold text-emerald-700 dark:text-emerald-400">
+                              ৳{t.monthlySalary.toLocaleString('bn-BD')}
+                            </td>
+                            <td className="p-3 text-center">
+                              <span className="px-2 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-700 dark:text-emerald-400 font-bold text-xs">
+                                {t.status === 'ACTIVE' ? 'সক্রিয়' : 'ছুটিতে'}
+                              </span>
+                            </td>
+                            <td className="p-3 text-center">
+                              <div className="flex items-center justify-center gap-1.5">
+                                <button
+                                  onClick={() => setTeacherPortalFilter(t.id)}
+                                  className="px-2 py-1 rounded-lg bg-indigo-500/10 hover:bg-indigo-500/20 text-indigo-400 font-bold text-xs transition"
+                                  title="এই শিক্ষকের রুটিন দেখুন"
+                                >
+                                  রুটিন দেখুন
+                                </button>
+                                <button
+                                  onClick={() => handleDeleteTeacher(t.id)}
+                                  className="p-1 rounded-lg hover:bg-red-500/10 text-red-500 transition"
+                                  title="শিক্ষক মুছে ফেলুন"
+                                >
+                                  <Trash2 className="w-3.5 h-3.5" />
+                                </button>
+                              </div>
+                            </td>
+                          </tr>
+                        ))
+                      )}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              {/* Section 2: Class & Dars Routine Table */}
+              <div className="bg-[var(--card)] border border-[var(--border)] rounded-xl p-5 shadow-sm space-y-4">
+                <div className="flex items-center justify-between border-b border-[var(--border)] pb-3">
+                  <div>
+                    <h3 className="font-bold text-sm text-[var(--foreground)] flex items-center gap-2">
+                      <Clock className="w-4 h-4 text-indigo-400" />
+                      দৈনিক ক্লাস ও দরসি রুটিন শিডিউল
+                    </h3>
+                    <p className="text-xs text-[var(--muted-foreground)]">
+                      {teacherPortalFilter === 'ALL'
+                        ? 'সকল জামাতের কেন্দ্রীয় সময়সূচী'
+                        : `নির্বাচিত শিক্ষকের নিজস্ব পিরিয়ড শিডিউল`}
+                    </p>
+                  </div>
+                  <span className="text-xs px-2.5 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 font-bold">
+                    {teacherPortalFilter === 'ALL'
+                      ? `${classRoutines.length} টি ক্লাস`
+                      : `${classRoutines.filter((r) => r.teacherId === teacherPortalFilter).length} টি পিরিয়ড`}
+                  </span>
+                </div>
+
+                <div className="overflow-x-auto rounded-xl border border-[var(--border)]">
+                  <table className="w-full text-left text-xs">
+                    <thead className="bg-[var(--background)] text-[var(--muted-foreground)] uppercase">
+                      <tr>
+                        <th className="p-3">পিরিয়ড ও সময়সূচী</th>
+                        <th className="p-3">জামাত / শ্রেণী</th>
+                        <th className="p-3">কিতাব / বিষয়</th>
+                        <th className="p-3">দায়িত্বপ্রাপ্ত শিক্ষক</th>
+                        <th className="p-3">কক্ষ / হল</th>
+                        <th className="p-3">বার / দিন</th>
+                        <th className="p-3 text-center">অ্যাকশন</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-[var(--border)]">
+                      {(() => {
+                        const filtered =
+                          teacherPortalFilter === 'ALL'
+                            ? classRoutines
+                            : classRoutines.filter((r) => r.teacherId === teacherPortalFilter);
+
+                        if (filtered.length === 0) {
+                          return (
+                            <tr>
+                              <td colSpan={7} className="p-6 text-center text-[var(--muted-foreground)]">
+                                কোনো রুটিন পাওয়া যায়নি। "নতুন ক্লাস রুটিন যোগ করুন" বাটনে ক্লিক করে রুটিন তৈরি করুন।
+                              </td>
+                            </tr>
+                          );
+                        }
+
+                        return filtered.map((r) => (
+                          <tr key={r.id} className="hover:bg-[var(--background)]/40 transition">
+                            <td className="p-3 font-bold text-indigo-400">{r.periodTimeBn}</td>
+                            <td className="p-3 font-semibold text-[var(--foreground)]">{r.classNameBn}</td>
+                            <td className="p-3 font-bold text-[var(--foreground)]">{r.subjectBookBn}</td>
+                            <td className="p-3 text-emerald-700 dark:text-emerald-400 font-bold font-medium">{r.teacherNameBn}</td>
+                            <td className="p-3 font-mono text-[var(--muted-foreground)]">{r.roomNoBn}</td>
+                            <td className="p-3 text-[var(--muted-foreground)]">{r.dayBn}</td>
+                            <td className="p-3 text-center">
+                              <button
+                                onClick={() => handleDeleteRoutine(r.id)}
+                                className="p-1 rounded-lg hover:bg-red-500/10 text-red-500 transition"
+                                title="রুটিন মুছে ফেলুন"
+                              >
+                                <Trash2 className="w-3.5 h-3.5" />
+                              </button>
+                            </td>
+                          </tr>
+                        ));
+                      })()}
+                    </tbody>
+                  </table>
                 </div>
               </div>
             </div>
@@ -4950,7 +5478,7 @@ export const App: React.FC = () => {
           {/* ========================================================================= */}
           {activeNav === 'students' && (
             <div className="space-y-6 animate-in fade-in duration-200">
-              <div className="flex items-center justify-between pb-3 border-b border-[var(--border)]">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-3 border-b border-[var(--border)] gap-4">
                 <div className="flex items-center gap-3">
                   <button
                     onClick={() => setActiveNav('madrasa_dashboard')}
@@ -4965,31 +5493,229 @@ export const App: React.FC = () => {
                       ছাত্রকল্যাণ ও ভর্তি বিভাগ (Student Affairs & Admission)
                     </h2>
                     <p className="text-xs text-[var(--muted-foreground)]">
-                      শিক্ষার্থীদের সম্পূর্ণ ডাটাবেস, আইডি কার্ড, নতুন ভর্তি ও রক্তের গ্রুপ রেজিস্ট্রি
+                      শিক্ষার্থীদের সম্পূর্ণ ডাটাবেস, নতুন ভর্তি, আবাসিক/অনাবাসিক রেজিস্ট্রি ও ফি সংযোগ
                     </p>
                   </div>
                 </div>
 
-                <span className="text-xs px-3 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 font-bold">
-                  মোট ছাত্র: ১,৪৫০ জন
-                </span>
+                <div className="flex items-center gap-2 flex-wrap">
+                  <button
+                    onClick={() => setShowAddStudentModal(true)}
+                    className="px-3.5 py-2 rounded-xl bg-cyan-600 hover:bg-cyan-500 text-white font-bold text-xs flex items-center gap-1.5 shadow-sm transition"
+                  >
+                    <Plus className="w-4 h-4" />
+                    নতুন ছাত্র ভর্তি করুন
+                  </button>
+                  <button
+                    onClick={() => {
+                      if (confirm('আপনি কি সকল ছাত্র ডাটা মুছে ফেলতে চান?')) {
+                        setRegisteredStudents([]);
+                        alert('সকল ছাত্র ডাটা মুছে ফেলা হয়েছে।');
+                      }
+                    }}
+                    className="px-3 py-2 rounded-xl border border-red-500/30 hover:bg-red-500/10 text-red-500 font-bold text-xs flex items-center gap-1.5 transition"
+                  >
+                    <Trash2 className="w-3.5 h-3.5" />
+                    সব ছাত্র মুছুন
+                  </button>
+                </div>
               </div>
 
+              {/* Dynamic Metric Cards */}
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div className="p-5 rounded-xl bg-[var(--card)] border border-[var(--border)]">
+                <div className="p-5 rounded-xl bg-[var(--card)] border border-[var(--border)] shadow-sm">
+                  <div className="text-xs text-[var(--muted-foreground)]">মোট নিবন্ধিত ছাত্র</div>
+                  <div className="text-2xl font-bold text-cyan-400 font-bold mt-1">{registeredStudents.length} জন</div>
+                  <div className="text-xs font-medium text-[var(--muted-foreground)] mt-1">সর্বমোট সক্রিয় শিক্ষার্থী ডাটাবেস</div>
+                </div>
+                <div className="p-5 rounded-xl bg-[var(--card)] border border-[var(--border)] shadow-sm">
                   <div className="text-xs text-[var(--muted-foreground)]">আবাসিক ছাত্র</div>
-                  <div className="text-2xl font-bold text-[var(--foreground)] mt-1">৯২০ জন</div>
-                  <div className="text-xs font-medium text-[var(--muted-foreground)] mt-1">হোস্টেলে অবস্থানরত</div>
+                  <div className="text-2xl font-bold text-emerald-700 dark:text-emerald-400 mt-1">
+                    {registeredStudents.filter((s) => s.residentialStatus === 'RESIDENTIAL').length} জন
+                  </div>
+                  <div className="text-xs font-medium text-[var(--muted-foreground)] mt-1">হোস্টেল ও মেস সুবিধাপ্রাপ্ত</div>
                 </div>
-                <div className="p-5 rounded-xl bg-[var(--card)] border border-[var(--border)]">
+                <div className="p-5 rounded-xl bg-[var(--card)] border border-[var(--border)] shadow-sm">
                   <div className="text-xs text-[var(--muted-foreground)]">অনাবাসিক ছাত্র</div>
-                  <div className="text-2xl font-bold text-[var(--foreground)] mt-1">৫৩০ জন</div>
-                  <div className="text-xs font-medium text-[var(--muted-foreground)] mt-1">প্রতিদিন যাতায়াতকারী</div>
+                  <div className="text-2xl font-bold text-blue-500 mt-1">
+                    {registeredStudents.filter((s) => s.residentialStatus === 'NON_RESIDENTIAL').length} জন
+                  </div>
+                  <div className="text-xs font-medium text-[var(--muted-foreground)] mt-1">দৈনিক যাতায়াতকারী শিক্ষার্থী</div>
                 </div>
-                <div className="p-5 rounded-xl bg-[var(--card)] border border-[var(--border)]">
-                  <div className="text-xs text-[var(--muted-foreground)]">নতুন ভর্তি আবেদন</div>
-                  <div className="text-2xl font-bold text-cyan-400 mt-1">৪৫ জন</div>
-                  <div className="text-xs font-medium text-emerald-700 dark:text-emerald-400 font-bold mt-1">যাচাই-বাছাই প্রক্রিয়াধীন</div>
+              </div>
+
+              {/* Search & Filter Bar */}
+              <div className="p-4 rounded-xl bg-[var(--card)] border border-[var(--border)] flex flex-col md:flex-row items-center justify-between gap-3">
+                <div className="relative w-full md:w-72">
+                  <Search className="w-4 h-4 text-[var(--muted-foreground)] absolute left-3 top-2.5" />
+                  <input
+                    type="text"
+                    value={studentSearchQuery}
+                    onChange={(e) => setStudentSearchQuery(e.target.value)}
+                    placeholder="নাম, রোল বা রেজিস্ট্রেশন নং..."
+                    className="w-full pl-9 pr-3 py-1.5 rounded-xl bg-[var(--background)] border border-[var(--border)] text-xs text-[var(--foreground)] focus:outline-none focus:border-cyan-500 font-bold"
+                  />
+                </div>
+
+                <div className="flex items-center gap-2 w-full md:w-auto flex-wrap">
+                  <select
+                    value={studentClassFilter}
+                    onChange={(e) => setStudentClassFilter(e.target.value)}
+                    className="px-3 py-1.5 rounded-xl bg-[var(--background)] border border-[var(--border)] text-xs text-[var(--foreground)] focus:outline-none"
+                  >
+                    <option value="ALL">সকল বিভাগ ও জামাত</option>
+                    <option value="হিফজুল কুরআন বিভাগ">হিফজুল কুরআন বিভাগ</option>
+                    <option value="মিজান জামাত">মিজান জামাত</option>
+                    <option value="কাফিয়া জামাত">কাফিয়া জামাত</option>
+                    <option value="নাহবেমীর জামাত">নাহবেমীর জামাত</option>
+                    <option value="দাওরায়ে হাদিস">দাওরায়ে হাদিস</option>
+                  </select>
+
+                  <select
+                    value={studentResFilter}
+                    onChange={(e) => setStudentResFilter(e.target.value as any)}
+                    className="px-3 py-1.5 rounded-xl bg-[var(--background)] border border-[var(--border)] text-xs text-[var(--foreground)] focus:outline-none"
+                  >
+                    <option value="ALL">সকল আবাসন ধরন</option>
+                    <option value="RESIDENTIAL">আবাসিক</option>
+                    <option value="NON_RESIDENTIAL">অনাবাসিক</option>
+                  </select>
+                </div>
+              </div>
+
+              {/* Student Directory Table */}
+              <div className="bg-[var(--card)] border border-[var(--border)] rounded-xl p-5 shadow-sm space-y-4">
+                <div className="flex items-center justify-between border-b border-[var(--border)] pb-3">
+                  <h3 className="font-bold text-sm text-[var(--foreground)] flex items-center gap-2">
+                    <GraduationCap className="w-4 h-4 text-cyan-400" />
+                    শিক্ষার্থী তালিকা ও ভর্তি রেজিস্ট্রি ({registeredStudents.length} জন)
+                  </h3>
+                  <span className="text-xs text-[var(--muted-foreground)]">ফি জমা, মেস ও সবক সংযোগ</span>
+                </div>
+
+                <div className="overflow-x-auto rounded-xl border border-[var(--border)]">
+                  <table className="w-full text-left text-xs">
+                    <thead className="bg-[var(--background)] text-[var(--muted-foreground)] uppercase">
+                      <tr>
+                        <th className="p-3">রেজিস্ট্রেশন নং</th>
+                        <th className="p-3">রোল</th>
+                        <th className="p-3">ছাত্রের নাম ও পিতার নাম</th>
+                        <th className="p-3">বিভাগ / জামাত</th>
+                        <th className="p-3">ধরন</th>
+                        <th className="p-3">রুম নং</th>
+                        <th className="p-3">অভিভাবকের ফোন</th>
+                        <th className="p-3 text-right">মাসিক ফি</th>
+                        <th className="p-3 text-right">বকেয়া</th>
+                        <th className="p-3 text-center">অ্যাকশন</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-[var(--border)]">
+                      {(() => {
+                        const filtered = registeredStudents.filter((st) => {
+                          const query = studentSearchQuery.trim().toLowerCase();
+                          const matchesQuery =
+                            !query ||
+                            st.nameBn.toLowerCase().includes(query) ||
+                            st.roll.toLowerCase().includes(query) ||
+                            st.registrationNo.toLowerCase().includes(query) ||
+                            st.guardianPhone.includes(query);
+
+                          const matchesClass =
+                            studentClassFilter === 'ALL' || st.classGradeBn.includes(studentClassFilter);
+
+                          const matchesRes =
+                            studentResFilter === 'ALL' || st.residentialStatus === studentResFilter;
+
+                          return matchesQuery && matchesClass && matchesRes;
+                        });
+
+                        if (filtered.length === 0) {
+                          return (
+                            <tr>
+                              <td colSpan={10} className="p-6 text-center text-[var(--muted-foreground)]">
+                                কোনো ছাত্র ডাটা পাওয়া যায়নি। "নতুন ছাত্র ভর্তি করুন" বাটনে ক্লিক করে ছাত্র ভর্তি করুন।
+                              </td>
+                            </tr>
+                          );
+                        }
+
+                        return filtered.map((st) => (
+                          <tr key={st.registrationNo} className="hover:bg-[var(--background)]/40 transition">
+                            <td className="p-3 font-mono font-bold text-cyan-400">{st.registrationNo}</td>
+                            <td className="p-3 font-bold text-[var(--foreground)]">{st.roll}</td>
+                            <td className="p-3">
+                              <div className="font-bold text-[var(--foreground)]">{st.nameBn}</div>
+                              <div className="text-xs text-[var(--muted-foreground)]">{st.fatherNameBn}</div>
+                            </td>
+                            <td className="p-3 font-semibold text-[var(--foreground)]">{st.classGradeBn}</td>
+                            <td className="p-3">
+                              <span
+                                className={`px-2 py-0.5 rounded-full text-xs font-bold border ${
+                                  st.residentialStatus === 'RESIDENTIAL'
+                                    ? 'bg-emerald-500/10 border-emerald-500/20 text-emerald-700 dark:text-emerald-400'
+                                    : 'bg-blue-500/10 border-blue-500/20 text-blue-500'
+                                }`}
+                              >
+                                {st.residentialStatus === 'RESIDENTIAL' ? 'আবাসিক' : 'অনাবাসিক'}
+                              </span>
+                            </td>
+                            <td className="p-3 font-mono text-[var(--muted-foreground)]">{st.roomNo || 'অনাবাসিক'}</td>
+                            <td className="p-3 font-mono text-[var(--foreground)]">{st.guardianPhone}</td>
+                            <td className="p-3 text-right font-mono font-bold text-[var(--foreground)]">
+                              ৳{st.monthlyFee.toLocaleString('bn-BD')}
+                            </td>
+                            <td className="p-3 text-right font-mono font-bold text-amber-800 dark:text-amber-400">
+                              ৳{st.dueAmount.toLocaleString('bn-BD')}
+                            </td>
+                            <td className="p-3 text-center">
+                              <div className="flex items-center justify-center gap-1.5">
+                                <button
+                                  onClick={() => {
+                                    setStudentRegSearch(st.registrationNo);
+                                    handleLookupStudent(st.registrationNo);
+                                    setActiveNav('finance');
+                                    setFinanceOpMode('RECEIVE');
+                                    setReceivePortal('STUDENT_FEES');
+                                  }}
+                                  className="px-2 py-1 rounded bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs transition shadow-xs"
+                                  title="এই ছাত্রের ফি গ্রহণ করুন"
+                                >
+                                  ফি জমা
+                                </button>
+                                <button
+                                  onClick={() => {
+                                    setGatepassStudent(`${st.nameBn} (${st.roll})`);
+                                    setActiveNav('hostel');
+                                  }}
+                                  className="px-2 py-1 rounded border border-amber-500/40 hover:bg-amber-500/10 text-amber-800 dark:text-amber-400 font-bold text-xs transition"
+                                  title="এই ছাত্রের গেটপাস ইস্যু করুন"
+                                >
+                                  গেটপাস
+                                </button>
+                                <button
+                                  onClick={() => {
+                                    setAcademicSabaqStudentReg(st.registrationNo);
+                                    setActiveNav('academic');
+                                  }}
+                                  className="px-2 py-1 rounded border border-blue-500/40 hover:bg-blue-500/10 text-blue-500 font-bold text-xs transition"
+                                  title="সবক এন্ট্রি করুন"
+                                >
+                                  সবক
+                                </button>
+                                <button
+                                  onClick={() => handleDeleteStudent(st.registrationNo)}
+                                  className="p-1 rounded hover:bg-red-500/10 text-red-500 transition"
+                                  title="ছাত্র মুছে ফেলুন"
+                                >
+                                  <Trash2 className="w-3.5 h-3.5" />
+                                </button>
+                              </div>
+                            </td>
+                          </tr>
+                        ));
+                      })()}
+                    </tbody>
+                  </table>
                 </div>
               </div>
             </div>
@@ -8138,42 +8864,82 @@ export const App: React.FC = () => {
 
               {/* Hifz Daily Progress Tracker Widget */}
               <div className="p-6 rounded-xl bg-[var(--card)] border border-[var(--border)] shadow-sm space-y-4">
-                <div className="flex items-center justify-between pb-3 border-b border-[var(--border)]">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-3 border-b border-[var(--border)] gap-2">
                   <div className="flex items-center gap-2">
                     <BookOpen className="w-4 h-4 text-blue-500" />
                     <h3 className="text-sm font-bold text-[var(--foreground)]">দৈনিক হিফজুল কুরআন সবক এন্ট্রি (প্রকৃত ৬০৪ পৃষ্ঠা)</h3>
                   </div>
-                  <span className="text-xs text-[var(--muted-foreground)]">ছাত্র: মুহাম্মদ আব্দুল্লাহ (পারা ৩)</span>
+                  <div className="flex items-center gap-2">
+                    <span className="text-xs text-[var(--muted-foreground)]">ছাত্র বাছাই:</span>
+                    <select
+                      value={academicSabaqStudentReg}
+                      onChange={(e) => setAcademicSabaqStudentReg(e.target.value)}
+                      className="px-2.5 py-1 rounded-xl bg-[var(--background)] border border-[var(--border)] text-xs font-bold text-[var(--foreground)] focus:outline-none"
+                    >
+                      {registeredStudents.map((st) => (
+                        <option key={st.registrationNo} value={st.registrationNo}>
+                          {st.nameBn} ({st.roll}) - {st.classGradeBn}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-3 text-xs">
                   <div className="p-3.5 rounded-xl bg-[var(--background)] border border-[var(--border)]">
-                    <div className="text-[var(--muted-foreground)]">নতুন সবক (Sabaq)</div>
-                    <div className="text-sm font-bold text-[var(--foreground)] mt-1">পৃষ্ঠা ৫৯ - ৬০ (৩য় পারা)</div>
+                    <div className="text-[var(--muted-foreground)] font-semibold">নতুন সবক (Sabaq)</div>
+                    <input
+                      type="text"
+                      value={academicSabaqPage}
+                      onChange={(e) => setAcademicSabaqPage(e.target.value)}
+                      className="w-full mt-1.5 px-2 py-1 rounded bg-[var(--card)] border border-[var(--border)] text-xs font-bold text-[var(--foreground)]"
+                    />
                     <div className="text-xs font-semibold text-emerald-700 dark:text-emerald-400 font-bold mt-1">সুরূপা ও তাজভীদ সহ শুদ্ধ পাঠ</div>
                   </div>
                   <div className="p-3.5 rounded-xl bg-[var(--background)] border border-[var(--border)]">
-                    <div className="text-[var(--muted-foreground)]">সাত সবকী (Sabki - সাম্প্রতিক)</div>
-                    <div className="text-sm font-bold text-[var(--foreground)] mt-1">পৃষ্ঠা ৪০ - ৫০</div>
+                    <div className="text-[var(--muted-foreground)] font-semibold">সাত সবকী (Sabki - সাম্প্রতিক)</div>
+                    <input
+                      type="text"
+                      value={academicSabqiRange}
+                      onChange={(e) => setAcademicSabqiRange(e.target.value)}
+                      className="w-full mt-1.5 px-2 py-1 rounded bg-[var(--card)] border border-[var(--border)] text-xs font-bold text-[var(--foreground)]"
+                    />
                     <div className="text-xs font-semibold text-[var(--muted-foreground)] mt-1">গত ৫ দিনের পড়া রিভিশন</div>
                   </div>
                   <div className="p-3.5 rounded-xl bg-[var(--background)] border border-[var(--border)]">
-                    <div className="text-[var(--muted-foreground)]">আমুক্তা / মানজিল (Amukhta)</div>
-                    <div className="text-sm font-bold text-[var(--foreground)] mt-1">১ম পারা সম্পূর্ণ রিভিশন</div>
+                    <div className="text-[var(--muted-foreground)] font-semibold">আমুক্তা / মানজিল (Amukhta)</div>
+                    <input
+                      type="text"
+                      value={academicAmukhta}
+                      onChange={(e) => setAcademicAmukhta(e.target.value)}
+                      className="w-full mt-1.5 px-2 py-1 rounded bg-[var(--card)] border border-[var(--border)] text-xs font-bold text-[var(--foreground)]"
+                    />
                     <div className="text-xs font-semibold text-[var(--muted-foreground)] mt-1">আগের মুখস্থ পারার শুনানি</div>
                   </div>
-                  <div className="p-3.5 rounded-xl bg-emerald-500/10 border border-emerald-500/30">
-                    <div className="text-emerald-700 dark:text-emerald-400 font-bold font-semibold">মূল্যায়ন (কওমি গ্রেড)</div>
-                    <select
-                      value={hifzGrade}
-                      onChange={(e) => setHifzGrade(e.target.value as any)}
-                      className="w-full mt-1.5 px-2 py-1 rounded bg-[var(--card)] border border-[var(--border)] text-xs font-bold text-emerald-700 dark:text-emerald-400 font-bold focus:outline-none"
+                  <div className="p-3.5 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex flex-col justify-between">
+                    <div>
+                      <div className="text-emerald-700 dark:text-emerald-400 font-bold font-semibold">মূল্যায়ন (কওমি গ্রেড)</div>
+                      <select
+                        value={hifzGrade}
+                        onChange={(e) => setHifzGrade(e.target.value as any)}
+                        className="w-full mt-1 px-2 py-1 rounded bg-[var(--card)] border border-[var(--border)] text-xs font-bold text-emerald-700 dark:text-emerald-400 font-bold focus:outline-none"
+                      >
+                        <option value="MUMTAZ">মুমতাজ (ممتاز) - এ+</option>
+                        <option value="JAYYID_JIDDAN">জায়্যিদ জিদ্দান (جيد جداً) - এ</option>
+                        <option value="JAYYID">জায়্যিদ (جيد) - বি</option>
+                        <option value="MAQBUL">মাকবুল (مقبول) - পাস</option>
+                      </select>
+                    </div>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        const st = registeredStudents.find((s) => s.registrationNo === academicSabaqStudentReg);
+                        alert(`ছাত্র "${st ? st.nameBn : 'নির্বাচিত ছাত্র'}" এর জন্য আজকের সবক "${academicSabaqPage}" সফলভাবে সংরক্ষিত হয়েছে!`);
+                      }}
+                      className="mt-2 w-full py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs shadow-xs transition"
                     >
-                      <option value="MUMTAZ">মুমতাজ (ممتاز) - এ+</option>
-                      <option value="JAYYID_JIDDAN">জায়্যিদ জিদ্দান (جيد جداً) - এ</option>
-                      <option value="JAYYID">জায়্যিদ (جيد) - বি</option>
-                      <option value="MAQBUL">মাকবুল (مقبول) - পাস</option>
-                    </select>
+                      সবক সংরক্ষণ
+                    </button>
                   </div>
                 </div>
               </div>
@@ -8278,63 +9044,170 @@ export const App: React.FC = () => {
               </div>
 
               {/* Rooms and Daily Boarding Meals */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="p-6 rounded-xl bg-[var(--card)] border border-[var(--border)] shadow-sm space-y-4">
-                  <div className="flex items-center justify-between pb-3 border-b border-[var(--border)]">
-                    <h4 className="text-sm font-bold text-[var(--foreground)] flex items-center gap-2">
-                      <Bed className="w-4 h-4 text-emerald-700 dark:text-emerald-400 font-bold" />
-                      ছাত্রাবাস রুম ও সিট বরাদ্দ
-                    </h4>
-                    <span className="text-xs font-semibold px-2 py-0.5 rounded bg-[var(--background)] text-[var(--muted-foreground)] border border-[var(--border)]">
-                      মোট আবাসিক সিট: ৯৫০
-                    </span>
-                  </div>
+              {(() => {
+                const resStudents = registeredStudents.filter((s) => s.residentialStatus === 'RESIDENTIAL');
+                const totalRes = resStudents.length;
+                const mealActiveCount = resStudents.filter((s) => s.mealActive !== false).length;
 
-                  <div className="grid grid-cols-2 gap-3 text-xs">
-                    <div className="p-3.5 rounded-xl bg-[var(--background)] border border-[var(--border)]">
-                      <div className="text-[var(--foreground)] font-semibold">আবু বকর (রা.) হল - রুম ১০১</div>
-                      <div className="text-[var(--muted-foreground)] mt-1">ধারণক্ষমতা: ২০ সিট</div>
-                      <div className="text-emerald-700 dark:text-emerald-400 font-bold font-bold mt-1">বরাদ্দ: ১৮ জন (২টি খালি)</div>
-                    </div>
-                    <div className="p-3.5 rounded-xl bg-[var(--background)] border border-[var(--border)]">
-                      <div className="text-[var(--foreground)] font-semibold">উমর (রা.) হল - রুম ২০২</div>
-                      <div className="text-[var(--muted-foreground)] mt-1">ধারণক্ষমতা: ২৫ সিট</div>
-                      <div className="text-amber-800 dark:text-amber-400 font-bold font-bold mt-1">বরাদ্দ: ২৫ জন (সম্পূর্ণ পূর্ণ)</div>
-                    </div>
-                  </div>
-                </div>
+                return (
+                  <>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      <div className="p-6 rounded-xl bg-[var(--card)] border border-[var(--border)] shadow-sm space-y-4">
+                        <div className="flex items-center justify-between pb-3 border-b border-[var(--border)]">
+                          <h4 className="text-sm font-bold text-[var(--foreground)] flex items-center gap-2">
+                            <Bed className="w-4 h-4 text-emerald-700 dark:text-emerald-400 font-bold" />
+                            ছাত্রাবাস রুম ও সিট বরাদ্দ
+                          </h4>
+                          <span className="text-xs font-semibold px-2 py-0.5 rounded bg-[var(--background)] text-[var(--muted-foreground)] border border-[var(--border)] font-bold">
+                            মোট আবাসিক ছাত্র: {totalRes} জন
+                          </span>
+                        </div>
 
-                <div className="p-6 rounded-xl bg-[var(--card)] border border-[var(--border)] shadow-sm space-y-4">
-                  <div className="flex items-center justify-between pb-3 border-b border-[var(--border)]">
-                    <h4 className="text-sm font-bold text-[var(--foreground)] flex items-center gap-2">
-                      <Utensils className="w-4 h-4 text-amber-800 dark:text-amber-400 font-bold" />
-                      দৈনিক খাবার গণনা (লিল্লাহ বনাম সাধারণ ফান্ড)
-                    </h4>
-                    <span className="text-xs font-semibold text-[var(--muted-foreground)]">{mealSummary.date}</span>
-                  </div>
+                        <div className="grid grid-cols-2 gap-3 text-xs">
+                          <div className="p-3.5 rounded-xl bg-[var(--background)] border border-[var(--border)]">
+                            <div className="text-[var(--foreground)] font-semibold">আবু বকর (রা.) হল - রুম ১০১</div>
+                            <div className="text-[var(--muted-foreground)] mt-1">রুম ধারণক্ষমতা: ২০ সিট</div>
+                            <div className="text-emerald-700 dark:text-emerald-400 font-bold mt-1">
+                              বরাদ্দ: {resStudents.filter((s) => s.roomNo === 'রুম ১০১').length} জন
+                            </div>
+                          </div>
+                          <div className="p-3.5 rounded-xl bg-[var(--background)] border border-[var(--border)]">
+                            <div className="text-[var(--foreground)] font-semibold">উমর (রা.) হল - রুম ২০২</div>
+                            <div className="text-[var(--muted-foreground)] mt-1">রুম ধারণক্ষমতা: ২৫ সিট</div>
+                            <div className="text-amber-800 dark:text-amber-400 font-bold mt-1">
+                              বরাদ্দ: {resStudents.filter((s) => s.roomNo === 'রুম ২০২').length} জন
+                            </div>
+                          </div>
+                        </div>
+                      </div>
 
-                  <div className="grid grid-cols-3 gap-2 text-xs">
-                    <div className="p-3 rounded-xl bg-[var(--background)] border border-[var(--border)] text-center">
-                      <div className="text-[var(--muted-foreground)]">সকাল (নাস্তা)</div>
-                      <div className="font-bold text-[var(--foreground)] mt-1">{mealSummary.morning.general + mealSummary.morning.lillah} জন</div>
-                      <div className="text-xs font-semibold text-purple-500 mt-0.5 font-medium">লিল্লাহ: {mealSummary.morning.lillah}</div>
+                      <div className="p-6 rounded-xl bg-[var(--card)] border border-[var(--border)] shadow-sm space-y-4">
+                        <div className="flex items-center justify-between pb-3 border-b border-[var(--border)]">
+                          <h4 className="text-sm font-bold text-[var(--foreground)] flex items-center gap-2">
+                            <Utensils className="w-4 h-4 text-amber-800 dark:text-amber-400 font-bold" />
+                            দৈনিক মেস খাবার হিসাব (লাইভ বোর্ডিং খাদ্য রেজিস্ট্রি)
+                          </h4>
+                          <span className="text-xs font-semibold text-[var(--muted-foreground)]">আজকের সক্রিয় মিল: {mealActiveCount} জন</span>
+                        </div>
+
+                        <div className="grid grid-cols-3 gap-2 text-xs">
+                          <div className="p-3 rounded-xl bg-[var(--background)] border border-[var(--border)] text-center">
+                            <div className="text-[var(--muted-foreground)]">সকাল (নাস্তা)</div>
+                            <div className="font-bold text-[var(--foreground)] mt-1">{mealActiveCount} জন</div>
+                            <div className="text-xs font-semibold text-purple-500 mt-0.5 font-medium">খানা প্রস্তুত</div>
+                          </div>
+                          <div className="p-3 rounded-xl bg-[var(--background)] border border-[var(--border)] text-center">
+                            <div className="text-[var(--muted-foreground)]">দুপুর (মধ্যাহ্নভোজ)</div>
+                            <div className="font-bold text-[var(--foreground)] mt-1">{mealActiveCount} জন</div>
+                            <div className="text-xs font-semibold text-purple-500 mt-0.5 font-medium">খানা প্রস্তুত</div>
+                          </div>
+                          <div className="p-3 rounded-xl bg-[var(--background)] border border-[var(--border)] text-center">
+                            <div className="text-[var(--muted-foreground)]">রাত (নৈশভোজ)</div>
+                            <div className="font-bold text-[var(--foreground)] mt-1">{mealActiveCount} জন</div>
+                            <div className="text-xs font-semibold text-purple-500 mt-0.5 font-medium">খানা প্রস্তুত</div>
+                          </div>
+                        </div>
+                        <div className="text-xs font-medium text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 p-2.5 rounded-xl border border-emerald-500/20">
+                          শরীয়াহ অডিট সম্মত: লিল্লাহ ফান্ড ও সাধারণ ফান্ডের খাবার রেজিস্ট্রি শতভাগ সমন্বিত।
+                        </div>
+                      </div>
                     </div>
-                    <div className="p-3 rounded-xl bg-[var(--background)] border border-[var(--border)] text-center">
-                      <div className="text-[var(--muted-foreground)]">দুপুর (মধ্যাহ্নভোজ)</div>
-                      <div className="font-bold text-[var(--foreground)] mt-1">{mealSummary.noon.general + mealSummary.noon.lillah} জন</div>
-                      <div className="text-xs font-semibold text-purple-500 mt-0.5 font-medium">লিল্লাহ: {mealSummary.noon.lillah}</div>
+
+                    {/* Hostel & Mess Students Table */}
+                    <div className="bg-[var(--card)] border border-[var(--border)] rounded-xl p-5 shadow-sm space-y-4">
+                      <div className="flex items-center justify-between border-b border-[var(--border)] pb-3">
+                        <h4 className="text-sm font-bold text-[var(--foreground)] flex items-center gap-2">
+                          <Bed className="w-4 h-4 text-amber-800 dark:text-amber-400 font-bold" />
+                          ছাত্রাবাস সিট ও বোর্ডিং মেস শিক্ষার্থী তালিকা ({resStudents.length} জন আবাসিক)
+                        </h4>
+                        <span className="text-xs text-[var(--muted-foreground)]">রুম বরাদ্দ ও খাবার স্ট্যাটাস</span>
+                      </div>
+
+                      <div className="overflow-x-auto rounded-xl border border-[var(--border)]">
+                        <table className="w-full text-left text-xs">
+                          <thead className="bg-[var(--background)] text-[var(--muted-foreground)] uppercase">
+                            <tr>
+                              <th className="p-3">রেজিস্ট্রেশন</th>
+                              <th className="p-3">রোল</th>
+                              <th className="p-3">ছাত্রের নাম ও পিতা</th>
+                              <th className="p-3">জামাত</th>
+                              <th className="p-3">রুম নং</th>
+                              <th className="p-3">খাবার স্ট্যাটাস</th>
+                              <th className="p-3 text-center">অ্যাকশন</th>
+                            </tr>
+                          </thead>
+                          <tbody className="divide-y divide-[var(--border)]">
+                            {resStudents.length === 0 ? (
+                              <tr>
+                                <td colSpan={7} className="p-6 text-center text-[var(--muted-foreground)]">
+                                  কোনো আবাসিক ছাত্র ডাটা নেই। ছাত্রকল্যাণ বিভাগ থেকে আবাসিক ছাত্র ভর্তি করুন।
+                                </td>
+                              </tr>
+                            ) : (
+                              resStudents.map((st) => (
+                                <tr key={st.registrationNo} className="hover:bg-[var(--background)]/40 transition">
+                                  <td className="p-3 font-mono font-bold text-amber-800 dark:text-amber-400">{st.registrationNo}</td>
+                                  <td className="p-3 font-bold text-[var(--foreground)]">{st.roll}</td>
+                                  <td className="p-3">
+                                    <div className="font-bold text-[var(--foreground)]">{st.nameBn}</div>
+                                    <div className="text-xs text-[var(--muted-foreground)]">{st.fatherNameBn}</div>
+                                  </td>
+                                  <td className="p-3 font-semibold text-[var(--foreground)]">{st.classGradeBn}</td>
+                                  <td className="p-3 font-mono font-bold text-emerald-700 dark:text-emerald-400">{st.roomNo || 'রুম ১০১'}</td>
+                                  <td className="p-3">
+                                    <span
+                                      className={`px-2 py-0.5 rounded-full text-xs font-bold border ${
+                                        st.mealActive !== false
+                                          ? 'bg-emerald-500/10 border-emerald-500/20 text-emerald-700 dark:text-emerald-400'
+                                          : 'bg-rose-500/10 border-rose-500/20 text-rose-500'
+                                      }`}
+                                    >
+                                      {st.mealActive !== false ? 'খাবার সক্রিয়' : 'খাবার বন্ধ'}
+                                    </span>
+                                  </td>
+                                  <td className="p-3 text-center">
+                                    <div className="flex items-center justify-center gap-1.5">
+                                      <button
+                                        onClick={() => {
+                                          setRegisteredStudents((prev) =>
+                                            prev.map((s) =>
+                                              s.registrationNo === st.registrationNo
+                                                ? { ...s, mealActive: s.mealActive === false ? true : false }
+                                                : s
+                                            )
+                                          );
+                                        }}
+                                        className="px-2 py-1 rounded bg-[var(--background)] border border-[var(--border)] text-xs font-bold hover:bg-[var(--card)] transition"
+                                      >
+                                        মিল পরিবর্তন
+                                      </button>
+                                      <button
+                                        onClick={() => {
+                                          setGatepassStudent(`${st.nameBn} (${st.roll})`);
+                                          setActiveGatepass({
+                                            id: `GP-2026-${Math.floor(100 + Math.random() * 900)}`,
+                                            student: `${st.nameBn} (${st.roll})`,
+                                            qrToken: `TOKEN_GP_${st.registrationNo}`,
+                                            status: 'ISSUED',
+                                            expiry: 'সন্ধ্যা ৬:০০ ঘটিকা',
+                                          });
+                                        }}
+                                        className="px-2 py-1 rounded bg-amber-600 hover:bg-amber-500 text-white text-xs font-bold transition shadow-xs"
+                                      >
+                                        গেটপাস
+                                      </button>
+                                    </div>
+                                  </td>
+                                </tr>
+                              ))
+                            )}
+                          </tbody>
+                        </table>
+                      </div>
                     </div>
-                    <div className="p-3 rounded-xl bg-[var(--background)] border border-[var(--border)] text-center">
-                      <div className="text-[var(--muted-foreground)]">রাত (নৈশভোজ)</div>
-                      <div className="font-bold text-[var(--foreground)] mt-1">{mealSummary.night.general + mealSummary.night.lillah} জন</div>
-                      <div className="text-xs font-semibold text-purple-500 mt-0.5 font-medium">লিল্লাহ: {mealSummary.night.lillah}</div>
-                    </div>
-                  </div>
-                  <div className="text-xs font-medium text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 p-2.5 rounded-xl border border-emerald-500/20">
-                    শরীয়াহ অডিট সম্মত: লিল্লাহ ফান্ডের খাবারের হিসাব সম্পূর্ণ পৃথক লেজারে সংরক্ষিত হচ্ছে।
-                  </div>
-                </div>
-              </div>
+                  </>
+                );
+              })()}
 
               {/* Gatepass QR Generator & Verification */}
               <div className="p-6 rounded-xl bg-[var(--card)] border border-[var(--border)] shadow-sm space-y-4">
@@ -8351,13 +9224,27 @@ export const App: React.FC = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
                   <div className="space-y-3 text-xs">
                     <div>
-                      <label className="block text-[var(--muted-foreground)] mb-1">ছাত্রের নাম ও রোল</label>
+                      <label className="block text-[var(--muted-foreground)] mb-1">ছাত্র নির্বাচন বা নাম লিখুন</label>
                       <input
                         type="text"
                         value={gatepassStudent}
                         onChange={(e) => setGatepassStudent(e.target.value)}
-                        className="w-full px-3 py-2 rounded-xl bg-[var(--background)] border border-[var(--border)] text-[var(--foreground)] focus:outline-none focus:border-[var(--primary)]"
+                        placeholder="ছাত্রের নাম ও রোল..."
+                        className="w-full px-3 py-2 rounded-xl bg-[var(--background)] border border-[var(--border)] text-[var(--foreground)] focus:outline-none focus:border-[var(--primary)] font-bold"
                       />
+                      <div className="flex items-center gap-1 flex-wrap pt-1.5">
+                        <span className="text-[10px] text-[var(--muted-foreground)]">ছাত্র বাছাই:</span>
+                        {registeredStudents.map((st) => (
+                          <button
+                            key={st.registrationNo}
+                            type="button"
+                            onClick={() => setGatepassStudent(`${st.nameBn} (${st.roll})`)}
+                            className="text-[10px] px-2 py-0.5 rounded-lg bg-[var(--background)] border border-[var(--border)] hover:border-amber-500 text-[var(--foreground)] transition font-mono"
+                          >
+                            {st.nameBn} ({st.roll})
+                          </button>
+                        ))}
+                      </div>
                     </div>
                     <div>
                       <label className="block text-[var(--muted-foreground)] mb-1">বাহিরে যাওয়ার কারণ</label>
@@ -8371,8 +9258,8 @@ export const App: React.FC = () => {
                     <button
                       onClick={() => {
                         setActiveGatepass({
-                          id: 'GP-2026-904',
-                          student: gatepassStudent,
+                          id: `GP-2026-${Math.floor(100 + Math.random() * 900)}`,
+                          student: gatepassStudent || 'মুহাম্মদ আব্দুল্লাহ (০১)',
                           qrToken: 'JWT_SIGNED_PASS_SECURE_TOKEN_XYZ',
                           status: 'ISSUED',
                           expiry: 'সন্ধ্যা ৬:০০ ঘটিকা',
@@ -8678,6 +9565,410 @@ export const App: React.FC = () => {
           )}
         </div>
       </main>
+
+      {/* ========================================================================= */}
+      {/* MODAL: ADD NEW STUDENT                                                    */}
+      {/* ========================================================================= */}
+      {showAddStudentModal && (
+        <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 z-50">
+          <div className="bg-[var(--card)] border border-[var(--border)] rounded-xl p-6 max-w-lg w-full shadow-2xl space-y-4 text-xs animate-in fade-in zoom-in-95 max-h-[90vh] overflow-y-auto">
+            <div className="flex items-center justify-between border-b border-[var(--border)] pb-3">
+              <h3 className="font-bold text-sm text-[var(--foreground)] flex items-center gap-2">
+                <GraduationCap className="w-4 h-4 text-cyan-400" />
+                নতুন শিক্ষার্থী ভর্তি ফরম (Student Admission)
+              </h3>
+              <button
+                type="button"
+                onClick={() => setShowAddStudentModal(false)}
+                className="text-[var(--muted-foreground)] hover:text-[var(--foreground)] text-base font-bold"
+              >
+                ✕
+              </button>
+            </div>
+
+            <form onSubmit={handleAddStudent} className="space-y-3">
+              <div>
+                <label className="block text-[var(--muted-foreground)] mb-1 font-semibold">রেজিস্ট্রেশন নম্বর (ঐচ্ছিক, ফাঁকা রাখলে স্বয়ংক্রিয় তৈরি হবে)</label>
+                <input
+                  type="text"
+                  placeholder="যেমন: REG-2026-0009"
+                  value={newStudentRegNo}
+                  onChange={(e) => setNewStudentRegNo(e.target.value)}
+                  className="w-full px-3 py-2 rounded-xl bg-[var(--background)] border border-[var(--border)] text-[var(--foreground)] focus:outline-none font-mono font-bold"
+                />
+              </div>
+
+              <div className="grid grid-cols-2 gap-3">
+                <div>
+                  <label className="block text-[var(--muted-foreground)] mb-1 font-semibold">ছাত্রের পূর্ণ নাম (বাংলায়) *</label>
+                  <input
+                    type="text"
+                    required
+                    placeholder="যেমন: মুহাম্মদ আব্দুল্লাহ"
+                    value={newStudentNameBn}
+                    onChange={(e) => setNewStudentNameBn(e.target.value)}
+                    className="w-full px-3 py-2 rounded-xl bg-[var(--background)] border border-[var(--border)] text-[var(--foreground)] focus:outline-none focus:border-cyan-500 font-bold"
+                  />
+                </div>
+                <div>
+                  <label className="block text-[var(--muted-foreground)] mb-1 font-semibold">রোল নম্বর *</label>
+                  <input
+                    type="text"
+                    required
+                    placeholder="যেমন: ০১"
+                    value={newStudentRoll}
+                    onChange={(e) => setNewStudentRoll(e.target.value)}
+                    className="w-full px-3 py-2 rounded-xl bg-[var(--background)] border border-[var(--border)] text-[var(--foreground)] focus:outline-none focus:border-cyan-500 font-bold"
+                  />
+                </div>
+              </div>
+
+              <div className="grid grid-cols-2 gap-3">
+                <div>
+                  <label className="block text-[var(--muted-foreground)] mb-1 font-semibold">পিতার নাম</label>
+                  <input
+                    type="text"
+                    placeholder="পিতার নাম"
+                    value={newStudentFatherNameBn}
+                    onChange={(e) => setNewStudentFatherNameBn(e.target.value)}
+                    className="w-full px-3 py-2 rounded-xl bg-[var(--background)] border border-[var(--border)] text-[var(--foreground)] focus:outline-none"
+                  />
+                </div>
+                <div>
+                  <label className="block text-[var(--muted-foreground)] mb-1 font-semibold">মাতার নাম</label>
+                  <input
+                    type="text"
+                    placeholder="মাতার নাম"
+                    value={newStudentMotherNameBn}
+                    onChange={(e) => setNewStudentMotherNameBn(e.target.value)}
+                    className="w-full px-3 py-2 rounded-xl bg-[var(--background)] border border-[var(--border)] text-[var(--foreground)] focus:outline-none"
+                  />
+                </div>
+              </div>
+
+              <div className="grid grid-cols-2 gap-3">
+                <div>
+                  <label className="block text-[var(--muted-foreground)] mb-1 font-semibold">ভর্তি জামাত / বিভাগ</label>
+                  <select
+                    value={newStudentClassBn}
+                    onChange={(e) => setNewStudentClassBn(e.target.value)}
+                    className="w-full px-3 py-2 rounded-xl bg-[var(--background)] border border-[var(--border)] text-[var(--foreground)] focus:outline-none"
+                  >
+                    <option value="হিফজুল কুরআন বিভাগ (সমাপনী)">হিফজুল কুরআন বিভাগ (সমাপনী)</option>
+                    <option value="হিফজুল কুরআন বিভাগ (হিফজ সমাপ্তি)">হিফজুল কুরআন বিভাগ (হিফজ সমাপ্তি)</option>
+                    <option value="মিজান জামাত (কিতাব বিভাগ)">মিজান জামাত (কিতাব বিভাগ)</option>
+                    <option value="কাফিয়া জামাত">কাফিয়া জামাত</option>
+                    <option value="নাহবেমীর জামাত">নাহবেমীর জামাত</option>
+                    <option value="দাওরায়ে হাদিস">দাওরায়ে হাদিস</option>
+                  </select>
+                </div>
+                <div>
+                  <label className="block text-[var(--muted-foreground)] mb-1 font-semibold">আবাসন ধরন</label>
+                  <select
+                    value={newStudentResidential}
+                    onChange={(e) => setNewStudentResidential(e.target.value as any)}
+                    className="w-full px-3 py-2 rounded-xl bg-[var(--background)] border border-[var(--border)] text-[var(--foreground)] focus:outline-none font-bold"
+                  >
+                    <option value="RESIDENTIAL">আবাসিক (হোস্টেল ও মেস খানা সহ)</option>
+                    <option value="NON_RESIDENTIAL">অনাবাসিক (দৈনিক যাতায়াতকারী)</option>
+                  </select>
+                </div>
+              </div>
+
+              <div className="grid grid-cols-2 gap-3">
+                <div>
+                  <label className="block text-[var(--muted-foreground)] mb-1 font-semibold">হোস্টেল রুম (আবাসিক হলে)</label>
+                  <input
+                    type="text"
+                    disabled={newStudentResidential === 'NON_RESIDENTIAL'}
+                    value={newStudentResidential === 'NON_RESIDENTIAL' ? 'অনাবাসিক' : newStudentRoomNo}
+                    onChange={(e) => setNewStudentRoomNo(e.target.value)}
+                    placeholder="যেমন: রুম ১০১"
+                    className="w-full px-3 py-2 rounded-xl bg-[var(--background)] border border-[var(--border)] text-[var(--foreground)] focus:outline-none disabled:opacity-50"
+                  />
+                </div>
+                <div>
+                  <label className="block text-[var(--muted-foreground)] mb-1 font-semibold">রক্তের গ্রুপ</label>
+                  <select
+                    value={newStudentBloodGroup}
+                    onChange={(e) => setNewStudentBloodGroup(e.target.value)}
+                    className="w-full px-3 py-2 rounded-xl bg-[var(--background)] border border-[var(--border)] text-[var(--foreground)] focus:outline-none"
+                  >
+                    <option value="A+">A+</option>
+                    <option value="A-">A-</option>
+                    <option value="B+">B+</option>
+                    <option value="B-">B-</option>
+                    <option value="O+">O+</option>
+                    <option value="O-">O-</option>
+                    <option value="AB+">AB+</option>
+                    <option value="AB-">AB-</option>
+                  </select>
+                </div>
+              </div>
+
+              <div className="grid grid-cols-2 gap-3">
+                <div>
+                  <label className="block text-[var(--muted-foreground)] mb-1 font-semibold">অভিভাবকের মোবাইল নম্বর *</label>
+                  <input
+                    type="text"
+                    required
+                    placeholder="01700-000000"
+                    value={newStudentPhone}
+                    onChange={(e) => setNewStudentPhone(e.target.value)}
+                    className="w-full px-3 py-2 rounded-xl bg-[var(--background)] border border-[var(--border)] text-[var(--foreground)] focus:outline-none font-mono"
+                  />
+                </div>
+                <div>
+                  <label className="block text-[var(--muted-foreground)] mb-1 font-semibold">মাসিক প্রদেয় ফি (টাকা)</label>
+                  <input
+                    type="number"
+                    value={newStudentFee}
+                    onChange={(e) => setNewStudentFee(Number(e.target.value))}
+                    className="w-full px-3 py-2 rounded-xl bg-[var(--background)] border border-[var(--border)] text-[var(--foreground)] focus:outline-none font-mono font-bold"
+                  />
+                </div>
+              </div>
+
+              <div className="flex justify-end gap-2 pt-3 border-t border-[var(--border)]">
+                <button
+                  type="button"
+                  onClick={() => setShowAddStudentModal(false)}
+                  className="px-4 py-2 rounded-xl border border-[var(--border)] hover:bg-[var(--card)] text-[var(--foreground)] font-medium"
+                >
+                  বাতিল
+                </button>
+                <button
+                  type="submit"
+                  className="px-5 py-2 rounded-xl bg-cyan-600 hover:bg-cyan-500 text-white font-bold shadow transition"
+                >
+                  ভর্তি নিশ্চিত করুন
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
+
+      {/* ========================================================================= */}
+      {/* MODAL: ADD NEW TEACHER                                                    */}
+      {/* ========================================================================= */}
+      {showAddTeacherModal && (
+        <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 z-50">
+          <div className="bg-[var(--card)] border border-[var(--border)] rounded-xl p-6 max-w-md w-full shadow-2xl space-y-4 text-xs animate-in fade-in zoom-in-95">
+            <div className="flex items-center justify-between border-b border-[var(--border)] pb-3">
+              <h3 className="font-bold text-sm text-[var(--foreground)] flex items-center gap-2">
+                <Users className="w-4 h-4 text-indigo-400" />
+                নতুন শিক্ষক প্রোফাইল যুক্ত করুন
+              </h3>
+              <button
+                type="button"
+                onClick={() => setShowAddTeacherModal(false)}
+                className="text-[var(--muted-foreground)] hover:text-[var(--foreground)] text-base font-bold"
+              >
+                ✕
+              </button>
+            </div>
+
+            <form onSubmit={handleAddTeacher} className="space-y-3">
+              <div>
+                <label className="block text-[var(--muted-foreground)] mb-1 font-semibold">শিক্ষকের নাম (বাংলায়) *</label>
+                <input
+                  type="text"
+                  required
+                  placeholder="যেমন: মাওলানা মুফতী মাহমুদুল হাসান"
+                  value={newTeacherNameBn}
+                  onChange={(e) => setNewTeacherNameBn(e.target.value)}
+                  className="w-full px-3 py-2 rounded-xl bg-[var(--background)] border border-[var(--border)] text-[var(--foreground)] focus:outline-none focus:border-indigo-500 font-bold"
+                />
+              </div>
+
+              <div className="grid grid-cols-2 gap-3">
+                <div>
+                  <label className="block text-[var(--muted-foreground)] mb-1 font-semibold">পদবী / দায়িত্ব</label>
+                  <input
+                    type="text"
+                    required
+                    placeholder="যেমন: মুহাদ্দিস ও মুদাররিস"
+                    value={newTeacherDesignationBn}
+                    onChange={(e) => setNewTeacherDesignationBn(e.target.value)}
+                    className="w-full px-3 py-2 rounded-xl bg-[var(--background)] border border-[var(--border)] text-[var(--foreground)] focus:outline-none"
+                  />
+                </div>
+                <div>
+                  <label className="block text-[var(--muted-foreground)] mb-1 font-semibold">বিভাগ</label>
+                  <select
+                    value={newTeacherDepartmentBn}
+                    onChange={(e) => setNewTeacherDepartmentBn(e.target.value)}
+                    className="w-full px-3 py-2 rounded-xl bg-[var(--background)] border border-[var(--border)] text-[var(--foreground)] focus:outline-none"
+                  >
+                    <option value="কিতাব বিভাগ">কিতাব বিভাগ</option>
+                    <option value="হিফজুল কুরআন বিভাগ">হিফজুল কুরআন বিভাগ</option>
+                    <option value="হিসাব ও অর্থ বিভাগ">হিসাব ও অর্থ বিভাগ</option>
+                    <option value="হোস্টেল ও মেস">হোস্টেল ও মেস</option>
+                    <option value="প্রশাসন">প্রশাসন</option>
+                  </select>
+                </div>
+              </div>
+
+              <div className="grid grid-cols-2 gap-3">
+                <div>
+                  <label className="block text-[var(--muted-foreground)] mb-1 font-semibold">মোবাইল নম্বর *</label>
+                  <input
+                    type="text"
+                    required
+                    placeholder="01700-000000"
+                    value={newTeacherPhone}
+                    onChange={(e) => setNewTeacherPhone(e.target.value)}
+                    className="w-full px-3 py-2 rounded-xl bg-[var(--background)] border border-[var(--border)] text-[var(--foreground)] focus:outline-none font-mono"
+                  />
+                </div>
+                <div>
+                  <label className="block text-[var(--muted-foreground)] mb-1 font-semibold">মাসিক বেতন (টাকা)</label>
+                  <input
+                    type="number"
+                    value={newTeacherSalary}
+                    onChange={(e) => setNewTeacherSalary(Number(e.target.value))}
+                    className="w-full px-3 py-2 rounded-xl bg-[var(--background)] border border-[var(--border)] text-[var(--foreground)] focus:outline-none font-mono font-bold"
+                  />
+                </div>
+              </div>
+
+              <div className="flex justify-end gap-2 pt-3 border-t border-[var(--border)]">
+                <button
+                  type="button"
+                  onClick={() => setShowAddTeacherModal(false)}
+                  className="px-4 py-2 rounded-xl border border-[var(--border)] hover:bg-[var(--card)] text-[var(--foreground)] font-medium"
+                >
+                  বাতিল
+                </button>
+                <button
+                  type="submit"
+                  className="px-5 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-bold shadow transition"
+                >
+                  শিক্ষক সংরক্ষণ করুন
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
+
+      {/* ========================================================================= */}
+      {/* MODAL: ADD NEW CLASS ROUTINE                                              */}
+      {/* ========================================================================= */}
+      {showAddRoutineModal && (
+        <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 z-50">
+          <div className="bg-[var(--card)] border border-[var(--border)] rounded-xl p-6 max-w-md w-full shadow-2xl space-y-4 text-xs animate-in fade-in zoom-in-95">
+            <div className="flex items-center justify-between border-b border-[var(--border)] pb-3">
+              <h3 className="font-bold text-sm text-[var(--foreground)] flex items-center gap-2">
+                <Clock className="w-4 h-4 text-indigo-400" />
+                নতুন ক্লাস ও দরসি রুটিন তৈরি করুন
+              </h3>
+              <button
+                type="button"
+                onClick={() => setShowAddRoutineModal(false)}
+                className="text-[var(--muted-foreground)] hover:text-[var(--foreground)] text-base font-bold"
+              >
+                ✕
+              </button>
+            </div>
+
+            <form onSubmit={handleAddRoutine} className="space-y-3">
+              <div>
+                <label className="block text-[var(--muted-foreground)] mb-1 font-semibold">দায়িত্বপ্রাপ্ত শিক্ষক নির্বাচন করুন *</label>
+                <select
+                  value={newRoutineTeacherId}
+                  onChange={(e) => setNewRoutineTeacherId(e.target.value)}
+                  className="w-full px-3 py-2 rounded-xl bg-[var(--background)] border border-[var(--border)] text-[var(--foreground)] focus:outline-none font-bold"
+                >
+                  {teachers.map((t) => (
+                    <option key={t.id} value={t.id}>
+                      {t.nameBn} ({t.designationBn})
+                    </option>
+                  ))}
+                </select>
+              </div>
+
+              <div className="grid grid-cols-2 gap-3">
+                <div>
+                  <label className="block text-[var(--muted-foreground)] mb-1 font-semibold">জামাত / ক্লাস</label>
+                  <input
+                    type="text"
+                    required
+                    placeholder="যেমন: মিশকাত জামাত"
+                    value={newRoutineClassBn}
+                    onChange={(e) => setNewRoutineClassBn(e.target.value)}
+                    className="w-full px-3 py-2 rounded-xl bg-[var(--background)] border border-[var(--border)] text-[var(--foreground)] focus:outline-none"
+                  />
+                </div>
+                <div>
+                  <label className="block text-[var(--muted-foreground)] mb-1 font-semibold">কিতাব / বিষয়</label>
+                  <input
+                    type="text"
+                    required
+                    placeholder="যেমন: সহীহ বুখারী শরীফ"
+                    value={newRoutineBookBn}
+                    onChange={(e) => setNewRoutineBookBn(e.target.value)}
+                    className="w-full px-3 py-2 rounded-xl bg-[var(--background)] border border-[var(--border)] text-[var(--foreground)] focus:outline-none font-bold"
+                  />
+                </div>
+              </div>
+
+              <div className="grid grid-cols-2 gap-3">
+                <div>
+                  <label className="block text-[var(--muted-foreground)] mb-1 font-semibold">পিরিয়ড ও সময়সূচী</label>
+                  <input
+                    type="text"
+                    required
+                    placeholder="যেমন: ১ম পিরিয়ড (সকাল ৮:০০ - ৯:০০)"
+                    value={newRoutinePeriodBn}
+                    onChange={(e) => setNewRoutinePeriodBn(e.target.value)}
+                    className="w-full px-3 py-2 rounded-xl bg-[var(--background)] border border-[var(--border)] text-[var(--foreground)] focus:outline-none"
+                  />
+                </div>
+                <div>
+                  <label className="block text-[var(--muted-foreground)] mb-1 font-semibold">কক্ষ / হল নং</label>
+                  <input
+                    type="text"
+                    required
+                    placeholder="যেমন: দারুল হাদিস অডিটোরিয়াম"
+                    value={newRoutineRoomBn}
+                    onChange={(e) => setNewRoutineRoomBn(e.target.value)}
+                    className="w-full px-3 py-2 rounded-xl bg-[var(--background)] border border-[var(--border)] text-[var(--foreground)] focus:outline-none"
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label className="block text-[var(--muted-foreground)] mb-1 font-semibold">দিন / বার</label>
+                <input
+                  type="text"
+                  placeholder="যেমন: শনিবার - বৃহস্পতিবার"
+                  value={newRoutineDayBn}
+                  onChange={(e) => setNewRoutineDayBn(e.target.value)}
+                  className="w-full px-3 py-2 rounded-xl bg-[var(--background)] border border-[var(--border)] text-[var(--foreground)] focus:outline-none"
+                />
+              </div>
+
+              <div className="flex justify-end gap-2 pt-3 border-t border-[var(--border)]">
+                <button
+                  type="button"
+                  onClick={() => setShowAddRoutineModal(false)}
+                  className="px-4 py-2 rounded-xl border border-[var(--border)] hover:bg-[var(--card)] text-[var(--foreground)] font-medium"
+                >
+                  বাতিল
+                </button>
+                <button
+                  type="submit"
+                  className="px-5 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-bold shadow transition"
+                >
+                  রুটিন সেভ করুন
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
 
       {/* ========================================================================= */}
       {/* MODAL 1: ADD NEW MADRASA                                                  */}

@@ -162,12 +162,23 @@ async function main() {
 
   await browser.close();
 
+  // Phase 3: Run Full Business Lifecycle & Cross-Module Synchronization Audit
+  console.log('\n[Phase 3] Executing Full Business Lifecycle & Cross-Module Verification...');
+  let lifecycleSuccess = false;
+  try {
+    const lifecycleStdout = execSync('node scripts/e2e_full_workflow_test.mjs', { encoding: 'utf-8', stdio: 'pipe' });
+    console.log('  Lifecycle steps completed: Data Purge, Madrasa Registration, Student Admission, Finance Ledgers, Hostel & Gatepass, Teacher Routines, Academic Sabaq.');
+    lifecycleSuccess = true;
+  } catch (err) {
+    console.error('  [Phase 3 Error] Lifecycle verification error:', err.stdout || err.message);
+  }
+
   const totalButtons = demoAudit.buttonsAudited + mainAudit.buttonsAudited;
   const totalPassed = demoAudit.passedCount + mainAudit.passedCount;
   const totalFailed = demoAudit.failedCount + mainAudit.failedCount;
   const allFailures = [...demoAudit.failedButtons, ...mainAudit.failedButtons];
 
-  const overallSuccess = unitResults.success && totalFailed === 0;
+  const overallSuccess = unitResults.success && totalFailed === 0 && lifecycleSuccess;
   const duration = ((Date.now() - startTime) / 1000).toFixed(2);
 
   // Generate Reports
